@@ -1,15 +1,20 @@
 # lbaw2286
 
-# Super Legit Collaborative News (SLCN)
-The Super Legit Collaborative News (SLCN) is a project with the main goal of free, open and accessible news sharing for and by users. 
+# 1 - Collaborative News
+The Super Legit Collaborative News (SLCN) is a project headed by a small group of developers with the main goal of free, open and accessible news sharing for and by users. 
 
-This will allow users to share news on any topic, browse news with access to category filtering, comment and vote on any existing news item or comment.
+This will allow all users to view and browse the top and most recent news and comments on any topic, with access to text search and category filtering.
 
-Users will have access to a profile, housing their information, profile picture and news score. Here will also be a list of posted news and comments. They also will be able to follow other users, specific tags and categories and view their favorite items.
+On top of that, authenticated users will be able to post news and comments of their own, aswell as vote on any of them.
+They will have access to a profile, housing their information, profile picture and reputation. Here will also be a list of posted news and comments, which can be edited and deleted by the author. 
+They also will be able to follow other users, specific tags and categories and view their favorite items.
+Their reputation will be determined by the number of likes and dislikes on their posts and comments.
+The plataform will employ notifications to inform users of every like and comment on a post.
 
-Along with regular users, the platform will employ administrators that moderate posts and users.
+The platform will also employ administrators capable of moderating, editing and deleting posts, comments and user profiles.
 
 The platform will have adaptive, responsive design to allow usage on multiple devices (desktop, smartphone, etc) aswell as an intuitive user interface and navigation. 
+
 
 # Project Components
 - [ER: Requirements Specifications](docs/er.md)
