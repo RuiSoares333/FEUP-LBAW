@@ -9,7 +9,7 @@ This will allow all users to view and browse the top and most recent news and co
 - [ER: Requirements Specifications](docs/er.md)
 
 # Artifacts Checklist
-- The artefacts checklist is available at: <https://docs.google.com/spreadsheets/d/1u9VdbDK9cWcKivwyWI79DzTGCuPImm2Ktg8aw6YHFF0/edit#gid=1497188515>
+- The artifacts checklist is available at: <https://docs.google.com/spreadsheets/d/1u9VdbDK9cWcKivwyWI79DzTGCuPImm2Ktg8aw6YHFF0/edit#gid=1497188515>
 
 # Team
 - André Morais, up202005303@edu.fe.up.pt
