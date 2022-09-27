@@ -37,7 +37,7 @@ The actors for the Super Legit Collaborative News (SLCN) project are represented
 |Identifier| Description|
 | --- | --- |
 | User | Generic User that can view and search news items and comments |
-| Guest | Unauthenticated user that can sign-in or sign-up |
+| Visitor | Unauthenticated user that can sign-in or sign-up |
 | Standard User| Authenticated user that can also make a new post, comment on a post, vote on a post or comment, has access to a profile, can follow and unfollow users and categories and has a reputation|
 | News Author | Authenticated standard user that can also edit and delete their news posts|
 | Comment Author | Authenticated standard user that can also edit and delete their comments |
@@ -66,13 +66,13 @@ For the SLCN project, the considered user stories are presented below.
 <p>
 <br>
 
-### 2.2 Guest
+### 2.2 Visitor
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
-| US07 | Sign-in | High | As a Guest, I want to be able to authenticate so that I can interact with the news items. |
-| US08 | Sign-up | High | As a Guest, I want to be able to create an account in the system so that I can authenticate. |
-| US09| Recover Password | Medium | As a Guest, I want to be able to recover my password, so that I can keep my account in case I have forgot how to access it. | 
-<figcaption align = "center">Table 3: Guest's user stories</figcaption>
+| US07 | Sign-in | High | As a Visitor, I want to be able to authenticate so that I can interact with the news items. |
+| US08 | Sign-up | High | As a Visitor, I want to be able to create an account in the system so that I can authenticate. |
+| US09| Recover Password | Medium | As a Visitor, I want to be able to recover my password, so that I can keep my account in case I have forgot how to access it. | 
+<figcaption align = "center">Table 3: Visitor's user stories</figcaption>
 </p>
 <p>
 <br>
@@ -150,6 +150,7 @@ This section contains the business rules, technical requirements and restriction
 | BR02 | Deleting posts and comments | A post or comment cannot be deleted by its author if it has likes or comments. |
 | BR03 | Account deletion | On accound deletion, posts, likes, dislikes and comments should be kept in the platform but marked as anonymous. |
 | BR04 | Category on posts | To post a news item, the author most select at least one category.|
+| BR05 | Vote/comment on own items | A News item or comment author has the ability to vote and comment on their own items. |
 <figcaption align = "center">Table 8: Business rules</figcaption>
 <p>
 <br>
