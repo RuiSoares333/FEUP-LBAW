@@ -27,7 +27,7 @@ This artifact contains the information and specification of the actors and their
 ## 1. Actors
 The actors for the Super Legit Collaborative News (SLCN) project are represented in Figure 1 and described in Table 1.
 <p  align="center">
-    <img src="./pictures/actor_diagram.png">
+    <img src="./pictures/actor_diagram.svg">
     <figcaption align = "center">Figure 1: SLCN actors</figcaption>
 </p>
 <br>
