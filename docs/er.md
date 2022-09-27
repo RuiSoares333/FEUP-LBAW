@@ -134,18 +134,44 @@ For the SLCN project, the considered user stories are presented below.
 </p>
 
 ## 3. Supplementary Requirements
-description
+This section contains the business rules, technical requirements and restrictions of the project.
 
 <p>
+<br>
 
 ### 3.1 Business Rules
 </p>
 
+|Identifier | Name| Description|
+| --- | --- | --- |
+| BR01 | User Reputation | User reputation should be derived from the number of likes and dislikes received by a user on their posts and comments. |
+| BR02 | Deleting posts and comments | A post or comment cannot be deleted by its author if it has likes or comments. |
+| BR03 | Account deletion | On accound deletion, posts, likes, dislikes and comments should be kept in the platform but marked as anonymous. |
+| BR04 | Category on posts | To post a news item, the author most select at least one category.|
+
 <p>
+<br>
 
 ### 3.2 Technical Requirements
 </p>
+
+|Identifer | Name| Description|
+| --- | --- | --- |
+| TR01 | Performance | The system should have response times shorter than 2s to ensure the user's attention.|
+|TR02 | Robustness | The system must be prepared to handle and continue operating when runtime errors occur. |
+| **TR03** | **Scalability** | **The system must be prepared to deal with the growth in the number of users and their actions. <br><br> Considering the nature of the project as a collaborative news websire, the ability to accommodate an increasng number of users is paramount.** |
+| TR04 | Accessibility | The system must ensure that everyone can access the pages, regardless of whether they have any handicap or not, or the Web browser they use. |
+| **TR05** | **Usability** | **The system should be intuitive and easy to use.<br><br> Viewing the project as a collaborative news website, any user should be able to use it regardless of background or experience.** | 
+| **TR06** | **Database** | **The PostgreSQL database management system must be used.<br><br>Considering the news, user information, comments and votes that are integral to the website as well as their relations to each other, it is important to develop and utilize a robust and well thought out database to accommodate those needs.** |
+|TR07 | Security | The system must protect the users information from unauthorised access as well as employ authentication and verification features. |
+
 <p>
+<br>
 
 ### 3.3 Restrictions
+
+| Identifier | Name | Description |
+| --- | --- | --- |
+| C01 | Deadine | The system should be ready by the week of 02/01/2023 to be submited for evaluation. |
+
 </p>
