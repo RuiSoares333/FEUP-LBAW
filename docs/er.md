@@ -60,6 +60,7 @@ For the SLCN project, the considered user stories are presented below.
 | US04 | Search | Medium | As a User I want to the search for a specific category, commentary or news item so that I can find that information quicker.  | 
 | US05 | Sort news feed by recent  | Medium | As a User I want to sort the news by most recent so I can have access to the newest topics. |
 | US06 | Sort home feed by popularity | High | As a User I want to sort the news by popularity so that I can have access to the most relevant topics at the moment. |
+<figcaption align = "center">Table 2: User's user stories</figcaption>
 
 </p>
 <p>
@@ -71,7 +72,7 @@ For the SLCN project, the considered user stories are presented below.
 | US07 | Sign-in | High | As a Guest, I want to be able to authenticate so that I can interact with the news items. |
 | US08 | Sign-up | High | As a Guest, I want to be able to create an account in the system so that I can authenticate. |
 | US09| Recover Password | Medium | As a Guest, I want to be able to recover my password, so that I can keep my account in case I have forgot how to access it. | 
-
+<figcaption align = "center">Table 3: Guest's user stories</figcaption>
 </p>
 <p>
 <br>
@@ -93,7 +94,7 @@ For the SLCN project, the considered user stories are presented below.
 | US21 | View other users' profile | High | As a Standard User, I want to view the profiles of other people, so that I can check their post and comment history. |
 | US22 | Follow other peoples profile | Medium | As a Standard User, I want to follow other peoples profile so that I can easily access their posts. |
 | US23 | Unfollow other peoples profile | Medium | As a Standard User, I want to unfollow other peoples profile so that I can stop seeing news from people that I don't like. |
-
+<figcaption align = "center">Table 4: Standard User's user stories</figcaption>
 </p>
 <p>
 <br>
@@ -105,7 +106,7 @@ For the SLCN project, the considered user stories are presented below.
 | US25 | Delete News Item | High | As a News Author, I want to remove one of my published articles, so that it disappears from the platform. |
 | US26 | News Vote Notification | Medium | As a News Author, I want to receive a notification whenever someone votes on a news item I posted, so that I'm aware of its popularity. |
 | US27 | News Comment Notification | Medium | As a News Author, I want to receive a notification whenever someone comments on one of my news items, so that I can read it immediately. |
-
+<figcaption align = "center">Table 5: News Author's user stories</figcaption>
 </p>
 <p>
 <br>
@@ -117,7 +118,7 @@ For the SLCN project, the considered user stories are presented below.
 | US29 | Remove Comment | Medium | As a Comment Author, I want to remove one of my published comments, so that it disappears from the platform. |
 | US30 | Comment Vote Notification | Medium | As a Comment Author, I want to receive a notification whenever someone votes on a comment I posted, so that I'm aware of its popularity. |
 | US31 | News Comment Notification | Low | As a News Author, I want to receive a notification whenever someone comments on one of my comments, so that I can read it immediately. |
-
+<figcaption align = "center">Table 6: Comment Author's user stories</figcaption>
 
 </p>
 <p>
@@ -131,6 +132,7 @@ For the SLCN project, the considered user stories are presented below.
 | US34| Block User Accounts | Medium | As an Administrator, I want to block user accounts so that they can't disturb anyone anymore. |
 | US35 | Unblock User Accounts | Medium | As an Administrator, I want to unblock user accounts so that they can interact with the other again. |
 | US36 | Delete User Account | Medium | As an Administrator, I want to delete user accounts in order to moderate the forums so that if an user in question disobeys the user guidelines he can't disturb the forums anymore. |
+<figcaption align = "center">Table 7: Administrators's user stories</figcaption>
 </p>
 
 ## 3. Supplementary Requirements
@@ -148,7 +150,7 @@ This section contains the business rules, technical requirements and restriction
 | BR02 | Deleting posts and comments | A post or comment cannot be deleted by its author if it has likes or comments. |
 | BR03 | Account deletion | On accound deletion, posts, likes, dislikes and comments should be kept in the platform but marked as anonymous. |
 | BR04 | Category on posts | To post a news item, the author most select at least one category.|
-
+<figcaption align = "center">Table 8: Business rules</figcaption>
 <p>
 <br>
 
@@ -164,7 +166,7 @@ This section contains the business rules, technical requirements and restriction
 | **TR05** | **Usability** | **The system should be intuitive and easy to use.<br><br> Viewing the project as a collaborative news website, any user should be able to use it regardless of background or experience.** | 
 | **TR06** | **Database** | **The PostgreSQL database management system must be used.<br><br>Considering the news, user information, comments and votes that are integral to the website as well as their relations to each other, it is important to develop and utilize a robust and well thought out database to accommodate those needs.** |
 |TR07 | Security | The system must protect the users information from unauthorised access as well as employ authentication and verification features. |
-
+<figcaption align = "center">Table 9: Technical Requirements</figcaption>
 <p>
 <br>
 
@@ -173,5 +175,5 @@ This section contains the business rules, technical requirements and restriction
 | Identifier | Name | Description |
 | --- | --- | --- |
 | C01 | Deadine | The system should be ready by the week of 02/01/2023 to be submited for evaluation. |
-
+<figcaption align = "center">Table 10: Project Restrictions</figcaption>
 </p>
