@@ -22,7 +22,7 @@ The platform will also employ administrators capable of moderating, editing and 
 The platform will have adaptive, responsive design to allow usage on multiple devices (desktop, smartphone, etc) aswell as an intuitive user interface and navigation.
 
 # A2: Actors and User stories
-This artifact contains the information and specification of the actors and their user stories.
+This artifact contains the information and specification of the actors and their user stories. It also contains the projects supplementary requirements.
 
 ## 1. Actors
 The actors for the Super Legit Collaborative News (SLCN) project are represented in Figure 1 and described in Table 1.
@@ -177,3 +177,11 @@ This section contains the business rules, technical requirements and restriction
 | C01 | Deadine | The system should be ready by the week of 02/01/2023 to be submited for evaluation. |
 <figcaption align = "center">Table 10: Project Restrictions</figcaption>
 </p>
+
+# Team
+- André Morais, up202005303@edu.fe.up.pt
+- João Teixeira, up202005437@edu.fe.up.pt
+- Lucas Sousa, up202004682@edu.fe.up.pt
+- Rui Soares, up202103631@edu.fe.up.pt
+
+#### lbaw2223-t8g6, 27/09/22
