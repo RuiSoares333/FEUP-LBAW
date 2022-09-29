@@ -58,11 +58,11 @@ For the SLCN project, the considered user stories are presented below.
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
 | US01 | See Home Feed | High | As a user I want to access the home page, so that I can see all the news and options available. |
-| US03 | View News Item | High | As a User I want to access a single News Item so that I can read a more detailed version with a description. |
-| US06 | Sort home feed by popularity | High | As a User I want to sort the news by popularity so that I can have access to the most relevant topics at the moment. |
-| US02 | Read Comment | Medium | As a User, I want to see the comments of each news item, so that I can read them. |
-| US04 | Search | Medium | As a User I want to the search for a specific category, commentary or news item so that I can find that information quicker.  |
-| US05 | Sort news feed by recent  | Medium | As a User I want to sort the news by most recent so I can have access to the newest topics. |
+| US02 | View News Item | High | As a User I want to access a single News Item so that I can read a more detailed version with a description. |
+| US03 | Sort home feed by popularity | High | As a User I want to sort the news by popularity so that I can have access to the most relevant topics at the moment. |
+| US04 | Read Comment | Medium | As a User, I want to see the comments of each news item, so that I can read them. |
+| US05 | Search | Medium | As a User I want to the search for a specific category, commentary or news item so that I can find that information quicker.  |
+| US06 | Sort news feed by recent  | Medium | As a User I want to sort the news by most recent so I can have access to the newest topics. |
 
 <figcaption align = "center">Table 2: User's user stories</figcaption>
 
@@ -87,17 +87,17 @@ For the SLCN project, the considered user stories are presented below.
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
 | US10 | Create News Item | High | As a Authenticated User, I want to create and publish a news item, so that it becomes available to other users. |
-| US18 | Logout | High | As a Authenticated User, I want to logout from my account, so that I can leave. |
-| US19 | Edit Profile | High | As a Authenticated User, I want to edit my profile so that I can keep my personal information updated. |
-| US20 | View Profile | High | As a Authenticated User, I want to View user profiles so that I can check my own personal information and that of other Users. |
-| US21 | View other users' profile | High | As a Authenticated User, I want to view the profiles of other people, so that I can check their post and comment history. |
-| US11 | Create a Comment | Medium | As a Authenticated User, I want to create and publish a comment, so that it becomes available for other users to read. |
-| US12 | Vote on News Item | Medium | As a Authenticated User, I want to like or dislike a news item, so that I can declare my opinion on it. |
-| US13 | Remove Vote on News Item | Medium | As a Authenticated User, I want to remove my vote on a news item, so that it is removed from the platform. |
-| US14 | Vote on Comment | Medium | As a Authenticated User, I want to like or dislike a comment, so that I can declare my opinion on it. |
-| US15 | Remove Vote on Comment | Medium | As a Authenticated User, I want to remove my vote on a comment, so that it is removed from the platform. |
-| US16 | Delete Account | Medium | As a Authenticated User I want to be able to delete my account so that I can delete my personal data of the platform. |
-| US17 | Administrator Accounts | Medium | As a Authenticated User, I want to apply for an Administrator Account so that I can become an administrator. |
+| US11 | Logout | High | As a Authenticated User, I want to logout from my account, so that I can leave. |
+| US12 | Edit Profile | High | As a Authenticated User, I want to edit my profile so that I can keep my personal information updated. |
+| US13 | View Profile | High | As a Authenticated User, I want to View user profiles so that I can check my own personal information and that of other Users. |
+| US14 | View other users' profile | High | As a Authenticated User, I want to view the profiles of other people, so that I can check their post and comment history. |
+| US15 | Create a Comment | Medium | As a Authenticated User, I want to create and publish a comment, so that it becomes available for other users to read. |
+| US16 | Vote on News Item | Medium | As a Authenticated User, I want to like or dislike a news item, so that I can declare my opinion on it. |
+| US17 | Remove Vote on News Item | Medium | As a Authenticated User, I want to remove my vote on a news item, so that it is removed from the platform. |
+| US18 | Vote on Comment | Medium | As a Authenticated User, I want to like or dislike a comment, so that I can declare my opinion on it. |
+| US19 | Remove Vote on Comment | Medium | As a Authenticated User, I want to remove my vote on a comment, so that it is removed from the platform. |
+| US20 | Delete Account | Medium | As a Authenticated User I want to be able to delete my account so that I can delete my personal data of the platform. |
+| US21 | Administrator Accounts | Medium | As a Authenticated User, I want to apply for an Administrator Account so that I can become an administrator. |
 | US22 | Follow other peoples profile | Medium | As a Authenticated User, I want to follow other peoples profile so that I can easily access their posts. |
 | US23 | Unfollow other peoples profile | Medium | As a Authenticated User, I want to unfollow other peoples profile so that I can stop seeing news from people that I don't like. |
 | US24 | Profile Picture | Medium | As a Authenticated User, I want to edit my own profile picture so that others can myself or my interests when visiting my profile or viewing my posts and comments. |
@@ -111,9 +111,9 @@ For the SLCN project, the considered user stories are presented below.
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
 | US25 | Edit News Item | High | As a News Author, I want to edit one of my published articles, so that I can correct/update said article. |
-| US25 | Delete News Item | High | As a News Author, I want to remove one of my published articles, so that it disappears from the platform. |
-| US26 | News Vote Notification | Medium | As a News Author, I want to receive a notification whenever someone votes on a news item I posted, so that I'm aware of its popularity. |
-| US27 | News Comment Notification | Medium | As a News Author, I want to receive a notification whenever someone comments on one of my news items, so that I can read it immediately. |
+| US26 | Delete News Item | High | As a News Author, I want to remove one of my published articles, so that it disappears from the platform. |
+| US27 | News Vote Notification | Medium | As a News Author, I want to receive a notification whenever someone votes on a news item I posted, so that I'm aware of its popularity. |
+| US28 | News Comment Notification | Medium | As a News Author, I want to receive a notification whenever someone comments on one of my news items, so that I can read it immediately. |
 <figcaption align = "center">Table 5: News Author's user stories</figcaption>
 </p>
 <p>
@@ -123,10 +123,10 @@ For the SLCN project, the considered user stories are presented below.
 
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
-| US28 | Edit Comment | Medium | As a Comment Author, I want to edit one of my published comments, so that I can correct/update said comment. |
-| US29 | Remove Comment | Medium | As a Comment Author, I want to remove one of my published comments, so that it disappears from the platform. |
-| US30 | Comment Vote Notification | Medium | As a Comment Author, I want to receive a notification whenever someone votes on a comment I posted, so that I'm aware of its popularity. |
-| US31 | News Comment Notification | Low | As a News Author, I want to receive a notification whenever someone comments on one of my comments, so that I can read it immediately. |
+| US29 | Edit Comment | Medium | As a Comment Author, I want to edit one of my published comments, so that I can correct/update said comment. |
+| US30 | Remove Comment | Medium | As a Comment Author, I want to remove one of my published comments, so that it disappears from the platform. |
+| US31 | Comment Vote Notification | Medium | As a Comment Author, I want to receive a notification whenever someone votes on a comment I posted, so that I'm aware of its popularity. |
+| US32 | News Comment Notification | Low | As a News Author, I want to receive a notification whenever someone comments on one of my comments, so that I can read it immediately. |
 <figcaption align = "center">Table 6: Comment Author's user stories</figcaption>
 
 </p>
@@ -138,10 +138,10 @@ For the SLCN project, the considered user stories are presented below.
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
 | US33 | Administer User Accounts | High | As an Administrator, I want to search, view and edit user Accounts so that I can keep manage users. |
-| US32 | Manage Topic Proposals | Medium | As an Administrator, I want to manage the topic proposals so that I can add or delete them. |
-| US34| Block User Accounts | Medium | As an Administrator, I want to block user accounts so that they can't disturb anyone anymore. |
-| US35 | Unblock User Accounts | Medium | As an Administrator, I want to unblock user accounts so that they can interact with the other again. |
-| US36 | Delete User Account | Medium | As an Administrator, I want to delete user accounts in order to moderate the forums so that if an user in question disobeys the user guidelines he can't disturb the forums anymore. |
+| US34 | Manage Topic Proposals | Medium | As an Administrator, I want to manage the topic proposals so that I can add or delete them. |
+| US35| Block User Accounts | Medium | As an Administrator, I want to block user accounts so that they can't disturb anyone anymore. |
+| US36 | Unblock User Accounts | Medium | As an Administrator, I want to unblock user accounts so that they can interact with the other again. |
+| US37 | Delete User Account | Medium | As an Administrator, I want to delete user accounts in order to moderate the forums so that if an user in question disobeys the user guidelines he can't disturb the forums anymore. |
 <figcaption align = "center">Table 7: Administrators's user stories</figcaption>
 </p>
 
