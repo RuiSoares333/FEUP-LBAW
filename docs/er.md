@@ -99,6 +99,7 @@ For the SLCN project, the considered user stories are presented below.
 | US21 | View other users' profile | High | As a Authenticated User, I want to view the profiles of other people, so that I can check their post and comment history. |
 | US22 | Follow other peoples profile | Medium | As a Authenticated User, I want to follow other peoples profile so that I can easily access their posts. |
 | US23 | Unfollow other peoples profile | Medium | As a Authenticated User, I want to unfollow other peoples profile so that I can stop seeing news from people that I don't like. |
+| US24 | Profile Picture | Medium | As a Authenticated User, I want to edit my own profile picture so that others can myself or my interests when visiting my profile or viewing my posts and comments. |
 <figcaption align = "center">Table 4: Authenticated User's user stories</figcaption>
 </p>
 <p>
@@ -108,7 +109,7 @@ For the SLCN project, the considered user stories are presented below.
 
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
-| US24 | Edit News Item | High | As a News Author, I want to edit one of my published articles, so that I can correct/update said article. |
+| US25 | Edit News Item | High | As a News Author, I want to edit one of my published articles, so that I can correct/update said article. |
 | US25 | Delete News Item | High | As a News Author, I want to remove one of my published articles, so that it disappears from the platform. |
 | US26 | News Vote Notification | Medium | As a News Author, I want to receive a notification whenever someone votes on a news item I posted, so that I'm aware of its popularity. |
 | US27 | News Comment Notification | Medium | As a News Author, I want to receive a notification whenever someone comments on one of my news items, so that I can read it immediately. |
