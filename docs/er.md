@@ -39,9 +39,9 @@ The actors for the Super Legit Collaborative News (SLCN) project are represented
 | --- | --- |
 | User | Generic User that can view and search news items and comments |
 | Visitor | Unauthenticated user that can sign-in or sign-up |
-| Standard User| Authenticated user that can also make a new post, comment on a post, vote on a post or comment, has access to a profile, can follow and unfollow users and categories and has a reputation|
-| News Author | Authenticated standard user that can also edit and delete their news posts|
-| Comment Author | Authenticated standard user that can also edit and delete their comments |
+| Authenticated User| Authenticated user that can also make a new post, comment on a post, vote on a post or comment, has access to a profile, can follow and unfollow users and categories and has a reputation|
+| News Author | Authenticated User that can also edit and delete their news posts|
+| Comment Author | Authenticated User that can also edit and delete their comments |
 | Administrator | Authenticated user that is responsible for the moderation of the users and their content. They can edit or delete posts and comments of any user, aswell as their profiles and manage tags and categories|
 <figcaption align = "center">Table 1: SLCN actors description</figcaption>
 </p>
@@ -81,25 +81,25 @@ For the SLCN project, the considered user stories are presented below.
 <p>
 <br>
 
-### 2.3 Standard User
+### 2.3 Authenticated User
 
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
-| US10 | Create News Item | High | As a Standard User, I want to create and publish a news item, so that it becomes available to other users. |
-| US11 | Create a Comment | Medium | As a Standard User, I want to create and publish a comment, so that it becomes available for other users to read. |
-| US12 | Vote on News Item | Medium | As a Standard User, I want to like or dislike a news item, so that I can declare my opinion on it. |
-| US13 | Remove Vote on News Item | Medium | As a Standard User, I want to remove my vote on a news item, so that it is removed from the platform. |
-| US14 | Vote on Comment | Medium | As a Standard User, I want to like or dislike a comment, so that I can declare my opinion on it. |
-| US15 | Remove Vote on Comment | Medium | As a Standard User, I want to remove my vote on a comment, so that it is removed from the platform. |
-| US16 | Delete Account | Medium | As a Standard User I want to be able to delete my account so that I can delete my personal data of the platform. |
-| US17 | Administrator Accounts | Medium | As a Standard User, I want to apply for an Administrator Account so that I can become an administrator. |
-| US18 | Logout | High | As a Standard User, I want to logout from my account, so that I can leave. |
-| US19 | Edit Profile | High | As a Standard User, I want to edit my profile so that I can keep my personal information updated. |
-| US20 | View Profile | High | As a Standard User, I want to View user profiles so that I can check my own personal information and that of other Users. |
-| US21 | View other users' profile | High | As a Standard User, I want to view the profiles of other people, so that I can check their post and comment history. |
-| US22 | Follow other peoples profile | Medium | As a Standard User, I want to follow other peoples profile so that I can easily access their posts. |
-| US23 | Unfollow other peoples profile | Medium | As a Standard User, I want to unfollow other peoples profile so that I can stop seeing news from people that I don't like. |
-<figcaption align = "center">Table 4: Standard User's user stories</figcaption>
+| US10 | Create News Item | High | As a Authenticated User, I want to create and publish a news item, so that it becomes available to other users. |
+| US11 | Create a Comment | Medium | As a Authenticated User, I want to create and publish a comment, so that it becomes available for other users to read. |
+| US12 | Vote on News Item | Medium | As a Authenticated User, I want to like or dislike a news item, so that I can declare my opinion on it. |
+| US13 | Remove Vote on News Item | Medium | As a Authenticated User, I want to remove my vote on a news item, so that it is removed from the platform. |
+| US14 | Vote on Comment | Medium | As a Authenticated User, I want to like or dislike a comment, so that I can declare my opinion on it. |
+| US15 | Remove Vote on Comment | Medium | As a Authenticated User, I want to remove my vote on a comment, so that it is removed from the platform. |
+| US16 | Delete Account | Medium | As a Authenticated User I want to be able to delete my account so that I can delete my personal data of the platform. |
+| US17 | Administrator Accounts | Medium | As a Authenticated User, I want to apply for an Administrator Account so that I can become an administrator. |
+| US18 | Logout | High | As a Authenticated User, I want to logout from my account, so that I can leave. |
+| US19 | Edit Profile | High | As a Authenticated User, I want to edit my profile so that I can keep my personal information updated. |
+| US20 | View Profile | High | As a Authenticated User, I want to View user profiles so that I can check my own personal information and that of other Users. |
+| US21 | View other users' profile | High | As a Authenticated User, I want to view the profiles of other people, so that I can check their post and comment history. |
+| US22 | Follow other peoples profile | Medium | As a Authenticated User, I want to follow other peoples profile so that I can easily access their posts. |
+| US23 | Unfollow other peoples profile | Medium | As a Authenticated User, I want to unfollow other peoples profile so that I can stop seeing news from people that I don't like. |
+<figcaption align = "center">Table 4: Authenticated User's user stories</figcaption>
 </p>
 <p>
 <br>
