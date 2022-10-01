@@ -10,6 +10,8 @@ The Super Legit Collaborative News (SLCN) is a project headed by a small group o
 
 This will allow all users to view and browse all types of news and comments on any topic, with access to text search and category selection.
 
+On the home page, the users will view the trending or recent news items and be able to search by any news item, user or category on the search bar.
+
 The users can register an account on the platform and be able to login as authenticated users. These users will be able to post news and comments, as well as vote on any of them. They will have access to a profile, housing their personal information, profile picture, and reputation. The reputation is determined by the number of likes and dislikes on their news and comments.
 
 They will also be able to follow or unfollow other users and categories. By following another person, the news they publish will appear on the user's feed. 
