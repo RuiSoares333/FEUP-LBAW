@@ -222,12 +222,12 @@ Below are presented wireframes for the Homepage(UI01), News Item Details page(UI
     <img src="./pictures/ui01.png">
     <figcaption align = "center">Figure 3: Homepage(UI01) wireframe</figcaption>
 </p>
-
+<br>
 <p  align="center">
     <img src="./pictures/ui02.png">
     <figcaption align = "center">Figure 4: News Item Details(UI02) wireframe</figcaption>
 </p>
-
+<br>
 <p  align="center">
     <img src="./pictures/ui03.png">
     <figcaption align = "center">Figure 5: User Profile(UI03) wireframe</figcaption>
