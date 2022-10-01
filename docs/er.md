@@ -62,6 +62,7 @@ For the SLCN project, the considered user stories are presented below.
 | --- | --- | --- | --- |
 | US01 | View Default Home Feed | High | As a User, I want to access the home page, so that I can view all the news and setting options available. |
 | US02 | View News Item | High | As a User, I want to access a single News Item so that I can read a more detailed version with a description. |
+| US14 | View other profiles | High | As an Authenticated User, I want to view the profiles of other people, so that I can check their post and comment history. |
 | US03 | Sort home feed by popularity | High | As a User, I want to sort the news by popularity so that I can have access to the most relevant posts at the moment. |
 | US04 | Search | High | As a User, I want to search for a specific category, comment or news item so that I can find that information quicker.  |
 | US05 | Read Comment | Medium | As a User, I want to see the comments of each news item, so that I can read them. |
@@ -94,7 +95,6 @@ For the SLCN project, the considered user stories are presented below.
 | US11 | Logout | High | As an Authenticated User, I want to logout from my account, so that I can leave. |
 | US12 | Edit Profile | High | As an Authenticated User, I want to edit my profile so that I can keep my personal information updated. |
 | US13 | View Personal Profile | High | As an Authenticated User, I want to view my user profile so that I can check my personal information and have an option to edit it. |
-| US14 | View other profiles | High | As an Authenticated User, I want to view the profiles of other people, so that I can check their post and comment history. |
 | US15 | Create a Comment | Medium | As an Authenticated User, I want to create and publish a comment, so that it becomes available for other users to read. |
 | US17 | Answer a Comment | Low | As an Authenticated User, I want to answer other people's comments so that I can comment on other people's point of view. |
 | US16 | Vote on News Item | Medium | As an Authenticated User, I want to like or dislike a news item, so that I can declare my opinion on it. |
