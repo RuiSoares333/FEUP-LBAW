@@ -202,6 +202,39 @@ This section contains the business rules, technical requirements and restriction
 <figcaption align = "center">Table 10: Project Restrictions</figcaption>
 </p>
 
+
+# A3: Information Architecture
+
+This artifact serves as an overview of the planned information architecture of the system.
+
+## 1. Sitemap
+
+Our system is built around 5 main areas. The Static Pages, which provide information about the platform. News Pages, which envelop all the news items, news feeds and news item creations. Visitor Pages, for loggin in and signing up. Authenticated User Pages, for the user profile, saved news and report user pages. And Admin Pages, housing admin specific pages and utilities.
+
+<p  align="center">
+    <img src="./pictures/sitemap.png">
+    <figcaption align = "center">Figure 2: Sitemap</figcaption>
+</p>
+
+## 2. Wireframes
+
+Below are presented wireframes for the Homepage(UI01), News Item Details page(UI02) and User Profile Page(UI03).
+
+<p  align="center">
+    <img src="./pictures/ui01.png">
+    <figcaption align = "center">Figure 3: Homepage(UI01) wireframe</figcaption>
+</p>
+
+<p  align="center">
+    <img src="./pictures/ui02.png">
+    <figcaption align = "center">Figure 4: News Item Details(UI02) wireframe</figcaption>
+</p>
+
+<p  align="center">
+    <img src="./pictures/ui03.png">
+    <figcaption align = "center">Figure 5: User Profile(UI03) wireframe</figcaption>
+</p>
+
 # Team
 
 - André Morais, up202005303@edu.fe.up.pt
