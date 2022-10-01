@@ -10,16 +10,16 @@ The Super Legit Collaborative News (SLCN) is a project headed by a small group o
 
 This will allow all users to view and browse all types of news and comments on any topic, with access to text search and category selection.
 
-The users can register an account to the plataform and be able to login as an authenticated user. This users will be able to post news and comments, as well as vote on any of them. They will have access to a profile, housing their personal information, profile picture, and reputation. The reputation is determined by the number of likes and dislikes on their news and comments.
+The users can register an account to the platform and be able to login as authenticated users. These users will be able to post news and comments, as well as vote on any of them. They will have access to a profile, housing their personal information, profile picture, and reputation. The reputation is determined by the number of likes and dislikes on their news and comments.
 
 They will also be able to follow or unfollow other users and categories. By following another user, the news they publish will appear on the user's feed. 
 The platform will also employ notifications to inform users of every like and comment made on their posts.
 
-Besides the home page, authenticated users will also have access to a profile page. In their profile, the authors have access to a list of their posted news and comments, which they can edit and delete and have a place where they can manage the users they follow and the users following them. Also, they will have options to edit their own profile picture and other informations.
+Besides the home page, authenticated users will also have access to a profile page. In their profile, the authors have access to a list of their posted news and comments, which they can edit and delete and have a place where they can manage the users they follow and the users following them. Also, they will have options to edit their own profile picture and other information.
 
 The platform will also employ administrators capable of moderating, editing, and deleting posts, comments, and user profiles. Administrators will also be in charge of managing categories.
 
-The platform will have an adaptive, responsive design to allow usage on multiple devices (desktop, smartphone, etc.) as well as an intuitive user interface and navigation.
+The platform will have an adaptive, responsive design to allow it on multiple devices (desktop, smartphone, etc.) as well as an intuitive user interface and navigation.
 
 # A2: Actors and User stories
 
@@ -207,7 +207,7 @@ This artifact serves as an overview of the planned information architecture of t
 
 ## 1. Sitemap
 
-Our system is built around 5 main areas. The Static Pages, which provide information about the platform. News Pages, which envelop all the news items, news feeds and news item creations. Visitor Pages, for loggin in and signing up. Authenticated User Pages, for the user profile, saved news and report user pages. And Admin Pages, housing admin specific pages and utilities.
+Our system is built around 5 main areas. The Static Pages, which provide information about the platform. The News Pages, which envelop all the news items, news feeds and news item creations. The Visitor Pages, for loggin in and signing up. The Authenticated User Pages, for the user profile, saved news and report user pages. And the Admin Pages, housing admin specific pages and utilities.
 
 <p  align="center">
     <img src="./pictures/sitemap.png">
