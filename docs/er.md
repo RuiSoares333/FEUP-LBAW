@@ -10,17 +10,14 @@ The Super Legit Collaborative News (SLCN) is a project headed by a small group o
 
 This will allow all users to view and browse all types of news and comments on any topic, with access to text search and category selection.
 
-On top of that, authenticated users will be able to post news and comments of their own, as well as vote on any of them. They will have access to a profile, housing their information, profile picture, and reputation. Their reputation will be determined by the number of likes and dislikes on their news and comments. Where they can manage the users they are following.
-They will also be able to follow other users and categories. By following another user, the news they publish will appear on the user's feed. In their profile, the authors will have access to a list of their posted news and comments, which they can edit and delete.
+The users can register an account to the plataform and be able to login as an authenticated user. This users will be able to post news and comments, as well as vote on any of them. They will have access to a profile, housing their personal information, profile picture, and reputation. The reputation is determined by the number of likes and dislikes on their news and comments.
 
+They will also be able to follow or unfollow other users and categories. By following another user, the news they publish will appear on the user's feed. 
+The platform will also employ notifications to inform users of every like and comment made on their posts.
 
+Besides the home page, authenticated users will also have access to a profile page. In their profile, the authors have access to a list of their posted news and comments, which they can edit and delete and have a place where they can manage the users they follow and the users following them. Also, they will have options to edit their own profile picture and other informations.
 
-
-
-
-The platform will employ notifications to inform users of every like and comment on a post.
-
-The platform will also employ administrators capable of moderating, editing, and deleting posts, comments, and user profiles. Administrators will also be in charge of managing tags and categories.
+The platform will also employ administrators capable of moderating, editing, and deleting posts, comments, and user profiles. Administrators will also be in charge of managing categories.
 
 The platform will have an adaptive, responsive design to allow usage on multiple devices (desktop, smartphone, etc.) as well as an intuitive user interface and navigation.
 
@@ -107,8 +104,9 @@ For the SLCN project, the considered user stories are presented below.
 | US | Report | Low | As an Authenticated User, I want to report to the administrator news items, users, or comments that are not respecting me. |
 | US21 | Apply to an administrator Account | Medium | As a Authenticated User, I want to apply for an Administrator Account so that I can become an administrator. |
 | US22 | Follow categories | Medium | As an authenticated user, I want to follow categories so I can choose to view the categories of my best interest. |
-| US22 | Follow other peoples profile | Medium | As an Authenticated User, I want to follow other peoples profile so that I can easily access their posts. |
-| US23 | Unfollow other peoples profile | Medium | As an Authenticated User, I want to unfollow other peoples profile so that I can stop viewing news from people that I don't like. |
+| US23 | Follow categories | Medium | As an authenticated user, I want to unfollow categories so I can stop viewing categories I'm no longer interested in. |
+| US24 | Follow other peoples profile | Medium | As an Authenticated User, I want to follow other peoples profile so that I can easily access their posts. |
+| US25 | Unfollow other peoples profile | Medium | As an Authenticated User, I want to unfollow other peoples profile so that I can stop viewing news from people that I don't like. |
 | US24 | Profile Picture | Medium | As an Authenticated User, I want to edit my own profile picture so that others can myself or my interests when visiting my profile or viewing my posts and comments. |
 <figcaption align = "center">Table 4: Authenticated User's user stories</figcaption>
 </p>
