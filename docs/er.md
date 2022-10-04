@@ -202,6 +202,9 @@ This section contains the business rules, technical requirements, and restrictio
 | Identifier | Name | Description |
 | --- | --- | --- |
 | C01 | Deadline | The system should be ready by the week of 02/01/2023 to be submitted for evaluation. |
+| C02 | PostgreSQL | The database must be built with the PostgreSQL database system. |
+| C03 | Laravel | The Laravel framework must be used to built the site. |
+| C04 | Docker | Docker must be used as a virtualization environment. |   
 <figcaption align = "center">Table 10: Project Restrictions</figcaption>
 </p>
 
