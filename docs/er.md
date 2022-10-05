@@ -252,9 +252,9 @@ First Submission
 
 # Team
 
-- André Morais, up202005303@edu.fe.up.pt
-- João Teixeira, up202005437@edu.fe.up.pt
-- Lucas Sousa, up202004682@edu.fe.up.pt
-- Rui Soares, up202103631@edu.fe.up.pt
+- André Morais, up202005303@edu.fe.up.pt (editor)
+- João Teixeira, up202005437@edu.fe.up.pt (editor)
+- Lucas Sousa, up202004682@edu.fe.up.pt (editor)
+- Rui Soares, up202103631@edu.fe.up.pt (editor)
 
 #### lbaw2223-t8g6, 04/10/22
