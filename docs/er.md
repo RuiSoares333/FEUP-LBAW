@@ -241,6 +241,15 @@ Below are presented wireframes for the Homepage(UI01), News Item Details page(UI
     <figcaption align = "center">Figure 5: User Profile(UI03) wireframe</figcaption>
 </p>
 
+# Revisions
+
+First Submission
+- A1: Project Description
+- A2: Actors and User Stories
+- A3: Information Architecture
+- Images for actors, sitemap and wireframes
+- Group identification
+
 # Team
 
 - André Morais, up202005303@edu.fe.up.pt
