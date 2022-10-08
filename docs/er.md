@@ -2,24 +2,24 @@
 
 The Super Legit Collaborative News (SLCN) is a project headed by a small group of developers with the main goal of free, open, and accessible news sharing for and by users.
 
-This will allow all users to view and browse all types of news and comments on any topic, with access to text search and category selection.
+This will allow all users to view and browse all types of news and comments on any topic, with access to text search and tag selection.
 
 # A1: Super Legit Collaborative News (SLCN)
 
 The Super Legit Collaborative News (SLCN) is a project headed by a small group of developers with the main goal of free, open, and accessible news sharing for and by users.
 
-This will allow all users to view and browse all types of news and comments on any topic, with access to text search and category selection.
+This will allow all users to view and browse all types of news and comments on any topic, with access to text search and tag selection.
 
-On the home page, the users will view the trending or recent news items and be able to search by any news item, user, or category on the search bar.
+On the home page, the users will view the trending or recent news items and be able to search by any news item, user, or tag on the search bar.
 
 The users can register an account on the platform and be able to log in as authenticated users. These users will be able to post news and comments, as well as vote on any of them. They will have access to a profile, housing their personal information, profile picture, and reputation. The reputation is determined by the number of likes and dislikes on their news and comments.
 
-They will also be able to follow or unfollow other users and categories. By following another person, the news they publish will appear on the user's feed. 
+They will also be able to follow or unfollow other users and tags. By following another person, the news they publish will appear on the user's feed. 
 The platform will also employ notifications to inform users of every like and comment made on their posts.
 
 Besides the home page, authenticated users will also have access to a profile page. In their profile, the authors have access to a list of their posted news and comments, which they can edit and delete and have a place where they can manage the users they follow and the users following them. Also, they will have options to edit their profile picture and other information.
 
-The platform will also employ administrators capable of moderating, editing, and deleting posts, comments, and user accounts. Administrators will also be in charge of managing categories.
+The platform will also employ administrators capable of moderating, editing, and deleting posts, comments, and user accounts. Administrators will also be in charge of managing tags.
 
 The platform will have an adaptive, responsive design to allow it to work smoothly on multiple devices (desktop, smartphone, etc...) as well as an intuitive user interface and navigation.
 
@@ -42,10 +42,10 @@ The actors for the Super Legit Collaborative News (SLCN) project are represented
 | --- | --- |
 | User | Generic User that can view and search news items and comments. |
 | Visitor | Unauthenticated User that can sign-up and sign in |
-| Authenticated User| Authenticated user that can make a new post, comment on a post, vote on a post or comment, that has access to a profile with a reputation and that can follow and unfollow users and categories. |
+| Authenticated User| Authenticated user that can make a new post, comment on a post, vote on a post or comment, that has access to a profile with a reputation and that can follow and unfollow users and tags. |
 | News Author | Authenticated User that can also edit and delete their news items.|
 | Comment Author | Authenticated User that can also edit and delete their comments. |
-| Administrator | Authenticated User that is responsible for the moderation of users and content. They can edit or delete posts and comments of any user, as well as their profiles, and can create and manage news categories.|
+| Administrator | Authenticated User that is responsible for the moderation of users and content. They can edit or delete posts and comments of any user, as well as their profiles, and can create and manage news tags.|
 <figcaption align = "center">Table 1: SLCN actors description</figcaption>
 </p>
 
@@ -61,10 +61,10 @@ For the SLCN project, the considered user stories are presented below.
 | --- | --- | --- | --- |
 | US01 | View Top News Feed | High | As a User, I want to access the top news feed, so that I can view all the most relevant news available. |
 | US02 | View News Item | High | As a User, I want to access a single News Item so that I can read a more detailed version of it. |
-| US03 | Search | High | As a User, I want to search for a specific category, comment, or news item so that I can find that information quicker.  |
+| US03 | Search | High | As a User, I want to search for a specific tag, comment, or news item so that I can find that information quicker.  |
 | US04 | View News Item Comments | Medium | As a User, I want to view the comments of each news item, so that I can know detailed people's opinions about that news item. |
 | US05 | View Other Users' Profiles | Medium | As a User, I want to view the profiles of other people, so that I can check their reputation, and news and comment history. |
-| US06 | View News Item Category | Medium | As a User, I want to view which categories the news item belongs to, so that I can quickly know what is it about. |
+| US06 | View News Item Tag | Medium | As a User, I want to view which tags the news item belongs to, so that I can quickly know what is it about. |
 | US07 | View Recent News Feed | Medium | As a User, I want to sort the news by most recent so I can have access to the newest posts. |
 | US08 | About Us | Medium | As a User, I want to have a place where I can read information about the platform and its features so that I can find anything about it. |
 | US09 | Contacts | Medium | As a User, I want to have access to the contacts responsible for the platform so that I can ask for information or report issues to the developers. |
@@ -95,21 +95,21 @@ For the SLCN project, the considered user stories are presented below.
 | US14 | Sign-out | High | As an Authenticated User, I want to sign out from my account, so that I can end the login session. |
 | US15 | Edit Profile | High | As an Authenticated User, I want to edit my profile so that I can keep my personal information updated. |
 | US16 | View Personal Profile | High | As an Authenticated User, I want to view my user profile so that I can check my post and comment history, and personal information and have an option to edit it. |
-| US17 | View User News Feed | High | As an Authenticated User, I want to view a custom news feed so that I can have access to all the news of the people and categories that I am following. |
+| US17 | View User News Feed | High | As an Authenticated User, I want to view a custom news feed so that I can have access to all the news of the people and tags that I am following. |
 | US18 | Create a Comment | Medium | As an Authenticated User, I want to create and publish a comment, so that my opinion becomes available to other users. |
 | US19 | Vote on News Item | Medium | As an Authenticated User, I want to like or dislike a news item, so that I can declare my opinion on it. |
 | US20 | Remove Vote on News Item | Medium | As an Authenticated User, I want to remove my vote on a news item, so that it is removed from the platform. |
 | US21 | Vote on Comment | Medium | As an Authenticated User, I want to like or dislike a comment, so that I can declare my opinion on it. |
 | US22 | Remove Vote on Comment | Medium | As an Authenticated User, I want to remove my vote on a comment, so that it is removed from the platform. |
 | US23 | Delete Account | Medium | As an Authenticated User, I want to be able to delete my account so that I can delete my data from the platform when I stop using it. |
-| US24 | Follow categories | Medium | As an Authenticated User, I want to follow categories so I can choose to view the categories of my best interest. |
-| US25 | Unfollow categories | Medium | As an Authenticated User, I want to unfollow categories so I can stop viewing categories I'm no longer interested in. |
+| US24 | Follow Tags | Medium | As an Authenticated User, I want to follow tags so I can choose to view the tags of my best interest. |
+| US25 | Unfollow Tags | Medium | As an Authenticated User, I want to unfollow tags so I can stop viewing tags I'm no longer interested in. |
 | US26 | Follow Users | Medium | As an Authenticated User, I want to follow other people's profiles so that I can easily access their posts. |
 | US27 | Unfollow Users | Medium | As an Authenticated User, I want to unfollow other people's profiles so that I can stop viewing news from people that I'm no longer interested in. |
 | US28 | Profile Picture | Medium | As an Authenticated User, I want to edit my profile picture so that others can see who am I when visiting my profile or viewing my news posts and comments. |
 | US29 | Answer a Comment | Low | As an Authenticated User, I want to answer other people's comments so that I can comment on other people's points of view. |
 | US30 | Save News Item | Low | As an Authenticated User, I want to be able to save a news item so I can keep track of my favorite news. |
-| US31 | Apply to an administrator account | Low | As an Authenticated User, I want to apply for an Administrator Account so that I can become an administrator. |
+| US31 | Apply to an Administrator Account | Low | As an Authenticated User, I want to apply for an Administrator Account so that I can become an administrator. |
 | US32 | Report | Low | As an Authenticated User, I want to report to the administrator news items, users, or comments that are not respecting me or others. |
 <figcaption align = "center">Table 4: Authenticated User's user stories</figcaption>
 </p>
@@ -147,12 +147,12 @@ For the SLCN project, the considered user stories are presented below.
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
 | US40 | Administer User Accounts | High | As an Administrator, I want to search, view, edit and create user accounts so that I can manage them accordingly. |
-| US41 | Manage Categories | Medium | As an Administrator, I want to manage categories so that I can add or delete them accordingly. |
+| US41 | Manage Tags | Medium | As an Administrator, I want to manage tags so that I can add or delete them accordingly. |
 | US42 | Manage User Accounts | Medium | As an Administrator, I want to manage user accounts so that the users have access to the platform only when they comply with the guidelines. | 
 | US43 | Delete User Account | Medium | As an Administrator, I want to delete user accounts so that if a user in question disobeys the guidelines completely he can't disturb the forums anymore in that account. |
 | US44 | Manage Content | Low | As an Administrator, I want to manage users' content so that no forbidden content is on the platform. |
 | US45 | Manage User Reports | Low | As an Administrator, I want to manage the reports sent by the users so that I can verify if the reports are disrespecting the guidelines. |
-| US46 | Manage Categories Proposals | Low | As an Administrator, I want to manage category proposals so that I can accept or reject the categories proposed by other users. |
+| US46 | Manage Tags Proposals | Low | As an Administrator, I want to manage tag proposals so that I can accept or reject the tags proposed by other users. |
 | US47 | Manage Admin applications | Low | As an Administrator, I want to be able to accept or decline admin applications so that I can make sure the admins are a restricted group. |
 <figcaption align = "center">Table 7: Administrators's user stories</figcaption>
 </p>
@@ -173,7 +173,7 @@ This section contains the business rules, technical requirements, and restrictio
 | BR01 | User Reputation | User reputation should be derived from the number of likes and dislikes received by a user on their posts and comments. |
 | BR02 | Deleting Posts and Comments | A post or comment cannot be deleted by its author if it has likes or comments. |
 | BR03 | Account Deletion | On account deletion, posts, likes, dislikes, and comments should be kept on the platform but marked as anonymous. |
-| BR04 | Category on posts | To post a news item, the author must select at least one category. |
+| BR04 | Tag on posts | To post a news item, the author must select at least one tag. |
 | BR05 | Vote/Comment on Own Items | A news item or comment author can vote and comment on their items. |
 | BR06 | Date of Comments | The date of comments must be after the dates of the news item they are referring to |
 <figcaption align = "center">Table 8: Business rules</figcaption>

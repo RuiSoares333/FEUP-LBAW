@@ -3,7 +3,7 @@
 # 1 - Collaborative News
 The Super Legit Collaborative News (SLCN) is a project headed by a small group of developers with the main goal of free, open and accessible news sharing for and by users. 
 
-This will allow all users to view and browse the top and most recent news and comments on any topic, with access to text search and category filtering.
+This will allow all users to view and browse the top and most recent news and comments on any topic, with access to text search and tag filtering.
 
 # Project Components
 - [ER: Requirements Specifications](docs/er.md)
