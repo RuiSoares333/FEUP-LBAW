@@ -251,7 +251,7 @@ First Submission
 - Group identification
 
 Week 4
-- Changed "category/categories" name to "tag/tags" for an easier understanding of this funcionality (although they are interchangeable) and updated the images to reflect this change.
+- Changed "category/categories" name to "tag/tags" for an easier understanding of this functionality (although they are interchangeable) and updated the images to reflect this change.
 
 # Team
 
