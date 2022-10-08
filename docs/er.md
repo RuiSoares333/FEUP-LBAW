@@ -249,6 +249,8 @@ First Submission
 - A3: Information Architecture
 - Images for actors, sitemap and wireframes
 - Group identification
+Second Submission
+- Changed "category/categories" name to "tag/tags" for an easier understanding of this funcionality (although they are interchangeable) 
 
 # Team
 
