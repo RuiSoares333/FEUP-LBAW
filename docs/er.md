@@ -19,7 +19,8 @@ The platform will also employ notifications to inform users of every like and co
 
 Besides the home page, authenticated users will also have access to a profile page. In their profile, the authors have access to a list of their posted news and comments, which they can edit and delete and have a place where they can manage the users they follow and the users following them. Also, they will have options to edit their profile picture and other information.
 
-The platform will also employ administrators capable of moderating, editing, and deleting posts, comments, and user accounts. Administrators will also be in charge of managing tags.
+Authenticated users can also report other users and content to administrators to help moderate the website.
+Those administrators will be users with privileges employed by the platform and be capable of moderating, editing, and deleting posts, comments, and user accounts. Administrators will also be in charge of managing tags.
 
 The platform will have an adaptive, responsive design to allow it to work smoothly on multiple devices (desktop, smartphone, etc...) as well as an intuitive user interface and navigation.
 
@@ -97,20 +98,16 @@ For the SLCN project, the considered user stories are presented below.
 | US16 | View Personal Profile | High | As an Authenticated User, I want to view my user profile so that I can check my post and comment history, and personal information and have an option to edit it. |
 | US17 | View User News Feed | High | As an Authenticated User, I want to view a custom news feed so that I can have access to all the news of the people and tags that I am following. |
 | US18 | Create a Comment | Medium | As an Authenticated User, I want to create and publish a comment, so that my opinion becomes available to other users. |
-| US19 | Vote on News Item | Medium | As an Authenticated User, I want to like or dislike a news item, so that I can declare my opinion on it. |
-| US20 | Remove Vote on News Item | Medium | As an Authenticated User, I want to remove my vote on a news item, so that it is removed from the platform. |
-| US21 | Vote on Comment | Medium | As an Authenticated User, I want to like or dislike a comment, so that I can declare my opinion on it. |
-| US22 | Remove Vote on Comment | Medium | As an Authenticated User, I want to remove my vote on a comment, so that it is removed from the platform. |
-| US23 | Delete Account | Medium | As an Authenticated User, I want to be able to delete my account so that I can delete my data from the platform when I stop using it. |
-| US24 | Follow Tags | Medium | As an Authenticated User, I want to follow tags so I can choose to view the tags of my best interest. |
-| US25 | Unfollow Tags | Medium | As an Authenticated User, I want to unfollow tags so I can stop viewing tags I'm no longer interested in. |
-| US26 | Follow Users | Medium | As an Authenticated User, I want to follow other people's profiles so that I can easily access their posts. |
-| US27 | Unfollow Users | Medium | As an Authenticated User, I want to unfollow other people's profiles so that I can stop viewing news from people that I'm no longer interested in. |
-| US28 | Profile Picture | Medium | As an Authenticated User, I want to edit my profile picture so that others can see who am I when visiting my profile or viewing my news posts and comments. |
-| US29 | Answer a Comment | Low | As an Authenticated User, I want to answer other people's comments so that I can comment on other people's points of view. |
-| US30 | Save News Item | Low | As an Authenticated User, I want to be able to save a news item so I can keep track of my favorite news. |
-| US31 | Apply to an Administrator Account | Low | As an Authenticated User, I want to apply for an Administrator Account so that I can become an administrator. |
-| US32 | Report | Low | As an Authenticated User, I want to report to the administrator news items, users, or comments that are not respecting me or others. |
+| US19 | Vote/Unvote on News Item | Medium | As an Authenticated User, I want to like or dislike a news item, so that I can declare my opinion on it. |
+| US20 | Vote/Unvote on Comment | Medium | As an Authenticated User, I want to like or dislike a comment, so that I can declare my opinion on it. |
+| US21 | Delete Account | Medium | As an Authenticated User, I want to be able to delete my account so that I can delete my data from the platform when I stop using it. |
+| US22 | Follow/Unfollow Tags | Medium | As an Authenticated User, I want to follow tags so I can choose to view the tags of my best interest. |
+| US23 | Follow/Unfollow Users | Medium | As an Authenticated User, I want to follow other people's profiles so that I can easily access their posts. |
+| US24 | Profile Picture | Medium | As an Authenticated User, I want to edit my profile picture so that others can see who am I when visiting my profile or viewing my news posts and comments. |
+| US25 | Answer a Comment | Low | As an Authenticated User, I want to answer other people's comments so that I can comment on other people's points of view. |
+| US26 | Save News Item | Low | As an Authenticated User, I want to be able to save a news item so I can keep track of my favorite news. |
+| US27 | Apply to an Administrator Account | Low | As an Authenticated User, I want to apply for an Administrator Account so that I can become an administrator. |
+| US28 | Report | Low | As an Authenticated User, I want to report to the administrator news items, users, or comments that are not respecting me or others. |
 <figcaption align = "center">Table 4: Authenticated User's user stories</figcaption>
 </p>
 <p>
@@ -120,10 +117,10 @@ For the SLCN project, the considered user stories are presented below.
 
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
-| US33 | Edit News Item | Medium | As a News Author, I want to edit one of my published articles, so that I can correct/update said article. |
-| US34 | Delete News Item | Medium | As a News Author, I want to remove one of my published articles, so that it disappears from the platform. |
-| US35 | News Vote Notification | Medium | As a News Author, I want to receive a notification whenever someone votes on a news item I posted so that I'm aware of its popularity. |
-| US36 | News Comment Notification | Medium | As a News Author, I want to receive a notification whenever someone comments on one of my news items so that I can read it immediately. |
+| US29 | Edit News Item | Medium | As a News Author, I want to edit one of my published articles, so that I can correct/update said article. |
+| US30 | Delete News Item | Medium | As a News Author, I want to remove one of my published articles, so that it disappears from the platform. |
+| US31 | News Vote Notification | Medium | As a News Author, I want to receive a notification whenever someone votes on a news item I posted so that I'm aware of its popularity. |
+| US32 | News Comment Notification | Medium | As a News Author, I want to receive a notification whenever someone comments on one of my news items so that I can read it immediately. |
 <figcaption align = "center">Table 5: News Author's user stories</figcaption>
 </p>
 <p>
@@ -133,9 +130,9 @@ For the SLCN project, the considered user stories are presented below.
 
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
-| US37 | Edit Comment | Medium | As a Comment Author, I want to edit one of my published comments, so that I can correct/update said comment. |
-| US38 | Delete Comment | Medium | As a Comment Author, I want to remove one of my published comments, so that it disappears from the platform. |
-| US39 | Comment Vote Notification | Medium | As a Comment Author, I want to receive a notification whenever someone votes on a comment I posted so that I'm aware of its popularity. |
+| US33 | Edit Comment | Medium | As a Comment Author, I want to edit one of my published comments, so that I can correct/update said comment. |
+| US34 | Delete Comment | Medium | As a Comment Author, I want to remove one of my published comments, so that it disappears from the platform. |
+| US35 | Comment Vote Notification | Medium | As a Comment Author, I want to receive a notification whenever someone votes on a comment I posted so that I'm aware of its popularity. |
 <figcaption align = "center">Table 6: Comment Author's user stories</figcaption>
 
 </p>
@@ -146,14 +143,14 @@ For the SLCN project, the considered user stories are presented below.
 
 |Identifier | Name| Priority|  Description|
 | --- | --- | --- | --- |
-| US40 | Administer User Accounts | High | As an Administrator, I want to search, view, edit and create user accounts so that I can manage them accordingly. |
-| US41 | Manage Tags | Medium | As an Administrator, I want to manage tags so that I can add or delete them accordingly. |
-| US42 | Manage User Accounts | Medium | As an Administrator, I want to manage user accounts so that the users have access to the platform only when they comply with the guidelines. | 
-| US43 | Delete User Account | Medium | As an Administrator, I want to delete user accounts so that if a user in question disobeys the guidelines completely he can't disturb the forums anymore in that account. |
-| US44 | Manage Content | Low | As an Administrator, I want to manage users' content so that no forbidden content is on the platform. |
-| US45 | Manage User Reports | Low | As an Administrator, I want to manage the reports sent by the users so that I can verify if the reports are disrespecting the guidelines. |
-| US46 | Manage Tags Proposals | Low | As an Administrator, I want to manage tag proposals so that I can accept or reject the tags proposed by other users. |
-| US47 | Manage Admin applications | Low | As an Administrator, I want to be able to accept or decline admin applications so that I can make sure the admins are a restricted group. |
+| US36 | Administer User Accounts | High | As an Administrator, I want to search, view, edit and create user accounts so that I can manage them accordingly. |
+| US37 | Manage Tags | Medium | As an Administrator, I want to manage tags so that I can add or delete them accordingly. |
+| US38 | Manage User Accounts | Medium | As an Administrator, I want to manage user accounts so that the users have access to the platform only when they comply with the guidelines. | 
+| US39 | Delete User Account | Medium | As an Administrator, I want to delete user accounts so that if a user in question disobeys the guidelines completely he can't disturb the forums anymore in that account. |
+| US40 | Manage Content | Low | As an Administrator, I want to manage users' content so that no forbidden content is on the platform. |
+| US41 | Manage User Reports | Low | As an Administrator, I want to manage the reports sent by the users so that I can verify if the reports are disrespecting the guidelines. |
+| US42 | Manage Tags Proposals | Low | As an Administrator, I want to manage tag proposals so that I can accept or reject the tags proposed by other users. |
+| US43 | Manage Admin applications | Low | As an Administrator, I want to be able to accept or decline admin applications so that I can make sure the admins are a restricted group. |
 <figcaption align = "center">Table 7: Administrators's user stories</figcaption>
 </p>
 
@@ -191,7 +188,7 @@ This section contains the business rules, technical requirements, and restrictio
 | TR03 | Scalability | The system must be prepared to deal with the growth in the number of users and their actions. |
 | TR04 | Accessibility | The system must ensure that everyone can access the pages, regardless of whether they have any handicaps or not, or the Web browser they use. |
 | **TR05** | **Usability** | **The system should be intuitive and easy to use.<br><br> Viewing the project as a collaborative news website, any user should be able to use it regardless of background or experience.** |
-| **TR06** | **Database** | **The PostgreSQL database management system must be used.<br><br>Considering the news, user information, comments, and votes that are integral to the website as well as their relations to each other, it is important to develop and utilize a robust and well-thought-out database to accommodate those needs.** |
+| **TR06** | **Database** | **The PostgreSQL database management system must be used.<br><br> PostgreSQL is a powerful, feature-rich choice for relational data, considering the news, user information, comments, and votes that are integral to the website as well as their relations to each other, it is important to develop and utilize a robust and well-thought-out database to accommodate those needs. As such we are using PostgreSQL for its robust feature set and its ACID compliance. ** |
 | **TR07** | **Security** | **The system must protect the users' information from unauthorized access as well as employ authentication and verification features. <br><br> Since we are working with a platform with user accounts we consider it very important to keep the users' data secure.** |
 <figcaption align = "center">Table 9: Technical Requirements</figcaption>
 <p>
@@ -218,7 +215,7 @@ This artifact serves as an overview of the planned information architecture of t
 Our system is built around 5 main areas. The Static Pages provide information about the platform. The News Pages envelop all the news items, news feeds, and news item creations. The Visitor Pages, for logging in and signing up. The Authenticated User Pages, for the user profile, saved news, and report user pages. And the Admin Pages, housing admin-specific pages, and utilities.
 
 <p  align="center">
-    <img src="./pictures/sitemap.png">
+         <img src="./pictures/sitemap.png">
     <figcaption align = "center">Figure 2: Sitemap</figcaption>
 </p>
 
@@ -227,17 +224,17 @@ Our system is built around 5 main areas. The Static Pages provide information ab
 Below are presented wireframes for the Homepage(UI01), News Item Details page(UI02), and User Profile Page(UI03).
 
 <p  align="center">
-    <img src="./pictures/ui01.png">
+       <img src="./pictures/ui01.png">
     <figcaption align = "center">Figure 3: Homepage(UI01) wireframe</figcaption>
 </p>
 <br>
 <p  align="center">
-    <img src="./pictures/ui02.png">
+       <img src="./pictures/ui02.png">
     <figcaption align = "center">Figure 4: News Item Details(UI02) wireframe</figcaption>
 </p>
 <br>
 <p  align="center">
-    <img src="./pictures/ui03.png">
+       <img src="./pictures/ui03.png">
     <figcaption align = "center">Figure 5: User Profile(UI03) wireframe</figcaption>
 </p>
 
@@ -252,12 +249,18 @@ First Submission
 
 Week 4
 - Changed "category/categories" name to "tag/tags" for an easier understanding of this functionality (although they are interchangeable) and updated the images to reflect this change.
+Week 5
+- Only one editor is identified now.
+- In A1, a reference to the option of reporting content to the administrators is added.
+- Some very related user stories were agregated into one.
+- TR06 was better justified to show is importance relatively to other TRs.
+- Changed A3 wireframes and sitemap.
 
 # Team
 
 - André Morais, up202005303@edu.fe.up.pt (editor)
-- João Teixeira, up202005437@edu.fe.up.pt (editor)
-- Lucas Sousa, up202004682@edu.fe.up.pt (editor)
-- Rui Soares, up202103631@edu.fe.up.pt (editor)
+- João Teixeira, up202005437@edu.fe.up.pt 
+- Lucas Sousa, up202004682@edu.fe.up.pt
+- Rui Soares, up202103631@edu.fe.up.pt
 
 #### lbaw2223-t8g6, 08/10/22
