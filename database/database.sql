@@ -1,3 +1,13 @@
+-- SCHEMA: schema
+
+DROP SCHEMA IF EXISTS lbaw2286 ;
+
+CREATE SCHEMA IF NOT EXISTS lbaw2286
+    AUTHORIZATION postgres;
+
+SET search_path TO lbaw2286;
+
+
 -----------------------------------------
 -- Drop old schema
 -----------------------------------------
@@ -21,6 +31,8 @@ DROP TABLE IF EXISTS notification CASCADE; --R15
 -----------------------------------------
 -- Types
 -----------------------------------------
+DROP TYPE IF EXISTS ReportType CASCADE;
+DROP TYPE IF EXISTS NotificationType CASCADE;
 
 CREATE TYPE ReportType AS ENUM ('UserReport', 'NewsReport', 'CommentReport');
 CREATE TYPE NotificationType AS ENUM ('NewsVote', 'CommentVote', 'NewsComment');
@@ -55,13 +67,19 @@ CREATE TABLE apply_admin_request (
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
 );
 
+ --R10
+CREATE TABLE tag(
+    id SERIAL PRIMARY KEY,
+    tag_name TEXT UNIQUE NOT NULL
+);
+
 --R04
 CREATE TABLE news (
     id SERIAL PRIMARY KEY,
     reputation INTEGER NOT NULL DEFAULT 0,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    date TIMESTAMP WITH TIME DEFAULT now() NOT NULL,
+    date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     picture TEXT,
     id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
 );
@@ -90,7 +108,7 @@ CREATE TABLE comment (
     id SERIAL PRIMARY KEY,
     reputation INTEGER NOT NULL DEFAULT 0,
     content TEXT NOT NULL,
-    date TIMESTAMP WITH TIME DEFAULT now() NOT NULL,
+    date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
 );
@@ -101,16 +119,10 @@ CREATE TABLE comment_vote (
     id_comment INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE,
     is_liked BOOL NOT NULL
 );
- 
- --R10
-CREATE TABLE tag(
-    id SERIAL PRIMARY KEY,
-    tag_name TEXT UNIQUE NOT NULL
-);
 
 --R11
 CREATE TABLE tag_follow (
-    id_user INTEGER NOT NULL REFERENCES user (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE
 );
 
@@ -119,12 +131,12 @@ CREATE TABLE tag_proposal (
     id SERIAL PRIMARY KEY,
     tag_name TEXT UNIQUE NOT NULL,
     description TEXT NOT NULL,
-    is_handled BOOLEAN WITH BOOLEAN DEFAULT False
+    is_handled BOOLEAN DEFAULT False
 );
 
 --R13
 CREATE TABLE tag_proposal_user (
-    id_user INTEGER NOT NULL REFERENCES user (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_tag INTEGER NOT NULL REFERENCES tag_proposal (id) ON UPDATE CASCADE
 );
 
@@ -132,11 +144,11 @@ CREATE TABLE tag_proposal_user (
 CREATE TABLE report (
     id_report SERIAL PRIMARY KEY,
     report_type ReportType,
-    date TIMESTAMP WITH TIME DEFAULT now() NOT NULL,
+    date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     report_text TEXT,
-    is_handled BOOLEAN WITH BOOLEAN DEFAULT False,
-    id_author INTEGER NOT NULL REFERENCES user (id) ON UPDATE CASCADE,
-    id_user INTEGER NOT NULL REFERENCES user (id) ON UPDATE CASCADE,
+    is_handled BOOLEAN DEFAULT False,
+    id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
 );
@@ -144,10 +156,11 @@ CREATE TABLE report (
 --R15
 CREATE TABLE notification (
     id_notification SERIAL PRIMARY KEY,
-    notification_type NOT NULL,
-    date NOT NULL DEFAULT Today,
-    is_viewed NOT NULL DEFAULT False,
-    id_user INTEGER NOT NULL REFERENCES user (id) ON UPDATE CASCADE,
+    notification_type NotificationType NOT NULL,
+    date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+    is_viewed BOOLEAN NOT NULL DEFAULT False,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
 );
+
