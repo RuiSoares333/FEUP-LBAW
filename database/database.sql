@@ -1,9 +1,10 @@
 -- SCHEMA: schema
 
-DROP SCHEMA IF EXISTS lbaw2286 ;
+DROP SCHEMA IF EXISTS lbaw2286 CASCADE;
 
 CREATE SCHEMA IF NOT EXISTS lbaw2286
     AUTHORIZATION postgres;
+
 
 SET search_path TO lbaw2286;
 
@@ -58,16 +59,19 @@ CREATE TABLE users (
 --R02
 CREATE TABLE follows (
     id1 INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id2 INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+    id2 INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    PRIMARY KEY (id1, id2)
 );
 
 --R03
 CREATE TABLE apply_admin_request (
     id SERIAL PRIMARY KEY,
-    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    description TEXT NOT NULL,
+    is_handled BOOL NOT NULL DEFAULT False
 );
 
- --R10
+--R10
 CREATE TABLE tag(
     id SERIAL PRIMARY KEY,
     tag_name TEXT UNIQUE NOT NULL
@@ -87,20 +91,23 @@ CREATE TABLE news (
 --R05
 CREATE TABLE news_favorite (
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE
+    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
+    PRIMARY KEY (id_user, id_news)
 );
 
 --R06
 CREATE TABLE news_vote (
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
-    is_liked BOOL NOT NULL
+    is_liked BOOL NOT NULL,
+    PRIMARY KEY (id_user, id_news)
 );
 
 --R07
 CREATE TABLE news_tag (
     id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
-    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE
+    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE,
+    PRIMARY KEY (id_news, id_tag)
 );
 
 --R08
@@ -117,13 +124,15 @@ CREATE TABLE comment (
 CREATE TABLE comment_vote (
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_comment INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE,
-    is_liked BOOL NOT NULL
+    is_liked BOOL NOT NULL,
+    PRIMARY KEY (id_user, id_comment)
 );
 
 --R11
 CREATE TABLE tag_follow (
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE
+    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE,
+    PRIMARY KEY (id_user, id_tag)
 );
 
 --R12
@@ -137,7 +146,8 @@ CREATE TABLE tag_proposal (
 --R13
 CREATE TABLE tag_proposal_user (
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_tag INTEGER NOT NULL REFERENCES tag_proposal (id) ON UPDATE CASCADE
+    id_tag INTEGER NOT NULL REFERENCES tag_proposal (id) ON UPDATE CASCADE,
+    PRIMARY KEY (id_user, id_tag)
 );
 
 --R14
