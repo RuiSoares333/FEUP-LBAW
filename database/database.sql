@@ -116,6 +116,7 @@ CREATE TABLE comment (
     reputation INTEGER NOT NULL DEFAULT 0,
     content TEXT NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
     id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
 );
@@ -158,8 +159,8 @@ CREATE TABLE report (
     report_text TEXT,
     is_handled BOOLEAN DEFAULT False,
     id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
+    id_user INTEGER REFERENCES users (id) ON UPDATE CASCADE,
+    id_news INTEGER REFERENCES news (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
 );
 
@@ -169,8 +170,8 @@ CREATE TABLE notification (
     notification_type NotificationType NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     is_viewed BOOLEAN NOT NULL DEFAULT False,
-    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
+    id_user INTEGER REFERENCES users (id) ON UPDATE CASCADE,
+    id_news INTEGER REFERENCES news (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
 );
 
