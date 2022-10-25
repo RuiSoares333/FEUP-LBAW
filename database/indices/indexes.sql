@@ -1,0 +1,1 @@
+CREATE INDEX news_comments ON comment USING hash (id_news);

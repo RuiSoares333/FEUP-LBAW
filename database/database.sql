@@ -58,8 +58,8 @@ CREATE TABLE users (
 
 --R02
 CREATE TABLE follows (
-    id1 INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id2 INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    id1 INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id2 INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id1, id2)
 );
 
@@ -90,14 +90,14 @@ CREATE TABLE news (
 
 --R05
 CREATE TABLE news_favorite (
-    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_user, id_news)
 );
 
 --R06
 CREATE TABLE news_vote (
-    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
     is_liked BOOL NOT NULL,
     PRIMARY KEY (id_user, id_news)
@@ -105,8 +105,8 @@ CREATE TABLE news_vote (
 
 --R07
 CREATE TABLE news_tag (
-    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
-    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE,
+    id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_news, id_tag)
 );
 
@@ -123,7 +123,7 @@ CREATE TABLE comment (
 
 --R09
 CREATE TABLE comment_vote (
-    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_comment INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE,
     is_liked BOOL NOT NULL,
     PRIMARY KEY (id_user, id_comment)
@@ -131,8 +131,8 @@ CREATE TABLE comment_vote (
 
 --R11
 CREATE TABLE tag_follow (
-    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_user, id_tag)
 );
 
@@ -146,7 +146,7 @@ CREATE TABLE tag_proposal (
 
 --R13
 CREATE TABLE tag_proposal_user (
-    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_tag INTEGER NOT NULL REFERENCES tag_proposal (id) ON UPDATE CASCADE,
     PRIMARY KEY (id_user, id_tag)
 );
@@ -154,7 +154,7 @@ CREATE TABLE tag_proposal_user (
 --R14
 CREATE TABLE report (
     id_report SERIAL PRIMARY KEY,
-    report_type ReportType,
+    report_type ReportType NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     report_text TEXT,
     is_handled BOOLEAN DEFAULT False,
@@ -170,7 +170,7 @@ CREATE TABLE notification (
     notification_type NotificationType NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     is_viewed BOOLEAN NOT NULL DEFAULT False,
-    id_user INTEGER REFERENCES users (id) ON UPDATE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER REFERENCES news (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
 );

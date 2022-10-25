@@ -8,7 +8,7 @@ INSERT INTO users (username, email, password, country, picture, isAdmin) VALUES(
 INSERT INTO users (username, email, password, country, picture, isAdmin) VALUES('João Teixeira', 'joao@legitmail.com', 'legitjoao', 'Portugal', './path/to/picture.png', true);
 INSERT INTO users (username, email, password, country, picture, isAdmin) VALUES('Lucas Sousa', 'lucas@legitmail.com', 'legitlucas', 'Portugal', './path/to/picture.png', true);
 INSERT INTO users (username, email, password, country, picture, isadmin) VALUES('Rui Soares', 'rui@legitmail.com', 'legitrui', 'Portugal', './path/to/picture.png', true);
-
+INSERT INTO users (username, email, password, country, picture, isAdmin) VALUES('[redacted]', 'redac@legitmail.com', 'legitredac', 'Zimbabue', './path/to/default.png', false); --id 5 is deleted user
 
 
 -------------------------------
