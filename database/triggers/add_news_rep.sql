@@ -12,11 +12,11 @@ BEGIN
         SET reputation = reputation-1
         WHERE id = NEW.id_news;
     END IF;
-    RETURN NULL;
+    RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER add_news_reputation
-    AFTER INSERT ON news_vote
+    AFTER INSERT ON news_vote FOR EACH ROW
     EXECUTE PROCEDURE add_news_reputation();

@@ -8,6 +8,7 @@ BEGIN
         UPDATE news SET id_author=5 WHERE OLD.id = id_author;
         UPDATE comment SET id_author=5 WHERE OLD.id = id_author;
         UPDATE apply_admin_request SET id_user = 5 WHERE OLD.id = id_user;
+        RETURN NULL;
 END
 $BODY$
 LANGUAGE plpgsql;

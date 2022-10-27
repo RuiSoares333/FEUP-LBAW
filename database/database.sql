@@ -161,7 +161,8 @@ CREATE TABLE report (
     id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_user INTEGER REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER REFERENCES news (id) ON UPDATE CASCADE,
-    id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
+    id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE,
+    CHECK((id_user IS NOT NULL AND id_news IS NULL AND id_comment IS NULL) OR (id_user IS NULL AND id_news IS NOT NULL AND id_comment IS NULL) OR (id_user IS NULL AND id_news IS NULL AND id_comment IS NOT NULL))
 );
 
 --R15
@@ -172,6 +173,7 @@ CREATE TABLE notification (
     is_viewed BOOLEAN NOT NULL DEFAULT False,
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER REFERENCES news (id) ON UPDATE CASCADE,
-    id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
+    id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE,
+    CHECK((id_news IS NOT NULL AND id_comment IS NULL) OR (id_news IS NULL AND id_comment IS NOT NULL))
 );
 

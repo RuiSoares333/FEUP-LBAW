@@ -146,7 +146,8 @@ INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Manga','I w
 INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Cars','This important tag is missing',false);
 INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Anime','I want to tag my favorite anime shows without using the "TV" tag', true); 
 
--------------------------------
+---------------------INSERT INTO report(report_type, report_text, is_handled, id_author, id_user, id_news, id_comment) VALUES ('UserReport','User insulted me', false,1,1,NULL, NULL);
+----------
 -- tag_proposal_user
 -------------------------------
 INSERT INTO tag_proposal_user(id_user, id_tag) VALUES (1, 1);

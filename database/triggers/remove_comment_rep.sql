@@ -8,9 +8,9 @@ BEGIN
         SET reputation = reputation-1
         WHERE id = OLD.id_comment;
     ELSE
-        UPDATE news
+        UPDATE comment
         SET reputation = reputation+1
-        WHERE id = OLD.id_news;
+        WHERE id = OLD.id_comment;
     END IF;
     RETURN NULL;
 END
@@ -18,5 +18,5 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER remove_comment_reputation
-    BEFORE DELETE ON comment_vote
+    BEFORE DELETE ON comment_vote FOR EACH ROW
     EXECUTE PROCEDURE remove_comment_reputation();

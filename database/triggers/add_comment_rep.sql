@@ -8,9 +8,9 @@ BEGIN
         SET reputation = reputation+1
         WHERE id = NEW.id_comment;
     ELSE
-        UPDATE news
+        UPDATE comment
         SET reputation = reputation-1
-        WHERE id = NEW.id_news;
+        WHERE id = NEW.id_comment;
     END IF;
     RETURN NULL;
 END
@@ -18,5 +18,5 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER add_comment_reputation
-    AFTER INSERT ON comment_vote
+    AFTER INSERT ON comment_vote FOR EACH ROW
     EXECUTE PROCEDURE add_comment_reputation();

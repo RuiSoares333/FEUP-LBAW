@@ -14,7 +14,7 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER delete_news()
+CREATE TRIGGER delete_news
         BEFORE DELETE ON news
         FOR EACH ROW
         EXECUTE PROCEDURE delete_news();

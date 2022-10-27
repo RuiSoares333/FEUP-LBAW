@@ -18,5 +18,5 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER update_news_reputation
-    AFTER UPDATE ON news_vote
+    AFTER UPDATE ON news_vote FOR EACH ROW
     EXECUTE PROCEDURE update_news_reputation();

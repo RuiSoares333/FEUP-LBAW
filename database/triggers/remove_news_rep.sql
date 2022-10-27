@@ -18,5 +18,5 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER remove_news_reputation
-    BEFORE DELETE ON news_vote
+    BEFORE DELETE ON news_vote FOR EACH ROW
     EXECUTE PROCEDURE remove_news_reputation();
