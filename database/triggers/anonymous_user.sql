@@ -13,7 +13,6 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS anonymous_user 
 CREATE TRIGGER anonymous_user
         BEFORE DELETE ON users
         FOR EACH ROW
