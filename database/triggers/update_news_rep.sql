@@ -7,10 +7,22 @@ BEGIN
         UPDATE news
         SET reputation = reputation+2
         WHERE id = NEW.id_news;
+
+        UPDATE users
+        SET reputation = reputation+2
+        WHERE id = (
+            SELECT id_author FROM news WHERE id = NEW.id_news
+        );
     ELSE
         UPDATE news
         SET reputation = reputation-2
         WHERE id = NEW.id_news;
+
+        UPDATE users
+        SET reputation = reputation-2
+        WHERE id = (
+            SELECT id_author FROM news WHERE id = NEW.id_news
+        );
     END IF;
     RETURN NULL;
 END

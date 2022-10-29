@@ -4,11 +4,11 @@
 
 SET search_path TO lbaw2286;
 
-INSERT INTO users (username, email, password, country, picture, isAdmin) VALUES('André Morais', 'andre@legitmail.com', 'legitandre', 'Portugal', './path/to/picture.png', true);
-INSERT INTO users (username, email, password, country, picture, isAdmin) VALUES('João Teixeira', 'joao@legitmail.com', 'legitjoao', 'Portugal', './path/to/picture.png', true);
-INSERT INTO users (username, email, password, country, picture, isAdmin) VALUES('Lucas Sousa', 'lucas@legitmail.com', 'legitlucas', 'Portugal', './path/to/picture.png', true);
-INSERT INTO users (username, email, password, country, picture, isadmin) VALUES('Rui Soares', 'rui@legitmail.com', 'legitrui', 'Portugal', './path/to/picture.png', true);
-INSERT INTO users (username, email, password, country, picture, isAdmin) VALUES('[redacted]', 'redac@legitmail.com', 'legitredac', 'Zimbabue', './path/to/default.png', false); --id 5 is deleted user
+INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(1, 'André Morais', 'andre@legitmail.com', 'legitandre', 'Portugal', './path/to/picture.png', true);
+INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(2, 'João Teixeira', 'joao@legitmail.com', 'legitjoao', 'Portugal', './path/to/picture.png', true);
+INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(3, 'Lucas Sousa', 'lucas@legitmail.com', 'legitlucas', 'Portugal', './path/to/picture.png', true);
+INSERT INTO users (id, username, email, password, country, picture, isadmin) VALUES(4, 'Rui Soares', 'rui@legitmail.com', 'legitrui', 'Portugal', './path/to/picture.png', true);
+INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(5, '[redacted]', 'redac@legitmail.com', 'legitredac', 'Zimbabue', './path/to/default.png', false); --id 5 is deleted user
 
 
 -------------------------------
@@ -34,47 +34,47 @@ INSERT INTO apply_admin_request(description, is_handled, id_user) VALUES ('I wou
 -------------------------------
 -- tag
 -------------------------------
-INSERT INTO tag(tag_name) VALUES ('Gaming'); -- 1
-INSERT INTO tag(tag_name) VALUES ('Politics'); -- 2
-INSERT INTO tag(tag_name) VALUES ('Academia'); -- 3
-INSERT INTO tag(tag_name) VALUES ('Memes'); -- 4
-INSERT INTO tag(tag_name) VALUES ('Food'); -- 5
-INSERT INTO tag(tag_name) VALUES ('Animals'); -- 6
-INSERT INTO tag(tag_name) VALUES ('Celebrities'); -- 7
-INSERT INTO tag(tag_name) VALUES ('Movies'); -- 8
-INSERT INTO tag(tag_name) VALUES ('TV'); -- 9
-INSERT INTO tag(tag_name) VALUES ('Books'); -- 10
-INSERT INTO tag(tag_name) VALUES ('Technology'); -- 11
-INSERT INTO tag(tag_name) VALUES ('Hardware'); -- 12
-INSERT INTO tag(tag_name) VALUES ('Software'); -- 13
-INSERT INTO tag(tag_name) VALUES ('Sci-Fi'); -- 14
-INSERT INTO tag(tag_name) VALUES ('Fantasy'); -- 15
-INSERT INTO tag(tag_name) VALUES ('Sports'); -- 16
-INSERT INTO tag(tag_name) VALUES ('Photography'); -- 17
-INSERT INTO tag(tag_name) VALUES ('Science'); -- 18
-INSERT INTO tag(tag_name) VALUES ('DIY'); -- 19
-INSERT INTO tag(tag_name) VALUES ('Music'); -- 20
-INSERT INTO tag(tag_name) VALUES ('Anime'); -- 21
+INSERT INTO tag(id, tag_name) VALUES (1, 'Gaming'); -- 1
+INSERT INTO tag(id, tag_name) VALUES (2, 'Politics'); -- 2
+INSERT INTO tag(id,tag_name) VALUES (3, 'Academia'); -- 3
+INSERT INTO tag(id, tag_name) VALUES (4, 'Memes'); -- 4
+INSERT INTO tag(id, tag_name) VALUES (5, 'Food'); -- 5
+INSERT INTO tag(id, tag_name) VALUES (6, 'Animals'); -- 6
+INSERT INTO tag(id, tag_name) VALUES (7, 'Celebrities'); -- 7
+INSERT INTO tag(id, tag_name) VALUES (8, 'Movies'); -- 8
+INSERT INTO tag(id, tag_name) VALUES (9, 'TV'); -- 9
+INSERT INTO tag(id, tag_name) VALUES (10, 'Books'); -- 10
+INSERT INTO tag(id, tag_name) VALUES (11, 'Technology'); -- 11
+INSERT INTO tag(id, tag_name) VALUES (12, 'Hardware'); -- 12
+INSERT INTO tag(id, tag_name) VALUES (13, 'Software'); -- 13
+INSERT INTO tag(id, tag_name) VALUES (14, 'Sci-Fi'); -- 14
+INSERT INTO tag(id, tag_name) VALUES (15, 'Fantasy'); -- 15
+INSERT INTO tag(id, tag_name) VALUES (16, 'Sports'); -- 16
+INSERT INTO tag(id, tag_name) VALUES (17, 'Photography'); -- 17
+INSERT INTO tag(id, tag_name) VALUES (18, 'Science'); -- 18
+INSERT INTO tag(id, tag_name) VALUES (19, 'DIY'); -- 19
+INSERT INTO tag(id, tag_name) VALUES (20, 'Music'); -- 20
+INSERT INTO tag(id, tag_name) VALUES (21, 'Anime'); -- 21
 
 -------------------------------
 -- News
 -------------------------------
-INSERT INTO news (title, content, date, picture, id_author) VALUES ('Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, id_author) VALUES (1, 'Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 1);
 
-INSERT INTO news (title, content, date, picture, id_author) VALUES ('Here’s What to Expect from Season 3 of The Witcher', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, id_author) VALUES (2, 'Here’s What to Expect from Season 3 of The Witcher', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 2);
 
-INSERT INTO news (title, content, date, picture, id_author) VALUES ('The State Of Destiny 2s Festival Of The Lost Is Unacceptable','Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, id_author) VALUES (3, 'The State Of Destiny 2s Festival Of The Lost Is Unacceptable','Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 3);
 
-INSERT INTO news (title, content, date, picture, id_author) VALUES ('Bleach TYBW shocks fans with brutal character deaths in episode 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, id_author) VALUES (4, 'Bleach TYBW shocks fans with brutal character deaths in episode 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 4);
@@ -112,10 +112,10 @@ INSERT INTO news_tag (id_news, id_tag) VALUES (4, 21); -- Anime
 -------------------------------
 -- comment
 -------------------------------
-INSERT INTO comment(content, id_news, id_comment, id_author) VALUES ('Fake news!', 1, NULL, 1);
-INSERT INTO comment(content, id_news, id_comment, id_author) VALUES ('Very informative', 2, NULL, 2);
-INSERT INTO comment(content, id_news, id_comment, id_author) VALUES ('Loved it!', 2, 1, 3);
-INSERT INTO comment(content, id_news, id_comment, id_author) VALUES ('Source?', 3, 2, 4);
+INSERT INTO comment(id, content, id_news, id_comment, id_author) VALUES (1, 'Fake news!', 1, NULL, 1);
+INSERT INTO comment(id, content, id_news, id_comment, id_author) VALUES (2, 'Very informative', 2, NULL, 2);
+INSERT INTO comment(id, content, id_news, id_comment, id_author) VALUES (3, 'Loved it!', 2, 1, 3);
+INSERT INTO comment(id, content, id_news, id_comment, id_author) VALUES (4, 'Source?', 3, 2, 4);
 
 -------------------------------
 -- comment_vote

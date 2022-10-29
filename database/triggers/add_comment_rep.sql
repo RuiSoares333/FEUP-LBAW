@@ -7,10 +7,23 @@ BEGIN
         UPDATE comment
         SET reputation = reputation+1
         WHERE id = NEW.id_comment;
+
+        UPDATE users
+        SET reputation = reputation+1
+        WHERE id = (
+            SELECT id_author FROM comment WHERE id = NEW.id_comment
+        );
     ELSE
         UPDATE comment
         SET reputation = reputation-1
         WHERE id = NEW.id_comment;
+
+        UPDATE users
+        SET reputation = reputation-1
+        WHERE id = (
+            SELECT id_author FROM comment WHERE id = NEW.id_comment
+        );
+        
     END IF;
     RETURN NULL;
 END

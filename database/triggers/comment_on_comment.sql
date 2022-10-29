@@ -6,7 +6,7 @@ BEGIN
     IF EXISTS (select id_comment from comment where id_comment = NEW.id) THEN-- se comentário já for resposta a comentário não pode ser comentado
         RAISE EXCEPTION 'Comments that are commented on other comment cant have comments';
     END IF;
-    RETURN NULL;
+    RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
