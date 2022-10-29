@@ -1,4 +1,4 @@
--- SCHEMA: schema
+-- SCHEMA: lbaw2286
 
 DROP SCHEMA IF EXISTS lbaw2286 CASCADE;
 
