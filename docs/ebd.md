@@ -22,10 +22,10 @@ The Conceptual Data Model artifact identifies and describes the entities and rel
 ---
 
 
-## A5: Relational Schema, validation and schema refinement
+## A5: Relational Schema, validation, and schema refinement
 
-This artifact contains the Relational Schema created from the Conceptual Model UML. It includes attributes, domains, primary keys, foreign keys and restrictions like UNIQUE, DEFAULT and NOT NULL.
-It also includes the schema validations through functional depency analysis.
+This artifact contains the Relational Schema created from the Conceptual Model UML. It includes attributes, domains, primary keys, foreign keys, and restrictions like UNIQUE, DEFAULT, and NOT NULL.
+It also includes schema validations through functional dependency analysis.
 
 ### 1. Relational Schema
 
@@ -181,9 +181,9 @@ Legend:
 ---
 
 
-## A6: Indexes, triggers, transactions and database population
+## A6: Indexes, triggers, transactions, and database population
 
-This artefact contains the Database Workload, the proposed indices, triggers and transactions we created for our database. There is also the complete database creation and population scripts, in the annex.
+This artifact contains the Database Workload, the proposed indices, triggers, and transactions we created for our database. There is also the complete database creation and population scripts, in the annex.
 
 ### 1. Database Workload
  
@@ -218,7 +218,7 @@ This artefact contains the Database Workload, the proposed indices, triggers and
 | **Type**            | Hash |
 | **Cardinality**     | Medium |
 | **Clustering**      | No                |
-| **Justification**   | Table ‘comment’ is very large. Everytime we open a news, we need to filter access to the comments by its corresponding news. Filtering is done by exact match, thus an hash type index is best suited.   |
+| **Justification**   | Table ‘comment’ is very large. Every time we open a news item, we need to filter access to the comments by its corresponding news. Filtering is done by exact match, thus a hash type index is best suited.   |
 
 **SQL code**
 ```sql
@@ -233,7 +233,7 @@ CREATE INDEX news_comments ON comment USING hash (id_news);
 | **Type**            | B-tree             |
 | **Cardinality**     | Medium |
 | **Clustering**      | No                |
-| **Justification**   | Table ‘news’ is frequently accessed for news filtered by popularity (reputation). A B-tree index allows for faster order search queries based on the reputation. |
+| **Justification**   | Table ‘news’ is frequently accessed for news filtered by popularity (reputation). A B-tree index allows for faster order search queries based on reputation. |
 
  **SQL code** 
  ```sql
@@ -247,7 +247,7 @@ CREATE INDEX news_comments ON comment USING hash (id_news);
 | **Type**            | Hash |
 | **Cardinality**     | High |
 | **Clustering**      | No |
-| **Justification**   | Table 'notification' is very large. Everytime a user sees his notifications, we need to filter access to the notifications by the user they correspond to. Filtering is done by exact match, thus an hash type index is best suited. |
+| **Justification**   | Table 'notification' is very large. Every time a user sees his notifications, we need to filter access to the notifications by the user they correspond to. Filtering is done by exact match, thus a hash type index is best suited. |
 
 **SQL code**
 ```sql
@@ -478,7 +478,7 @@ CREATE TRIGGER remove_news_reputation
 
 | **Trigger**      | TRIGGER05                              |
 | ---              | ---                                    |
-| **Description**  | Trigger that updates a user and comment reputation when a vote is updated on said comment. BR01 |
+| **Description**  | Trigger that updates a user and comment reputation when a vote is updated on the said comment. BR01 |
 
 **SQL code**
 ```sql
@@ -589,7 +589,7 @@ CREATE TRIGGER anonymous_user
 
 | **Trigger**      | TRIGGER08                             |
 | ---              | ---                                    |
-| **Description**  | Trigger that garantees that a comment can't be a reply to another reply. BR08 |
+| **Description**  | Trigger that guarantees that a comment can't be a reply to another reply. BR08 |
 
 **SQL code**
 ```sql
@@ -614,7 +614,7 @@ CREATE TRIGGER comment_on_comment
 
 | **Trigger**      | TRIGGER09                             |
 | ---              | ---                                    |
-| **Description**  | Trigger that garantees that a comment can't be deleted if it has replies or votes. BR02 |
+| **Description**  | Trigger that guarantees that a comment can't be deleted if it has replies or votes. BR02 |
 
 **SQL code**
 ```sql
@@ -642,7 +642,7 @@ CREATE TRIGGER delete_comment
 
 | **Trigger**      | TRIGGER10                             |
 | ---              | ---                                    |
-| **Description**  | Trigger that garantees that a news item can't be deleted if it has comments or votes. BR02 |
+| **Description**  | Trigger that guarantees that a news item can't be deleted if it has comments or votes. BR02 |
 
 **SQL code**
 ```sql
@@ -672,7 +672,7 @@ CREATE TRIGGER delete_news
  
 | SQL Reference   | newstag                    |
 | --------------- | ----------------------------------- |
-| Justification   | When news are created, news_tag entries are also created to associate the news and the chosen tags. In the middle of the tansaction, new rows can be inserted in the news table, which could result in currval returning a wrong id. To prevent these non-repeatable reads, we chose isolation level Repeatable Read.|
+| Justification   | When news are created, news_tag entries are also created to associate the news and the chosen tags. In the middle of the transaction, new rows can be inserted in the news table, which could result in currval returning a wrong id. To prevent these non-repeatable reads, we chose isolation level Repeatable Read.|
 | Isolation level | REPEATABLE READ |
 
 **Complete SQL Code**
@@ -694,7 +694,7 @@ END TRANSACTION;
 
 | SQL Reference   | tagproposal                    |
 | --------------- | ----------------------------------- |
-| Justification   | When a tag is proposed for the first time, an entry on the tag_proposal table is created, containing the tag information. It is also necessary to create an entry in the tag_proposal_user to associate the user to its proposal. In the middle of the tansaction, new rows can be inserted in the tag_proposal table, which could result in currval returning a wrong id. To prevent these non-repeatable reads, we chose isolation level Repeatable Read.|
+| Justification   | When a tag is proposed for the first time, an entry on the tag_proposal table is created, containing the tag information. It is also necessary to create an entry in the tag_proposal_user to associate the user with its proposal. In the middle of the transaction, new rows can be inserted in the tag_proposal table, which could result in currval returning a wrong id. To prevent these non-repeatable reads, we chose isolation level Repeatable Read.|
 | Isolation level | REPEATABLE READ |
 
 **SQL code**
@@ -1094,7 +1094,7 @@ INSERT INTO notification(notification_type, date, is_viewed, id_user, id_news, i
 
 First Submission
 - A4: Conceptual Data Model
-- A5: Relational Schema, validation and schema refinement
+- A5: Relational Schema, validation, and schema refinement
 - A6: Indexes, triggers, transactions and database population
 
 ***
