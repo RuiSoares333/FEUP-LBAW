@@ -7,6 +7,7 @@ This will allow all users to view and browse the top and most recent news and co
 
 # Project Components
 - [ER: Requirements Specifications](docs/er.md)
+- [EBD: Database Specification Component](docs/ebd.md)
 
 # Artifacts Checklist
 - The artifacts checklist is available at: <https://docs.google.com/spreadsheets/d/1u9VdbDK9cWcKivwyWI79DzTGCuPImm2Ktg8aw6YHFF0/edit#gid=1497188515>
