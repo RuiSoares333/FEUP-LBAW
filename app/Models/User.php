@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password','reputation','country','picture','isAdmin'
+        'name', 'email', 'password',
     ];
 
     /**
@@ -33,8 +33,8 @@ class User extends Authenticatable
     /**
      * The news this user owns.
      */
-    public function news() {
-        return $this->hasMany('App\Models\News');
+    public function cards() {
+        return $this->hasMany('App\Models\Card');
     }
 
     
