@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('header', 'Top')
-
 @section('header')
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container px-5">

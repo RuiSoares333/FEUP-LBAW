@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('banner', 'Top')
-
 @section('banner')
 <header class="masthead text-center text-white">
     <div class="masthead-content">
@@ -16,5 +14,4 @@
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
 </header>
-@endsection
 @endsection

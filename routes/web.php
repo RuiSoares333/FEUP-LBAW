@@ -11,7 +11,7 @@
 |
 */
 // Home
-Route::get('/', function () { return view('show'); }); 
+Route::get('/', 'Auth\LoginController@home');
 
 // Cards
 Route::get('cards', 'CardController@list');
