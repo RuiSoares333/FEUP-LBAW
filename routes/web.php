@@ -13,16 +13,16 @@
 // Home
 Route::get('/', 'Auth\LoginController@home');
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
+// News
+Route::get('news', 'NewsController@list');
+Route::get('news/{id}', 'NewsController@show');
 
 // API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
+Route::put('api/news', 'NewsController@create');
+Route::delete('api/news/{news_id}', 'NewsController@delete');
+/*Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
+Route::delete('api/item/{id}', 'ItemController@delete');*/
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
