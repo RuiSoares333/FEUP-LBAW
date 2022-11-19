@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\News;
 
@@ -38,9 +40,9 @@ class NewsController extends Controller
      */
     public function list()
     {
-      //if (!Auth::check()) return redirect('/login');
+      if (!Auth::check()) return redirect('/login');
       $this->authorize('list', News::class);
-      $news = news()->orderBy('reputation')->get();
+      $news = Auth::user()->news()->orderBy('reputation')->get();
       return view('pages.news', ['news' => $news]);
     }
 

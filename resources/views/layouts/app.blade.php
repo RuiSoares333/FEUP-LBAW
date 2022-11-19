@@ -28,7 +28,7 @@
           <div class="collapse navbar-collapse">
             <input type="text" placeholder="search">
           </div>
-          <h1><a href="{{ url('/cards') }}">slcn</a></h1>
+          <h1><a href="{{ url('/news') }}">slcn</a></h1>
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
