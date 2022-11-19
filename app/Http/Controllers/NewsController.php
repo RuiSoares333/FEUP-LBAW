@@ -10,23 +10,13 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-
-    /*
-    id SERIAL PRIMARY KEY,
-    reputation INTEGER NOT NULL DEFAULT 0,
-    title TEXT NOT NULL,
-    content TEXT NOT NULL,
-    date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
-    picture TEXT,
-    id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
-    */
-
     /**
      * Shows the news for a given id.
      *
      * @param  int  $id
      * @return Response
      */
+
     public function show($id)
     {
       $news = News::find($id);
@@ -40,10 +30,9 @@ class NewsController extends Controller
      */
     public function list()
     {
-      if (!Auth::check()) return redirect('/login');
-      $this->authorize('list', News::class);
-      $news = Auth::user()->news()->orderBy('reputation')->get();
-      return view('pages.news', ['news' => $news]);
+      //$this->authorize('list', News::class);
+      $news = News::orderBy('id')->get();
+      return view('header') . view('banner') . view('pages.news', ['news' => $news]);
     }
 
     /**

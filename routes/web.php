@@ -11,10 +11,10 @@
 |
 */
 // Home
-Route::get('/', 'Auth\LoginController@home');
+Route::get('/', 'NewsController@list');
 
 // News
-Route::get('news', 'NewsController@list');
+//Route::get('news', 'NewsController@list');
 Route::get('news/{id}', 'NewsController@show');
 
 // API

@@ -3,5 +3,5 @@
 @section('title', $news->name)
 
 @section('news')
-  @include('partials.news', ['news' => $news])
+  @include('partials.newspost', ['news' => $news])
 @endsection

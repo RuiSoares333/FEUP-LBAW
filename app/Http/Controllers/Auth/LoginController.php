@@ -41,8 +41,4 @@ class LoginController extends Controller
         return $request->user();
     }
 
-    public function home() {
-        return view('header') . view('banner');
-    }
-
 }

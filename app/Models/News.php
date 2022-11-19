@@ -8,12 +8,14 @@ class News extends Model
 {
     public $timestamps = false;
 
+    protected $table = 'news';
+
     /**
      * attributes that are mass assignable
      */
 
     protected $fillable = [
-        'reputation','title', 'content', 'picture','id_author'
+        'reputation','title', 'content', 'picture','user_id'
     ];
 
     /**
