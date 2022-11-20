@@ -1,3 +1,7 @@
+body {
+    overflow: hidden; /* Hide scrollbars */
+}
+
 .navbar > div > h1 > a{
     text-decoration: none;
 }
@@ -58,19 +62,11 @@ form#new_comment > input[type="submit"]{
 
 
 
-header.masthead{
-    padding-top: 36.1rem;
-    padding-bottom: 35rem;
+header.masthead.banner{
+    padding-top: 12.5%;
+    padding-bottom: 12.5%;
 }
 
-/* header.masthead .form-auth{
-    max-width: 330px;
-    padding: 15px;
-    position: absolute;
-    top: 30%;
-    right: 37.5%;
-    z-index: 1;
-} */
 
 form-div{
     margin: 10rem 0;
@@ -83,6 +79,10 @@ form-div{
 #name, #email, #password, #password-confirm{
     font-weight: bold;
     color: lighter;
+}
+
+.masthead.login, .masthead.register{
+    padding-top: 100vh;
 }
 
 @media (min-width: 1300px){

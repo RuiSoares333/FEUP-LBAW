@@ -1,5 +1,5 @@
 <div class="text-center form-center form-div">
-    <header class="masthead text-center text-white text-capitalize">
+    <header class="masthead login text-center text-white text-capitalize">
         <div class="bg-circle-1 bg-circle"></div>
         <div class="bg-circle-2 bg-circle"></div>
         <div class="bg-circle-3 bg-circle"></div>

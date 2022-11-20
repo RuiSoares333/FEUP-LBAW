@@ -1,4 +1,4 @@
-<header class="masthead text-center text-white text-capitalize">
+<header class="masthead banner text-center text-white text-capitalize">
     <div class="masthead-content">
         <div class="container px-5">
             <h1 class="masthead-heading mb-0">super legit collaborative news</h1>
