@@ -1,0 +1,64 @@
+.navbar > div > h1 > a{
+    text-decoration: none;
+}
+
+.input-group{
+    width: 50%;
+}
+
+.input-group-text{
+    background-color: #e9ecefbb;
+}
+
+.form-control::placeholder{
+    color: #e9ecefbb;
+}
+
+.form-control:focus{
+    background-color: #e9ecef6c;
+}
+
+article.news{
+    border-width: 0.15rem !important;
+    border-radius: 1.5rem !important;
+    border-color: #00000044 !important;
+}
+
+article > header a{
+    text-decoration: none;
+    color: var(--bs-gray-800);
+}
+
+article > header a:hover{
+    color: var(--bs-gray-800);
+}
+
+form#new_comment{
+    margin-bottom: 0;
+}
+
+#reputation{
+    font-size: small;
+}
+
+form#new_comment{
+    display:flex;
+    justify-content: end;
+}
+
+form#new_comment > input[type="text"]{
+    width: 50%;
+    height: 75%;
+}
+
+form#new_comment > input[type="submit"]{
+    width: 10%;
+    height: 75%;
+}
+
+@media (min-width: 1300px){
+    .container{
+        max-width: 1350px;
+    }
+}
+

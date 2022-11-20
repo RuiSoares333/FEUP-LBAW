@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\News;
 
@@ -31,8 +32,9 @@ class NewsController extends Controller
     public function list()
     {
       //$this->authorize('list', News::class);
-      $news = News::orderBy('id')->get();
-      return view('header') . view('banner') . view('pages.news', ['news' => $news]);
+    //   return view('child', 'pages.news', ['news' => $news]);
+        $news = News::orderBy('id')->get();
+        return view('pages.home', ['news' => $news]);
     }
 
     /**
