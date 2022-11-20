@@ -39,7 +39,16 @@ class LoginController extends Controller
 
     public function getUser(){
         $user = $request->user();
-        return $user; 
+        return $user;
+    }
+
+
+    /**
+     * Shows Login form.
+     * @return Response
+     */
+    public function showLoginForm(){
+        return view('pages.login');
     }
 
 }

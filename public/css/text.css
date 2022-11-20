@@ -56,6 +56,35 @@ form#new_comment > input[type="submit"]{
     height: 75%;
 }
 
+
+
+header.masthead{
+    padding-top: 36.1rem;
+    padding-bottom: 35rem;
+}
+
+/* header.masthead .form-auth{
+    max-width: 330px;
+    padding: 15px;
+    position: absolute;
+    top: 30%;
+    right: 37.5%;
+    z-index: 1;
+} */
+
+form-div{
+    margin: 10rem 0;
+}
+
+#name:focus, #email:focus, #password:focus, #password-confirm:focus{
+    background-color: #e9ecef5a;
+}
+
+#name, #email, #password, #password-confirm{
+    font-weight: bold;
+    color: lighter;
+}
+
 @media (min-width: 1300px){
     .container{
         max-width: 1350px;
