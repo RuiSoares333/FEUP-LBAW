@@ -8,7 +8,7 @@ class News extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'news';
+    //protected $table = 'news';
 
     /**
      * attributes that are mass assignable

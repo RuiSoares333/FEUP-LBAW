@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -39,19 +39,19 @@ class User extends Authenticatable
     }
 
     public function reputation() {
-        $news_reputation = DB::table('news')->where('user_id')->lists('reputation');
-        foreach($news_reputation as $post_reputation) {
-            $reputation += $post_reputation;
+        $news = Auth::user()->news()->get();
+        $reputation = 0;
+        foreach($news as $post) {
+            $reputation += $post->reputation;
         }
         return $reputation;
     }
 
     public function followers() {
-        return $this->belongsToMany('follows','id2','id1');
+        return $this->belongsToMany('App\Models\User', 'follows','id2','id1')->orderBy('username');
     }
 
     public function following() {
-        return $this->belongsToMany('follows','id1','id2');
+        return $this->belongsToMany('App\Models\User', 'follows','id1','id2')->orderBy('username');
     }
-
 }

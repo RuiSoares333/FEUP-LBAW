@@ -66,4 +66,12 @@ class NewsController extends Controller
 
       return $news;
     }
+
+  public function edit(News $news)
+  {
+    if (!Auth::check()) return redirect('/login');
+    $this->authorize('owner', $news);
+
+    return view('pages.edit_post', ['news' => $news]);
+  }
 }

@@ -17,6 +17,9 @@ Route::get('/', 'NewsController@list');
 //Route::get('news', 'NewsController@list');
 Route::get('news/{id}', 'NewsController@show');
 
+// User
+Route::get('profile/{id}', 'UserController@show')->name('profile');
+
 // API
 Route::put('api/news', 'NewsController@create');
 Route::delete('api/news/{news_id}', 'NewsController@delete');

@@ -38,7 +38,8 @@ class LoginController extends Controller
     }
 
     public function getUser(){
-        return $request->user();
+        $user = $request->user();
+        return $user; 
     }
 
 }

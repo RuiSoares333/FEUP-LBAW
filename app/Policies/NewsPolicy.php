@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Card;
+use App\Models\News;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +14,6 @@ class NewsPolicy
 
     public function show(User $user, News $news)
     {
-      // Only a card owner can see it
-      //return $user->id == $news->user_id;
       return Auth::check();
     }
 
@@ -36,4 +34,10 @@ class NewsPolicy
       // Only a news owner can delete it
       return $user->id == $news->user_id;
     }
+
+    public function owner(User $user, News $news)
+    {
+        return $user->id === $news->user_id;
+    }
+
 }
