@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top text-uppercase">
     <div class="container px-5">
         <div class="collapse navbar-collapse">
-            <form class="input-group my-3 h2" action="post">
+            <form class="input-group my-3 h2">
                 <span class="input-group-text"><i class="bi bi-search"></i></span>
-                <input class="form-control text-light" type="text" placeholder="what are you looking for?">
+                <input class="form-control text-light" type="search" placeholder="What are you looking for?" name="search" value="{{ request('search') }}">
             </form>
         </div>
         <h1><a href="{{ url('/') }}">slcn</a></h1>
@@ -13,7 +13,7 @@
         <div class="navbar-collapse collapse" id="navbarResponsive" style="">
             @if (Auth::check())
             <a class="nav-link" href="{{ url('/logout') }}">logout</a>
-            <span>{{ Auth::user()->name }}</span>
+            <span>{{ Auth::user()->username }}</span>
             @else
             <ul class="navbar-nav ms-auto">
             <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/register') }}">register</a></li>

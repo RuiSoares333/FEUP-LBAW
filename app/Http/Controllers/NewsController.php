@@ -25,6 +25,17 @@ class NewsController extends Controller
       return view('pages.detailedpost', ['news' => $news]);
     }
 
+    public function search() {
+      if (request('search')) {
+          $news = News::where('title', 'like','%'.request('search').'%')->orderBy('reputation')->get();
+      }
+      else {
+          $news = News::orderBy('reputation')->get();
+      }
+      
+      return view('pages.home', ['news' => $news]);
+      }
+
     /**
      * Shows all News.
      * @return Response
@@ -33,7 +44,7 @@ class NewsController extends Controller
     {
       //$this->authorize('list', News::class);
     //   return view('child', 'pages.news', ['news' => $news]);
-        $news = News::orderBy('id')->get();
+        $news = News::orderBy('reputation')->get();
         return view('pages.home', ['news' => $news]);
     }
 
