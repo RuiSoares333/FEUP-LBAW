@@ -646,7 +646,7 @@ progress {
         max-width: 75vw;
         padding: 15px;
         position: absolute;
-        top: 15vh;
+        top: 20vh;
         right: 15vw;
       }
 
@@ -654,7 +654,7 @@ progress {
         max-width: 75vw;
         padding: 15px;
         position: absolute;
-        top: 15vw;
+        top: 20vw;
         right: 7.5vh;
       }
 

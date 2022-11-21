@@ -15,9 +15,9 @@
                 {{ $newspost->reputation }} reputation
             </span>
         </div>
-        <form id="new_comment" action="post" class="col-10 justify-content-end">
+        <form id="new_comment" methood="POST" class="col-10 justify-content-end">
             <input class="mx-4" type="text" name="new_comment{{ $newspost->id}}" placeholder="leave your comment here!">
-            <input id="submit_comment" class="mx-5" type="submit" value="comment">
+            <button id="submit_comment" class="btn-submit mx-5 rounded-2" type="submit">comment</button>
         </form>
     </footer>
 </article>

@@ -74,4 +74,8 @@ class NewsController extends Controller
 
     return view('pages.edit_post', ['news' => $news]);
   }
+
+  public function writeNewsPost(){
+    return;
+  }
 }
