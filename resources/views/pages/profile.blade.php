@@ -16,9 +16,12 @@
         @each('partials.newspost', $user->news()->get(), 'newspost')
     </section>
     <section id="following">
+        <p>Following</p>
         @each('partials.user', $user->following()->get(), 'user')
-        <section id="followers">
-            @each('partials.user', $user->followers()->get(), 'user')
+    <section id="followers">
+        <br>
+        <p>Followers</p>
+        @each('partials.user', $user->followers()->get(), 'user')
     </section> 
 
 @endsection
