@@ -22,7 +22,7 @@ class NewsController extends Controller
     {
       $news = News::find($id);
       $this->authorize('show', $news);
-      return view('pages.news', ['news' => $news]);
+      return view('pages.detailedpost', ['news' => $news]);
     }
 
     /**
