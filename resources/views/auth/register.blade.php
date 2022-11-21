@@ -32,7 +32,7 @@
             <input id="password-confirm" class="mb-4 text-light" type="password" name="password_confirmation" required placeholder="confirm password">
 
             <button class="w-100 btn btn-lg btn-primary fw-bolder text-uppercase" type="submit">Register</button>
-            <a class="w-100 btn button-outline-primary fw-bolder text-light text-uppercase" href="{{ route('login') }}">alredy have an account?</a>
+            <a class="w-100 btn button-outline-primary fw-bolder text-light text-uppercase" href="{{ route('login') }}">already have an account?</a>
             <p class="mt-5 mb-3 text-light">© SLCN2022</p>
         </form>
     </header>
