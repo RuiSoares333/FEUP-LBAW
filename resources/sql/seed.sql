@@ -84,7 +84,7 @@ CREATE TABLE news (
     content TEXT NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     picture TEXT,
-    user_id INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+    id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
 );
 
 --R05
@@ -237,22 +237,22 @@ INSERT INTO tag(id, tag_name) VALUES (21, 'Anime'); -- 21
 -------------------------------
 -- News
 -------------------------------
-INSERT INTO news (id, title, content, date, picture, user_id) VALUES (1, 'Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, id_author) VALUES (1, 'Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 1);
 
-INSERT INTO news (id, title, content, date, picture, user_id) VALUES (2, 'Here’s What to Expect from Season 3 of The Witcher', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, id_author) VALUES (2, 'Here’s What to Expect from Season 3 of The Witcher', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 2);
 
-INSERT INTO news (id, title, content, date, picture, user_id) VALUES (3, 'The State Of Destiny 2s Festival Of The Lost Is Unacceptable','Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, id_author) VALUES (3, 'The State Of Destiny 2s Festival Of The Lost Is Unacceptable','Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 3);
 
-INSERT INTO news (id, title, content, date, picture, user_id) VALUES (4, 'Bleach TYBW shocks fans with brutal character deaths in episode 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, id_author) VALUES (4, 'Bleach TYBW shocks fans with brutal character deaths in episode 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 4);

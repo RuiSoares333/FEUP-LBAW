@@ -7,9 +7,7 @@
 <article class="news container my-5 col border bg-light" data-id="{{ $news->id }}">
     <header class="row my-3 mx-3">
         <h2><a href="/news/{{ $news->id }}">{{ $news->title }}</a></h2>
-    </header>
-    <header class="row my-3 mx-3">
-        <h3><a href="/news/{{ $news->id }}">{{ ?????? }}</a></h3>
+        <h3><a href="/news/{{ $news->id }}">{{ $news->author()->get()->first()->username}}</a></h3>
     </header>
     @if(!empty($news->image))
     <div class="row mx-3">{{ $news->picture}}</div>

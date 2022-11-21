@@ -35,7 +35,7 @@ class User extends Authenticatable
      * The news this user owns.
      */
     public function news() {
-        return $this->hasMany('App\Models\News','user_id');
+        return $this->hasMany('App\Models\News');
     }
 
     public function reputation() {

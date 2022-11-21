@@ -17,12 +17,6 @@ class NewsPolicy
       return Auth::check();
     }
 
-    public function list(User $user)
-    {
-      // Any user can list its own news
-      return Auth::check();
-    }
-
     public function create(User $user)
     {
       // Any user can create a new news
@@ -32,12 +26,14 @@ class NewsPolicy
     public function delete(User $user, News $news)
     {
       // Only a news owner can delete it
-      return $user->id == $news->user_id;
+      return $user->id == $news->id_author;
     }
 
-    public function owner(User $user, News $news)
+    public function author(User $user, News $news)
     {
-        return $user->id === $news->user_id;
+        return $user->id === $news->id_author;
     }
 
 }
+
+//para update
