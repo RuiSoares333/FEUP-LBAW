@@ -26,12 +26,17 @@ class NewsPolicy
     public function delete(User $user, News $news)
     {
       // Only a news owner can delete it
-      return $user->id == $news->id_author;
+      return $user->id == $news->user_id;
     }
 
     public function author(User $user, News $news)
     {
-        return $user->id === $news->id_author;
+        return $user->id === $news->user_id;
+    }
+
+    public function update(User $user, News $news)
+    {
+      return Auth::check();
     }
 
 }

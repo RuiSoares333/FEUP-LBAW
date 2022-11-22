@@ -20,6 +20,7 @@ class NewsController extends Controller
 
     public function show($id)
     {
+      if (!Auth::check()) return redirect('/login');
       $news = News::find($id);
       $this->authorize('show', $news);
       return view('pages.detailedpost', ['news' => $news]);
