@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS news CASCADE; --R04
 DROP TABLE IF EXISTS news_favorite CASCADE; --R05
 DROP TABLE IF EXISTS news_vote CASCADE; --RO6
 DROP TABLE IF EXISTS news_tag CASCADE; --R07
-DROP TABLE IF EXISTS comment CASCADE; --R08
+DROP TABLE IF EXISTS comments CASCADE; --R08
 DROP TABLE IF EXISTS comment_vote CASCADE; --R09
 DROP TABLE IF EXISTS tag CASCADE; --R10
 DROP TABLE IF EXISTS tag_follow CASCADE; --R11
@@ -110,20 +110,20 @@ CREATE TABLE news_tag (
 );
 
 --R08
-CREATE TABLE comment (
+CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     reputation INTEGER NOT NULL DEFAULT 0,
     content TEXT NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
     user_id INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
+    id_comment INTEGER REFERENCES comments (id) ON UPDATE CASCADE
 );
 
 --R09
 CREATE TABLE comment_vote (
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_comment INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE,
+    id_comment INTEGER NOT NULL REFERENCES comments (id) ON UPDATE CASCADE,
     is_liked BOOL NOT NULL,
     PRIMARY KEY (id_user, id_comment)
 );
@@ -160,7 +160,7 @@ CREATE TABLE report (
     user_id INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_user INTEGER REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER REFERENCES news (id) ON UPDATE CASCADE,
-    id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE,
+    id_comment INTEGER REFERENCES comments (id) ON UPDATE CASCADE,
     CHECK((id_user IS NOT NULL AND id_news IS NULL AND id_comment IS NULL) OR (id_user IS NULL AND id_news IS NOT NULL AND id_comment IS NULL) OR (id_user IS NULL AND id_news IS NULL AND id_comment IS NOT NULL))
 );
 
@@ -172,7 +172,7 @@ CREATE TABLE notification (
     is_viewed BOOLEAN NOT NULL DEFAULT False,
     id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER REFERENCES news (id) ON UPDATE CASCADE,
-    id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE,
+    id_comment INTEGER REFERENCES comments (id) ON UPDATE CASCADE,
     CHECK((id_news IS NOT NULL AND id_comment IS NULL) OR (id_news IS NULL AND id_comment IS NOT NULL))
 );
 
@@ -290,10 +290,10 @@ INSERT INTO news_tag (id_news, id_tag) VALUES (4, 21); -- Anime
 -------------------------------
 -- comment
 -------------------------------
-INSERT INTO comment(id, content, id_news, id_comment, user_id) VALUES (1, 'Fake news!', 1, NULL, 1);
-INSERT INTO comment(id, content, id_news, id_comment, user_id) VALUES (2, 'Very informative', 2, NULL, 2);
-INSERT INTO comment(id, content, id_news, id_comment, user_id) VALUES (3, 'Loved it!', 2, 1, 3);
-INSERT INTO comment(id, content, id_news, id_comment, user_id) VALUES (4, 'Source?', 3, 2, 4);
+INSERT INTO comments(id, content, id_news, id_comment, user_id) VALUES (1, 'Fake news!', 1, NULL, 1);
+INSERT INTO comments(id, content, id_news, id_comment, user_id) VALUES (2, 'Very informative', 2, NULL, 2);
+INSERT INTO comments(id, content, id_news, id_comment, user_id) VALUES (3, 'Loved it!', 2, 1, 3);
+INSERT INTO comments(id, content, id_news, id_comment, user_id) VALUES (4, 'Source?', 3, 2, 4);
 
 -------------------------------
 -- comment_vote

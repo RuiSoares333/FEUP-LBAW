@@ -12,7 +12,7 @@
 */
 // Home
 Route::get('/', 'NewsController@list');
-Route::get('/', 'NewsController@search');
+Route::get('/search', 'NewsController@search')->name('search');
 
 // News
 //Route::get('news', 'NewsController@list');
@@ -23,7 +23,7 @@ Route::get('profile/{id}', 'UserController@show')->name('profile');
 Route::get('edit_profile/{id}','UserController@edit')->name('edit_profile');
 
 // API
-Route::put('api/news', 'NewsController@create');
+Route::post('api/news', 'NewsController@create')->name('create_news');
 Route::delete('api/news/{news_id}', 'NewsController@delete');
 Route::post('api/news/write', 'NewsController@writeNewsPost');
 /*Route::put('api/cards/{card_id}/', 'ItemController@create');
