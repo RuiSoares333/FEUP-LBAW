@@ -10,14 +10,6 @@
     background-color: #e9ecefbb;
 }
 
-.form-control::placeholder{
-    color: #e9ecefbb;
-}
-
-.form-control:focus{
-    background-color: #e9ecef6c;
-}
-
 article.news{
     border-width: 0.15rem !important;
     border-radius: 1.5rem !important;
@@ -119,9 +111,20 @@ article.news :nth-child(3){
     width:auto;
 }
 
+#search-bar::placeholder{
+    color: var(--bs-gray-600);
+}
+
+#search-bar{
+    color: var(--bs-gray-900);
+}
+
 @media (min-width: 1300px){
     .container{
         max-width: 1350px;
     }
 }
 
+.author_tools{
+    display: flex;
+}

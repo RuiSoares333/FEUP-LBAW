@@ -24,7 +24,7 @@ Route::get('edit_profile/{id}','UserController@edit')->name('edit_profile');
 
 // API
 Route::post('api/news', 'NewsController@create')->name('create_news');
-Route::delete('api/news/{news_id}', 'NewsController@delete');
+Route::post('api/news/{news_id}', 'NewsController@delete')->name('delete_news');
 Route::post('api/news/write', 'NewsController@writeNewsPost');
 /*Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
