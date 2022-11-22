@@ -4,10 +4,20 @@
 
 @include('partials.header')
 <main>
-    @include('partials.newspost', $newspost)
-    <div>
-        @each('partials.comment', $comments, 'comment')
-    </div>
+    <header class="masthead banner">
+        <div class="bg-circle-1 bg-circle"></div>
+        <div class="bg-circle-2 bg-circle"></div>
+        <div class="bg-circle-3 bg-circle"></div>
+        <div class="bg-circle-4 bg-circle"></div>
+
+        <div class="justify-content-end">
+            @include('partials.newspost', $newspost)
+            <div class="news-comment d-flex flex-column">
+                @each('partials.comment', $comments, 'comment')
+            </div>
+        </div>
+
+    </header>
 </main>
 
 @endsection
