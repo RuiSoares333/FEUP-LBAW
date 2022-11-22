@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\News;
+use App\Models\Comment;
 
 class NewsController extends Controller
 {
@@ -21,8 +22,9 @@ class NewsController extends Controller
     public function show($id)
     {
       $news = News::find($id);
+      $comments = Comment::where('id_news', $id)->get();
       $this->authorize('show', $news);
-      return view('pages.detailedpost', ['news' => $news]);
+      return view('pages.detailedpost', ['newspost' => $news, 'comments' => $comments]);
     }
 
     public function search() {
@@ -32,7 +34,7 @@ class NewsController extends Controller
       else {
           $news = News::orderBy('reputation')->get();
       }
-      
+
       return view('pages.home', ['news' => $news]);
       }
 
@@ -42,8 +44,6 @@ class NewsController extends Controller
      */
     public function list()
     {
-      //$this->authorize('list', News::class);
-    //   return view('child', 'pages.news', ['news' => $news]);
         $news = News::orderBy('reputation')->get();
         return view('pages.home', ['news' => $news]);
     }
@@ -55,17 +55,19 @@ class NewsController extends Controller
      */
     public function create(Request $request)
     {
-      $news = new News();
+      $news = new News;
 
       $this->authorize('create', $news);
 
       $news->title = $request->input('title');
       $news->content = $request->input('content');
-      $news->picture = $request->input('picture');
-      $news->id_author = Auth::user()->id;
+      //$news->picture = $request->input('picture');
+      $news->user_id = $request->input('id_author');
       $news->save();
 
-      return $news;
+      $all_news = News::get();
+
+      return view('pages.home', ['news' => $all_news]);
     }
 
     public function delete(Request $request, $id)
