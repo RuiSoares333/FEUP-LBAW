@@ -22,7 +22,7 @@ Route::get('news/{id}', 'NewsController@show');
 Route::get('profile/{id}', 'UserController@show')->name('profile');
 
 // API
-Route::put('api/news', 'NewsController@create');
+Route::post('api/news', 'NewsController@create')->name('create_news');
 Route::delete('api/news/{news_id}', 'NewsController@delete');
 Route::post('api/news/write', 'NewsController@writeNewsPost');
 /*Route::put('api/cards/{card_id}/', 'ItemController@create');
