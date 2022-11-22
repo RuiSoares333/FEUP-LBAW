@@ -125,3 +125,6 @@ article.news :nth-child(3){
     }
 }
 
+.author_tools{
+    display: flex;
+}

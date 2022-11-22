@@ -72,11 +72,11 @@ class NewsController extends Controller
     public function delete(Request $request, $id)
     {
       $news = News::find($id);
-
       $this->authorize('delete', $news);
       $news->delete();
 
-      return $news;
+      $all_news = News::get();
+      return view('pages.home', ['news' => $all_news]);
     }
 
   public function edit(News $news)

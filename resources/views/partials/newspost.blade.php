@@ -1,5 +1,5 @@
 <article class="news container my-5 col border bg-light" data-id="{{ $newspost->id }}">
-    <header class="row my-3 mx-3">
+    <header class="row my-3 mx-3" >
         <h2><a href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h2>
         <h3><a href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></h3>
     </header>
@@ -21,4 +21,20 @@
             <button id="submit_comment" class="btn-submit mx-5 rounded-2" type="submit">comment</button>
         </form>
     </footer>
+
+    @if(Auth::check() && $newspost->author()->get()->first()->id == Auth::user()->id)
+        <h3>Author Tools:<h3>
+        <section class="author_tools">
+        <form id="delete_form" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
+            {{ csrf_field() }}
+            <input type="hidden" name="news_id" value = {{$newspost->id}}>
+            <button id="delete_button" class="btn-submit mx-3 rounded-2" type="submit">Delete</button>
+        </form>
+        <form id="edit_form" method="POST">
+            {{ csrf_field() }}
+            <input type="hidden" name="news_id" value = {{$newspost->id}}>
+            <button id="edit_button" class="btn-submit mx-3 rounded-2" type="submit">Edit</button>
+        </form>
+        </section>
+    @endif
 </article>
