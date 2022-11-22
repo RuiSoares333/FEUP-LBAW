@@ -27,7 +27,7 @@ class NewsController extends Controller
 
     public function search() {
       if (request('search')) {
-          $news = News::where('title', 'like','%'.request('search').'%')->orderBy('reputation')->get();
+          $news = News::where('title', 'ilike','%'.request('search').'%')->orWhere('content', 'ilike','%'.request('search').'%')->orderBy('reputation')->get();
       }
       else {
           $news = News::orderBy('reputation')->get();

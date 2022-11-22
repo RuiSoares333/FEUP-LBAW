@@ -12,7 +12,7 @@
 */
 // Home
 Route::get('/', 'NewsController@list');
-Route::get('/', 'NewsController@search');
+Route::get('/search', 'NewsController@search')->name('search');
 
 // News
 //Route::get('news', 'NewsController@list');

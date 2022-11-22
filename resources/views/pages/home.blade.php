@@ -4,8 +4,8 @@
 
     @include('partials.header')
     @include('partials.banner')
-    <form class="input-group my-3 h2">
-        <span class="input-group-text"><i class="bi bi-search"></i></span>
+    <form class="input-group my-3 h2" action="{{ route('search') }}">
+        <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
         <input class="form-control text-light" type="search" placeholder="What are you looking for?" name="search" value="{{ request('search') }}">
     </form>
     <div id="form-newspost" class="my-5 row justify-content-center">
