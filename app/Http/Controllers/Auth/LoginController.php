@@ -38,7 +38,7 @@ class LoginController extends Controller
     }
 
     public function getUser(){
-        $user = $request->user();
+        $user = Request::$request->user();
         return $user;
     }
 

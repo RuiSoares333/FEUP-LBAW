@@ -20,6 +20,7 @@ Route::get('news/{id}', 'NewsController@show');
 
 // User
 Route::get('profile/{id}', 'UserController@show')->name('profile');
+Route::get('edit_profile/{id}','UserController@edit')->name('edit_profile');
 
 // API
 Route::put('api/news', 'NewsController@create');

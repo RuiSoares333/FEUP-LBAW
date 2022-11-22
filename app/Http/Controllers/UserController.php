@@ -19,15 +19,42 @@ class UserController extends Controller
         return view('pages.profile', ['user' => $user]);
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
         if (!Auth::check()) return redirect('/login');
+        $user = User::find($id);
         $this->authorize('owner', $user);
-
         return view('pages.edit_profile', ['user' => $user]);
     }    
 
 
+    public function create(Request $request, $user_id)
+    {
+      $user = new User();
+      $user->user_id = $user_id;
+      $this->authorize('create', $user);
+      $user->done = false;
+      $user->description = $request->input('description');
+      $user->save();
+      return $user;
+    }
+
+    public function update(Request $request, $id)
+    {
+      $user = User::find($id);
+      $this->authorize('update', $user);
+      $user->done = $request->input('done');
+      $user->save();
+      return $user;
+    }
+
+    public function delete(Request $request, $id)
+    {
+      $user = User::find($id);
+      $this->authorize('delete', $user);
+      $user->delete();
+      return $user;
+    }
 
 
 

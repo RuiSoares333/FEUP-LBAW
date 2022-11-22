@@ -24,5 +24,7 @@
         @each('partials.user', $user->followers()->get(), 'user')
     </section> 
 
+    <a href="{{ route('edit_profile',['id' => $user->id])}}"><button type="submit">Edit</button></a>
+
 @endsection
 
