@@ -4,6 +4,10 @@
 
     @include('partials.header')
     @include('partials.banner')
+    <form class="input-group my-3 h2">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input class="form-control text-light" type="search" placeholder="What are you looking for?" name="search" value="{{ request('search') }}">
+    </form>
     <div id="form-newspost" class="my-5 row justify-content-center">
         <form class="py-5 border bg-light rounded-2">
             <input class="mx-3" type="text" name="new_news_post" placeholder="share your article here!">
