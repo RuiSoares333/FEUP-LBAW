@@ -4,12 +4,12 @@
 
     @include('partials.header')
     @include('partials.banner')
-    <form class="input-group my-3 h2" action="{{ route('search') }}">
+    <form class="input-group my-5 mx-auto p-5 h2 border bg-light rounded-2" action="{{ route('search') }}">
         <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
-        <input class="form-control text-light" type="search" placeholder="What are you looking for?" name="search" value="{{ request('search') }}">
+        <input id="search-bar" class="form-control" type="search" placeholder="What are you looking for?" name="search" value="{{ request('search') }}">
     </form>
     @if(auth::check())
-        <div id="form-newspost" class="my-5 row justify-content-center">
+        <div id="form-newspost" class="row justify-content-center">
             <form class="py-5 border bg-light rounded-2" method="POST" action="{{ route('create_news') }}">
                 {{ csrf_field() }}
                 <h1>Create News</h1>
@@ -22,7 +22,6 @@
             </form>
         </div>
     @endif
-
     <section id="news">
         @each('partials.newspost', $news, 'newspost')
     </section>
