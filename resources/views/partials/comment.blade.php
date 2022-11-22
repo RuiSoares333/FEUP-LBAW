@@ -1,4 +1,4 @@
-<article class="news container my-4 d-flex border bg-light" data-id="{{ $comment->id }}">
+<article class="news comment container my-4 d-flex border bg-light" data-id="{{ $comment->id }}">
     <h4 class="my-auto">{{$comment -> content}}</h4>
     <h4 class="my-auto">{{$comment->author()->get()->first()->username}}</h4>
     <div id="vote" class="fs-1 d-flex col-2 justify-content-end">

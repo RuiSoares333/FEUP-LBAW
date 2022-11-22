@@ -1,13 +1,12 @@
 <article class="news container my-5 col border bg-light" data-id="{{ $newspost->id }}">
-    <header class="row my-3 mx-3">
-        <h2><a href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h2>
-        <h3><a href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></h3>
+    <header class="row m-3 d-flex flex-row">
+        <h2 class="my-auto"><a href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h2>
+        <h3 class="my-auto"><a href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></h3>
     </header>
     @if(!empty($newspost->image))
     <div class="row mx-3">{{ $newspost->picture}}</div>
-    @else
-    <div class="row mx-3">{{ $newspost->content}}</div>
     @endif
+    <div class="row mx-3">{{ $newspost->content}}</div>
     <footer class="row mx-3 mb-3">
         <div id="vote" class="fs-1 row col-2">
             <i class="bi bi-hand-thumbs-up col-sm-2"></i>
