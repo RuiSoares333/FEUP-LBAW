@@ -84,7 +84,12 @@ form-div{
 #form-newspost form{
     width: 58.3%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new_news_input{
+    margin: 1em;
 }
 
 .btn-submit:hover{
