@@ -65,7 +65,9 @@ class NewsController extends Controller
       $news->user_id = $request->input('id_author');
       $news->save();
 
-      return $news;
+      $all_news = News::get();
+
+      return view('pages.home', ['news' => $all_news]);
     }
 
     public function delete(Request $request, $id)
