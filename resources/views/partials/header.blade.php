@@ -13,7 +13,7 @@
         <div class="navbar-collapse collapse" id="navbarResponsive" style="">
             @if (Auth::check())
             <a class="nav-link" href="{{ url('/logout') }}">logout</a>
-            <span>{{ Auth::user()->username }}</span>
+            <a href="/profile/{{Auth::user()->id}}">{{Auth::user()->username }}</a>
             @else
             <ul class="navbar-nav ms-auto">
             <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/register') }}">register</a></li>

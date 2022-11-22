@@ -84,7 +84,7 @@ CREATE TABLE news (
     content TEXT NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     picture TEXT,
-    id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+    user_id INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
 );
 
 --R05
@@ -116,7 +116,7 @@ CREATE TABLE comment (
     content TEXT NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     id_news INTEGER NOT NULL REFERENCES news (id) ON UPDATE CASCADE,
-    id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE
 );
 
@@ -157,7 +157,7 @@ CREATE TABLE report (
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     report_text TEXT,
     is_handled BOOLEAN DEFAULT False,
-    id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
     id_user INTEGER REFERENCES users (id) ON UPDATE CASCADE,
     id_news INTEGER REFERENCES news (id) ON UPDATE CASCADE,
     id_comment INTEGER REFERENCES comment (id) ON UPDATE CASCADE,
@@ -237,22 +237,22 @@ INSERT INTO tag(id, tag_name) VALUES (21, 'Anime'); -- 21
 -------------------------------
 -- News
 -------------------------------
-INSERT INTO news (id, title, content, date, picture, id_author) VALUES (1, 'Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, user_id) VALUES (1, 'Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 1);
 
-INSERT INTO news (id, title, content, date, picture, id_author) VALUES (2, 'Here’s What to Expect from Season 3 of The Witcher', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, user_id) VALUES (2, 'Here’s What to Expect from Season 3 of The Witcher', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 2);
 
-INSERT INTO news (id, title, content, date, picture, id_author) VALUES (3, 'The State Of Destiny 2s Festival Of The Lost Is Unacceptable','Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, user_id) VALUES (3, 'The State Of Destiny 2s Festival Of The Lost Is Unacceptable','Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 3);
 
-INSERT INTO news (id, title, content, date, picture, id_author) VALUES (4, 'Bleach TYBW shocks fans with brutal character deaths in episode 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+INSERT INTO news (id, title, content, date, picture, user_id) VALUES (4, 'Bleach TYBW shocks fans with brutal character deaths in episode 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', './path/to/picture.png', 4);
@@ -290,10 +290,10 @@ INSERT INTO news_tag (id_news, id_tag) VALUES (4, 21); -- Anime
 -------------------------------
 -- comment
 -------------------------------
-INSERT INTO comment(id, content, id_news, id_comment, id_author) VALUES (1, 'Fake news!', 1, NULL, 1);
-INSERT INTO comment(id, content, id_news, id_comment, id_author) VALUES (2, 'Very informative', 2, NULL, 2);
-INSERT INTO comment(id, content, id_news, id_comment, id_author) VALUES (3, 'Loved it!', 2, 1, 3);
-INSERT INTO comment(id, content, id_news, id_comment, id_author) VALUES (4, 'Source?', 3, 2, 4);
+INSERT INTO comment(id, content, id_news, id_comment, user_id) VALUES (1, 'Fake news!', 1, NULL, 1);
+INSERT INTO comment(id, content, id_news, id_comment, user_id) VALUES (2, 'Very informative', 2, NULL, 2);
+INSERT INTO comment(id, content, id_news, id_comment, user_id) VALUES (3, 'Loved it!', 2, 1, 3);
+INSERT INTO comment(id, content, id_news, id_comment, user_id) VALUES (4, 'Source?', 3, 2, 4);
 
 -------------------------------
 -- comment_vote
@@ -324,7 +324,7 @@ INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Manga','I w
 INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Cars','This important tag is missing',false);
 INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Anime','I want to tag my favorite anime shows without using the "TV" tag', true); 
 
----------------------INSERT INTO report(report_type, report_text, is_handled, id_author, id_user, id_news, id_comment) VALUES ('UserReport','User insulted me', false,1,1,NULL, NULL);
+---------------------INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('UserReport','User insulted me', false,1,1,NULL, NULL);
 ----------
 -- tag_proposal_user
 -------------------------------
@@ -340,10 +340,10 @@ INSERT INTO tag_proposal_user(id_user, id_tag) VALUES (4, 3);
 -- report -- 
 --'UserReport', 'NewsReport', 'CommentReport'
 -------------------------------
-INSERT INTO report(report_type, report_text, is_handled, id_author, id_user, id_news, id_comment) VALUES ('UserReport','User insulted me', false,1,1,NULL, NULL);
-INSERT INTO report(report_type, report_text, is_handled, id_author, id_user, id_news, id_comment) VALUES ('NewsReport','Wrong use of tags', true,2,NULL,2, NULL);
-INSERT INTO report(report_type, report_text, is_handled, id_author, id_user, id_news, id_comment) VALUES ('CommentReport','Offensive comment', false,3,NULL,NULL,1);
-INSERT INTO report(report_type, report_text, is_handled, id_author, id_user, id_news, id_comment) VALUES ('CommentReport','Spam', false,4, NULL, NULL, 2);
+INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('UserReport','User insulted me', false,1,1,NULL, NULL);
+INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('NewsReport','Wrong use of tags', true,2,NULL,2, NULL);
+INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('CommentReport','Offensive comment', false,3,NULL,NULL,1);
+INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('CommentReport','Spam', false,4, NULL, NULL, 2);
 
 -------------------------------
 -- notification
