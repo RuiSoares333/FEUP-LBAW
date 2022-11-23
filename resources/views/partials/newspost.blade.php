@@ -8,10 +8,10 @@
     @endif
     <div class="row mx-3">{{ $newspost->content}}</div>
     <footer class="row mx-3 mb-3">
-        <div id="vote" class="fs-1 row col-2">
-            <i class="bi bi-hand-thumbs-up col-sm-2"></i>
-            <i class="bi bi-hand-thumbs-down col-sm-2"></i>
-            <span id="reputation" class="col-sm-8  m-auto">
+        <div id="vote" class="fs-1 d-flex col-2">
+            <i class="bi bi-hand-thumbs-up"></i>
+            <i class="bi bi-hand-thumbs-down"></i>
+            <span id="reputation" class="m-auto">
                 {{ $newspost->reputation }} reputation
             </span>
         </div>
@@ -22,18 +22,20 @@
     </footer>
 
     @if(Auth::check() && $newspost->author()->get()->first()->id == Auth::user()->id)
-        <h3>Author Tools:<h3>
-        <section class="author_tools">
-        <form id="delete_form" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
-            {{ csrf_field() }}
-            <input type="hidden" name="news_id" value = {{$newspost->id}}>
-            <button id="delete_button" class="btn-submit mx-3 rounded-2" type="submit">Delete</button>
-        </form>
-        <form id="edit_form" method="POST">
-            {{ csrf_field() }}
-            <input type="hidden" name="news_id" value = {{$newspost->id}}>
-            <button id="edit_button" class="btn-submit mx-3 rounded-2" type="submit">Edit</button>
-        </form>
-        </section>
+        <div id="editpost" class="row w-100 d-flex flex-column">
+            <h3 class="mx-auto w-auto">Author Tools:</h3>
+            <section class="author_tools mx-auto w-auto">
+                <form id="delete_form" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="news_id" value = {{$newspost->id}}>
+                    <button id="delete_button" class="btn-submit mx-3 rounded-2" type="submit">Delete</button>
+                </form>
+                <form id="edit_form" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="news_id" value = {{$newspost->id}}>
+                    <button id="edit_button" class="btn-submit mx-3 rounded-2" type="submit">Edit</button>
+                </form>
+            </section>
+        </div>
     @endif
 </article>

@@ -25,27 +25,29 @@ article > header a:hover{
     color: var(--bs-gray-800);
 }
 
-form#new_comment{
-    margin-bottom: 0;
-}
-
 #reputation{
     font-size: small;
 }
 
+#vote{
+    margin: auto;
+    height: 5vh;
+}
+
 form#new_comment{
+    margin: auto;
     display:flex;
     justify-content: end;
 }
 
 form#new_comment > input[type="text"]{
     width: 50%;
-    height: 75%;
+    height: 5vh;
 }
 
 form#new_comment > button{
-    width: 10%;
-    height: 75%;
+    width: auto;
+    height: 5vh;
 }
 
 
@@ -171,16 +173,14 @@ article.comment > :nth-child(3){
     color: var(--bs-gray-100);
 }
 
-#reputation{
+#intro > #reputation{
     font-size:large;
     font-weight: normal;
     color: var(--bs-gray-100);
 }
 
-@media (min-width: 1300px){
-    .container{
-        max-width: 1350px;
-    }
+article.news{
+    width: 70vw;
 }
 
 .author_tools{
