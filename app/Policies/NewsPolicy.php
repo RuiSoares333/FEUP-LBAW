@@ -26,21 +26,21 @@ class NewsPolicy
     public function delete(User $user, News $news)
     {
       // Only a news owner or admin can delete it
-      if($user->isAdmin) return true;
+      if($user->is_admin) return true;
       return $user->id == $news->user_id;
     }
 
     public function author(User $user, News $news)
     {
-        if($user->isAdmin) return true;
+        if($user->is_admin) return true;
         return $user->id === $news->user_id;
     }
 
     public function update(User $user, News $news)
     {
       // Only a news owner or admin can update it
-      if($user->isAdmin) return true;
-      return $user->id == $news->user_id;;
+      if($user->is_admin) return true;
+      return $user->id == $news->user_id;
     }
 
 }

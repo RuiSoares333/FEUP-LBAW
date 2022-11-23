@@ -79,7 +79,7 @@ class NewsController extends Controller
       return view('pages.home', ['news' => $all_news]);
     }
 
-  public function edit(Request $request, $id)
+  public function update(Request $request, $id)
   {
     $news = News::find($id);
     $this->authorize('update', $news);
