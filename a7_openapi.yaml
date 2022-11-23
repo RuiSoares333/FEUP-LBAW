@@ -15,12 +15,13 @@ externalDocs:
 
 tags:
  - name: 'M01: Authentication'
- - name: 'M02: News'
- - name: 'M03: Comments'
- - name: 'M04: Tags'
- - name: 'M05: Notifications'
- - name: 'M06: Reports'
- - name: 'M07: User Administration and Static Pages'
+ - name: 'M02: Users'
+ - name: 'M03: News'
+ - name: 'M04: Comments'
+ - name: 'M05: Tags'
+ - name: 'M06: Notifications'
+ - name: 'M08: Reports'
+ - name: 'M09: User Administration and Static Pages'
 
 paths:
      /login:
