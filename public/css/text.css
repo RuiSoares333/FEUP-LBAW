@@ -139,6 +139,7 @@ article.comment > :nth-child(3){
 
 #follows{
     width: 80vw;
+    z-index: 1;
 }
 
 #following{
@@ -159,8 +160,13 @@ article.comment > :nth-child(3){
     font-weight: bold;
 }
 
+#news{
+    z-index: 1;
+}
+
 #intro{
     width: 80vw;
+    z-index: 1;
 }
 
 #picture > img{
