@@ -38,7 +38,7 @@
     </section>
 
     <section id="follows" class="d-flex flex-row border-bottom mb-5 py-5">
-        <section id="following" class="text-center border bg-light rounded-2">
+        <section id="following" class="text-center d-flex flex-column border bg-light rounded-2">
             <p>Following</p>
             @if(!empty($user->following()->get()))
             @each('partials.user', $user->following()->get(), 'user')
@@ -46,7 +46,7 @@
             <p>no users being followed</p>
             @endif
         </section>
-        <section id="followers" class="text-center border bg-light rounded-2 ml-5 mr-auto">
+        <section id="followers" class="text-center d-flex flex-column border bg-light rounded-2 ml-5 mr-auto">
             <p>Followers</p>
             @if(!empty($user->followers()->get()))
             @each('partials.user', $user->followers()->get(), 'user')

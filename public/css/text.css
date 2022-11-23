@@ -81,7 +81,7 @@ form-div{
 }
 
 #form-newspost form{
-    width: 58.3%;
+    width: 60vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -160,6 +160,11 @@ article.comment > :nth-child(3){
     font-weight: bold;
 }
 
+#following > *, #followers > *{
+    text-decoration: none;
+    color: var(--bs-gray-900)
+}
+
 #news{
     z-index: 1;
 }
@@ -199,8 +204,7 @@ article.news{
     display: flex;
 }
 
-.hide
-{
+.hide{
     visibility: hidden;
 }
 
@@ -211,5 +215,29 @@ article.news{
 }
 
 #administer  #edit{
-    margin-right: auto;
+    margin: auto;
+}
+
+#user-prev{
+    width: 60vw;
+}
+
+#user-prev > *{
+    margin: auto 1vw;
+}
+
+#user-prev > #profile-picture > img{
+    width: 5vw;
+    height: 5vw;
+}
+
+#user-prev #username{
+    text-decoration: none;
+    color: var(--bs-gray-800);
+    font-size: large;
+}
+
+#user-prev #reputation{
+    color: var(--bs-gray-600);
+    font-size: large;
 }
