@@ -15,8 +15,13 @@ class UserController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
         $user = User::find($id);
-        //$this->authorize('show', $user);
-        return view('pages.profile', ['user' => $user]);
+        if($user->picture === 'default.png'){
+          $foto = asset('storage/pictures/default.png');
+        }
+        else{
+          $foto = asset('storage/pictures/'.$id.'/'.$user->picture);
+        }
+        return view('pages.profile', ['user' => $user, 'foto' => $foto]);
     }
 
     public function edit($id)

@@ -1,7 +1,12 @@
 <header class="masthead banner d-flex flex-column">
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+
     <section id="intro" class="text-center border-bottom py-5">
         <section id="picture" class="mb-3">
-            <img src="https://picsum.photos/id/237/200/300" class="rounded-circle">
+            <img src="{{$foto}}" class="rounded-circle">
         </section>
         <section id="username" class="mb-3">
             {{ $user->username }}
@@ -37,7 +42,5 @@
     <section id="news">
         @each('partials.newspost', $user->news()->get(), 'newspost')
     </section>
-
-
 
 </header>
