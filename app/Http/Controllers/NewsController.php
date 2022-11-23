@@ -36,7 +36,7 @@ class NewsController extends Controller
     {
         $news = News::orderBy('reputation')->get();
         $user = array();
-        return view('pages.home', ['news' => $news, 'users' => $user]);
+        return view('pages.home', ['news' => $news, 'user' => $user]);
     }
 
     /**
@@ -52,10 +52,12 @@ class NewsController extends Controller
 
       $news->title = $request->input('title');
       $news->content = $request->input('content');
-      $file= $request->file('picture');
-      $filename = $file->getClientOriginalName();
-      $file-> move(public_path('pictures/news'), $filename);
-      $news->picture = $filename;
+      if($request->file('picture')) {
+        $file= $request->file('picture');
+        $filename = $file->getClientOriginalName();
+        $file-> move(public_path('pictures/news'), $filename);
+        $news->picture = $filename;
+      }
       $news->user_id = $request->input('id_author');
       $news->save();
 
@@ -67,22 +69,22 @@ class NewsController extends Controller
       $news = News::find($id);
       $this->authorize('delete', $news);
       $news->delete();
-
-      $all_news = News::get();
-      return view('pages.home', ['news' => $all_news]);
+      return redirect('/');
     }
 
   public function update(Request $request, $id)
   {
     $news = News::find($id);
-    $this->authorize('update', $news);
+    $this->authorize('update', Auth::user());
 
     $news->title = $request->input('title');
     $news->content = $request->input('content');
-    $file= $request->file('picture');
-    $filename = $file->getClientOriginalName();
-    $file-> move(public_path('pictures/news'), $filename);
-    $news->picture = $filename;
+    if($request->file('picture')) {
+      $file= $request->file('picture');
+      $filename = $file->getClientOriginalName();
+      $file-> move(public_path('pictures/news'), $filename);
+      $news->picture = $filename;
+    }
     $news->save();
 
     return redirect('news/'. $news->id);

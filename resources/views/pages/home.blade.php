@@ -27,7 +27,7 @@
         @each('partials.newspost', $news, 'newspost')
     </section>
     <section id="users">
-        @each('partials.profilepreview', $users, 'user_preview')
+        @each('partials.profilepreview', $user, 'user_preview')
     </section>
 @endsection
 
