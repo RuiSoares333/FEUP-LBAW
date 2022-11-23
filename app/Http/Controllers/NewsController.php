@@ -79,12 +79,17 @@ class NewsController extends Controller
       return view('pages.home', ['news' => $all_news]);
     }
 
-  public function edit(News $news)
+  public function update(Request $request, $id)
   {
-    if (!Auth::check()) return redirect('/login');
-    $this->authorize('owner', $news);
+    $news = News::find($id);
+    $this->authorize('update', $news);
 
-    return view('pages.edit_post', ['news' => $news]);
+    $news->title = $request->input('title');
+    $news->content = $request->input('content');
+    //$news->picture = $request->input('picture');
+    $news->save();
+
+    return redirect('news/'. $news->id);
   }
 
   public function writeNewsPost(){

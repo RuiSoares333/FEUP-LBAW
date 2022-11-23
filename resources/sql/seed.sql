@@ -50,8 +50,8 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     reputation INTEGER NOT NULL DEFAULT 0,
     country TEXT,
-    picture TEXT DEFAULT 'default.png',
-    isAdmin BOOLEAN NOT NULL,
+    picture TEXT,
+    is_admin BOOLEAN NOT NULL,
     remember_token VARCHAR
 );
 
@@ -182,12 +182,12 @@ CREATE TABLE notification (
 
 SET search_path TO lbaw2286;
 
-INSERT INTO users (id, username, email, password, country, isAdmin) VALUES(1, 'André Morais', 'andre@legitmail.com', '$2a$12$upL6DFkOAvStTFj66C/HjOUcdqbsbJYybp1I5QNEal2uCQk7r0Owq', 'Portugal', true);
-INSERT INTO users (id, username, email, password, country, isAdmin) VALUES(2, 'João Teixeira', 'joao@legitmail.com', '$2a$12$z6QqR5X7k.JFeAK2UZAD6OdTgSj8Rkmf7sECS96dEGRzRjU/bhC.e', 'Portugal', true);
-INSERT INTO users (id, username, email, password, country, isAdmin) VALUES(3, 'Lucas Sousa', 'lucas@legitmail.com', '$2a$12$lupa/IivieTHqeT8ZFuoc.b6Z4KpzOZ/LT6ts5Pxt9xq4c0y4vbti', 'Portugal', true);
-INSERT INTO users (id, username, email, password, country, isadmin) VALUES(4, 'Rui Soares', 'rui@legitmail.com', '$2a$12$hzvwGZBw2qWA6pE.v/JIPObYrX3odCi3bYwnm0XocZnpK.3Cv3wPC', 'Portugal', true);
-INSERT INTO users (id, username, email, password, country, isAdmin) VALUES(5, '[redacted]', 'redac@legitmail.com', '$2a$12$gc7M2CUhl8QwvbsEkhaXW.aLeShBasRXwYPXqjiZoid/PrwZTvVCe', 'Zimbabue', false); --id 5 is deleted user
-INSERT INTO users (id, username, email, password, country, isAdmin) VALUES(6, 'John Doe', 'admin@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Doeee', true);
+INSERT INTO users (id, username, email, password, country, is_admin) VALUES(1, 'André Morais', 'andre@legitmail.com', '$2a$12$upL6DFkOAvStTFj66C/HjOUcdqbsbJYybp1I5QNEal2uCQk7r0Owq', 'Portugal', true);
+INSERT INTO users (id, username, email, password, country, is_admin) VALUES(2, 'João Teixeira', 'joao@legitmail.com', '$2a$12$z6QqR5X7k.JFeAK2UZAD6OdTgSj8Rkmf7sECS96dEGRzRjU/bhC.e', 'Portugal', true);
+INSERT INTO users (id, username, email, password, country, is_admin) VALUES(3, 'Lucas Sousa', 'lucas@legitmail.com', '$2a$12$lupa/IivieTHqeT8ZFuoc.b6Z4KpzOZ/LT6ts5Pxt9xq4c0y4vbti', 'Portugal', true);
+INSERT INTO users (id, username, email, password, country, is_admin) VALUES(4, 'Rui Soares', 'rui@legitmail.com', '$2a$12$hzvwGZBw2qWA6pE.v/JIPObYrX3odCi3bYwnm0XocZnpK.3Cv3wPC', 'Portugal', true);
+INSERT INTO users (id, username, email, password, country, is_admin) VALUES(5, '[redacted]', 'redac@legitmail.com', '$2a$12$gc7M2CUhl8QwvbsEkhaXW.aLeShBasRXwYPXqjiZoid/PrwZTvVCe', 'Zimbabue', false); --id 5 is deleted user
+INSERT INTO users (id, username, email, password, country, is_admin) VALUES(6, 'John Doe', 'admin@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Doeee', true);
 
 -------------------------------
 -- Follows
@@ -237,24 +237,24 @@ INSERT INTO tag(id, tag_name) VALUES (21, 'Anime'); -- 21
 -------------------------------
 -- News
 -------------------------------
-INSERT INTO news (id, title, content, date, user_id) VALUES (1, 'Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
-Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
+INSERT INTO news (id, title, content, date, user_id) VALUES (1, 'Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut.
+Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus.
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', 1);
 
-INSERT INTO news (id, title, content, date, user_id) VALUES (2, 'Here’s What to Expect from Season 3 of The Witcher', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
-Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
+INSERT INTO news (id, title, content, date, user_id) VALUES (2, 'Here’s What to Expect from Season 3 of The Witcher', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut.
+Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus.
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', 2);
 
-INSERT INTO news (id, title, content, date, user_id) VALUES (3, 'The State Of Destiny 2s Festival Of The Lost Is Unacceptable','Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
-Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
+INSERT INTO news (id, title, content, date, user_id) VALUES (3, 'The State Of Destiny 2s Festival Of The Lost Is Unacceptable','Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut.
+Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus.
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', 3);
 
-INSERT INTO news (id, title, content, date, user_id) VALUES (4, 'Bleach TYBW shocks fans with brutal character deaths in episode 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. 
-Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus. 
+INSERT INTO news (id, title, content, date, user_id) VALUES (4, 'Bleach TYBW shocks fans with brutal character deaths in episode 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut.
+Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus.
 Erat velit scelerisque in dictum non consectetur a.', '2022.10.20', 4);
 
 -------------------------------
@@ -318,11 +318,11 @@ INSERT INTO tag_follow(id_user, id_tag) VALUES (2,5);
 -------------------------------
 -- tag_proposal
 -------------------------------
-INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Wholesome','I want to tag my cat pictures',false); 
-INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Mystery','I want to tag some books with this tag',false); 
-INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Manga','I want to tag my favorite manga without using the "books" tag',false); 
+INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Wholesome','I want to tag my cat pictures',false);
+INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Mystery','I want to tag some books with this tag',false);
+INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Manga','I want to tag my favorite manga without using the "books" tag',false);
 INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Cars','This important tag is missing',false);
-INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Anime','I want to tag my favorite anime shows without using the "TV" tag', true); 
+INSERT INTO tag_proposal(tag_name, description, is_handled) VALUES ('Anime','I want to tag my favorite anime shows without using the "TV" tag', true);
 
 ---------------------INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('UserReport','User insulted me', false,1,1,NULL, NULL);
 ----------
@@ -337,7 +337,7 @@ INSERT INTO tag_proposal_user(id_user, id_tag) VALUES (3, 3);
 INSERT INTO tag_proposal_user(id_user, id_tag) VALUES (4, 3);
 
 -------------------------------
--- report -- 
+-- report --
 --'UserReport', 'NewsReport', 'CommentReport'
 -------------------------------
 INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('UserReport','User insulted me', false,1,1,NULL, NULL);

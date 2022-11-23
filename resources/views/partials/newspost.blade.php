@@ -21,21 +21,35 @@
         </form>
     </footer>
 
-    @if(Auth::check() && $newspost->author()->get()->first()->id == Auth::user()->id)
-        <div id="editpost" class="row w-100 d-flex flex-column">
-            <h3 class="mx-auto w-auto">Author Tools:</h3>
-            <section class="author_tools mx-auto w-auto">
-                <form id="delete_form" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="news_id" value = {{$newspost->id}}>
-                    <button id="delete_button" class="btn-submit mx-3 rounded-2" type="submit">Delete</button>
-                </form>
-                <form id="edit_form" method="POST">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="news_id" value = {{$newspost->id}}>
-                    <button id="edit_button" class="btn-submit mx-3 rounded-2" type="submit">Edit</button>
-                </form>
-            </section>
-        </div>
+    <script>
+    function displayEditForm(){
+        const form = document.querySelector("#edit_form")
+        form.classList.toggle('hide')
+        console.log('toggle')
+
+    }
+    </script>
+    <div>
+    @if(Auth::check() && (($newspost->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()) && (request()->is('news/*')))
+        <h3>Author Tools:<h3>
+        <section class="author_tools">
+        <form id="delete_form" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
+            {{ csrf_field() }}
+            <input type="hidden" name="news_id" value = {{$newspost->id}}>
+            <button id="delete_button" class="btn-submit mx-3 rounded-2" type="submit">Delete</button>
+        </form>
+        <button id="toggle_edit" class="btn-submit mx-3 rounded-2 hidden" onclick="displayEditForm()"> Edit</button>
+        </section>
+        <form id="edit_form" method="POST" class="hide" action="{{ route('update_news', ['news_id'=>$newspost->id]) }}">
+            {{ csrf_field() }}
+            Title
+            <input class="new_news_input" type="text" name="title" value= "{{ $newspost->title }}">
+            tags
+            <textarea rows="10" cols="60" class="new_news_input"  type="text" name="content"> {{ $newspost->content }} </textarea>
+            <a>picture</a>
+            <input type="hidden" name="news_id" value = {{$newspost->id}}>
+            <button id="edit_button" class="btn-submit mx-3 rounded-2" type="submit">Confirm</button>
+        </form>
     @endif
+    </div>
 </article>
