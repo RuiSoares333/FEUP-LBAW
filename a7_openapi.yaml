@@ -1,0 +1,600 @@
+openapi: 3.0.0
+
+info:
+ version: '1.0'
+ title: 'LBAW SLCN Web API'
+ description: 'Web Resources Specification (A7) for SLCN'
+
+servers:
+- url: http://lbaw2286.lbaw.fe.up.pt
+  description: Production server
+
+externalDocs:
+ description: Find more info here.
+ url: https://git.fe.up.pt/lbaw/lbaw2223/lbaw2286/-/wikis/home
+
+tags:
+ - name: 'M01: Authentication and Individual Profile'
+ - name: 'M02: News'
+ - name: 'M03: Comments'
+ - name: 'M04: Tags'
+ - name: 'M05: Notifications'
+ - name: 'M06: Reports'
+ - name: 'M07: User Administration and Static Pages'
+
+paths:
+     /login:
+       get:
+         operationId: R101
+         summary: 'R101: Login Form'
+         description: 'Provide login form. Access: PUB'
+         tags:
+           - 'M01: Authentication and Individual Profile'
+         responses:
+           '200':
+             description: 'Ok. Show Log-in UI10'
+       post:
+         operationId: R102
+         summary: 'R102: Login Action'
+         description: 'Processes the login form submission. Access: PUB'
+         tags:
+           - 'M01: Authentication and Individual Profile'
+
+         requestBody:
+           required: true
+           content:
+             application/x-www-form-urlencoded:
+               schema:
+                 type: object
+                 properties:
+                   email:  # <!--- form field name
+                     type: string
+                   password: # <!--- form field name
+                     type: string
+                 required:
+                      - email
+                      - password
+
+         responses:
+           '302':
+             description: 'Redirect after processing the login credentials.'
+             headers:
+               Location:
+                 schema:
+                   type: string
+                 examples:
+                   302Success:
+                     description: 'Successful authentication. Redirect main page.'
+                     value: '/'
+                   302Error:
+                     description: 'Failed authentication. Redirect to login form.'
+                     value: '/login'
+
+     /logout:
+       post:
+         operationId: R102
+         summary: 'R102: Logout Action'
+         description: 'Logout the current authenticated user. Access: USR, ADM'
+         tags:
+           - 'M01: Authentication and Individual Profile'
+         responses:
+           '302':
+             description: 'Redirect after processing logout.'
+             headers:
+               Location:
+                 schema:
+                   type: string
+                 examples:
+                   302Success:
+                     description: 'Successful logout. Redirect to main page.'
+                     value: '/'
+
+     /register:
+       get:
+         operationId: R103
+         summary: 'R103: Register Form'
+         description: 'Provide new user registration form. Access: PUB'
+         tags:
+           - 'M01: Authentication and Individual Profile'
+         responses:
+           '200':
+             description: 'Ok. Show Sign-Up UI09'
+
+       post:
+         operationId: R104
+         summary: 'R104: Register Action'
+         description: 'Processes the new user registration form submission. Access: PUB'
+         tags:
+           - 'M01: Authentication and Individual Profile'
+
+         requestBody:
+           required: true
+           content:
+             application/x-www-form-urlencoded:
+               schema:
+                 type: object
+                 properties:
+                   username:
+                     type: string
+                   email:
+                     type: string
+                   password:
+                     type: string
+                 required:
+                          - username
+                          - email
+                          - password
+         responses:
+           '302':
+             description: 'Redirect after processing the new user information.'
+             headers:
+               Location:
+                 schema:
+                   type: string
+                 examples:
+                   302Success:
+                     description: 'Successful authentication. Redirect to main page.'
+                     value: '/'
+                   302Failure:
+                     description: 'Failed authentication. Redirect to login form.'
+                     value: '/login'
+     /profile/{id}:
+      get:
+        operationId: R105
+        summary: "R105: Gets a profile page of a user."
+        description: "Displays profile page of a user. Access: USR"
+        tags:
+          - 'M01: Authentication and Individual Profile'
+        responses:
+         '200':
+           description: 'Ok. Show Profile page'
+         '302':
+             description: 'Redirect.'
+             headers:
+               Location:
+                 schema:
+                   type: string
+                 examples:
+                   302Success:
+                     description: 'Redirect to login page.'
+                     value: '/login'
+
+     /edit_profile/{id}:
+      post:
+        operationId: R106
+        summary: "R106: Displays User edit page."
+        description: "Display edit page for a user's profile. Access: AUTH, ADM"
+        tags:
+          - 'M01: Authentication and Individual Profile'
+        requestBody:
+           required: true
+           content:
+             application/x-www-form-urlencoded:
+               schema:
+                 type: object
+                 properties:
+                   id:
+                     type: integer
+                 required:
+                          - id
+        responses:
+           '302':
+             description: 'Redirect.'
+             headers:
+               Location:
+                 schema:
+                   type: string
+                 examples:
+                   302Success:
+                     description: 'Redirect to profile edit page.'
+                     value: '/edit_profile/{id}'
+
+     /api/edit_profile/{id}:
+      post:
+        operationId: R107
+        summary: "R107: Edits a user's profile."
+        description: "Processes and edits a user's profile. Access: AUTH, ADM"
+        tags:
+          - 'M01: Authentication and Individual Profile'
+        requestBody:
+           required: true
+           content:
+             application/x-www-form-urlencoded:
+               schema:
+                 type: object
+                 properties:
+                   id:
+                     type: integer
+                   username:
+                     type: string
+                   country:
+                     type: string
+                   email:
+                     type: string
+                   password:
+                     type: string
+                 required:
+                          - id
+                          - username
+                          - country
+                          - email
+                          - password
+        responses:
+           '302':
+             description: 'Redirect.'
+             headers:
+               Location:
+                 schema:
+                   type: string
+                 examples:
+                   302Success:
+                     description: 'Redirect to profile page.'
+                     value: '/profile/{id}'
+
+     /change_admin/{id}:
+      post:
+        operationId: R108
+        summary: "R108: Changes a users admin role."
+        description: "Changes a users admin role. If the user is an admin, they lose the role and vice-versa. Access: ADM"
+        tags:
+          - 'M01: Authentication and Individual Profile'
+        requestBody:
+           required: true
+           content:
+             application/x-www-form-urlencoded:
+               schema:
+                 type: object
+                 properties:
+                   id:
+                     type: integer
+                 required:
+                  - id
+        responses:
+           '302':
+             description: 'Redirect.'
+             headers:
+               Location:
+                 schema:
+                   type: string
+                 examples:
+                   302Success:
+                     description: 'Redirect to profile page.'
+                     value: '/profile/{id}'
+
+     /search:
+      post:
+        operationId: R901
+        summary: 'R901: Search for news posts, tags or users'
+        description: 'Search for news posts, tags or users. Access: PUB'
+        tags:
+          - 'M09: Search'
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: string
+                required:
+                  - query
+        responses:
+          '302':
+            description: 'Redirect after processing the query.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful search. Redirect to search results page.'
+                    value: '/search/{query}'
+          '400':
+            description: 'Bad Request'
+     /search/{query}:
+      get:
+        operationId: R902
+        summary: 'R902: Search results'
+        description: 'Show the search results for news posts, tags or users according to query. Access: PUB'
+        tags:
+          - 'M09: Search'
+        parameters:
+          - in: path
+            name: query
+            schema:
+              type: string
+            required: true
+            description: 'Specifies the query received'
+        responses:
+          '200':
+            description: 'Success'
+          '400':
+            description: 'Bad Request'
+          '404':
+            description: 'Page not found'
+     /api/search/news:
+      get:
+        operationId: R903
+        summary: 'R903: Search News API'
+        description: 'Searches for news and returns the result as JSON. Access: PUB'
+        tags:
+          - 'M09: Search'
+        parameters:
+          - in: query
+            name: query
+            schema:
+              type: string
+            required: true
+            description: 'Specifies the query received'
+        responses:
+          '200':
+            description: 'Success'
+            content:
+              application/json:
+                schema:
+                  type: array
+#                  items:
+#                    $ref: '#/components/schemas/News'
+          '400':
+            description: 'Bad Request'
+     /api/search/users:
+      get:
+        operationId: R905
+        summary: 'R905: Search Users API'
+        description: 'Searches for users and returns the result as JSON. Access: PUB'
+        tags:
+          - 'M09: Search'
+        parameters:
+          - in: query
+            name: query
+            schema:
+              type: string
+            required: true
+            description: 'Specifies the query received'
+        responses:
+          '200':
+            description: 'Success'
+            content:
+              application/json:
+                schema:
+                  type: array
+#                  items:
+#                    $ref: '#/components/schemas/User'
+          '400':
+            description: 'Bad Request'
+
+     /:
+      get:
+        operationId: R301
+        summary: 'R301: Shows home feed.'
+        description: 'Obtains page with the most popular news items. Access; PUB'
+        tags:
+          - 'M03: News'
+        responses:
+          '200':
+            description: 'Ok. Show home feed [UI01]'
+
+     /news/{id}:
+      get:
+        operationId: R302
+        summary: 'R303: Shows news item.'
+        description: 'Obtains page with the selected news item. Access; USR'
+        tags:
+          - 'M03: News'
+        parameters:
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+        responses:
+          '200':
+            description: 'Ok. Show news item [UI02]'
+          '302':
+            description: 'User not logged in. Redirect to login form'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'User not logged in. Redirect to login page.'
+                    value: '/login'
+
+     /api/news:
+      post:
+        operationId: R303
+        summary: 'R303: News creation action.'
+        description: 'Processes the new news item form submition and creates the news item. Access; USR'
+        tags:
+          - 'M03: News'
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlenconded:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  picture:
+                    type: string
+                  id_author:
+                    type: integer
+                required:
+                  - title
+                  - content
+                  - id_author
+
+        responses:
+          '302':
+            description: 'Redirect after procession new news item.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful news creation. Redirection to news item.'
+                    value: '/news/{id}'
+
+     /api/news/{news_id}:
+      post:
+        operationId: R304
+        summary: "R304: Deletes a news item"
+        description: "Deletes a news item; Access: AUTH, ADM"
+        tags:
+          - 'M03: News'
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlenconded:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                required:
+                  - id
+        responses:
+          '302':
+            description: 'Redirect after processing and deleting news item.'
+            headers:
+              location:
+                schema:
+                  type: string
+                examples:
+                  302Sucess:
+                    description: 'Successful news deletion. Redirection to home page.'
+                    value: '/news/{id}'
+
+     /api/news/update/{news_id}:
+      post:
+        operationId: R305
+        summary: "R305: Edits a news item"
+        description: "Processes and edits a news item; Access: AUTH, ADM"
+        tags:
+          - 'M03: News'
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlenconded:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  id_author:
+                    type: integer
+                required:
+                  - id
+                  - title
+                  - content
+                  - id_author
+        responses:
+          '302':
+            description: 'Redirect after processing and deleting news item.'
+            headers:
+              location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful news deletion. Redirection to home page.'
+                    value: '/news/{id}'
+
+
+#     /api/news/search:
+#      get:
+#          operationId: R305
+#          summary: 'R306: Search news item API'
+#          description: 'Searches for news items and returns the results as JSON. Access: PUB.'
+#
+#          tags:
+#            - 'M03: News'
+#
+#          parameters:
+#            - in: query
+#              name: query
+#              description: String to use for full-text search
+#              schema:
+#                type: string
+#              required: false
+#          responses:
+#            '200':
+#              description: Success
+#              content:
+#                application/json:
+#                  schema:
+#                    type: array
+#                    items:
+#                      type: object
+#                      properties:
+#                        id:
+#                          type: string
+#                        title:
+#                          type: string
+#                       reputation:
+#                          type: integer
+#                        content:
+#                          type: string
+#                        picture:
+#                          type: string
+#                        id_author:
+#                          type: integer
+#          components:
+#            schemas:
+#              User:
+#                type: object
+#                properties:
+#                  id:
+#                    type: integer
+#                  username:
+#                    type: string
+#                  reputation:
+#                    type: integer
+#                  profile_image:
+#                    type: string
+#                    format: byte
+#                  country:
+#                    type: string
+#              Tag:
+#                type: object
+#                properties:
+#                  id:
+#                    type: integer
+#                  name:
+#                    type: string
+#              News:
+#                type: object
+#                properties:
+#                  id:
+#                    type: integer
+#                  title:
+#                    type: string
+#                  description:
+#                    type: string
+#                  date_time:
+#                    type: string
+#                    format: date-time
+#                  reputation:
+#                    type: integer
+#                  id_author:
+#                    type: integer
+#                  author_uname:
+#                    type: string
+#                  tags:
+#                    type: array
+#                    items:
+#                      $ref: '#/components/schemas/Tag'
+#                  image:
+#                    type: string
+#                    format: byte
+
