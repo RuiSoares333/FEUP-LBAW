@@ -15,7 +15,7 @@
             {{ $user->reputation() }} reputation
         </section>
 
-        @if(Auth::check() and Auth::id() == $user->id)
+        @if(Auth::check() and (Auth::id() == $user->id || Auth::user()->isAdmin()))
         <a href="{{ route('edit_profile',['id' => $user->id])}}"><button type="submit">Edit</button></a>
         @endif
     </section>
@@ -28,7 +28,7 @@
             @else
             <p>no users being followed</p>
             @endif
-        </section> 
+        </section>
         <section id="followers" class="text-center border bg-light rounded-2 ml-5 mr-auto">
             <p>Followers</p>
             @if(!empty($user->followers()->get()))
@@ -36,7 +36,7 @@
             @else
             <p>no followers</p>
             @endif
-        </section> 
+        </section>
     </section>
 
     <section id="news">
