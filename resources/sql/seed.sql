@@ -50,7 +50,7 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     reputation INTEGER NOT NULL DEFAULT 0,
     country TEXT,
-    picture TEXT,
+    picture TEXT DEFAULT 'default.png',
     is_admin BOOLEAN NOT NULL,
     remember_token VARCHAR
 );
