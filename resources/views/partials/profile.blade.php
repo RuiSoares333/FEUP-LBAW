@@ -16,7 +16,10 @@
         </section>
 
         @if(Auth::check() and (Auth::id() == $user->id || Auth::user()->isAdmin()))
-        <a href="{{ route('edit_profile',['id' => $user->id])}}"><button type="submit">Edit</button></a>
+        <form method="POST" action="{{route('edit_profile', ['id' => $user->id])}}">
+            {{ csrf_field() }}
+            <button type="submit">Edit</button>
+        </form>
         @endif
     </section>
 
