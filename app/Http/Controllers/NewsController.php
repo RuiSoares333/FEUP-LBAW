@@ -28,12 +28,21 @@ class NewsController extends Controller
       return view('pages.detailedpost', ['newspost' => $news, 'comments' => $comments]);
     }
 
-    public function search() {
-      if (request('search')) {
-          $news = News::where('title', 'like','%'.request('search').'%')->orderBy('reputation')->get();
+    public function search(Request $request) {
+      if ($request->input('search')) {
+        $query = $request->input('search');
+        $array = explode(" ", $query);
+        foreach($array as &$word) {
+          $word .= ":*";
+        }
+        $query = join("&", $array);
+        $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
+        ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
+        ->orderBy('reputation', 'desc')
+        ->get();
       }
       else {
-          $news = News::orderBy('reputation')->get();
+        $news = News::orderBy('reputation')->get();
       }
 
       return view('pages.home', ['news' => $news]);

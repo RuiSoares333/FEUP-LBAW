@@ -84,6 +84,7 @@ CREATE TABLE news (
     content TEXT NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     picture TEXT,
+    tsvectors TSVECTOR NOT NULL,
     user_id INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
 );
 
@@ -175,6 +176,35 @@ CREATE TABLE notification (
     id_comment INTEGER REFERENCES comments (id) ON UPDATE CASCADE,
     CHECK((id_news IS NOT NULL AND id_comment IS NULL) OR (id_news IS NULL AND id_comment IS NOT NULL))
 );
+
+-------------------------------------------FTS NEWS------------------
+
+CREATE FUNCTION news_search_update() RETURNS TRIGGER AS $$
+BEGIN
+ IF TG_OP = 'INSERT' THEN
+        NEW.tsvectors = (
+         setweight(to_tsvector('english', coalesce(NEW.title, '')), 'A') ||
+         setweight(to_tsvector('english', coalesce(NEW.content, '')), 'B')
+        );
+ END IF;
+ IF TG_OP = 'UPDATE' THEN
+         IF (NEW.title <> OLD.title OR NEW.content <> OLD.content) THEN
+           NEW.tsvectors = (
+             setweight(to_tsvector('english', coalesce(NEW.title, '')), 'A') ||
+             setweight(to_tsvector('english', coalesce(NEW.content, '')), 'B')
+           );
+         END IF;
+ END IF;
+ RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER news_search_update
+ BEFORE INSERT OR UPDATE ON news
+ FOR EACH ROW
+ EXECUTE PROCEDURE news_search_update();
+
+CREATE INDEX search_news ON news USING GiST (tsvectors);
 
 -------------------------------
 -- Users
