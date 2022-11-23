@@ -186,3 +186,8 @@ article.comment > :nth-child(3){
 .author_tools{
     display: flex;
 }
+
+.hide
+{
+    visibility: hidden;
+}

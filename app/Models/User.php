@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password','reputation','country','picture','isAdmin'
+        'username', 'email', 'password','reputation','country','picture','is_admin'
     ];
 
     /**
@@ -53,5 +53,8 @@ class User extends Authenticatable
 
     public function following() {
         return $this->belongsToMany('App\Models\User', 'follows','id1','id2')->orderBy('username');
+    }
+    public function isAdmin(){
+        return $this->is_admin;
     }
 }
