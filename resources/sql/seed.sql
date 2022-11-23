@@ -51,7 +51,7 @@ CREATE TABLE users (
     reputation INTEGER NOT NULL DEFAULT 0,
     country TEXT,
     picture TEXT DEFAULT 'default.png',
-    is_admin BOOLEAN NOT NULL,
+    is_admin BOOLEAN NOT NULL DEFAULT FALSE,
     remember_token VARCHAR
 );
 

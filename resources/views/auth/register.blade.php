@@ -8,7 +8,7 @@
             {{ csrf_field() }}
             <h1 class="h1 mb-5 fw-bold text-uppercase">register</h1>
 
-            <input id="name" class="mb-4 text-light" type="text" name="name" value="{{ old('name') }}" required autofocus placeholder="name">
+            <input id="name" class="mb-4 text-light" type="text" name="username" value="{{ old('username') }}" required autofocus placeholder="name">
             @if ($errors->has('name'))
             <span class="error">
                 {{ $errors->first('name') }}
