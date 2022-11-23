@@ -379,7 +379,7 @@ paths:
      /news/{id}:
       get:
         operationId: R302
-        summary: 'R303: Shows news item.'
+        summary: 'R302: Shows news item.'
         description: 'Obtains page with the selected news item. Access; USR'
         tags:
           - 'M03: News'
