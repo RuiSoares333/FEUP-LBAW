@@ -198,3 +198,13 @@ article.news{
 {
     visibility: hidden;
 }
+
+
+#administer #change{
+    margin-left: auto;
+    margin-right: 3vw;
+}
+
+#administer  #edit{
+    margin-right: auto;
+}

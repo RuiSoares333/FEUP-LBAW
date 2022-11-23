@@ -15,12 +15,26 @@
             {{ $user->reputation() }} reputation
         </section>
 
+        <div id="administer" class="d-flex flex-row">
         @if(Auth::check() and (Auth::id() == $user->id || Auth::user()->isAdmin()))
-        <form method="POST" action="{{route('edit_profile', ['id' => $user->id])}}">
+            @if(Auth::user()->isAdmin() && Auth::id() == $user->id)
+            <form id="change" method="POST" action="{{route('change_admin', ['id' => $user->id])}}">
+                {{ csrf_field() }}
+                <button type="submit">Revoke Admin</button>
+            </form>
+            @elseif(Auth::user()->isAdmin() && !($user->is_admin))
+            <form id="change" method="POST" action="{{route('change_admin', ['id' => $user->id])}}">
+                {{ csrf_field() }}
+                <button type="submit">Make</button>
+            </form>
+            @endif
+        <form id="edit" method="POST" action="{{route('edit_profile', ['id' => $user->id])}}">
             {{ csrf_field() }}
             <button type="submit">Edit</button>
         </form>
         @endif
+        </div>
+
     </section>
 
     <section id="follows" class="d-flex flex-row border-bottom mb-5 py-5">

@@ -71,13 +71,14 @@ class UserController extends Controller
       return $user;
     }
 
+    public function change_admin($id){
+      $user = User::find($id);
+      $this->authorize('admin', $user);
+      $user->is_admin = !($user->is_admin);
 
-
-
-
-
-
-
+      $user->save();
+      return redirect('profile/' . $user->id);
+    }
 
 
 }
