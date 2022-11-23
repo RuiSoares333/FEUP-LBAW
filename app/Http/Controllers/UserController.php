@@ -50,7 +50,7 @@ class UserController extends Controller
       $this->authorize('update', $user);
       $user->username = $request->input('username');
       $user->country = $request->input('country');
-      
+
       if($request->input('email') != ""){
         $user->email = $request->input('email');
       }
@@ -60,7 +60,7 @@ class UserController extends Controller
       }
 
       $user->save();
-      return $user;
+      return redirect('profile/' . $user->id);
     }
 
     public function delete(Request $request, $id)
