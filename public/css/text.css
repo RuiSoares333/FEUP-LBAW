@@ -2,6 +2,11 @@
     text-decoration: none;
 }
 
+.new_news_input{
+    margin: 1em;
+    width: 95%;
+}
+
 .input-group{
     width: 50%;
 }
@@ -78,10 +83,6 @@ form-div{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.new_news_input{
-    margin: 1em;
 }
 
 .btn-submit:hover{

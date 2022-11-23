@@ -44,8 +44,8 @@
             Title
             <input class="new_news_input" type="text" name="title" value= "{{ $newspost->title }}">
             tags
-            <textarea rows="10" cols="60" class="new_news_input"  type="text" name="content" placeholder="News Content"></textarea>
-            picture
+            <textarea rows="10" cols="60" class="new_news_input"  type="text" name="content"> {{ $newspost->content }} </textarea>
+            <a>picture</a>
             <input type="hidden" name="news_id" value = {{$newspost->id}}>
             <button id="edit_button" class="btn-submit mx-3 rounded-2" type="submit">Confirm</button>
         </form>
