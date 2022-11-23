@@ -1,11 +1,11 @@
-<article id="username-prev" data-id="{{ $user_preview->id }}">
+<article id="username-prev" data-id="{{ $user->id }}">
     <section id="picture" class="mb-3">
-        <img src="{{asset('pictures/user/' . $user_preview->picture ) }}" class="rounded-circle">
+        <img src="{{asset('pictures/user/' . $user->picture ) }}" class="rounded-circle">
     </section>
     <section id="username" class="mb-3">
-        {{ $user_preview->username }}
+        {{ $user->username }}
     </section>
     <section id="reputation" class="mb-3 text-capitalize">
-        {{ $user_preview->reputation() }} reputation
+        {{ $user->reputation() }} reputation
     </section>
 </article>

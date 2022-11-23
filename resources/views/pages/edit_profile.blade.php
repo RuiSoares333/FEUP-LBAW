@@ -12,7 +12,7 @@
         <input type="hidden" name="id" value="{{$user->id}}">
         <input class="h2 fw-bold text-center " name="username" type="text" value="{{$user->username}}">  </h2>
         <input class="h2 fw-bold text-center " name="country" type="text" value="{{$user->country}}"></h2>
-        <input class="h2 fw-bold text-center " name="email" type="text" placeholder="email"></h2>
+        <input class="h2 fw-bold text-center " name="email" type="text" value="{{$user->email}}"></h2>
         <input class="h2 fw-bold text-center " name="password" type="password" placeholder="password"></h2>
         <input type="file" name="picture" accept="image/png, image/jpeg" />
         <input type="submit" value="Submit">
