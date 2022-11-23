@@ -182,11 +182,11 @@ CREATE TABLE notification (
 
 SET search_path TO lbaw2286;
 
-INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(1, 'André Morais', 'andre@legitmail.com', 'legitandre', 'Portugal', './path/to/picture.png', true);
-INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(2, 'João Teixeira', 'joao@legitmail.com', 'legitjoao', 'Portugal', './path/to/picture.png', true);
-INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(3, 'Lucas Sousa', 'lucas@legitmail.com', 'legitlucas', 'Portugal', './path/to/picture.png', true);
-INSERT INTO users (id, username, email, password, country, picture, isadmin) VALUES(4, 'Rui Soares', 'rui@legitmail.com', 'legitrui', 'Portugal', './path/to/picture.png', true);
-INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(5, '[redacted]', 'redac@legitmail.com', 'legitredac', 'Zimbabue', './path/to/default.png', false); --id 5 is deleted user
+INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(1, 'André Morais', 'andre@legitmail.com', '$2a$12$upL6DFkOAvStTFj66C/HjOUcdqbsbJYybp1I5QNEal2uCQk7r0Owq', 'Portugal', './path/to/picture.png', true);
+INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(2, 'João Teixeira', 'joao@legitmail.com', '$2a$12$z6QqR5X7k.JFeAK2UZAD6OdTgSj8Rkmf7sECS96dEGRzRjU/bhC.e', 'Portugal', './path/to/picture.png', true);
+INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(3, 'Lucas Sousa', 'lucas@legitmail.com', '$2a$12$lupa/IivieTHqeT8ZFuoc.b6Z4KpzOZ/LT6ts5Pxt9xq4c0y4vbti', 'Portugal', './path/to/picture.png', true);
+INSERT INTO users (id, username, email, password, country, picture, isadmin) VALUES(4, 'Rui Soares', 'rui@legitmail.com', '$2a$12$hzvwGZBw2qWA6pE.v/JIPObYrX3odCi3bYwnm0XocZnpK.3Cv3wPC', 'Portugal', './path/to/picture.png', true);
+INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES(5, '[redacted]', 'redac@legitmail.com', '$2a$12$gc7M2CUhl8QwvbsEkhaXW.aLeShBasRXwYPXqjiZoid/PrwZTvVCe', 'Zimbabue', './path/to/default.png', false); --id 5 is deleted user
 INSERT INTO users (id, username, email, password, country, picture, isAdmin) VALUES (6,'John Doe','admin@example.com','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','Doeee','./path/to/picture.png',true);
 
 -------------------------------
