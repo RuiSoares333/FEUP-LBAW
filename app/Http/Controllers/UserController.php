@@ -15,13 +15,7 @@ class UserController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
         $user = User::find($id);
-        if($user->picture === 'default.png'){
-          $foto = asset('pictures/default.png');
-        }
-        else{
-          $foto = asset('pictures/'.$id.'/'.$user->picture);
-        }
-        return view('pages.profile', ['user' => $user, 'foto' => $foto]);
+        return view('pages.profile', ['user' => $user]);
     }
 
     public function edit($id)
@@ -51,6 +45,10 @@ class UserController extends Controller
       $user->username = $request->input('username');
       $user->country = $request->input('country');
 
+      if($request->input('picture') != "") {
+        $user->picture = $request->input('picture');
+      }
+
       if($request->input('email') != ""){
         $user->email = $request->input('email');
       }
@@ -78,25 +76,6 @@ class UserController extends Controller
 
       $user->save();
       return redirect('profile/' . $user->id);
-    }
-
-    public function search(Request $request) {
-      if ($request->input('search')) {
-        $query = $request->input('search');
-        $array = explode(" ", $query);
-        foreach($array as &$word) {
-          $word .= ":* ";
-        }
-        $query = join(" | ", $array);
-        $users = User::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
-        ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
-        ->orderBy('reputation', 'desc')
-        ->get();
-      }
-      else {
-        $users = User::orderBy('reputation')->get();
-      }
-      return view('pages.home', ['news' => $news]);
     }
 
 }

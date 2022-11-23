@@ -1,10 +1,12 @@
-<article class="news container my-5 col border bg-light" data-id="{{ $newspost->id }}">
+<article class="news container my-5 d-flex flex-column border bg-light" data-id="{{ $newspost->id }}">
     <header class="row m-3 d-flex flex-row">
         <h2 class="my-auto"><a href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h2>
         <h3 class="my-auto"><a href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></h3>
     </header>
-    @if(!empty($newspost->image))
-    <div class="row mx-3">{{ $newspost->picture}}</div>
+    @if(!empty($newspost->picture))
+    <div id="news-picture" class="w-auto mx-auto my-4">
+        <img src="{{asset('pictures/news/' . $newspost->picture ) }}">
+    </div>
     @endif
     <div class="row mx-3">{{ $newspost->content}}</div>
     <footer class="row mx-3 mb-3">
@@ -46,7 +48,7 @@
             <input class="new_news_input" type="text" name="title" value= "{{ $newspost->title }}">
             tags
             <textarea rows="10" cols="60" class="new_news_input"  type="text" name="content"> {{ $newspost->content }} </textarea>
-            <a>picture</a>
+            <input type="file" name="picture" accept="image/png, image/jpeg" />
             <input type="hidden" name="news_id" value = {{$newspost->id}}>
             <button id="edit_button" class="btn-submit mx-3 rounded-2" type="submit">Confirm</button>
         </form>

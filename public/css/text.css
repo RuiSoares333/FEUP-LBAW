@@ -169,9 +169,14 @@ article.comment > :nth-child(3){
     z-index: 1;
 }
 
-#picture > img{
+#profile-picture > img{
     width: 20vw;
     height: 20vw;
+}
+
+#news-picture > img{
+    width: 30vw;
+    height: auto;
 }
 
 #username{

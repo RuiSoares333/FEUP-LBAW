@@ -50,8 +50,9 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     reputation INTEGER NOT NULL DEFAULT 0,
     country TEXT,
-    picture TEXT DEFAULT 'default.png',
+    picture TEXT NOT NULL DEFAULT 'default.png',
     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+    tsvectors TSVECTOR NOT NULL,
     remember_token VARCHAR
 );
 
@@ -83,7 +84,7 @@ CREATE TABLE news (
     title TEXT NOT NULL,
     content TEXT NOT NULL,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
-    picture TEXT,
+    picture TEXT NOT NULL DEFAULT 'default.png',
     tsvectors TSVECTOR NOT NULL,
     user_id INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
 );
@@ -176,6 +177,31 @@ CREATE TABLE notification (
     id_comment INTEGER REFERENCES comments (id) ON UPDATE CASCADE,
     CHECK((id_news IS NOT NULL AND id_comment IS NULL) OR (id_news IS NULL AND id_comment IS NOT NULL))
 );
+
+---------------------------FTS USERS--------------------------
+
+CREATE FUNCTION users_search_update() RETURNS TRIGGER AS $$
+BEGIN
+ IF TG_OP = 'INSERT' THEN
+        NEW.tsvectors = (
+         to_tsvector('english', NEW.username));
+ END IF;
+ IF TG_OP = 'UPDATE' THEN
+         IF (NEW.username <> OLD.username) THEN
+           NEW.tsvectors = (
+             to_tsvector('english', NEW.username));
+         END IF;
+ END IF;
+ RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER users_search_update
+ BEFORE INSERT OR UPDATE ON users
+ FOR EACH ROW
+ EXECUTE PROCEDURE users_search_update();
+
+CREATE INDEX search_username ON users USING GiST (tsvectors);
 
 -------------------------------------------FTS NEWS------------------
 

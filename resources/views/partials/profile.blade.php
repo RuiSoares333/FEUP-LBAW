@@ -5,8 +5,8 @@
     <div class="bg-circle-4 bg-circle"></div>
 
     <section id="intro" class="text-center border-bottom py-5">
-        <section id="picture" class="mb-3">
-            <img src="{{$foto}}" class="rounded-circle">
+        <section id="profile-picture" class="mb-3">
+            <img src="{{asset('pictures/user/' . $user->picture ) }}" class="rounded-circle">
         </section>
         <section id="username" class="mb-3">
             {{ $user->username }}

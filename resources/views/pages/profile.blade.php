@@ -3,7 +3,7 @@
 @section('content')
 
     @include('partials.header')
-    @include('partials.profile', [$user, $foto])
+    @include('partials.profile', $user)
 
 @endsection
 

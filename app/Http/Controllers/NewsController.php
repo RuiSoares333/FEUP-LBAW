@@ -28,26 +28,6 @@ class NewsController extends Controller
       return view('pages.detailedpost', ['newspost' => $news, 'comments' => $comments]);
     }
 
-    public function search(Request $request) {
-      if ($request->input('search')) {
-        $query = $request->input('search');
-        $array = explode(" ", $query);
-        foreach($array as &$word) {
-          $word .= ":* ";
-        }
-        $query = join(" | ", $array);
-        $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
-        ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
-        ->orderBy('reputation', 'desc')
-        ->get();
-      }
-      else {
-        $news = News::orderBy('reputation')->get();
-      }
-
-      return view('pages.home', ['news' => $news]);
-      }
-
     /**
      * Shows all News.
      * @return Response
@@ -55,7 +35,8 @@ class NewsController extends Controller
     public function list()
     {
         $news = News::orderBy('reputation')->get();
-        return view('pages.home', ['news' => $news]);
+        $user = array();
+        return view('pages.home', ['news' => $news, 'users' => $user]);
     }
 
     /**
@@ -71,7 +52,10 @@ class NewsController extends Controller
 
       $news->title = $request->input('title');
       $news->content = $request->input('content');
-      //$news->picture = $request->input('picture');
+      $file= $request->file('picture');
+      $filename = $file->getClientOriginalName();
+      $file-> move(public_path('public/news'), $filename);
+      $news->picture = $filename;
       $news->user_id = $request->input('id_author');
       $news->save();
 
@@ -95,13 +79,9 @@ class NewsController extends Controller
 
     $news->title = $request->input('title');
     $news->content = $request->input('content');
-    //$news->picture = $request->input('picture');
+    $news->picture = $request->input('picture');
     $news->save();
 
     return redirect('news/'. $news->id);
-  }
-
-  public function writeNewsPost(){
-    return;
   }
 }
