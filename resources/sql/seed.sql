@@ -212,6 +212,8 @@ CREATE INDEX search_news ON news USING GiST (tsvectors);
 
 SET search_path TO lbaw2286;
 
+ALTER SEQUENCE users_id_seq RESTART WITH 6;
+
 INSERT INTO users (id, username, email, password, country, is_admin) VALUES(1, 'André Morais', 'andre@legitmail.com', '$2a$12$upL6DFkOAvStTFj66C/HjOUcdqbsbJYybp1I5QNEal2uCQk7r0Owq', 'Portugal', true);
 INSERT INTO users (id, username, email, password, country, is_admin) VALUES(2, 'João Teixeira', 'joao@legitmail.com', '$2a$12$z6QqR5X7k.JFeAK2UZAD6OdTgSj8Rkmf7sECS96dEGRzRjU/bhC.e', 'Portugal', true);
 INSERT INTO users (id, username, email, password, country, is_admin) VALUES(3, 'Lucas Sousa', 'lucas@legitmail.com', '$2a$12$lupa/IivieTHqeT8ZFuoc.b6Z4KpzOZ/LT6ts5Pxt9xq4c0y4vbti', 'Portugal', true);
@@ -242,6 +244,8 @@ INSERT INTO apply_admin_request(description, is_handled, id_user) VALUES ('I wou
 -------------------------------
 -- tag
 -------------------------------
+ALTER SEQUENCE tag_id_seq RESTART WITH 22;
+
 INSERT INTO tag(id, tag_name) VALUES (1, 'Gaming'); -- 1
 INSERT INTO tag(id, tag_name) VALUES (2, 'Politics'); -- 2
 INSERT INTO tag(id,tag_name) VALUES (3, 'Academia'); -- 3
@@ -267,6 +271,8 @@ INSERT INTO tag(id, tag_name) VALUES (21, 'Anime'); -- 21
 -------------------------------
 -- News
 -------------------------------
+ALTER SEQUENCE news_id_seq RESTART WITH 5;
+
 INSERT INTO news (id, title, content, date, user_id) VALUES (1, 'Overwatch Fan Makes LEGO Bastion Figure for Their Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut.
 Dignissim convallis aenean et tortor. Eu feugiat pretium nibh ipsum consequat nisl. Interdum consectetur libero id faucibus.
@@ -320,6 +326,8 @@ INSERT INTO news_tag (id_news, id_tag) VALUES (4, 21); -- Anime
 -------------------------------
 -- comment
 -------------------------------
+ALTER SEQUENCE comments_id_seq RESTART WITH 6;
+
 INSERT INTO comments(id, content, id_news, id_comment, user_id) VALUES (1, 'Fake news!', 1, NULL, 1);
 INSERT INTO comments(id, content, id_news, id_comment, user_id) VALUES (2, 'Very informative', 2, NULL, 2);
 INSERT INTO comments(id, content, id_news, id_comment, user_id) VALUES (3, 'Loved it!', 2, 1, 3);
