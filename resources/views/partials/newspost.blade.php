@@ -26,6 +26,7 @@
         const form = document.querySelector("#edit_form")
         form.classList.toggle('hide')
         console.log('toggle')
+        
     }
     </script>
     <div>
