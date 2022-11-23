@@ -34,7 +34,7 @@ class NewsController extends Controller
      */
     public function list()
     {
-        $news = News::orderBy('reputation')->get();
+        $news = News::orderBy('reputation', 'desc')->get();
         $user = array();
         return view('pages.home', ['news' => $news, 'user' => $user]);
     }
@@ -69,16 +69,18 @@ class NewsController extends Controller
       $news = News::find($id);
       $this->authorize('delete', $news);
       $news->delete();
+
       return redirect('/');
     }
 
   public function update(Request $request, $id)
   {
     $news = News::find($id);
-    $this->authorize('update', Auth::user());
+    $this->authorize('update', $news);
 
     $news->title = $request->input('title');
     $news->content = $request->input('content');
+
     if($request->file('picture')) {
       $file= $request->file('picture');
       $filename = $file->getClientOriginalName();

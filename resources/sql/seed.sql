@@ -232,6 +232,290 @@ CREATE TRIGGER news_search_update
 
 CREATE INDEX search_news ON news USING GiST (tsvectors);
 
+CREATE INDEX news_comments ON comments USING hash (id_news);
+
+CREATE INDEX news_by_popularity ON news USING btree (reputation);
+
+CREATE INDEX user_notifications ON notification USING hash (id_user);
+
+---------------------------
+--TRIGGERS
+------------------------
+
+
+CREATE FUNCTION add_comment_reputation() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (NEW.is_liked) THEN
+        UPDATE comments
+        SET reputation = reputation+1
+        WHERE id = NEW.id_comment;
+
+        UPDATE users
+        SET reputation = reputation+1
+        WHERE id = (
+            SELECT user_id FROM comments WHERE id = NEW.id_comment
+        );
+    ELSE
+        UPDATE comments
+        SET reputation = reputation-1
+        WHERE id = NEW.id_comment;
+
+        UPDATE users
+        SET reputation = reputation-1
+        WHERE id = (
+            SELECT user_id FROM comments WHERE id = NEW.id_comment
+        );
+        
+    END IF;
+    RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER add_comment_reputation
+    AFTER INSERT ON comment_vote FOR EACH ROW
+    EXECUTE PROCEDURE add_comment_reputation();
+
+
+
+CREATE FUNCTION add_news_reputation() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (NEW.is_liked) THEN
+        UPDATE news
+        SET reputation = reputation+1
+        WHERE id = NEW.id_news;
+
+        UPDATE users
+        SET reputation = reputation+1
+        WHERE id = (
+            SELECT user_id FROM news WHERE id = NEW.id_news
+        );
+    ELSE
+        UPDATE news
+        SET reputation = reputation-1
+        WHERE id = NEW.id_news;
+
+        UPDATE users
+        SET reputation = reputation-1
+        WHERE id = (
+            SELECT user_id FROM news WHERE id = NEW.id_news
+        );
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER add_news_reputation
+    AFTER INSERT ON news_vote FOR EACH ROW
+    EXECUTE PROCEDURE add_news_reputation();
+
+
+CREATE FUNCTION anonymous_user() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+        UPDATE news SET user_id=5 WHERE OLD.id = user_id;
+        UPDATE comments SET user_id=5 WHERE OLD.id = user_id;
+        UPDATE apply_admin_request SET id_user = 5 WHERE OLD.id = id_user;
+        RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER anonymous_user
+        BEFORE DELETE ON users
+        FOR EACH ROW
+        EXECUTE PROCEDURE anonymous_user();
+
+
+CREATE FUNCTION comment_on_comment() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (select id_comment from comments where id_comment = NEW.id) THEN-- se comentário já for resposta a comentário não pode ser comentado
+        RAISE EXCEPTION 'Comments that are commented on other comments cant have comments';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER comment_on_comment
+        BEFORE INSERT ON comments
+        FOR EACH ROW
+        EXECUTE PROCEDURE comment_on_comment();
+
+CREATE FUNCTION delete_comment() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+       IF EXISTS (SELECT * FROM comments WHERE id_comment = OLD.id ) THEN
+            RAISE EXCEPTION 'You cant delete a comments with comments in it';
+    END IF;
+        IF NOT (OLD.reputation = 0) THEN 
+            RAISE EXCEPTION 'You cant delete a comments with votes in it.';
+        END IF;
+    RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_comment
+        BEFORE DELETE ON comments
+        FOR EACH ROW
+        EXECUTE PROCEDURE delete_comment();
+
+CREATE FUNCTION delete_news() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (SELECT * FROM comments WHERE id_news = OLD.id ) THEN
+        RAISE EXCEPTION 'You cant delete news with comments in it';
+    END IF;
+    IF NOT (OLD.reputation = 0) THEN 
+        RAISE EXCEPTION 'You cant delete news with votes in it';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_news
+        BEFORE DELETE ON news
+        FOR EACH ROW
+        EXECUTE PROCEDURE delete_news();
+
+CREATE FUNCTION remove_comment_reputation() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (OLD.is_liked) THEN
+        UPDATE comments
+        SET reputation = reputation-1
+        WHERE id = OLD.id_comment;
+
+        UPDATE users
+        SET reputation = reputation-1
+        WHERE id = (
+            SELECT user_id FROM comments WHERE id = NEW.id_comment
+        );
+    ELSE
+        UPDATE comments
+        SET reputation = reputation+1
+        WHERE id = OLD.id_comment;
+
+        UPDATE users
+        SET reputation = reputation+1
+        WHERE id = (
+            SELECT user_id FROM comments WHERE id = NEW.id_comment
+        );
+    END IF;
+    RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER remove_comment_reputation
+    BEFORE DELETE ON comment_vote FOR EACH ROW
+    EXECUTE PROCEDURE remove_comment_reputation();
+
+CREATE FUNCTION remove_news_reputation() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (OLD.is_liked) THEN
+        UPDATE news
+        SET reputation = reputation-1
+        WHERE id = OLD.id_news;
+
+        UPDATE users
+        SET reputation = reputation-1
+        WHERE id = (
+            SELECT user_id FROM news WHERE id = NEW.id_news
+        );
+    ELSE
+        UPDATE news
+        SET reputation = reputation+1
+        WHERE id = OLD.id_news;
+
+        UPDATE users
+        SET reputation = reputation+1
+        WHERE id = (
+            SELECT user_id FROM news WHERE id = NEW.id_news
+        );
+    END IF;
+    RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER remove_news_reputation
+    BEFORE DELETE ON news_vote FOR EACH ROW
+    EXECUTE PROCEDURE remove_news_reputation();
+
+CREATE FUNCTION update_comment_reputation() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (NEW.is_liked) THEN
+        UPDATE comments
+        SET reputation = reputation+2
+        WHERE id = NEW.id_comment;
+
+        UPDATE users
+        SET reputation = reputation+2
+        WHERE id = (
+            SELECT user_id FROM comments WHERE id = NEW.id_comment
+        );
+    ELSE
+        UPDATE comments
+        SET reputation = reputation-2
+        WHERE id = NEW.id_comment;
+
+        UPDATE users
+        SET reputation = reputation-2
+        WHERE id = (
+            SELECT user_id FROM comments WHERE id = NEW.id_comment
+        );
+    END IF;
+    RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_comment_reputation
+    AFTER UPDATE ON comment_vote FOR EACH ROW
+    EXECUTE PROCEDURE update_comment_reputation();
+
+CREATE FUNCTION update_news_reputation() RETURNS TRIGGER AS
+$BODY$
+BEGIN            
+    IF (NEW.is_liked) THEN
+        UPDATE news
+        SET reputation = reputation+2
+        WHERE id = NEW.id_news;
+
+        UPDATE users
+        SET reputation = reputation+2
+        WHERE id = (
+            SELECT user_id FROM news WHERE id = NEW.id_news
+        );
+    ELSE
+        UPDATE news
+        SET reputation = reputation-2
+        WHERE id = NEW.id_news;
+
+        UPDATE users
+        SET reputation = reputation-2
+        WHERE id = (
+            SELECT user_id FROM news WHERE id = NEW.id_news
+        );
+    END IF;
+    RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_news_reputation
+    AFTER UPDATE ON news_vote FOR EACH ROW
+    EXECUTE PROCEDURE update_news_reputation();
+
 -------------------------------
 -- Users
 -------------------------------
@@ -350,7 +634,7 @@ INSERT INTO news_tag (id_news, id_tag) VALUES (4, 9); -- TV
 INSERT INTO news_tag (id_news, id_tag) VALUES (4, 21); -- Anime
 
 -------------------------------
--- comment
+-- comments
 -------------------------------
 ALTER SEQUENCE comments_id_seq RESTART WITH 6;
 
@@ -406,7 +690,7 @@ INSERT INTO tag_proposal_user(id_user, id_tag) VALUES (4, 3);
 -------------------------------
 INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('UserReport','User insulted me', false,1,1,NULL, NULL);
 INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('NewsReport','Wrong use of tags', true,2,NULL,2, NULL);
-INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('CommentReport','Offensive comment', false,3,NULL,NULL,1);
+INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('CommentReport','Offensive comments', false,3,NULL,NULL,1);
 INSERT INTO report(report_type, report_text, is_handled, user_id, id_user, id_news, id_comment) VALUES ('CommentReport','Spam', false,4, NULL, NULL, 2);
 
 -------------------------------
