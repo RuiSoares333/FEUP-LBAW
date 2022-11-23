@@ -14,7 +14,7 @@ externalDocs:
  url: https://git.fe.up.pt/lbaw/lbaw2223/lbaw2286/-/wikis/home
 
 tags:
- - name: 'M01: Authentication and Individual Profile'
+ - name: 'M01: Authentication'
  - name: 'M02: News'
  - name: 'M03: Comments'
  - name: 'M04: Tags'
@@ -29,7 +29,7 @@ paths:
          summary: 'R101: Login Form'
          description: 'Provide login form. Access: PUB'
          tags:
-           - 'M01: Authentication and Individual Profile'
+           - 'M01: Authentication'
          responses:
            '200':
              description: 'Ok. Show Log-in UI10'
@@ -38,7 +38,7 @@ paths:
          summary: 'R102: Login Action'
          description: 'Processes the login form submission. Access: PUB'
          tags:
-           - 'M01: Authentication and Individual Profile'
+           - 'M01: Authentication'
 
          requestBody:
            required: true
@@ -72,11 +72,11 @@ paths:
 
      /logout:
        post:
-         operationId: R102
-         summary: 'R102: Logout Action'
+         operationId: R103
+         summary: 'R103: Logout Action'
          description: 'Logout the current authenticated user. Access: USR, ADM'
          tags:
-           - 'M01: Authentication and Individual Profile'
+           - 'M01: Authentication'
          responses:
            '302':
              description: 'Redirect after processing logout.'
@@ -91,18 +91,18 @@ paths:
 
      /register:
        get:
-         operationId: R103
-         summary: 'R103: Register Form'
+         operationId: R104
+         summary: 'R104: Register Form'
          description: 'Provide new user registration form. Access: PUB'
          tags:
-           - 'M01: Authentication and Individual Profile'
+           - 'M01: Authentication'
          responses:
            '200':
              description: 'Ok. Show Sign-Up UI09'
 
        post:
-         operationId: R104
-         summary: 'R104: Register Action'
+         operationId: R105
+         summary: 'R105: Register Action'
          description: 'Processes the new user registration form submission. Access: PUB'
          tags:
            - 'M01: Authentication and Individual Profile'
@@ -140,11 +140,11 @@ paths:
                      value: '/login'
      /profile/{id}:
       get:
-        operationId: R105
-        summary: "R105: Gets a profile page of a user."
+        operationId: R201
+        summary: "R201: Gets a profile page of a user."
         description: "Displays profile page of a user. Access: USR"
         tags:
-          - 'M01: Authentication and Individual Profile'
+          - 'M02: Users'
         responses:
          '200':
            description: 'Ok. Show Profile page'
@@ -161,11 +161,11 @@ paths:
 
      /edit_profile/{id}:
       post:
-        operationId: R106
-        summary: "R106: Displays User edit page."
+        operationId: R202
+        summary: "R202: Displays User edit page."
         description: "Display edit page for a user's profile. Access: AUTH, ADM"
         tags:
-          - 'M01: Authentication and Individual Profile'
+          - 'M02: Users'
         requestBody:
            required: true
            content:
@@ -191,11 +191,11 @@ paths:
 
      /api/edit_profile/{id}:
       post:
-        operationId: R107
-        summary: "R107: Edits a user's profile."
+        operationId: R203
+        summary: "R203: Edits a user's profile."
         description: "Processes and edits a user's profile. Access: AUTH, ADM"
         tags:
-          - 'M01: Authentication and Individual Profile'
+          - 'M02: Users'
         requestBody:
            required: true
            content:
@@ -233,11 +233,11 @@ paths:
 
      /change_admin/{id}:
       post:
-        operationId: R108
-        summary: "R108: Changes a users admin role."
+        operationId: R204
+        summary: "R204: Changes a users admin role."
         description: "Changes a users admin role. If the user is an admin, they lose the role and vice-versa. Access: ADM"
         tags:
-          - 'M01: Authentication and Individual Profile'
+          - 'M02: Users'
         requestBody:
            required: true
            content:
