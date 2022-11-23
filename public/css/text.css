@@ -50,7 +50,7 @@ form#new_comment > button{
 
 
 
-header.masthead.banner{
+.masthead.banner{
     padding-top: 12.5%;
     padding-bottom: 12.5%;
 }
@@ -132,6 +132,49 @@ article.comment > :nth-child(3){
 
 #search-bar{
     color: var(--bs-gray-900);
+}
+
+#follows{
+    width: 80vw;
+}
+
+#following{
+    width: 10vw;
+    max-width: 15vw;
+    margin-left: auto;
+    margin-right: 5vw;
+}
+
+#followers{
+    width: 10vw;
+    max-width: 15vw;
+    margin-left: 5vw;
+    margin-right: auto;
+}
+
+#following > :nth-child(1), #followers > :nth-child(1){
+    font-weight: bold;
+}
+
+#intro{
+    width: 80vw;
+}
+
+#picture > img{
+    width: 20vw;
+    height: 20vw;
+}
+
+#username{
+    font-size:xx-large;
+    font-weight: bolder;
+    color: var(--bs-gray-100);
+}
+
+#reputation{
+    font-size:large;
+    font-weight: normal;
+    color: var(--bs-gray-100);
 }
 
 @media (min-width: 1300px){
