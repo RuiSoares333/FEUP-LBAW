@@ -12,8 +12,13 @@ class UserPolicy {
 
     public function owner(User $user_logged, User $user)
     {
+        if($user->is_admin) return true;
         return $user_logged->id === $user->id;
     }
 
-
+    public function update(User $user_logged, User $user)
+    {
+        if($user->is_admin) return true;
+        return $user_logged->id === $user->id;
+    }
 }

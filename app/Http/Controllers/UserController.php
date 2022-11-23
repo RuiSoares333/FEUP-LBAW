@@ -1,4 +1,4 @@
-<?php   
+<?php
 
 namespace App\Http\Controllers;
 
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\User;
 
-class UserController extends Controller 
+class UserController extends Controller
 {
     public function show($id)
     {
@@ -30,7 +30,7 @@ class UserController extends Controller
         $user = User::find($id);
         $this->authorize('owner', $user);
         return view('pages.edit_profile', ['user' => $user]);
-    }    
+    }
 
 
     public function create(Request $request, $user_id)
@@ -48,9 +48,19 @@ class UserController extends Controller
     {
       $user = User::find($id);
       $this->authorize('update', $user);
-      $user->done = $request->input('done');
+      $user->username = $request->input('username');
+      $user->country = $request->input('country');
+
+      if($request->input('email') != ""){
+        $user->email = $request->input('email');
+      }
+
+      if($request->input('password') != ""){
+        $user->password = Hash::make($request->input('password'));
+      }
+
       $user->save();
-      return $user;
+      return redirect('profile/' . $user->id);
     }
 
     public function delete(Request $request, $id)
