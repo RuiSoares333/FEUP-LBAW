@@ -16,10 +16,10 @@ class UserController extends Controller
         if (!Auth::check()) return redirect('/login');
         $user = User::find($id);
         if($user->picture === 'default.png'){
-          $foto = asset('storage/pictures/default.png');
+          $foto = asset('pictures/default.png');
         }
         else{
-          $foto = asset('storage/pictures/'.$id.'/'.$user->picture);
+          $foto = asset('pictures/'.$id.'/'.$user->picture);
         }
         return view('pages.profile', ['user' => $user, 'foto' => $foto]);
     }
