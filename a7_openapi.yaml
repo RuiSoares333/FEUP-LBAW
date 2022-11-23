@@ -106,7 +106,7 @@ paths:
          summary: 'R105: Register Action'
          description: 'Processes the new user registration form submission. Access: PUB'
          tags:
-           - 'M01: Authentication and Individual Profile'
+           - 'M01: Authentication'
 
          requestBody:
            required: true
