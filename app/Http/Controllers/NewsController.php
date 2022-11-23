@@ -54,7 +54,7 @@ class NewsController extends Controller
       $news->content = $request->input('content');
       $file= $request->file('picture');
       $filename = $file->getClientOriginalName();
-      $file-> move(public_path('public/news'), $filename);
+      $file-> move(public_path('pictures/news'), $filename);
       $news->picture = $filename;
       $news->user_id = $request->input('id_author');
       $news->save();
@@ -79,7 +79,10 @@ class NewsController extends Controller
 
     $news->title = $request->input('title');
     $news->content = $request->input('content');
-    $news->picture = $request->input('picture');
+    $file= $request->file('picture');
+    $filename = $file->getClientOriginalName();
+    $file-> move(public_path('pictures/news'), $filename);
+    $news->picture = $filename;
     $news->save();
 
     return redirect('news/'. $news->id);

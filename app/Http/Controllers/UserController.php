@@ -45,8 +45,11 @@ class UserController extends Controller
       $user->username = $request->input('username');
       $user->country = $request->input('country');
 
-      if($request->input('picture') != "") {
-        $user->picture = $request->input('picture');
+      if($request->file('picture')) {
+        $file= $request->file('picture');
+        $filename = $file->getClientOriginalName();
+        $file-> move(public_path('pictures/user'), $filename);
+        $user->picture = $filename;
       }
 
       if($request->input('email') != ""){

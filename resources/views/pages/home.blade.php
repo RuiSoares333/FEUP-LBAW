@@ -10,7 +10,7 @@
     </form>
     @if(Auth::check())
         <div id="form-newspost" class="row justify-content-center">
-            <form class="py-5 border bg-light rounded-2" method="POST" action="{{ route('create_news') }}">
+            <form class="py-5 border bg-light rounded-2" method="POST" action="{{ route('create_news') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <h1>Create News</h1>
                 <input class="new_news_input" type="text" name="title" placeholder="News Title">

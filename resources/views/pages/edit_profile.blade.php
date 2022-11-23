@@ -6,7 +6,7 @@
 
 @if(auth::check())
 <div id="form-newspost" class="my-5 row justify-content-center">
-    <form class="mt-2 edit_profile_username" method="POST" action="{{ route('edit_profile_api', ['id'=>$user->id]) }}">
+    <form class="mt-2 edit_profile_username" method="POST" action="{{ route('edit_profile_api', ['id'=>$user->id]) }}" enctype="multipart/form-data">
         <h1>Edit Profile</h1>
         {{ csrf_field() }}
         <input type="hidden" name="id" value="{{$user->id}}">

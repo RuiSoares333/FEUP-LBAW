@@ -42,7 +42,7 @@
         </form>
         <button id="toggle_edit" class="btn-submit mx-3 rounded-2 hidden" onclick="displayEditForm()"> Edit</button>
         </section>
-        <form id="edit_form" method="POST" class="hide" action="{{ route('update_news', ['news_id'=>$newspost->id]) }}">
+        <form id="edit_form" method="POST" class="hide" action="{{ route('update_news', ['news_id'=>$newspost->id]) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             Title
             <input class="new_news_input" type="text" name="title" value= "{{ $newspost->title }}">
