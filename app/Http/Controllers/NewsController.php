@@ -33,9 +33,9 @@ class NewsController extends Controller
         $query = $request->input('search');
         $array = explode(" ", $query);
         foreach($array as &$word) {
-          $word .= ":*";
+          $word .= ":* ";
         }
-        $query = join("&", $array);
+        $query = join(" | ", $array);
         $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
         ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
         ->orderBy('reputation', 'desc')

@@ -80,5 +80,23 @@ class UserController extends Controller
       return redirect('profile/' . $user->id);
     }
 
+    public function search(Request $request) {
+      if ($request->input('search')) {
+        $query = $request->input('search');
+        $array = explode(" ", $query);
+        foreach($array as &$word) {
+          $word .= ":* ";
+        }
+        $query = join(" | ", $array);
+        $users = User::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
+        ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
+        ->orderBy('reputation', 'desc')
+        ->get();
+      }
+      else {
+        $users = User::orderBy('reputation')->get();
+      }
+      return view('pages.home', ['news' => $news]);
+    }
 
 }
