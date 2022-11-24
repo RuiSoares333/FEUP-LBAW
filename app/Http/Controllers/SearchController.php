@@ -40,7 +40,7 @@ class SearchController extends Controller
           $users = User::orderBy('reputation')->get();
         }
   
-        return view('pages.home', ['news' => $news, 'users' => $users]);
+        return view('pages.home', ['news' => $news, 'user' => $users]);
     }
 
 }
