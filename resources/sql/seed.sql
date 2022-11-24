@@ -364,7 +364,7 @@ CREATE TRIGGER delete_comment
         BEFORE DELETE ON comments
         FOR EACH ROW
         EXECUTE PROCEDURE delete_comment();
-
+/*
 CREATE FUNCTION delete_news() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -383,7 +383,7 @@ CREATE TRIGGER delete_news
         BEFORE DELETE ON news
         FOR EACH ROW
         EXECUTE PROCEDURE delete_news();
-
+*/
 CREATE FUNCTION remove_comment_reputation() RETURNS TRIGGER AS
 $BODY$
 BEGIN
