@@ -39,12 +39,15 @@ class User extends Authenticatable
     }
 
     public function reputation() {
-        $news = Auth::user()->news()->get();
-        $reputation = 0;
-        foreach($news as $post) {
-            $reputation += $post->reputation;
+        if(Auth::check()) {
+            $news = Auth::user()->news()->get();
+            $reputation = 0;
+            foreach($news as $post) {
+                $reputation += $post->reputation;
+            }
+            return $reputation;
         }
-        return $reputation;
+        return 0;
     }
 
     public function followers() {
