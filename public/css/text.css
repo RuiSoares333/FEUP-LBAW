@@ -11,14 +11,14 @@
     width: 50%;
 }
 
-.input-group-text{
-    background-color: #e9ecefbb;
-}
-
 article.news{
     border-width: 0.15rem !important;
     border-radius: 1.5rem !important;
-    border-color: #00000044 !important;
+    border-color: transparent !important;
+    background: #ffffff33;
+    box-shadow: 0 4px 30px #0000002a;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 article > header a{
@@ -54,14 +54,6 @@ form#new_comment > button{
     width: auto;
     height: 5vh;
 }
-
-
-
-.masthead.banner{
-    padding-top: 12.5%;
-    padding-bottom: 12.5%;
-}
-
 
 form-div{
     margin: 10rem 0;
@@ -194,10 +186,6 @@ article.comment > :nth-child(3){
     font-size:large;
     font-weight: normal;
     color: var(--bs-gray-100);
-}
-
-article.news{
-    width: 70vw;
 }
 
 .author_tools{
