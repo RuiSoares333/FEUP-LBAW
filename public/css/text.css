@@ -208,6 +208,11 @@ article.news{
     visibility: hidden;
 }
 
+.disapear{
+    background-color: aqua;
+    display: none;
+}
+
 
 #administer #change{
     margin-left: auto;

@@ -26,23 +26,26 @@
     <script>
     function displayEditForm(){
         const form = document.querySelector("#edit_form")
-        form.classList.toggle('hide')
-        console.log('toggle')
-
+        form.classList.toggle('disapear')
+    }
+    function deleteButtonEvent(){
+        const delB = document.querySelector("#delete_form")
+        delB.classList.toggle('disapear')
     }
     </script>
     <div>
     @if(Auth::check() && (($newspost->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()) && (request()->is('news/*')))
         <h3>Author Tools:<h3>
         <section class="author_tools">
-        <form id="delete_form" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
+        <button id="delete_button" class="btn-submit mx-3 rounded-2" onclick="deleteButtonEvent()">Delete</button>
+        <form id="delete_form" class="disapear" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
             {{ csrf_field() }}
             <input type="hidden" name="news_id" value = {{$newspost->id}}>
-            <button id="delete_button" class="btn-submit mx-3 rounded-2" type="submit">Delete</button>
+            <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="submit"> Delete Confirm </button>
         </form>
         <button id="toggle_edit" class="btn-submit mx-3 rounded-2 hidden" onclick="displayEditForm()"> Edit</button>
         </section>
-        <form id="edit_form" method="POST" class="hide" action="{{ route('update_news', ['news_id'=>$newspost->id]) }}" enctype="multipart/form-data">
+        <form id="edit_form" method="POST" class="disapear" action="{{ route('update_news', ['news_id'=>$newspost->id]) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             Title
             <input class="new_news_input" type="text" name="title" value= "{{ $newspost->title }}">
