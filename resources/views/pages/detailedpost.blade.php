@@ -12,7 +12,7 @@
 
         <div class="justify-content-end">
             @include('partials.newspost', $newspost)
-            <div class="news-comment d-flex flex-column">
+            <div id="comment_section" class="news-comment d-flex flex-column">
                 @each('partials.comment', $comments, 'comment')
             </div>
         </div>

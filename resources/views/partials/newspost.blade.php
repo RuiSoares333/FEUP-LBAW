@@ -30,7 +30,14 @@
     }
     function deleteButtonEvent(){
         const delB = document.querySelector("#delete_form")
-        delB.classList.toggle('disapear')
+        const comments = document.querySelector("#comment_section")
+        if({{$newspost->reputation}} !== 0){
+            alert('A news item with reputation cannot be deleted.')
+        }else if(comments.childNodes.length > 1){
+            alert("A news item with comments cannot be deleted.")
+        }else{
+            delB.classList.toggle('disapear')
+        }
     }
     </script>
     <div>
