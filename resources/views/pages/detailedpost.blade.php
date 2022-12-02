@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Post')
+
+
 @section('content')
 
-@include('partials.header')
-<main>
+    @include('partials.header')
+    
     <header class="masthead banner">
         <div class="bg-circle-1 bg-circle"></div>
         <div class="bg-circle-2 bg-circle"></div>
@@ -18,6 +20,5 @@
         </div>
 
     </header>
-</main>
 
 @endsection

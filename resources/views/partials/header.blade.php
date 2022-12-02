@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top text-uppercase">
-    <div class="container px-5">
+    <div class="container">
         <div class="d-flex flex-row">
             <a class="navbar-brand" href="{{ url('/') }}">slcn</a>
 
