@@ -641,38 +641,9 @@ progress {
   margin-left: auto;
 }
 
-@media (min-width: 0px){
-    .masthead .form-auth.login{
-        max-width: 75vw;
-        padding: 15px;
-        position: absolute;
-        top: 20vh;
-        right: 15vw;
-      }
-
-      .masthead .form-auth.register{
-        max-width: 75vw;
-        padding: 15px;
-        position: absolute;
-        top: 20vw;
-        right: 7.5vh;
-      }
-}
-
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
-  }
-
-  .masthead .form-auth.login{
-    top: 17.5vh;
-    right: 25vw;
-  }
-
-  .masthead .form-auth.register{
-    max-width: 60vw;
-    top: 17.5vh;
-    right: 20vw;
   }
 }
 
@@ -680,67 +651,26 @@ progress {
   .container-md, .container-sm, .container {
     max-width: 720px;
   }
-
-  .masthead .form-auth.login{
-    top: 20vh;
-    right: 30vw;
-  }
-
-  .masthead .form-auth.register{
-    max-width: 50vw;
-    top: 17.5vh;
-    right: 25vw;
-  }
 }
+
 @media (min-width: 992px) {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
   }
-
-  .masthead .form-auth.login{
-    top: 22.5vh;
-    right: 35vw;
-  }
-
-  .masthead .form-auth.register{
-    max-width: 40vw;
-    top: 17.5vh;
-    right: 30vw;
-  }
 }
+
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
   }
-
-  .masthead .form-auth.login{
-    top: 25vh;
-    right: 37.5vw;
-  }
-
-  .masthead .form-auth.register{
-    max-width: 35vw;
-    top: 17.5vh;
-    right: 30vw;
-  }
-
 }
+
 @media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1320px;
   }
-
-  .masthead .form-auth.login{
-    top: 25vh;
-    right: 40vw;
-  }
-
-  .masthead .form-auth.register{
-    max-width: 30vw;
-    top: 17.5vh;
-    right: 35vw;
-  }
 }
+
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;

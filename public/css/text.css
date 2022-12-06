@@ -61,17 +61,9 @@ form-div{
     margin: 10rem 0;
 }
 
-#name:focus, #email:focus, #password:focus, #password-confirm:focus{
-    background-color: #e9ecef5a;
-}
-
 #name, #email, #password, #password-confirm{
     font-weight: bold;
     color: lighter;
-}
-
-.masthead.login, .masthead.register{
-    padding-top: 100vh;
 }
 
 #form-newspost form{
