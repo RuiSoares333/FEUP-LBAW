@@ -1,0 +1,132 @@
+/* TOP NAV */
+
+nav > div > div:nth-child(1){
+    width: 60vw;
+}
+
+nav > div > div > form{
+    margin: auto;
+}
+
+
+
+@media(min-width:600px){
+    nav > div > div:nth-child(1){
+        width: 50vw;
+    }
+
+    nav > div li:nth-child(2){
+        width: 50vw;
+    }
+}
+
+@media(min-width:768px){
+    nav > div > div:nth-child(1){
+        width: 55vw;
+    }
+}
+
+@media(min-width:992px){
+    nav > div > div:nth-child(1){
+        width: 100%;
+    }
+
+    nav > div li:nth-child(2){
+        width: 6vw;
+    }
+}
+
+
+/* SIDE NAV */
+
+#side-nav{
+    position: fixed;
+    top: 15vh;
+    right: 10vw;
+    width: 17vw;
+    height: 50vh;
+    border-radius: 1rem;
+    box-shadow: 0 4px 30px #0000002a;
+}
+
+#side-nav > div{
+    height: 20vh;
+    padding: 0;
+    border-radius: 1rem 1rem 0 0;
+}
+
+#side-nav > div > *{
+    font-size: medium;
+}
+
+#side-nav > ol{
+    margin: 2vh 0;
+}
+
+#side-nav > ol > *{
+    margin-bottom: 2vh;
+}
+
+/* MAIN */
+
+main{
+    width: 55vw;
+    margin-left: 10vw;
+}
+
+/* NEWS */
+
+#news > article > header > *{
+    font-size:x-large;
+}
+
+#news > article > header > h2{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+}
+
+#news > article > header > span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+            line-clamp: 1; 
+    -webkit-box-orient: vertical;
+}
+
+#news > article > div > p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+            line-clamp: 4; 
+    -webkit-box-orient: vertical;
+}
+
+
+/* LOGIN */
+
+.form-auth.login, .form-auth.register{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100vw;
+  min-width: 25vw;
+  margin-top: 5vh;
+}
+
+.form-auth.login input, .form-auth.register input{
+  background-color: #ebeced55;
+  border: none;
+  border-bottom: 1px solid #ebeced;
+  padding: 2%;
+}
+
+.form-auth.login input:focus, .form-auth.register input:focus{
+  outline: none;
+  background-color: #ebecedaa;
+}

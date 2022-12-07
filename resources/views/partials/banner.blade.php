@@ -1,13 +1,21 @@
-<header class="masthead banner text-center text-white text-capitalize">
-    <div class="masthead-content">
-        <div class="container px-5">
-            <h1 class="masthead-heading mb-0">super legit collaborative news</h1>
-            <h2 class="masthead-subheading mb-0">super credible news</h2>
-            <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{{ url('/aboutus') }}">about us</a>
+<nav id="side-nav">
+
+    <div class="masthead">
+        <div class="masthead-content text-center text-capitalize text-light">
+            <h4 class="mt-4">super legit collaborative news</h4>
+            <h5 class="">trending topics</h5>
         </div>
+        <div class="bg-circle-1 bg-circle"></div>
+        <div class="bg-circle-2 bg-circle"></div>
+        <div class="bg-circle-3 bg-circle"></div>
+        <div class="bg-circle-4 bg-circle"></div>
     </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
-</header>
+
+    <ol>
+        <li>Tag 1 <span>x follows</span></li>
+        <li>Tag 2 <span>x follows</span></li>
+        <li>Tag 3 <span>x follows</span></li>
+        <li>Tag 4 <span>x follows</span></li>
+        <li>Tag 5 <span>x follows</span></li>
+    </ol>
+</nav>
