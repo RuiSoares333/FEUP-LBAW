@@ -17,6 +17,7 @@ Route::get('/search', 'SearchController@search')->name('search');
 // News
 //Route::get('news', 'NewsController@list');
 Route::get('news/{id}', 'NewsController@show');
+Route::get('rte', 'NewsController@rte');
 
 // User
 Route::get('profile/{id}', 'UserController@show')->name('profile');

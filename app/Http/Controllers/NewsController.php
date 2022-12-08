@@ -28,6 +28,11 @@ class NewsController extends Controller
       return view('pages.detailedpost', ['newspost' => $news, 'comments' => $comments]);
     }
 
+    public function rte(){
+      if (!Auth::check()) return redirect('/login');
+      return view('pages.create_news');
+    }
+
     /**
      * Shows all News.
      * @return Response
