@@ -1,9 +1,4 @@
-body {
-    background: linear-gradient(0deg, #bf6324 0%, #b92a4c 100%);
-    margin: 0;
-  }
-  
-  $bubble-count: 50;
+ $bubble-count: 50;
   $sway-type: "sway-left-to-right", "sway-right-to-left";
   
   @function random_range($min, $max) {
