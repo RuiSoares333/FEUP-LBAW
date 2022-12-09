@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\News;
 use App\Models\Comment;
+use App\Models\Tag;
 
 class NewsController extends Controller
 {
@@ -30,7 +31,9 @@ class NewsController extends Controller
 
     public function rte(){
       if (!Auth::check()) return redirect('/login');
-      return view('pages.create_news');
+      $tags = DB::table('tag')->get();
+      $tags = $tags->sortBy('tag_name');
+      return view('pages.create_news', ['tags' => $tags]);
     }
 
     /**
