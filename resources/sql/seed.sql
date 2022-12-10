@@ -319,7 +319,7 @@ BEGIN
         UPDATE news SET user_id=5 WHERE OLD.id = user_id;
         UPDATE comments SET user_id=5 WHERE OLD.id = user_id;
         UPDATE apply_admin_request SET id_user = 5 WHERE OLD.id = id_user;
-        RETURN NULL;
+        RETURN OLD;
 END
 $BODY$
 LANGUAGE plpgsql;
