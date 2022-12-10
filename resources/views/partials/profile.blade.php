@@ -35,7 +35,7 @@
 
         <section id="delete_user">
             <script>
-                function deleteButtonEvent(){
+                function delButtonEvent(){
                     const delB1 = document.querySelector('#delete_button')
                     const delB2 = document.querySelector("#delete_form")
                     const confT = document.querySelector("#confirm_text")
@@ -51,7 +51,7 @@
             </script>
             <p id="confirm_text" class="disapear"> Are you sure you want to <b>permanently</b> delete your account? This action is <b>irreversible</b>.</p>
             <div class="d-flex flex-row justify-content-center">
-                <button id="delete_button" class="btn-submit mx-3 rounded-2" onclick="deleteButtonEvent()">Delete</button>
+                <button id="delete_button" class="btn-submit mx-3 rounded-2" onclick="delButtonEvent()">Delete</button>
                 <form id="delete_form" class="disapear" method="POST" action="{{ route('delete_user', ['id' => $user->id]) }}">
                     {{ csrf_field() }}
                     <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="submit"> Confirm Delete </button>
