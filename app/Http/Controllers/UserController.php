@@ -64,12 +64,12 @@ class UserController extends Controller
       return redirect('profile/' . $user->id);
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
       $user = User::find($id);
-      $this->authorize('delete', $user);
+      $this->authorize('owner', $user);
       $user->delete();
-      return $user;
+      return redirect('/');
     }
 
     public function change_admin($id){
@@ -80,5 +80,4 @@ class UserController extends Controller
       $user->save();
       return redirect('profile/' . $user->id);
     }
-
 }
