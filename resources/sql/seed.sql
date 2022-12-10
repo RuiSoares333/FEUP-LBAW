@@ -266,7 +266,7 @@ BEGIN
         WHERE id = (
             SELECT user_id FROM comments WHERE id = NEW.id_comment
         );
-        
+
     END IF;
     RETURN NULL;
 END
@@ -352,7 +352,7 @@ BEGIN
        IF EXISTS (SELECT * FROM comments WHERE id_comment = OLD.id ) THEN
             RAISE EXCEPTION 'You cant delete a comments with comments in it';
     END IF;
-        IF NOT (OLD.reputation = 0) THEN 
+        IF NOT (OLD.reputation = 0) THEN
             RAISE EXCEPTION 'You cant delete a comments with votes in it.';
         END IF;
     RETURN NULL;
@@ -371,7 +371,7 @@ BEGIN
     IF EXISTS (SELECT * FROM comments WHERE id_news = OLD.id ) THEN
         RAISE EXCEPTION 'You cant delete news with comments in it';
     END IF;
-    IF NOT (OLD.reputation = 0) THEN 
+    IF NOT (OLD.reputation = 0) THEN
         RAISE EXCEPTION 'You cant delete news with votes in it';
     END IF;
     RETURN NEW;
@@ -485,7 +485,7 @@ CREATE TRIGGER update_comment_reputation
 
 CREATE FUNCTION update_news_reputation() RETURNS TRIGGER AS
 $BODY$
-BEGIN            
+BEGIN
     IF (NEW.is_liked) THEN
         UPDATE news
         SET reputation = reputation+2
@@ -522,7 +522,7 @@ CREATE TRIGGER update_news_reputation
 
 SET search_path TO lbaw2286;
 
-ALTER SEQUENCE users_id_seq RESTART WITH 6;
+ALTER SEQUENCE users_id_seq RESTART WITH 7;
 
 INSERT INTO users (id, username, email, password, country, is_admin) VALUES(1, 'André Morais', 'andre@legitmail.com', '$2a$12$upL6DFkOAvStTFj66C/HjOUcdqbsbJYybp1I5QNEal2uCQk7r0Owq', 'Portugal', true);
 INSERT INTO users (id, username, email, password, country, is_admin) VALUES(2, 'João Teixeira', 'joao@legitmail.com', '$2a$12$z6QqR5X7k.JFeAK2UZAD6OdTgSj8Rkmf7sECS96dEGRzRjU/bhC.e', 'Portugal', true);

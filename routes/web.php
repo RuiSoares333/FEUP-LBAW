@@ -21,6 +21,7 @@ Route::get('news/{id}', 'NewsController@show');
 // User
 Route::get('profile/{id}', 'UserController@show')->name('profile');
 Route::post('edit_profile/{id}','UserController@edit')->name('edit_profile');
+Route::post('delete_profile/{id}','UserController@delete')->name('delete_user');
 Route::post('api/edit_profile/{id}','UserController@update')->name('edit_profile_api');
 Route::post('change_admin/{id}','UserController@change_admin')->name('change_admin');
 

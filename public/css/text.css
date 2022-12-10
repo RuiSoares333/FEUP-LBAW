@@ -198,7 +198,9 @@ article.comment > :nth-child(3){
 
 #administer  #edit{
     margin: auto;
+    margin-bottom: 3vh;
 }
+
 
 #user-prev{
     width: 60vw;
@@ -223,3 +225,4 @@ article.comment > :nth-child(3){
     color: var(--bs-gray-600);
     font-size: large;
 }
+
