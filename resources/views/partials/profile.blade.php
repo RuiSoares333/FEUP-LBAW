@@ -32,33 +32,33 @@
             {{ csrf_field() }}
             <button type="submit">Edit</button>
         </form>
-
-        <section id="delete_user">
-            <script>
-                function delButtonEvent(){
-                    const delB1 = document.querySelector('#delete_button')
-                    const delB2 = document.querySelector("#delete_form")
-                    const confT = document.querySelector("#confirm_text")
-                    delB2.classList.toggle('disapear')
-                    confT.classList.toggle('disapear')
-                    if(delB1.innerText=="Cancel"){
-                        delB1.innerText="Delete"
+        @if($user->id != 5)
+            <section id="delete_user">
+                <script>
+                    function delButtonEvent(){
+                        const delB1 = document.querySelector('#delete_button')
+                        const delB2 = document.querySelector("#delete_form")
+                        const confT = document.querySelector("#confirm_text")
+                        delB2.classList.toggle('disapear')
+                        confT.classList.toggle('disapear')
+                        if(delB1.innerText=="Cancel"){
+                            delB1.innerText="Delete"
+                        }
+                        else{
+                            delB1.innerText="Cancel"
+                        }
                     }
-                    else{
-                        delB1.innerText="Cancel"
-                    }
-                }
-            </script>
-            <p id="confirm_text" class="disapear"> Are you sure you want to <b>permanently</b> delete your account? This action is <b>irreversible</b>.</p>
-            <div class="d-flex flex-row justify-content-center">
-                <button id="delete_button" class="btn-submit mx-3 rounded-2" onclick="delButtonEvent()">Delete</button>
-                <form id="delete_form" class="disapear" method="POST" action="{{ route('delete_user', ['id' => $user->id]) }}">
-                    {{ csrf_field() }}
-                    <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="submit"> Confirm Delete </button>
-                </form>
-            </div>
-        </section>
-
+                </script>
+                <p id="confirm_text" class="disapear"> Are you sure you want to <b>permanently</b> delete this account? This action is <b>irreversible</b>.</p>
+                <div class="d-flex flex-row justify-content-center">
+                    <button id="delete_button" class="btn-submit mx-3 rounded-2" onclick="delButtonEvent()">Delete</button>
+                    <form id="delete_form" class="disapear" method="POST" action="{{ route('delete_user', ['id' => $user->id]) }}">
+                        {{ csrf_field() }}
+                        <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="submit"> Confirm Delete </button>
+                    </form>
+                </div>
+            </section>
+        @endif
         @endif
         </div>
 
