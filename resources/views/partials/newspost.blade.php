@@ -76,8 +76,8 @@
             const article = document.querySelector("#comment_"+id)
             const canc = article.querySelector("#delete_comment")
             if(canc.innerText == "Delete"){
-                canc.innerText="Cancel"
-            }else if(canc.innerText == "Cancel"){
+                canc.innerText="Cancel Delete"
+            }else if(canc.innerText == "Cancel Delete"){
                 canc.innerText="Delete"
             }
             const text = article.querySelector("#com_del_text")
@@ -85,6 +85,20 @@
 
             const conf = article.querySelector("#conf_del_com_b")
             conf.classList.toggle('disapear')
+        }
+
+        function editCommentEvent(id){
+            const article = document.querySelector("#comment_"+id)
+            const canc = article.querySelector("#edit_comment")
+            if(canc.innerText == "Edit"){
+                canc.innerText="Cancel Edit"
+            }else if(canc.innerText == "Cancel Edit"){
+                canc.innerText="Edit"
+            }
+            const form = article.querySelector('#edit_comment_form')
+            form.classList.toggle('disapear')
+            const comment = article.querySelector('#comment_disapear')
+            comment.classList.toggle('disapear')
         }
     </script>
 @endif
