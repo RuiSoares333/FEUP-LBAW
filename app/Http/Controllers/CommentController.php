@@ -35,4 +35,13 @@ class CommentController extends Controller
         $comment->delete();
         return redirect('news/'.$news_id);
     }
+
+    public function edit(Request $request){
+        $comment = Comment::find($request->input('id'));
+        $this->authorize('delete', $comment);
+        $news_id = $comment->news()->get()->first()->id;
+        $comment->content = $request->input('content');
+        $comment->save();
+        return redirect('news/'.$news_id);
+    }
 }

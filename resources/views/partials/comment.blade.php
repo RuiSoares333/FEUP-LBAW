@@ -13,7 +13,7 @@
     </section>
     </div>
 
-    <form id="edit_comment_form" class="disapear" method="POST" action="">
+    <form id="edit_comment_form" class="disapear" method="POST" action="{{route('edit_comment')}}">
         {{ csrf_field() }}
         <input type="hidden" name="id" value={{$comment->id}}>
         <input type="text" name="content" placeholder="{{$comment->content}}" class="w-75 py-2 mt-2">
