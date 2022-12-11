@@ -32,6 +32,7 @@ Route::post('api/news', 'NewsController@create')->name('create_news');
 Route::post('api/news/{news_id}', 'NewsController@delete')->name('delete_news');
 Route::post('api/news/update/{news_id}', 'NewsController@update')->name('update_news');
 Route::post('api/new_comment', 'CommentController@create')->name('new_comment');
+Route::post('api/del_comment', 'CommentController@delete')->name('del_comment');
 /*Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');*/

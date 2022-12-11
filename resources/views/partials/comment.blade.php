@@ -16,7 +16,9 @@
         <button id="edit_comment" class="mx-2 mt-4 mb-1">Edit</button>
         <div id="com_del_text" class="disapear mt-4 mb-1 mx-2">Are you sure you want to <b>permanently</b> delete this comment? This action is <b>irreversible</b>.</div>
         <button id="delete_comment" onclick="delCommentEvent({{$comment->id}})" class="mt-4 mb-1 mx-2">Delete</button>
-        <form id="del_com_form">
+        <form id="del_com_form" method="POST" action="{{route('del_comment')}}">
+            {{ csrf_field() }}
+            <input type="hidden" name="id" value={{$comment->id}}>
             <button id="conf_del_com_b" type="submit" class="disapear mt-4 mb-1 mx-2">Confirm</button>
         </form>
     @endif
