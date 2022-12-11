@@ -3,16 +3,12 @@
         <h2 class="my-auto"><a href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h2>
         <span class="my-auto"><a href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>
     </header>
-    @if(!empty($newspost->picture))
-    <div id="news-picture" class="w-auto mx-auto my-4">
-        <img src="{{asset('pictures/news/' . $newspost->picture ) }}">
-    </div>
-    @endif
-    <div class="mx-3 d-flex flex-row"><p>{{ $newspost->content}}</p></div>
+    <div class="mx-3 d-flex flex-row"><p>{!! $newspost->content !!}</p></div>
     <footer class="mx-3 mb-3 d-flex flex-row">
         <div id="vote" class="fs-1 d-flex flex-row col-2">
-            <i class="bi bi-hand-thumbs-up"></i>
-            <i class="bi bi-hand-thumbs-down"></i>
+            <i class="bi bi-caret-up"></i>
+            <i class="bi bi-caret-down"></i>
+
             <span id="reputation" class="m-auto">
                 {{ $newspost->reputation }} reputation
             </span>

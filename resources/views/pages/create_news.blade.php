@@ -4,15 +4,13 @@
 
     @include('partials.header')
 
-
-
-    <section class="p-3 p-lg-5 my-5 col-lg-7 container bg-white rounded">
+    <section class="p-3 p-lg-5 my-5 col-lg-7 container-xl">
         <h2 class="h2 fw-bold">Create a Post</h2>
         <hr class="rounded">
 
         <section class="container w-100 mt-4 form-group">
-            <form method="POST" action="" enctype="multipart/form-data" autocomplete="off">
-                @csrf
+            <form method="POST" action="{{ route('create_news') }}" enctype="multipart/form-data" autocomplete="off">
+                {{ csrf_field() }}
                 <section id="title" class="mb-5">
                     <label for="new-post-title" class="h5 form-label">Title</label>
                     <input type="text" class="form-control" id="new-post-title" name="title" value="{{ old('title') }}"
@@ -23,8 +21,8 @@
                 </section>
 
                 <section id="body" class="mb-5">
-                    <label for="editor-body" class="h5 form-label">Body</label><span> (optional)</span>
-                    <textarea id="editor-body" name="body"></textarea>
+                    <label for="editor-body" class="h5 form-label">Content</label>
+                    <textarea id="editor-body" name="content"></textarea>
                     @foreach($errors->get('body') as $error)
                         <li class="error">{{$error}}</li>
                     @endforeach
@@ -43,25 +41,21 @@
                     @endforeach
                 </section>
 
-                <section class="container create_post_buttons mb-2 mb-lg-0">
+                <section id="submission" class="container create_post_buttons mb-2 mb-lg-0">
                     <div class="row d-flex justify-content-around">
-                        <button type="button" class="col-5 col-md-4 col-lg-3 btn btn-secondary"
+                        <button type="button" class="col-5 col-md-4 col-lg-3 btn fw-bold"
                                 onclick="window.location.href=document.referrer">Cancel
                         </button>
-                        <button type="submit" class="col-5 col-md-4 col-lg-3 btn btn-primary">Post</button>
+                        <button type="submit" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
                     </div>
                 </section>
             </form>
         </section>
     </section>
     
+@endsection
 
-    <!-- JQuery -->
-    <script
-    src="https://code.jquery.com/jquery-3.6.1.js"
-    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-    crossorigin="anonymous"></script>
-
+@section('scripts')
     <!-- TinyMCE -->
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
     <script>
@@ -69,12 +63,12 @@
             path_absolute : "{{ URL::to('/') }}/",
             selector: "textarea#editor-body",
             plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern"
+                "a11ychecker advcode casechange formatpainter",
+                "linkchecker autolink lists checklist",
+                "media mediaembed pageembed permanentpen",
+                "powerpaste table advtable tinymcespellchecker"
             ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            toolbar: "formatselect | fontselect | bold italic strikethrough forecolor backcolor formatpainter | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | link insertfile image | removeformat | code | addcomment | checklist | casechange",
             relative_urls: false,
             file_browser_callback : function(field_name, url, type, win) {
                 var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
@@ -92,8 +86,8 @@
                     height : y * 0.8,
                     resizable : "yes",
                     close_previous : "no"
-                });
-            }
+                })
+            },
         };
         tinymce.init(editor_config);
     </script>
@@ -134,6 +128,4 @@
             return false;
         }
     </script>
-
 @endsection
-

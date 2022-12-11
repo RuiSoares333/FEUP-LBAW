@@ -66,7 +66,7 @@ class NewsController extends Controller
         $file-> move(public_path('pictures/news'), $filename);
         $news->picture = $filename;
       }
-      $news->user_id = $request->input('id_author');
+      $news->user_id = Auth()->user()->id;
       $news->save();
 
       return redirect('news/'. $news->id);

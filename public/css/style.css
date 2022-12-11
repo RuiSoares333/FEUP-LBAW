@@ -144,12 +144,6 @@ main{
 }
 
 /* RTE */
-
-div.tox:nth-child(3){
-    width: 75vw !important; 
-    margin: 25vh auto 0 !important;
-}
-
 #tag-list{
     display: grid;
     justify-content:space-around;
@@ -170,3 +164,20 @@ div.tox:nth-child(3){
     border-radius: 0 0 1vw 1vw;
 }
 
+#submission button{
+    box-shadow: 0 0 10px #0000002a;
+}
+
+#submission button:nth-child(1){
+    border: 1px solid var(--bs-secondary);
+    background-color: transparent;
+}
+
+#submission button:nth-child(1):hover{
+    background-color: var(--bs-secondary);
+}
+
+#submission button:nth-child(2){
+    border: 1px solid var(--bs-primary);
+    background-color: var(--bs-primary);
+}
