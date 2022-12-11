@@ -3,39 +3,9 @@
         <h2 class="my-auto"><a href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h2>
         <span class="my-auto"><a href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>
     </header>
+
     <div class="mx-3 d-flex flex-row"><p>{!! $newspost->content !!}</p></div>
-    <footer class="mx-3 mb-3 d-flex flex-row">
-        <div id="vote" class="fs-1 d-flex flex-row col-2">
-            <i class="bi bi-caret-up"></i>
-            <i class="bi bi-caret-down"></i>
 
-            <span id="reputation" class="m-auto">
-                {{ $newspost->reputation }} reputation
-            </span>
-        </div>
-        <form id="new_comment" methood="POST" class="col-10 justify-content-end">
-            <input class="mx-4" type="text" name="new_comment{{ $newspost->id}}" placeholder="leave your comment here!">
-            <button id="submit_comment" class="btn btn-outline-dark btn-submit mx-5 rounded-2" type="submit">comment</button>
-        </form>
-    </footer>
-
-    <script>
-    function displayEditForm(){
-        const form = document.querySelector("#edit_form")
-        form.classList.toggle('disapear')
-    }
-    function deleteButtonEvent(){
-        const delB = document.querySelector("#delete_form")
-        const comments = document.querySelector("#comment_section")
-        if({{$newspost->reputation}} !== 0){
-            alert('A news item with reputation cannot be deleted.')
-        }else if(comments.childNodes.length > 1){
-            alert("A news item with comments cannot be deleted.")
-        }else{
-            delB.classList.toggle('disapear')
-        }
-    }
-    </script>
     <div>
     @if(Auth::check() && (($newspost->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()) && (request()->is('news/*')))
         <h3>Author Tools:<h3>
@@ -60,4 +30,40 @@
         </form>
     @endif
     </div>
+
+    <footer class="mx-3 mb-3 d-flex flex-row">
+        <div id="vote" class="fs-1 d-flex flex-row col-2">
+            <i class="bi bi-caret-up"></i>
+            <i class="bi bi-caret-down"></i>
+
+            <span id="reputation" class="m-auto">
+                {{ $newspost->reputation }} reputation
+            </span>
+        </div>
+        @if(request()->is('news/*'))
+            <form id="new_comment" methood="POST" class="col-10 justify-content-end">
+                <input class="mx-4" type="text" name="new_comment{{ $newspost->id}}" placeholder="leave your comment here!">
+                <button id="submit_comment" class="btn btn-outline-dark btn-submit mx-5 rounded-2" type="submit">comment</button>
+            </form>
+        @endif
+    </footer>
+
+    <script>
+    function displayEditForm(){
+        const form = document.querySelector("#edit_form")
+        form.classList.toggle('disapear')
+    }
+    function deleteButtonEvent(){
+        const delB = document.querySelector("#delete_form")
+        const comments = document.querySelector("#comment_section")
+        if({{$newspost->reputation}} !== 0){
+            alert('A news item with reputation cannot be deleted.')
+        }else if(comments.childNodes.length > 1){
+            alert("A news item with comments cannot be deleted.")
+        }else{
+            delB.classList.toggle('disapear')
+        }
+    }
+    </script>
+
 </article>
