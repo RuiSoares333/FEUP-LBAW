@@ -26,10 +26,12 @@ Route::post('delete_profile/{id}','UserController@delete')->name('delete_user');
 Route::post('api/edit_profile/{id}','UserController@update')->name('edit_profile_api');
 Route::post('change_admin/{id}','UserController@change_admin')->name('change_admin');
 
+
 // API
 Route::post('api/news', 'NewsController@create')->name('create_news');
 Route::post('api/news/{news_id}', 'NewsController@delete')->name('delete_news');
 Route::post('api/news/update/{news_id}', 'NewsController@update')->name('update_news');
+Route::post('api/new_comment', 'CommentController@create')->name('new_comment');
 /*Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');*/

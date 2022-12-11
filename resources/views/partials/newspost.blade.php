@@ -6,6 +6,24 @@
 
     <div class="mx-3 d-flex flex-row"><p>{!! $newspost->content !!}</p></div>
 
+    <script>
+        function displayEditForm(){
+            const form = document.querySelector("#edit_form")
+            form.classList.toggle('disapear')
+        }
+        function deleteButtonEvent(){
+            const delB = document.querySelector("#delete_form")
+            const comments = document.querySelector("#comment_section")
+            if({{$newspost->reputation}} !== 0){
+                alert('A news item with reputation cannot be deleted.')
+            }else if(comments.childNodes.length > 1){
+                alert("A news item with comments cannot be deleted.")
+            }else{
+                delB.classList.toggle('disapear')
+            }
+        }
+    </script>
+
     <div>
     @if(Auth::check() && (($newspost->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()) && (request()->is('news/*')))
         <h3>Author Tools:<h3>
@@ -41,29 +59,13 @@
             </span>
         </div>
         @if(request()->is('news/*'))
-            <form id="new_comment" methood="POST" class="col-10 justify-content-end">
-                <input class="mx-4" type="text" name="new_comment{{ $newspost->id}}" placeholder="leave your comment here!">
-                <button id="submit_comment" class="btn btn-outline-dark btn-submit mx-5 rounded-2" type="submit">comment</button>
+            <form id="new_comment" method="POST" class="col-10 justify-content-end" action="{{route('new_comment')}}" >
+                {{ csrf_field() }}
+                <input class="mx-4" type="text" name="content" placeholder="leave your comment here!">
+                <input type="hidden" name="news_id" value = {{$newspost->id}}>
+                <button id="submit_comment" class="btn btn-outline-dark btn-submit mx-5 rounded-2" type="submit">Comment</button>
             </form>
         @endif
     </footer>
-
-    <script>
-    function displayEditForm(){
-        const form = document.querySelector("#edit_form")
-        form.classList.toggle('disapear')
-    }
-    function deleteButtonEvent(){
-        const delB = document.querySelector("#delete_form")
-        const comments = document.querySelector("#comment_section")
-        if({{$newspost->reputation}} !== 0){
-            alert('A news item with reputation cannot be deleted.')
-        }else if(comments.childNodes.length > 1){
-            alert("A news item with comments cannot be deleted.")
-        }else{
-            delB.classList.toggle('disapear')
-        }
-    }
-    </script>
 
 </article>

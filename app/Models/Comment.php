@@ -25,4 +25,12 @@ class Comment extends Model
         return $this->belongsTo('App\Models\User','user_id');
     }
 
+    public function fromNews(){
+        return $this->belongsTo('App\Models\News', 'id_news');
+    }
+
+    public function fromComment(){
+        return $this->belongsTo('App\Models\Comment', 'id_comment');
+    }
+
 }
