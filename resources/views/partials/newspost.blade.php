@@ -69,3 +69,22 @@
     </footer>
 
 </article>
+
+@if(request()->is('news/*'))
+    <script>
+        function delCommentEvent(id){
+            const article = document.querySelector("#comment_"+id)
+            const canc = article.querySelector("#delete_comment")
+            if(canc.innerText == "Delete"){
+                canc.innerText="Cancel"
+            }else if(canc.innerText == "Cancel"){
+                canc.innerText="Delete"
+            }
+            const text = article.querySelector("#com_del_text")
+            text.classList.toggle('disapear')
+
+            const conf = article.querySelector("#conf_del_com_b")
+            conf.classList.toggle('disapear')
+        }
+    </script>
+@endif
