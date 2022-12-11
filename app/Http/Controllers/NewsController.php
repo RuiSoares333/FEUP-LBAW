@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\News;
 use App\Models\Comment;
+use App\Models\Tag;
 
 class NewsController extends Controller
 {
@@ -26,6 +27,13 @@ class NewsController extends Controller
       $comments = Comment::where('id_news', $id)->get();
       $this->authorize('show', $news);
       return view('pages.detailedpost', ['newspost' => $news, 'comments' => $comments]);
+    }
+
+    public function rte(){
+      if (!Auth::check()) return redirect('/login');
+      $tags = DB::table('tag')->get();
+      $tags = $tags->sortBy('tag_name');
+      return view('pages.create_news', ['tags' => $tags]);
     }
 
     /**
@@ -58,7 +66,7 @@ class NewsController extends Controller
         $file-> move(public_path('pictures/news'), $filename);
         $news->picture = $filename;
       }
-      $news->user_id = $request->input('id_author');
+      $news->user_id = Auth()->user()->id;
       $news->save();
 
       return redirect('news/'. $news->id);

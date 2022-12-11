@@ -18,4 +18,6 @@
         <li>Tag 4 <span>x follows</span></li>
         <li>Tag 5 <span>x follows</span></li>
     </ol>
+
+    <a href="{{ url('rte') }}"><button class="rounded-pill border-0 py-2 px-4 text-light">Share Your Story</button></a>
 </nav>
