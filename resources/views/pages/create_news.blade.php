@@ -88,6 +88,7 @@
                     close_previous : "no"
                 })
             },
+            newline_behavior: 'invert'
         };
         tinymce.init(editor_config);
     </script>
