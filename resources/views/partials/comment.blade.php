@@ -33,7 +33,7 @@
     @endif
     </section>
     <section id="replies" class="replies">
-        <input type="hidden" id="reply_flag_{{$comment->id}}" value="0">
+        <input type="hidden" id="reply_flag_{{$comment->id}}" value="0" autocomplete=off>
         <p id="repliesUp" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Show Replies ▼</p>
         <div id="repliesDiv" class="disapear">
             <p id="repliesDown" onclick="toggleReplies({{$comment->id}})"> Hide Replies ▲<p>
