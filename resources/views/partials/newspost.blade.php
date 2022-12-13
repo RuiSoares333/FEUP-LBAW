@@ -125,6 +125,9 @@
             console.log(replies)
 
             //build html
+            for(const reply of replies){
+                
+            }
         }
     </script>
 @endif

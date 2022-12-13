@@ -48,6 +48,11 @@ class CommentController extends Controller
     public function getReplies(Request $request){
         $id = $request->input('id');
         $replies = Comment::where('id_comment', $id)->get();
+
+        foreach ($replies as $reply){
+            $reply->author = $reply->author()->get()->first()->username;
+        }
+
         $replies->sortBy('reputation');
         return response()->json($replies, 200);
     }
