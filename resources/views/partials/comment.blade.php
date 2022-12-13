@@ -1,16 +1,16 @@
 <article id="comment_{{$comment->id}}" class="news comment container my-4 border bg-light" data-id="{{ $comment->id }}">
     <div id="comment_disapear">
-    <section id="comment" class="comment d-flex justify-content-between" >
-        <h4 class="my-auto">{{$comment -> content}}</h4>
-        <h4 class="my-auto">{{$comment->author()->get()->first()->username}}</h4>
-        <div id="vote" class="fs-1 d-flex col-2 justify-content-end">
-            <i class="bi bi-hand-thumbs-up"></i>
-            <i class="bi bi-hand-thumbs-down"></i>
-            <span id="reputation" class="m-auto">
-                {{ $comment->reputation }} reputation
-            </span>
-        </div>
-    </section>
+        <section id="comment" class="comment d-flex justify-content-between" >
+            <h4 class="my-auto">{{$comment -> content}}</h4>
+            <h4 class="my-auto">{{$comment->author()->get()->first()->username}}</h4>
+            <div id="vote" class="fs-1 d-flex col-2 justify-content-end">
+                <i class="bi bi-hand-thumbs-up"></i>
+                <i class="bi bi-hand-thumbs-down"></i>
+                <span id="reputation" class="m-auto">
+                    {{ $comment->reputation }} reputation
+                </span>
+            </div>
+        </section>
     </div>
 
     @if(Auth::check() && (($comment->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))
@@ -32,9 +32,8 @@
         </form>
     @endif
     </section>
-
     <section id="replies" class="replies">
-        <p id="repliesUp" onclick="toggleReplies({{$comment->id}})"> Show Replies ▼</p>
+        <p id="repliesUp" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Show Replies ▼</p>
         <div id="repliesDiv" class="disapear">
             <p id="repliesDown" onclick="toggleReplies({{$comment->id}})"> Hide Replies ▲<p>
         </div>

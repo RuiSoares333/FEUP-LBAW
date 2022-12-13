@@ -101,7 +101,7 @@
             comment.classList.toggle('disapear')
         }
 
-        async function toggleReplies(id){
+        async function toggleReplies(id, user_id, isAdmin){
             const section = document.querySelector("#comment_"+id+" #replies")
             const up = section.querySelector("#repliesUp")
             const downDiv = section.querySelector("#repliesDiv")
@@ -124,9 +124,54 @@
             const replies = await response.json()
             console.log(replies)
 
+
             //build html
             for(const reply of replies){
-                
+                const topArticle = document.createElement('article')
+                topArticle.id = "comment_" + reply.id
+                topArticle.classList.add("news", "comment", "container", "my-4", "border", "bg-light")
+
+                const div = document.createElement('div')
+                div.id = "comment_disapear"
+
+                const com_sec = document.createElement('section')
+                com_sec.id = "comment"
+                com_sec.classList.add('comment', 'd-flex', 'justify-content-between')
+
+                var h4 = document.createElement('h4')
+                h4.classList.add('my-auto')
+                h4.innerText = reply.content
+                com_sec.appendChild(h4)
+
+                h4 = document.createElement('h4')
+                h4.classList.add('my-auto')
+                h4.innerText = reply.author
+                com_sec.appendChild(h4)
+
+                const vote = document.createElement('div')
+                vote.id = vote
+                vote.classList.add('fs-1', 'd-flex', 'col-2', 'justify-content-end')
+
+                var i = document.createElement('i')
+                i.classList.add('bi', 'bi-hand-thumbs-up')
+                vote.appendChild(i)
+
+                i = document.createElement('i')
+                i.classList.add('bi', 'bi-hand-thumbs-down')
+                vote.appendChild(i)
+
+                const span = document.createElement('i')
+                span.id='reputation'
+                span.classList.add('m-auto')
+                span.innerText = reply.reputation + " reputation"
+
+                vote.appendChild(span)
+                com_sec.appendChild(vote)
+                div.appendChild(com_sec)
+                topArticle.appendChild(div)
+                repliesDiv.appendChild(topArticle)
+
+                //TODO: make edit comment and delete comment
             }
         }
     </script>
