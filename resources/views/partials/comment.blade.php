@@ -13,6 +13,7 @@
     </section>
     </div>
 
+    @if(Auth::check() && (($comment->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))
     <form id="edit_comment_form" class="disapear" method="POST" action="{{route('edit_comment')}}">
         {{ csrf_field() }}
         <input type="hidden" name="id" value={{$comment->id}}>
@@ -21,7 +22,6 @@
     </form>
 
     <section id="comment_author" class="d-flex">
-    @if(Auth::check() && (($comment->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))
         <button id="edit_comment" class="mx-2 mt-4 mb-1" onclick="editCommentEvent({{$comment->id}})">Edit</button>
         <div id="com_del_text" class="disapear mt-4 mb-1 mx-2">Are you sure you want to <b>permanently</b> delete this comment? This action is <b>irreversible</b>.</div>
         <button id="delete_comment" onclick="delCommentEvent({{$comment->id}})" class="mt-4 mb-1 mx-2">Delete</button>
@@ -31,6 +31,13 @@
             <button id="conf_del_com_b" type="submit" class="disapear mt-4 mb-1 mx-2">Confirm</button>
         </form>
     @endif
-</section>
+    </section>
+
+    <section id="replies" class="replies">
+        <p id="repliesUp" onclick="toggleReplies({{$comment->id}})"> Show Replies ▼</p>
+        <div id="repliesDiv" class="disapear">
+            <p id="repliesDown" onclick="toggleReplies({{$comment->id}})"> Hide Replies ▲<p>
+        </div>
+    </section>
 </article>
 

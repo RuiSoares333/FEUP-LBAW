@@ -227,3 +227,6 @@ form-div{
     font-size: large;
 }
 
+.replies{
+    cursor: pointer;
+}

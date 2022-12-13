@@ -100,5 +100,13 @@
             const comment = article.querySelector('#comment_disapear')
             comment.classList.toggle('disapear')
         }
+
+        function toggleReplies(id){
+            const section = document.querySelector("#comment_"+id+" #replies")
+            const up = section.querySelector("#repliesUp")
+            const downDiv = section.querySelector("#repliesDiv")
+            up.classList.toggle('disapear')
+            downDiv.classList.toggle('disapear')
+        }
     </script>
 @endif
