@@ -101,12 +101,30 @@
             comment.classList.toggle('disapear')
         }
 
-        function toggleReplies(id){
+        async function toggleReplies(id){
             const section = document.querySelector("#comment_"+id+" #replies")
             const up = section.querySelector("#repliesUp")
             const downDiv = section.querySelector("#repliesDiv")
             up.classList.toggle('disapear')
             downDiv.classList.toggle('disapear')
+
+            //ajax
+            const response = await fetch("/api/getReplies", {
+                method: 'post',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('input[name=_token]').value
+                },
+                body: JSON.stringify({
+                    'csrf-token': document.querySelector('input[name=_token]').value,
+                    'id': id
+                })
+            })
+            const replies = await response.json()
+            console.log(replies)
+
+            //build html
         }
     </script>
 @endif

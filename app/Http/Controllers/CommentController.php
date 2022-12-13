@@ -44,4 +44,11 @@ class CommentController extends Controller
         $comment->save();
         return redirect('news/'.$news_id);
     }
+
+    public function getReplies(Request $request){
+        $id = $request->input('id');
+        $replies = Comment::where('id_comment', $id)->get();
+        $replies->sortBy('reputation');
+        return response()->json($replies, 200);
+    }
 }
