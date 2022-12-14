@@ -109,6 +109,7 @@
             downDiv.classList.toggle('disapear')
             const flag = document.getElementById("reply_flag_" + id)
 
+
             if(flag.value === "0"){
                 flag.value = "1"
 
@@ -128,6 +129,9 @@
                 const replies = await response.json()
 
                 //build html
+                const topDiv = document.createElement('div')
+                topDiv.id="topDiv"
+
                 for(const reply of replies){
                     const topArticle = document.createElement('article')
                     topArticle.id = "comment_" + reply.id
@@ -171,11 +175,27 @@
                     com_sec.appendChild(vote)
                     div.appendChild(com_sec)
                     topArticle.appendChild(div)
-                    repliesDiv.appendChild(topArticle)
-
-                    //TODO: make edit comment and delete comment
+                    topDiv.appendChild(topArticle)
                 }
+                downDiv.appendChild(topDiv)
             }
+            else if(flag.value === "1"){
+                flag.value = "0"
+                const topDiv = downDiv.querySelector('#topDiv')
+                topDiv.parentNode.removeChild(topDiv)
+            }
+        }
+
+        function toggleReply(id){
+            const button = document.querySelector('#comment_'+id +' #reply_toggle')
+            if(button.innerText==="Reply"){
+                button.innerText="Cancel Reply"
+            }
+            else{
+                button.innerText="Reply"
+            }
+            const form = document.querySelector('#comment_'+id +' #reply_form')
+            form.classList.toggle('disapear')
         }
     </script>
 @endif

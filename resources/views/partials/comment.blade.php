@@ -21,17 +21,28 @@
         <button id="submit_comment_edit" class="btn btn-outline-dark btn-submit mx-5 rounded-2" type="submit">Confirm Changes</button>
     </form>
 
-    <section id="comment_author" class="d-flex">
-        <button id="edit_comment" class="mx-2 mt-4 mb-1" onclick="editCommentEvent({{$comment->id}})">Edit</button>
-        <div id="com_del_text" class="disapear mt-4 mb-1 mx-2">Are you sure you want to <b>permanently</b> delete this comment? This action is <b>irreversible</b>.</div>
-        <button id="delete_comment" onclick="delCommentEvent({{$comment->id}})" class="mt-4 mb-1 mx-2">Delete</button>
-        <form id="del_com_form" method="POST" action="{{route('del_comment')}}">
-            {{ csrf_field() }}
-            <input type="hidden" name="id" value={{$comment->id}}>
-            <button id="conf_del_com_b" type="submit" class="disapear mt-4 mb-1 mx-2">Confirm</button>
-        </form>
+    <div id="comment_footer" class = "d-flex">
+
+        <section id="comment_author" class="d-flex">
+            <button id="edit_comment" class="mx-2 mt-4 mb-1" onclick="editCommentEvent({{$comment->id}})">Edit</button>
+            <div id="com_del_text" class="disapear mt-4 mb-1 mx-2">Are you sure you want to <b>permanently</b> delete this comment? This action is <b>irreversible</b>.</div>
+            <button id="delete_comment" onclick="delCommentEvent({{$comment->id}})" class="mt-4 mb-1 mx-2">Delete</button>
+            <form id="del_com_form" method="POST" action="{{route('del_comment')}}">
+                {{ csrf_field() }}
+                <input type="hidden" name="id" value={{$comment->id}}>
+                <button id="conf_del_com_b" type="submit" class="disapear mt-4 mb-1 mx-2">Confirm</button>
+            </form>
+        </section>
     @endif
-    </section>
+        <button id="reply_toggle" class="mt-4 mb-1 mx-2" onclick="toggleReply({{$comment->id}})">Reply</button>
+    </div>
+
+    <div id="reply_form" class="disapear">
+        {{ csrf_field() }}
+        <input id="reply_field" name="content" placeholder="Type your reply">
+        <button id="reply submit" type="submit"> Reply </button>
+    </div>
+
     <section id="replies" class="replies">
         <input type="hidden" id="reply_flag_{{$comment->id}}" value="0" autocomplete=off>
         <p id="repliesUp" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Show Replies ▼</p>
