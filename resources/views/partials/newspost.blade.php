@@ -224,9 +224,8 @@
                     })
                 })
 
-
-
                 toggleReplies(id, user_id, isAdmin)
+                document.querySelector('#comment_'+id +' #reply_field').value = ""
             }
 
         }
