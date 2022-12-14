@@ -88,6 +88,7 @@
         }
 
         function editCommentEvent(id){
+            console.log(id)
             const article = document.querySelector("#comment_"+id)
             const canc = article.querySelector("#edit_comment")
             if(canc.innerText == "Edit"){
@@ -102,7 +103,7 @@
         }
 
         async function toggleReplies(id, user_id, isAdmin){
-            const section = document.querySelector("#comment_"+id+" #replies")
+            var section = document.querySelector("#comment_"+id+" #replies")
             const up = section.querySelector("#repliesUp")
             const downDiv = section.querySelector("#repliesDiv")
             up.classList.toggle('disapear')
@@ -137,7 +138,7 @@
                     topArticle.id = "comment_" + reply.id
                     topArticle.classList.add("news", "comment", "container", "my-4", "border", "bg-light")
 
-                    const div = document.createElement('div')
+                    var div = document.createElement('div')
                     div.id = "comment_disapear"
 
                     const com_sec = document.createElement('section')
@@ -175,9 +176,59 @@
                     com_sec.appendChild(vote)
                     div.appendChild(com_sec)
                     topArticle.appendChild(div)
+
+                    //top article
+                    //edit field
+                    if(user_id == reply.author || isAdmin){
+                        var form = document.createElement('form')
+                        form.id = 'edit_comment_form'
+                        form.classList.add('d-flex')
+                        //form.classList.add('disapear', 'd-flex')
+
+                        var input = document.createElement('input')
+                        input.type = 'text'
+                        input.id = 'edit_text'
+                        input.name= 'content'
+                        input.placeholder = reply.content
+                        input.classList.add('w-75', 'py-2', 'mt-2')
+
+                        form.appendChild(input)
+
+                        var button = document.createElement('button')
+                        button.id="submit_comment_edit"
+                        button.classList.add('btn', 'btn-outline-dark', 'btn-submit', 'mx-5', 'rounded-2')
+                        button.innerText = "Confirm Changes"
+                        form.appendChild(button)
+
+                        topArticle.appendChild(form)
+                    }
+
+                    //comment footer
+                    div = document.createElement('div')
+                    div.id = "comment_footer"
+                    div.classList.add('d-flex')
+
+                    if(user_id == reply.author || isAdmin){
+                        section = document.createElement('section')
+                        section.id = 'edit_comment'
+                        section.classList.add('d-flex')
+
+
+                        const editButtonToggle = document.createElement('button')
+                        editButtonToggle.id='edit_comment'
+                        editButtonToggle.classList.add('mx-2', 'mt-4', 'mb-1')
+                        editButtonToggle.innerText = 'Edit'
+                        editButtonToggle.value = reply.id
+
+                        section.appendChild(editButtonToggle)
+                        div.appendChild(section)
+                    }
+
+                    topArticle.appendChild(div)
                     topDiv.appendChild(topArticle)
                 }
                 downDiv.appendChild(topDiv)
+
             }
             else if(flag.value === "1"){
                 flag.value = "0"
@@ -223,8 +274,14 @@
                         'id_news': news_id
                     })
                 })
-
-                toggleReplies(id, user_id, isAdmin)
+                const flag = document.getElementById("reply_flag_" + id)
+                if(flag==="0"){
+                    toggleReplies(id, user_id, isAdmin)
+                }
+                else{
+                    toggleReplies(id, user_id, isAdmin)
+                    toggleReplies(id, user_id, isAdmin)
+                }
                 document.querySelector('#comment_'+id +' #reply_field').value = ""
             }
 

@@ -71,7 +71,7 @@ class CommentController extends Controller
         $news_id = $request->input('news_id');
 
         $comment->id_news = $request->input('id_news');
-        //$comment->user_id = $request->input('id_author');
+        
         $comment->user_id = Auth::user()->id;
         $comment->id_comment = $request->input('id_comment');
         $comment->save();
