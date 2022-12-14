@@ -48,23 +48,31 @@ class CommentController extends Controller
     public function getReplies(Request $request){
         $id = $request->input('id');
         $replies = Comment::where('id_comment', $id)->get();
-        //$this->authorize('create', $comment);
-        foreach ($replies as $reply){
-            $reply->author = $reply->author()->get()->first()->username;
-        }
+        if(Auth::check()){
+            foreach ($replies as $reply){
+                $reply->author = $reply->author()->get()->first()->username;
+            }
 
-        $replies->sortBy('reputation');
-        return response()->json($replies, 200);
+            $replies->sortBy('reputation');
+            return response()->json($replies, 200);
+        }else{
+            return response("Unauthorized", 403);
+        }
     }
 
     public function createReply(Request $request){
+        if(!Auth::check()){
+            return response("Access Denied", 403);
+        }
+
         $comment = new Comment;
         $comment->content = $request->input('content');
 
         $news_id = $request->input('news_id');
 
         $comment->id_news = $request->input('id_news');
-        $comment->user_id = $request->input('id_author');
+        //$comment->user_id = $request->input('id_author');
+        $comment->user_id = Auth::user()->id;
         $comment->id_comment = $request->input('id_comment');
         $comment->save();
         return response('Reply created', 200);
