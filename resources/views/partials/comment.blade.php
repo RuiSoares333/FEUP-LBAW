@@ -39,15 +39,15 @@
 
     <div id="reply_form" class="disapear">
         {{ csrf_field() }}
-        <input id="reply_field" name="content" placeholder="Type your reply">
-        <button id="reply submit" type="submit"> Reply </button>
+        <input id="reply_field" name="content" placeholder="Type your reply" autocomplete=off required=true>
+        <button id="reply submit" type="submit" onclick="sendReply({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Reply </button>
     </div>
 
     <section id="replies" class="replies">
         <input type="hidden" id="reply_flag_{{$comment->id}}" value="0" autocomplete=off>
         <p id="repliesUp" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Show Replies ▼</p>
         <div id="repliesDiv" class="disapear">
-            <p id="repliesDown" onclick="toggleReplies({{$comment->id}})"> Hide Replies ▲<p>
+            <p id="repliesDown" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Hide Replies ▲<p>
         </div>
     </section>
 </article>

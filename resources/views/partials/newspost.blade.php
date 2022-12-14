@@ -197,5 +197,38 @@
             const form = document.querySelector('#comment_'+id +' #reply_form')
             form.classList.toggle('disapear')
         }
+
+        async function sendReply(id, user_id, isAdmin){
+            //get data from form
+            const content = document.querySelector('#comment_'+id +' #reply_field').value
+            const news_id = window.location.pathname.split("/").pop()
+            if(content !== ""){
+                toggleReply(id)
+
+                //create ajax request
+
+                const response = await fetch("/api/createReply", {
+                    method: 'post',
+                    headers:{
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        //'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRF-Token': document.querySelector('input[name=_token]').value
+                    },
+                    body: JSON.stringify({
+                        'csrf-token': document.querySelector('input[name=_token]').value,
+                        'id_comment': id,
+                        'content': content,
+                        'id_author': user_id,
+                        'id_news': news_id
+                    })
+                })
+
+
+
+                toggleReplies(id, user_id, isAdmin)
+            }
+
+        }
     </script>
 @endif

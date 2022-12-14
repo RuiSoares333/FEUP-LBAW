@@ -48,12 +48,25 @@ class CommentController extends Controller
     public function getReplies(Request $request){
         $id = $request->input('id');
         $replies = Comment::where('id_comment', $id)->get();
-
+        //$this->authorize('create', $comment);
         foreach ($replies as $reply){
             $reply->author = $reply->author()->get()->first()->username;
         }
 
         $replies->sortBy('reputation');
         return response()->json($replies, 200);
+    }
+
+    public function createReply(Request $request){
+        $comment = new Comment;
+        $comment->content = $request->input('content');
+
+        $news_id = $request->input('news_id');
+
+        $comment->id_news = $request->input('id_news');
+        $comment->user_id = $request->input('id_author');
+        $comment->id_comment = $request->input('id_comment');
+        $comment->save();
+        return response('Reply created', 200);
     }
 }
