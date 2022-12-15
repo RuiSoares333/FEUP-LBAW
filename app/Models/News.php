@@ -25,4 +25,8 @@ class News extends Model
         return $this->belongsTo('App\Models\User','user_id');
     }
 
+    public function news_tags()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'news_tag', 'id_tag');
+    }
 }
