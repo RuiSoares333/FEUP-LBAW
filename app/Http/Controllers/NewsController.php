@@ -26,7 +26,7 @@ class NewsController extends Controller
       $news = News::find($id);
       $comments = Comment::where('id_news', $id)->get();
       $this->authorize('show', $news);
-      return view('pages.detailedpost', ['newspost' => $news, 'comments' => $comments]);
+      return view('pages.detailed_post', ['newspost' => $news, 'comments' => $comments]);
     }
 
     public function rte(){

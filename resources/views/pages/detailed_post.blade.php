@@ -13,7 +13,7 @@
         <div class="bg-circle-4 bg-circle"></div>
 
         <div class="justify-content-end">
-            @include('partials.newspost', $newspost)
+            @include('partials.news_post', $newspost)
             <div id="comment_section" class="news-comment d-flex flex-column">
                 @each('partials.comment', $comments, 'comment')
             </div>

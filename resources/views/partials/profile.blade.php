@@ -67,16 +67,22 @@
     <section id="follows" class="d-flex flex-row border-bottom mb-5 py-5">
         <section id="following" class="text-center d-flex flex-column border bg-light rounded-2">
             <p>Following</p>
-            @if(!empty($user->following()->get()))
-            @each('partials.user', $user->following()->get(), 'user')
+            @php ($following = $user->following()->get())
+            @if(!empty($following))
+                @foreach($following as $following_user)
+                    <a href="/profile/{{ $following_user->id }}">{{ $following_user->username }}</a>
+                @endforeach
             @else
             <p>no users being followed</p>
             @endif
         </section>
         <section id="followers" class="text-center d-flex flex-column border bg-light rounded-2 ml-5 mr-auto">
             <p>Followers</p>
-            @if(!empty($user->followers()->get()))
-            @each('partials.user', $user->followers()->get(), 'user')
+            @php ($followers = $user->followers()->get())
+            @if(!empty($followers))
+                @foreach($followers as $follower_user)
+                    <a href="/profile/{{ $follower_user->id }}">{{ $follower_user->username }}</a>
+                @endforeach
             @else
             <p>no followers</p>
             @endif
@@ -84,7 +90,7 @@
     </section>
 
     <section id="news">
-        @each('partials.newspost', $user->news()->get(), 'newspost')
+        @each('partials.news_post', $user->news()->get(), 'newspost')
     </section>
 
 </header>
