@@ -88,7 +88,6 @@
         }
 
         function editCommentEvent(id){
-            console.log(id)
             const article = document.querySelector("#comment_"+id)
             const canc = article.querySelector("#edit_comment")
             if(canc.innerText == "Edit"){
@@ -182,8 +181,11 @@
                     if(user_id == reply.author || isAdmin){
                         var form = document.createElement('form')
                         form.id = 'edit_comment_form'
-                        form.classList.add('d-flex')
-                        //form.classList.add('disapear', 'd-flex')
+                        //form.classList.add('d-flex')
+                        form.classList.add('disapear')
+
+                        const flex = document.createElement('div')
+                        flex.classList.add('d-flex')
 
                         var input = document.createElement('input')
                         input.type = 'text'
@@ -192,13 +194,17 @@
                         input.placeholder = reply.content
                         input.classList.add('w-75', 'py-2', 'mt-2')
 
-                        form.appendChild(input)
+                        flex.appendChild(input)
+//                        form.appendChild(input)
 
                         var button = document.createElement('button')
                         button.id="submit_comment_edit"
                         button.classList.add('btn', 'btn-outline-dark', 'btn-submit', 'mx-5', 'rounded-2')
                         button.innerText = "Confirm Changes"
-                        form.appendChild(button)
+
+                        flex.appendChild(button)
+                        //form.appendChild(button)
+                        form.appendChild(flex)
 
                         topArticle.appendChild(form)
                     }
@@ -210,7 +216,7 @@
 
                     if(user_id == reply.author || isAdmin){
                         section = document.createElement('section')
-                        section.id = 'edit_comment'
+                        section.id = 'edit_comment_sec'
                         section.classList.add('d-flex')
 
 
@@ -219,6 +225,10 @@
                         editButtonToggle.classList.add('mx-2', 'mt-4', 'mb-1')
                         editButtonToggle.innerText = 'Edit'
                         editButtonToggle.value = reply.id
+
+                        editButtonToggle.addEventListener("click", function(){
+                            editCommentEvent(reply.id)
+                        })
 
                         section.appendChild(editButtonToggle)
                         div.appendChild(section)
