@@ -181,8 +181,9 @@
                     if(user_id == reply.author || isAdmin){
                         var form = document.createElement('form')
                         form.id = 'edit_comment_form'
-                        //form.classList.add('d-flex')
                         form.classList.add('disapear')
+                        form.method="POST"
+                        form.action = "/api/edit_comment"
 
                         const flex = document.createElement('div')
                         flex.classList.add('d-flex')
@@ -195,7 +196,6 @@
                         input.classList.add('w-75', 'py-2', 'mt-2')
 
                         flex.appendChild(input)
-//                        form.appendChild(input)
 
                         var button = document.createElement('button')
                         button.id="submit_comment_edit"
@@ -203,7 +203,6 @@
                         button.innerText = "Confirm Changes"
 
                         flex.appendChild(button)
-                        //form.appendChild(button)
                         form.appendChild(flex)
 
                         topArticle.appendChild(form)
