@@ -71,10 +71,23 @@ class CommentController extends Controller
         $news_id = $request->input('news_id');
 
         $comment->id_news = $request->input('id_news');
-        
+
         $comment->user_id = Auth::user()->id;
         $comment->id_comment = $request->input('id_comment');
         $comment->save();
         return response('Reply created', 200);
+    }
+
+    public function editReply(Request $request){
+        $comment = Comment::find($request->input('id'));
+
+        if(!Auth::check() || (!(Auth::user()->id == $comment->author()->get()->first()->id) && !(Auth::user()->isAdmin()))){
+            return response("Access Denied", 403);
+        }
+
+        $comment->content = $request->input('content');
+        $comment->save();
+
+        return response('Reply Edited Successfuly', 200);
     }
 }

@@ -101,6 +101,25 @@
             comment.classList.toggle('disapear')
         }
 
+        async function editAjax(id){
+            const content = document.querySelector('#comment_'+id+' #edit_text').value
+            const response = await fetch("/api/editReply", {
+                method: 'post',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    //'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRF-Token': document.querySelector('input[name=_token]').value
+                },
+                body: JSON.stringify({
+                    'csrf-token': document.querySelector('input[name=_token]').value,
+                    'id': id,
+                    'content': content
+                })
+            })
+
+        }
+
         async function toggleReplies(id, user_id, isAdmin){
             var section = document.querySelector("#comment_"+id+" #replies")
             const up = section.querySelector("#repliesUp")
@@ -179,11 +198,9 @@
                     //top article
                     //edit field
                     if(user_id == reply.author || isAdmin){
-                        var form = document.createElement('form')
+                        var form = document.createElement('div')
                         form.id = 'edit_comment_form'
                         form.classList.add('disapear')
-                        form.method="POST"
-                        form.action = "/api/edit_comment"
 
                         const flex = document.createElement('div')
                         flex.classList.add('d-flex')
@@ -201,6 +218,11 @@
                         button.id="submit_comment_edit"
                         button.classList.add('btn', 'btn-outline-dark', 'btn-submit', 'mx-5', 'rounded-2')
                         button.innerText = "Confirm Changes"
+                        button.addEventListener("click", function(){
+                            editAjax(reply.id)
+                            toggleReplies(id, user_id, isAdmin)
+                            toggleReplies(id, user_id, isAdmin)
+                        })
 
                         flex.appendChild(button)
                         form.appendChild(flex)
