@@ -121,6 +121,8 @@
         }
 
         async function toggleReplies(id, user_id, isAdmin){
+            console.log(user_id)
+            console.log(isAdmin)
             var section = document.querySelector("#comment_"+id+" #replies")
             const up = section.querySelector("#repliesUp")
             const downDiv = section.querySelector("#repliesDiv")
