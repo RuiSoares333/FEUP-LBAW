@@ -191,17 +191,6 @@ article.comment > :nth-child(3){
 }
 
 
-#administer #change{
-    margin-left: auto;
-    margin-right: 3vw;
-}
-
-#administer  #edit{
-    margin: auto;
-    margin-bottom: 3vh;
-}
-
-
 #user-prev{
     width: 60vw;
 }

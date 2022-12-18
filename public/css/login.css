@@ -30,7 +30,7 @@
 }
 .bubble:nth-child(0) {
   --bubble-left-offset: 79vw;
-  --bubble-radius: 5vw;
+  --bubble-radius: 12vw;
   --bubble-float-duration: 18s;
   --bubble-sway-duration: 4s;
   --bubble-float-delay: 3s;
@@ -39,7 +39,7 @@
 }
 .bubble:nth-child(1) {
   --bubble-left-offset: 77vw;
-  --bubble-radius: 7vw;
+  --bubble-radius: 14vw;
   --bubble-float-duration: 10s;
   --bubble-sway-duration: 5s;
   --bubble-float-delay: 1s;
@@ -48,7 +48,7 @@
 }
 .bubble:nth-child(2) {
   --bubble-left-offset: 100vw;
-  --bubble-radius: 3vw;
+  --bubble-radius: 10vw;
   --bubble-float-duration: 12s;
   --bubble-sway-duration: 5s;
   --bubble-float-delay: 2s;
@@ -57,7 +57,7 @@
 }
 .bubble:nth-child(3) {
   --bubble-left-offset: 100vw;
-  --bubble-radius: 3vw;
+  --bubble-radius: 10vw;
   --bubble-float-duration: 17s;
   --bubble-sway-duration: 5s;
   --bubble-float-delay: 3s;
@@ -66,7 +66,7 @@
 }
 .bubble:nth-child(4) {
   --bubble-left-offset: 8vw;
-  --bubble-radius: 4vw;
+  --bubble-radius: 11vw;
   --bubble-float-duration: 8s;
   --bubble-sway-duration: 6s;
   --bubble-float-delay: 2s;
