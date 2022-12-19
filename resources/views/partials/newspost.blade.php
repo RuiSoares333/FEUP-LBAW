@@ -355,8 +355,8 @@
                         'id_news': news_id
                     })
                 })
-                const flag = document.getElementById("reply_flag_" + id)
-                if(flag==="0"){
+                const flag = document.querySelector("#reply_flag_" + id)
+                if(flag.value==="0"){
                     toggleReplies(id, user_id, isAdmin)
                 }
                 else{
