@@ -53,26 +53,12 @@
 
     <section id="follows" class="d-flex flex-row border-bottom mx-auto mb-5 py-5">
         <section id="following" class="text-center d-flex flex-column border bg-light rounded-2">
-            <p>Following</p>
-            @php ($following = $user->following()->get())
-            @if(!empty($following))
-                @foreach($following as $following_user)
-                    <a href="/profile/{{ $following_user->id }}">{{ $following_user->username }}</a>
-                @endforeach
-            @else
-            <p>no users being followed</p>
-            @endif
+            <p class="h6">Following</p>
+            <a class="h3" ref="/following">{{count($user->following()->get())}}</a>
         </section>
         <section id="followers" class="text-center d-flex flex-column border bg-light rounded-2 ml-5 mr-auto">
-            <p>Followers</p>
-            @php ($followers = $user->followers()->get())
-            @if(!empty($followers))
-                @foreach($followers as $follower_user)
-                    <a href="/profile/{{ $follower_user->id }}">{{ $follower_user->username }}</a>
-                @endforeach
-            @else
-            <p>no followers</p>
-            @endif
+            <p class="h6">Followers</p>
+            <a class="h3" href="/followers">{{count($user->followers()->get())}}</a>
         </section>
     </section>
 

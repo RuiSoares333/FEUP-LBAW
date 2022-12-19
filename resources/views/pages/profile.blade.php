@@ -14,12 +14,19 @@
 </script>
 
 <script>
-    var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
+    const follow = document.getElementsByClassName('h3');
+    for (i = 0; i < follow.length; i++) {
+        const item = parseInt(follow[i].innerHTML);
+        if(item>=1000000000){
+            follow[i].innerHTML = (item/1000000000).toFixed(item % 1000000000 != 0)+'B';
+        }
+        else if(item>=1000000){
+            follow[i].innerHTML = (item/1000000).toFixed(item % 1000000 != 0)+'M';
+        }
+        else if(item>=1000){
+            follow[i].innerHTML = (item/1000).toFixed(item % 1000 != 0)+'k';
+        }
+    } 
 
-    myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-    })
 </script>
-
 @endsection
