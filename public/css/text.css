@@ -36,7 +36,8 @@ article > header a:hover{
 }
 
 #vote{
-    margin: auto;
+    margin-left: auto;
+    margin-right: 0;
     height: 5vh;
     width: auto;
 }
@@ -74,24 +75,24 @@ form-div{
 }
 
 .news-comment{
-    max-width: 50%;
-    margin-right: 15%;
-    margin-left: auto;
+    max-width: 55%;
+    margin-right: auto;
+    margin-left: 15%;
 }
 
-article.comment > :nth-child(1){
+.comment > :nth-child(1){
     margin-left: 0;
     margin-right: 1vw;
 }
 
-article.comment > :nth-child(2){
-    margin-left: 0;
-    margin-right: auto;
+.comment > :nth-child(2){
+    margin-left: auto;
+    margin-right: 0;
     font-weight: bold;
     color: var(--bs-gray-700);
 }
 
-article.comment > :nth-child(3){
+.comment > :nth-child(3){
     margin-left: auto;
     margin-right: 0;
     width:auto;
@@ -186,7 +187,6 @@ article.comment > :nth-child(3){
 }
 
 .disapear{
-    background-color: aqua;
     display: none;
 }
 
@@ -226,3 +226,10 @@ article.comment > :nth-child(3){
     font-size: large;
 }
 
+#repliesUp{
+    cursor: pointer;
+}
+
+#repliesDown{
+    cursor: pointer;
+}

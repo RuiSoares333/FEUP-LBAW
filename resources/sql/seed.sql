@@ -346,6 +346,7 @@ CREATE TRIGGER comment_on_comment
         FOR EACH ROW
         EXECUTE PROCEDURE comment_on_comment();
 
+/*
 CREATE FUNCTION delete_comment() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -364,6 +365,7 @@ CREATE TRIGGER delete_comment
         BEFORE DELETE ON comments
         FOR EACH ROW
         EXECUTE PROCEDURE delete_comment();
+*/
 /*
 CREATE FUNCTION delete_news() RETURNS TRIGGER AS
 $BODY$
