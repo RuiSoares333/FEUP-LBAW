@@ -48,7 +48,7 @@
         <input type="hidden" id="reply_flag_{{$comment->id}}" value="0" autocomplete=off>
         <p id="repliesUp" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Show Replies ▼</p>
         <div id="repliesDiv" class="disapear">
-            <p id="repliesDown" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Hide Replies ▲<p>
+            <p id="repliesDown" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->is_admin}})"> Hide Replies ▲<p>
         </div>
     </section>
 </article>

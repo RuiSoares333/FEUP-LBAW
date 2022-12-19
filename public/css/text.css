@@ -226,6 +226,10 @@ form-div{
     font-size: large;
 }
 
-.replies{
+#repliesUp{
+    cursor: pointer;
+}
+
+#repliesDown{
     cursor: pointer;
 }

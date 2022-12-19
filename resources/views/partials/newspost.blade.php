@@ -121,8 +121,6 @@
         }
 
         async function toggleReplies(id, user_id, isAdmin){
-            console.log(user_id)
-            console.log(isAdmin)
             var section = document.querySelector("#comment_"+id+" #replies")
             const up = section.querySelector("#repliesUp")
             const downDiv = section.querySelector("#repliesDiv")
@@ -199,7 +197,7 @@
 
                     //top article
                     //edit field
-                    if(user_id == reply.author || isAdmin){
+                    if(user_id == reply.user_id || isAdmin){
                         var form = document.createElement('div')
                         form.id = 'edit_comment_form'
                         form.classList.add('disapear')
@@ -237,7 +235,7 @@
                     div.id = "comment_footer"
                     div.classList.add('d-flex')
 
-                    if(user_id == reply.author || isAdmin){
+                    if(user_id == reply.user_id || isAdmin){
                         section = document.createElement('section')
                         section.id = 'edit_comment_sec'
                         section.classList.add('d-flex')
