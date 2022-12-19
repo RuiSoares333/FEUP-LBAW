@@ -1,10 +1,6 @@
-<header class="masthead banner d-flex flex-column">
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
+<div>
 
-    <section id="intro" class="text-center border-bottom py-5">
+    <section id="intro" class="mx-auto text-center border-bottom py-5">
         <section id="profile-picture" class="mb-3">
             <img src="{{asset('pictures/user/' . $user->picture ) }}" class="rounded-circle">
         </section>
@@ -15,77 +11,54 @@
             {{ $user->reputation() }} reputation
         </section>
 
-        <div id="administer" >
+        <div id="administer" class="d-flex flex-row mx-auto">
         @if(Auth::check() and (Auth::id() == $user->id || Auth::user()->isAdmin()))
-            @if(Auth::user()->isAdmin() && Auth::id() == $user->id)
-            <form id="change" method="POST" action="{{route('change_admin', ['id' => $user->id])}}">
+            <form id="edit" method="POST" action="{{route('edit_profile', ['id' => $user->id])}}">
                 {{ csrf_field() }}
-                <button type="submit">Revoke Admin</button>
+                <button class="btn btn-primary rounded-2 fw-bold" type="submit">Edit</button>
             </form>
-            @elseif(Auth::user()->isAdmin() && !($user->is_admin))
-            <form id="change" method="POST" action="{{route('change_admin', ['id' => $user->id])}}">
-                {{ csrf_field() }}
-                <button type="submit">Make</button>
-            </form>
-            @endif
-        <form id="edit" method="POST" action="{{route('edit_profile', ['id' => $user->id])}}">
-            {{ csrf_field() }}
-            <button type="submit">Edit</button>
-        </form>
-        @if($user->id != 5)
-            <section id="delete_user">
-                <script>
-                    function delButtonEvent(){
-                        const delB1 = document.querySelector('#delete_button')
-                        const delB2 = document.querySelector("#delete_form")
-                        const confT = document.querySelector("#confirm_text")
-                        delB2.classList.toggle('disapear')
-                        confT.classList.toggle('disapear')
-                        if(delB1.innerText=="Cancel"){
-                            delB1.innerText="Delete"
-                        }
-                        else{
-                            delB1.innerText="Cancel"
-                        }
-                    }
-                </script>
-                <p id="confirm_text" class="disapear"> Are you sure you want to <b>permanently</b> delete this account? This action is <b>irreversible</b>.</p>
-                <div class="d-flex flex-row justify-content-center">
-                    <button id="delete_button" class="btn-submit mx-3 rounded-2" onclick="delButtonEvent()">Delete</button>
-                    <form id="delete_form" class="disapear" method="POST" action="{{ route('delete_user', ['id' => $user->id]) }}">
-                        {{ csrf_field() }}
-                        <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="submit"> Confirm Delete </button>
-                    </form>
+            @if($user->id != 5)
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Delete Account
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to <b>permanently</b> delete your account?</p> 
+                                <p>This action is <b>irreversible</b>.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary fw-bold text-light" data-bs-dismiss="modal">Close</button>
+                                <form id="delete_form" method="POST" action="{{ route('delete_user', ['id' => $user->id]) }}">
+                                    {{ csrf_field() }}
+                                    <button id="delete_confirm" class="btn btn-primary fw-bold" type="submit"> Confirm Delete </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        @endif
+            @endif
         @endif
         </div>
 
     </section>
 
-    <section id="follows" class="d-flex flex-row border-bottom mb-5 py-5">
+    <section id="follows" class="d-flex flex-row border-bottom mx-auto mb-5 py-5">
         <section id="following" class="text-center d-flex flex-column border bg-light rounded-2">
-            <p>Following</p>
-            @php ($following = $user->following()->get())
-            @if(!empty($following))
-                @foreach($following as $following_user)
-                    <a href="/profile/{{ $following_user->id }}">{{ $following_user->username }}</a>
-                @endforeach
-            @else
-            <p>no users being followed</p>
-            @endif
+            <p class="h6">Following</p>
+            <a class="h3" ref="/following">{{count($user->following()->get())}}</a>
         </section>
         <section id="followers" class="text-center d-flex flex-column border bg-light rounded-2 ml-5 mr-auto">
-            <p>Followers</p>
-            @php ($followers = $user->followers()->get())
-            @if(!empty($followers))
-                @foreach($followers as $follower_user)
-                    <a href="/profile/{{ $follower_user->id }}">{{ $follower_user->username }}</a>
-                @endforeach
-            @else
-            <p>no followers</p>
-            @endif
+            <p class="h6">Followers</p>
+            <a class="h3" href="/followers">{{count($user->followers()->get())}}</a>
         </section>
     </section>
 
@@ -93,4 +66,4 @@
         @each('partials.news_post', $user->news()->get(), 'newspost')
     </section>
 
-</header>
+</div>

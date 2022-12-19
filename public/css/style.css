@@ -122,7 +122,7 @@ main{
 
 /* LOGIN */
 
-.form-auth.login, .form-auth.register{
+.static-form{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -131,14 +131,25 @@ main{
   margin-top: 5vh;
 }
 
-.form-auth.login input, .form-auth.register input{
-  background-color: #ebeced55;
-  border: none;
-  border-bottom: 1px solid #ebeced;
-  padding: 2%;
+.static-form input{
+    margin-bottom: 2vh;
 }
 
-.form-auth.login input:focus, .form-auth.register input:focus{
+.static-form input:not([type="file"], [type="submit"]){
+  background-color: #ebeced55;
+  border: 1px solid #ebeced;
+  border-radius: 10px;
+  padding: 2%;
+  max-height: 5vh;
+  min-height: 4vh;
+}
+
+.static-form input[type="text"], .static-form input[type="password"]{
+    color: var(--bs-gray-300);
+    font-size: large;
+}
+
+.static-form input:focus{
   outline: none;
   background-color: #ebecedaa;
 }
@@ -180,4 +191,16 @@ main{
 #submission button:nth-child(2){
     border: 1px solid var(--bs-primary);
     background-color: var(--bs-primary);
+}
+
+/* PROFILE */
+
+#administer > :nth-child(1){
+    margin-right: 5vw;
+    margin-left: auto;
+}
+
+#administer > :nth-child(2){
+    margin-right: auto;
+    margin-left: 5vw;
 }
