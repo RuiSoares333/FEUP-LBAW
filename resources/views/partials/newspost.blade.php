@@ -117,7 +117,23 @@
                     'content': content
                 })
             })
+        }
 
+        async function delAjax(id){
+            const response = await fetch("/api/delReply", {
+                method: 'post',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('input[name=_token]').value
+                },
+                body: JSON.stringify({
+                    'csrf-token': document.querySelector('input[name=_token]').value,
+                    'id': id,
+                })
+            })
+            const replies = await response
+            console.log(replies)
         }
 
         async function toggleReplies(id, user_id, isAdmin){
@@ -236,6 +252,7 @@
                     div.classList.add('d-flex')
 
                     if(user_id == reply.user_id || isAdmin){
+                        //edit
                         section = document.createElement('section')
                         section.id = 'edit_comment_sec'
                         section.classList.add('d-flex')
@@ -253,6 +270,39 @@
 
                         section.appendChild(editButtonToggle)
                         div.appendChild(section)
+
+
+                        //delete
+                        const confText = document.createElement('div')
+                        confText.id = 'com_del_text'
+                        confText.classList.add('disapear', 'mt-4', 'mb-1', 'mx-2')
+                        confText.innerHTML = "Are you sure you want to <b>permanently</b> delete this comment? This action is <b>irreversible</b>."
+
+                        section.appendChild(confText)
+
+                        const delB = document.createElement('button')
+                        delB.id = 'delete_comment'
+                        delB.classList.add('mt-4', 'mb-1', 'mx-2')
+                        delB.innerText = 'Delete'
+                        delB.addEventListener("click", function(){
+                            delCommentEvent(reply.id)
+                        })
+                        section.appendChild(delB)
+
+                        const delForm = document.createElement('form')
+                        delForm.id = 'del_com_form'
+                        const delC = document.createElement('button')
+                        delC.id = 'conf_del_com_b'
+                        delC.classList.add('disapear', 'mt-4', 'mb-1', 'mx-2')
+                        delC.innerText = 'Confirm'
+                        delC.addEventListener("click", function(){
+                            delAjax(reply.id)
+                            toggleReplies(id, user_id, isAdmin)
+                            toggleReplies(id, user_id, isAdmin)
+                        })
+
+                        delForm.appendChild(delC)
+                        section.appendChild(delForm)
                     }
 
                     topArticle.appendChild(div)

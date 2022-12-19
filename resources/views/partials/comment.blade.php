@@ -26,6 +26,7 @@
     @if(Auth::check() && (($comment->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))
         <section id="comment_author" class="d-flex">
             <button id="edit_comment" class="mx-2 mt-4 mb-1" onclick="editCommentEvent({{$comment->id}})">Edit</button>
+
             <div id="com_del_text" class="disapear mt-4 mb-1 mx-2">Are you sure you want to <b>permanently</b> delete this comment? This action is <b>irreversible</b>.</div>
             <button id="delete_comment" onclick="delCommentEvent({{$comment->id}})" class="mt-4 mb-1 mx-2">Delete</button>
             <form id="del_com_form" method="POST" action="{{route('del_comment')}}">
@@ -33,6 +34,7 @@
                 <input type="hidden" name="id" value={{$comment->id}}>
                 <button id="conf_del_com_b" type="submit" class="disapear mt-4 mb-1 mx-2">Confirm</button>
             </form>
+
         </section>
     @endif
         <button id="reply_toggle" class="mt-4 mb-1 mx-2" onclick="toggleReply({{$comment->id}})">Reply</button>

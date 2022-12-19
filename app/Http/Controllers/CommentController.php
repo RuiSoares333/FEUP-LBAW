@@ -90,4 +90,13 @@ class CommentController extends Controller
 
         return response('Reply Edited Successfuly', 200);
     }
+
+    public function delReply(Request $request){
+        $comment = Comment::find($request->input('id'));
+        if(!Auth::check() || (!(Auth::user()->id == $comment->author()->get()->first()->id) && !(Auth::user()->isAdmin()))){
+            return response("Access Denied", 403);
+        }
+        $comment->delete();
+        return response('Reply Deleted Successfuly', 200);
+    }
 }
