@@ -25,6 +25,12 @@ class NewsController extends Controller
       if (!Auth::check()) return redirect('/login');
       $news = News::find($id);
       $comments = Comment::where('id_news', $id)->where('id_comment', NULL)->get();
+
+      //get reply count
+      foreach($comments as $comment){
+        $replies = Comment::where('id_comment', $comment->id)->get();
+        $comment->replyCount = count($replies);
+      }
       $comments->sortBy('reputation');
       $this->authorize('show', $news);
       return view('pages.detailedpost', ['newspost' => $news, 'comments' => $comments]);

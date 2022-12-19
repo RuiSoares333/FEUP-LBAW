@@ -72,9 +72,18 @@
 
 @if(request()->is('news/*'))
     <script>
-        function delCommentEvent(id){
+        function delCommentEvent(id, reputation, replies){
             const article = document.querySelector("#comment_"+id)
             const canc = article.querySelector("#delete_comment")
+            if(reputation != 0){
+                alert('Comments with reputation cannot be deleted.')
+                return
+            }
+            if(replies != 0){
+                alert('Comments with replies cannot be deleted.')
+                return
+            }
+
             if(canc.innerText == "Delete"){
                 canc.innerText="Cancel Delete"
             }else if(canc.innerText == "Cancel Delete"){
@@ -285,7 +294,7 @@
                         delB.classList.add('mt-4', 'mb-1', 'mx-2')
                         delB.innerText = 'Delete'
                         delB.addEventListener("click", function(){
-                            delCommentEvent(reply.id)
+                            delCommentEvent(reply.id, reply.reputation, 0)
                         })
                         section.appendChild(delB)
 
