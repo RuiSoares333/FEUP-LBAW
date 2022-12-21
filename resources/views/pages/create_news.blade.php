@@ -30,10 +30,14 @@
 
                 <section id="tags" class="mb-5">
                     <label for="select-tags" class="h5 form-label">Tags</label><span>5 at most</span>
-                        <div id="tag-list" style="overflow-y: hidden; max-height: 15vh;">
+                        <div id="tag-list" style="overflow-y: hidden; max-height: 15vh;">   
                             @foreach($tags as $tag)
-                                <label for="{{ $tag->tag_name }}"><input type="checkbox" id="{{ $tag->tag_name }}" class="check">{{ $tag->tag_name }}</label>
+                            <label for="{{ $tag->tag_name }}">
+                                <input type="checkbox" id="{{ $tag->tag_name }}" class="check" value="{{ $tag->tag_name }}" name="tags[]"/> 
+                            {{ $tag->tag_name }}
+                            </label>
                             @endforeach
+
                         </div>
                         <div id="tag-selection" class="d-flex justify-content-center"><i class="bi bi-chevron-down"></i></div>
                     @foreach($errors->get('tags') as $error)

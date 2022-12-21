@@ -1,9 +1,9 @@
 <article class="news container my-5 d-flex flex-column border bg-light" data-id="{{ $newspost->id }}">
     <header class="m-3 d-flex flex-column">
         <h2 class="my-auto"><a href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h2>
-        <h3> Tags: | 
+        <h3> Tags: 
             @foreach($newspost->tags as $tag)
-                {{ $tag->tag_name }} |
+               [ {{ $tag->tag_name }} ]
                 @endforeach
             </h3>
         <span class="my-auto"><a href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>

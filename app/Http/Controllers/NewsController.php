@@ -60,14 +60,34 @@ class NewsController extends Controller
 
       $news->title = $request->input('title');
       $news->content = $request->input('content');
+
       if($request->file('picture')) {
         $file= $request->file('picture');
         $filename = $file->getClientOriginalName();
         $file-> move(public_path('pictures/news'), $filename);
         $news->picture = $filename;
       }
+
       $news->user_id = Auth()->user()->id;
       $news->save();
+
+      $id_news = $news->id;
+
+      foreach ($request->input('tags') as $tag_name) { //works for one tag
+        try {
+            DB::table('tag')->insertOrIgnore([['tag_name' => $tag_name]]);
+
+            $id_tag = Tag::firstWhere('tag_name', $tag_name)->id;
+            DB::table('news_tag')->insert(['id_news' => $id_news, 'id_tag' => $id_tag]);
+        } catch (ValidationException $e) {
+            DB::rollBack();
+            return back()->withErrors(['dberror' => $e->getMessage()])->withInput();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+      DB::commit();
 
       return redirect('news/'. $news->id);
     }
