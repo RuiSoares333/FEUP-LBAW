@@ -21,6 +21,8 @@
             }else{
                 delB.classList.toggle('disapear')
             }
+            let id = document.getElementById("delete_id").value
+            sendAjaxRequest('delete', '/api/news/' + id, null)
         }
     </script>
 
@@ -29,10 +31,10 @@
         <h3>Author Tools:<h3>
         <section class="author_tools">
         <button id="delete_button" class="btn-submit mx-3 rounded-2" onclick="deleteButtonEvent()">Delete</button>
-        <form id="delete_form" class="disapear" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
+        <form id="delete_form" class="disapear" method="POST">
             {{ csrf_field() }}
-            <input type="hidden" name="news_id" value = {{$newspost->id}}>
-            <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="submit"> Delete Confirm </button>
+            <input type="hidden" id="delete_id" name="news_id" value = {{$newspost->id}}>
+            <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="button" onclick="window.location.href=document.referrer"> Delete Confirm </button>
         </form>
         <button id="toggle_edit" class="btn-submit mx-3 rounded-2 hidden" onclick="displayEditForm()"> Edit</button>
         </section>

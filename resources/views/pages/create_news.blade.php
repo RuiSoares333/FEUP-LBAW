@@ -9,7 +9,7 @@
         <hr class="rounded">
 
         <section class="container w-100 mt-4 form-group">
-            <form method="POST" action="{{ route('create_news') }}" enctype="multipart/form-data" autocomplete="off">
+            <form method="POST" enctype="multipart/form-data" autocomplete="off">
                 {{ csrf_field() }}
                 <section id="title" class="mb-5">
                     <label for="new-post-title" class="h5 form-label">Title</label>
@@ -46,7 +46,7 @@
                         <button type="button" class="col-5 col-md-4 col-lg-3 btn fw-bold"
                                 onclick="window.location.href=document.referrer">Cancel
                         </button>
-                        <button type="submit" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
+                        <button type="button" id="create_news_button" onclick="location.href='/'" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
                     </div>
                 </section>
             </form>
@@ -115,6 +115,15 @@
                 this.removeChild(this.firstChild);
                 this.appendChild(downIcon);
             }
+        });
+    </script>
+
+    <script>
+        var newsCreateButton = document.getElementById("create_news_button");
+        newsCreateButton.addEventListener("click", function() {
+            let title = document.getElementById("new-post-title").value;
+            let content = tinymce.activeEditor.getContent();
+            sendAjaxRequest('post', '/api/news', {title: title, content: content});
         });
     </script>
 
