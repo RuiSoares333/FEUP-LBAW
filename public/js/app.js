@@ -1,29 +1,3 @@
-/*function addEventListeners() {
-  let itemCheckers = document.querySelectorAll('article.card li.item input[type=checkbox]');
-  [].forEach.call(itemCheckers, function(checker) {
-    checker.addEventListener('change', sendItemUpdateRequest);
-  });
-
-  let itemCreators = document.querySelectorAll('article.card form.new_item');
-  [].forEach.call(itemCreators, function(creator) {
-    creator.addEventListener('submit', sendCreateItemRequest);
-  });
-
-  let itemDeleters = document.querySelectorAll('article.card li a.delete');
-  [].forEach.call(itemDeleters, function(deleter) {
-    deleter.addEventListener('click', sendDeleteItemRequest);
-  });
-
-  let cardDeleters = document.querySelectorAll('article.card header a.delete');
-  [].forEach.call(cardDeleters, function(deleter) {
-    deleter.addEventListener('click', sendDeleteCardRequest);
-  });
-
-  let cardCreator = document.querySelector('article.card form.new_card');
-  if (cardCreator != null)
-    cardCreator.addEventListener('submit', sendCreateCardRequest);
-}*/
-
 function encodeForAjax(data) {
   if (data == null) return null;
   return Object.keys(data).map(function(k){
@@ -31,13 +5,12 @@ function encodeForAjax(data) {
   }).join('&');
 }
 
-function sendAjaxRequest(method, url, data/*, handler*/) {
+function sendAjaxRequest(method, url, data) {
   let request = new XMLHttpRequest();
 
   request.open(method, url, true);
   request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  //request.addEventListener('load', handler);
   request.send(encodeForAjax(data));
 }
 
@@ -176,5 +149,3 @@ function createItem(item) {
 
   return new_item;
 }
-
-addEventListeners();

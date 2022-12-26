@@ -46,7 +46,7 @@
                         <button type="button" class="col-5 col-md-4 col-lg-3 btn fw-bold"
                                 onclick="window.location.href=document.referrer">Cancel
                         </button>
-                        <button type="button" id="create_news_button" onclick="location.href='/'" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
+                        <button type="button" id="create_news_button" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
                     </div>
                 </section>
             </form>
@@ -120,11 +120,26 @@
 
     <script>
         var newsCreateButton = document.getElementById("create_news_button");
-        newsCreateButton.addEventListener("click", function() {
+        async function createNews() {
             let title = document.getElementById("new-post-title").value;
             let content = tinymce.activeEditor.getContent();
-            sendAjaxRequest('post', '/api/news', {title: title, content: content});
-        });
+            const response = await fetch("api/news", {
+                method: 'post',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    'csrf-token': document.querySelector('meta[name="csrf-token"]').content,
+                    'title': title,
+                    'content': content
+                })
+            });
+            const replies = await response.json();
+            window.location.href = '/news/'+replies.id;
+        }
+        newsCreateButton.addEventListener("click", createNews);
     </script>
 
     <script>

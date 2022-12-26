@@ -57,7 +57,7 @@ class NewsController extends Controller
     /**
      * Creates a new news article.
      *
-     * @return News The news created.
+     * @return Response
      */
     public function create(Request $request)
     {
@@ -76,16 +76,21 @@ class NewsController extends Controller
       $news->user_id = Auth()->user()->id;
       $news->save();
 
-      return redirect('news/'. $news->id);
+    return response()->json(["success" => true, "id" => $news->id], 200);
     }
 
+    /**
+     * Delete a news article.
+     *
+     * @return Response
+     */
     public function delete(Request $request, $id)
     {
       $news = News::find($id);
       $this->authorize('delete', $news);
       $news->delete();
 
-      return redirect('/');
+      return response()->json(["success" => true], 200);
     }
 
   public function update(Request $request, $id)

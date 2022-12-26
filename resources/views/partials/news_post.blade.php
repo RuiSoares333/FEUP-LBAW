@@ -11,6 +11,24 @@
             const form = document.querySelector("#edit_form")
             form.classList.toggle('disapear')
         }
+        async function deleteNews(){
+            let id = document.getElementById("delete_id").value
+            console.log("/api/news/"+id);
+            const response = await fetch("/api/news/"+id, {
+                method: 'delete',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    'csrf-token': document.querySelector('meta[name="csrf-token"]').content,
+                    'id': id
+                })
+            });
+            const replies = await response.json();
+            window.location.href = '/';
+        }
         function deleteButtonEvent(){
             const delB = document.querySelector("#delete_form")
             const comments = document.querySelector("#comment_section")
@@ -19,10 +37,12 @@
             }else if(comments.childNodes.length > 1){
                 alert("A news item with comments cannot be deleted.")
             }else{
-                delB.classList.toggle('disapear')
+                delB.classList.toggle('disapear');
+                var deleteNewsButton = document.getElementById("delete_confirm");
+                deleteNewsButton.addEventListener("click", function() {
+                    deleteNews();
+                });
             }
-            let id = document.getElementById("delete_id").value
-            sendAjaxRequest('delete', '/api/news/' + id, null)
         }
     </script>
 
@@ -34,7 +54,7 @@
         <form id="delete_form" class="disapear" method="POST">
             {{ csrf_field() }}
             <input type="hidden" id="delete_id" name="news_id" value = {{$newspost->id}}>
-            <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="button" onclick="window.location.href=document.referrer"> Delete Confirm </button>
+            <button id="delete_confirm" class="btn-submit mx-3 rounded-2" type="button"> Delete Confirm </button>
         </form>
         <button id="toggle_edit" class="btn-submit mx-3 rounded-2 hidden" onclick="displayEditForm()"> Edit</button>
         </section>
@@ -144,7 +164,6 @@
                 })
             })
             const replies = await response
-            console.log(replies)
         }
 
         async function toggleReplies(id, user_id, isAdmin){
