@@ -13,7 +13,6 @@
         }
         async function deleteNews(){
             let id = document.getElementById("delete_id").value
-            console.log("/api/news/"+id);
             const response = await fetch("/api/news/"+id, {
                 method: 'delete',
                 headers:{

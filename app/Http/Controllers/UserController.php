@@ -69,7 +69,7 @@ class UserController extends Controller
       $user = User::find($id);
       $this->authorize('owner', $user);
       $user->delete();
-      return redirect('/');
+      return response()->json(["success" => true], 200);
     }
 
     public function change_admin($id){

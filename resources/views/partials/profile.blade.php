@@ -1,5 +1,4 @@
 <div>
-
     <section id="intro" class="mx-auto text-center border-bottom py-5">
         <section id="profile-picture" class="mb-3">
             <img src="{{asset('pictures/user/' . $user->picture ) }}" class="rounded-circle">
@@ -19,7 +18,7 @@
             </form>
             @if($user->id != 5)
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" id = "trigger_delete">
                     Delete Account
                 </button>
                 
@@ -37,9 +36,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary fw-bold text-light" data-bs-dismiss="modal">Close</button>
-                                <form id="delete_form" method="POST" action="{{ route('delete_user', ['id' => $user->id]) }}">
+                                <form id="delete_form" method="POST">
                                     {{ csrf_field() }}
-                                    <button id="delete_confirm" class="btn btn-primary fw-bold" type="submit"> Confirm Delete </button>
+                                    <input type="hidden" id="delete_id" name="user_id" value = {{$user->id}}>
+                                    <button id="delete_confirm" class="btn btn-primary fw-bold" type="button"> Confirm Delete </button>
                                 </form>
                             </div>
                         </div>
@@ -67,3 +67,31 @@
     </section>
 
 </div>
+
+<script>
+
+    triggerDeleteButton = document.getElementById("trigger_delete");
+    triggerDeleteButton.addEventListener("click", triggerDelete);
+    function triggerDelete() {
+        var deleteUserButton = document.getElementById("delete_confirm");
+        deleteUserButton.addEventListener("click", deleteUser);
+    }
+
+    async function deleteUser(){
+        let id = document.getElementById("delete_id").value
+        const response = await fetch("/api/delete_profile/"+id, {
+            method: 'delete',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                'csrf-token': document.querySelector('meta[name="csrf-token"]').content,
+                'id': id
+            })
+        });
+        const replies = await response.json();
+        window.location.href = '/';
+    }
+</script>
