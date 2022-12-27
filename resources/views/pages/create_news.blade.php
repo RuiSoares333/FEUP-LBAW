@@ -13,8 +13,7 @@
                 {{ csrf_field() }}
                 <section id="title" class="mb-5">
                     <label for="new-post-title" class="h5 form-label">Title</label>
-                    <input type="text" class="form-control" id="new-post-title" name="title" value="{{ old('title') }}"
-                           required>
+                    <input type="text" class="form-control" id="new-post-title" name="title" value="{{ old('title') }}" required>
                     @foreach($errors->get('title') as $error)
                         <li class="error">{{$error}}</li>
                     @endforeach
@@ -29,15 +28,15 @@
                 </section>
 
                 <section id="tags" class="mb-5">
-                    <label for="select-tags" class="h5 form-label">Tags</label><span>5 at most</span>
-                        <div id="tag-list" style="overflow-y: hidden; max-height: 15vh;">   
+                    <label for="select-tags" class="h5 form-label">Tags - </label> <span>Select 5 tags at most</span>
+                        <div id="tag-list" style="overflow-y: hidden; max-height: 15vh;" required>   
+                            <input id="radio-for-checkboxes" type="radio" name="radio-for-required-checkboxes" required/> <!-- needs to be hidden in css -->
                             @foreach($tags as $tag)
-                            <label for="{{ $tag->tag_name }}">
-                                <input type="checkbox" id="{{ $tag->tag_name }}" class="check" value="{{ $tag->tag_name }}" name="tags[]"/> 
-                            {{ $tag->tag_name }}
-                            </label>
+                                <label for="{{ $tag->tag_name }}">
+                                    <input type="checkbox" id="{{ $tag->tag_name }}" class="check" value="{{ $tag->tag_name }}" name="tags[]"/> 
+                                    {{ $tag->tag_name }}
+                                </label>
                             @endforeach
-
                         </div>
                         <div id="tag-selection" class="d-flex justify-content-center"><i class="bi bi-chevron-down"></i></div>
                     @foreach($errors->get('tags') as $error)
@@ -47,10 +46,8 @@
 
                 <section id="submission" class="container create_post_buttons mb-2 mb-lg-0">
                     <div class="row d-flex justify-content-around">
-                        <button type="button" class="col-5 col-md-4 col-lg-3 btn fw-bold"
-                                onclick="window.location.href=document.referrer">Cancel
-                        </button>
-                        <button type="submit" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
+                        <button type="button" class="col-5 col-md-4 col-lg-3 btn fw-bold" onclick="window.location.href=document.referrer">Cancel</button>
+                        <button type="submit" id="post_button" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
                     </div>
                 </section>
             </form>
@@ -127,10 +124,41 @@
         var max = 5;
         for (var i = 0; i < checks.length; i++)
         checks[i].onclick = selectiveCheck;
+
         function selectiveCheck (event) {
         var checkedChecks = document.querySelectorAll(".check:checked");
         if (checkedChecks.length >= max + 1)
             return false;
         }
+
+    var inputs = document.querySelectorAll('[name="tags[]"]')
+    var radioForCheckboxes = document.getElementById('radio-for-checkboxes')
+
+    function checkCheckboxes () {
+        var isAtLeastOneServiceSelected = false;
+
+        for(var i = inputs.length-1; i >= 0; --i) {
+            if (inputs[i].checked) isAtLeastOneCheckboxSelected = true;
+        }
+        radioForCheckboxes.checked = isAtLeastOneCheckboxSelected;
+    }
+
+    function checkCheckboxes2 () {
+    var allCheckboxesDeselected = true;
+
+    for(var i = inputs.length-1; i >= 0; --i) {
+        if (inputs[i].checked) {
+            allCheckboxesDeselected = false;
+            break;
+        }
+    }
+    radioForCheckboxes.checked = !allCheckboxesDeselected;
+    }
+
+    for(var i = inputs.length-1; i >= 0; --i) {
+        inputs[i].addEventListener('change', checkCheckboxes);
+        inputs[i].addEventListener('change', checkCheckboxes2);
+    }
     </script>
+
 @endsection

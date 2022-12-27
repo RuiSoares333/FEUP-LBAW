@@ -73,7 +73,7 @@ class NewsController extends Controller
 
       $id_news = $news->id;
 
-      foreach ($request->input('tags') as $tag_name) { //works for one tag
+      foreach ($request->input('tags',[]) as $tag_name) { 
         try {
             DB::table('tag')->insertOrIgnore([['tag_name' => $tag_name]]);
 
