@@ -38,9 +38,9 @@ class UserController extends Controller
       return $user;
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-      $user = User::find($id);
+      $user = User::find($request->id);
       $this->authorize('update', $user);
       $user->username = $request->input('username');
       $user->country = $request->input('country');
