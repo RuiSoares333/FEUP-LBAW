@@ -26,6 +26,15 @@ class Tag extends Model
     }
 
     public function top_tags() {
-        
+        $followers_count = DB::table('tag_follow')->select('id_tag', DB::raw('COUNT(*) AS count'))->groupBy('id_tag');
+
+        $top_tags = DB::table('tag')->joinSub(
+            $followers_count,'$followers_count',
+            function ($join) {
+                $join->on('tag.id', '=', 'followers_count.id_tag');
+            }
+        )->orderBy('count', 'desc')->limit(5)->get();        
+
+        return $top_tags;
     }
 }
