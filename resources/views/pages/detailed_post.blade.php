@@ -26,16 +26,37 @@
 @section('scripts')
 
     <script>
+        async function deleteNews(id){
+            const response = await fetch("/api/news/"+id, {
+                method: 'delete',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    'csrf-token': document.querySelector('meta[name="csrf-token"]').content,
+                    'id': id
+                })
+            });
+            const replies = await response.json();
+            window.location.href = '/';
+        }
+
         function deleteButtonEvent(id){
-            const comments = document.querySelector("#comment_section");
+            const comments = document.querySelector("#comment_section")
             if({{$newspost->reputation}} !== 0){
-                alert('A news item with reputation cannot be deleted.');
+                alert('A news item with reputation cannot be deleted.')
             }else if(comments.childNodes.length > 1){
-                alert("A news item with comments cannot be deleted.");
+                alert("A news item with comments cannot be deleted.")
             }else{
-                document.getElementById("delete_form").submit();
+                var deleteNewsButton = document.getElementById("delete_confirm");
+                deleteNewsButton.addEventListener("click", function() {
+                    deleteNews(id);
+                });
             }
         }
+
     </script>
 
     <script>

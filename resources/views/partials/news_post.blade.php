@@ -14,7 +14,7 @@
                 <h4 class="col-xl-11"><a class="text-decoration-none text-dark" href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h4>
                     @if(Auth::check() && (($newspost->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))
                         @if(request()->is('news/*'))
-                            <button id="delete_button" class="btn edit-button" data-bs-toggle="modal" data-bs-target="#newsModal-{{ $newspost->id }}"><i class="bi bi-trash"></i></button>
+                            <button id="delete_button" class="btn edit-button" data-bs-toggle="modal" data-bs-target="#newsModal-{{ $newspost->id }}" onclick="deleteButtonEvent( {{$newspost->id}} )"><i class="bi bi-trash"></i></button>
                         @endif
                         <button id="toggle_edit" class="btn edit-button" onclick="displayEditForm()"><i class="bi bi-pencil"></i></button>
                         {{-- isto é para tirar daqui --}}
@@ -66,9 +66,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary fw-bold text-light" data-bs-dismiss="modal">Close</button>
-                <form id="delete_form" method="POST" action="{{ route('delete_news', ['news_id'=>$newspost->id]) }}">
+                <form id="delete_form" method="POST">
                     {{ csrf_field() }}
-                    <button type="button" id="delete_confirm" class="btn btn-primary fw-bold" onclick="deleteButtonEvent()" > Confirm Delete </button>
+                    <button type="button" id="delete_confirm" class="btn btn-primary fw-bold" > Confirm Delete </button>
                 </form>
             </div>
         </div>
