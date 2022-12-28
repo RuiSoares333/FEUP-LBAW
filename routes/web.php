@@ -34,9 +34,9 @@ Route::post('api/new_comment', 'CommentController@create')->name('new_comment');
 Route::post('api/del_comment', 'CommentController@delete')->name('del_comment');
 Route::post('api/edit_comment', 'CommentController@edit')->name('edit_comment');
 Route::post('api/getReplies', 'CommentController@getReplies')->name('get_replies');
-Route::post('api/createReply', 'CommentController@createReply')->name('create_reply');
+Route::post('/api/createReply', 'CommentController@createReply')->name('create_reply');
 Route::post('api/editReply', 'CommentController@editReply')->name('edit_reply');
-Route::post('api/delReply', 'CommentController@delReply')->name('del_reply');
+Route::delete('/api/delReply', 'CommentController@delReply')->name('del_reply');
 /*Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');*/

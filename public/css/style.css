@@ -86,22 +86,9 @@ main{
     margin-left: 10vw;
 }
 
-/* NEWS */
+/* NEWS FEED */
 
-#news > article > header > *{
-    font-size:x-large;
-}
-
-#news > article > header > h2{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-            line-clamp: 2; 
-    -webkit-box-orient: vertical;
-}
-
-#news > article > header > span{
+#news header > h4{
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -110,15 +97,56 @@ main{
     -webkit-box-orient: vertical;
 }
 
-#news > article > div > p{
+#news header > span{
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* number of lines to show */
-            line-clamp: 4; 
+    -webkit-line-clamp: 1; /* number of lines to show */
+            line-clamp: 1; 
     -webkit-box-orient: vertical;
 }
 
+#news #news_content{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+
+/* NEWS */
+
+.news{
+    border-width: 0.15rem !important;
+    border-radius: 1.5rem !important;
+    border-color: transparent !important;
+    background: rgba(255, 255, 255, 0.24) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: blur(4.7px) !important;
+    -webkit-backdrop-filter: blur(4.7px) !important;
+}
+
+#news .news #vote{
+    width: 7.5%;
+}
+
+.news #vote i{
+    font-size:xx-large;
+    margin-top: -1vh;
+    margin-bottom: -1vh;
+}
+
+.edit-button{
+    font-size: x-large;
+    padding: 0;
+    color: var(--bs-gray-800);
+}
+
+.edit-button:hover{
+    color: var(--bs-gray-200);
+}
 
 /* LOGIN */
 
@@ -152,6 +180,10 @@ main{
 .static-form input:focus{
   outline: none;
   background-color: #ebecedaa;
+}
+
+.mini-username{
+    text-decoration: none;
 }
 
 /* RTE */
@@ -203,4 +235,10 @@ main{
 #administer > :nth-child(2){
     margin-right: auto;
     margin-left: 5vw;
+}
+
+/* COMMENT */
+
+#comment_section > *{
+    margin-left: 8.33%
 }

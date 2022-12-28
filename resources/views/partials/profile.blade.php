@@ -7,7 +7,7 @@
             {{ $user->username }}
         </section>
         <section id="reputation" class="mb-3 text-capitalize">
-            {{ $user->reputation() }} reputation
+            <span class="reputation">{{ $user->reputation() }}</span> reputation
         </section>
 
         <div id="administer" class="d-flex flex-row mx-auto">
@@ -30,7 +30,7 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body text-center">
                                 <p>Are you sure you want to <b>permanently</b> delete your account?</p> 
                                 <p>This action is <b>irreversible</b>.</p>
                             </div>

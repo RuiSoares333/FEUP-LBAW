@@ -3,7 +3,7 @@
         <img src="{{asset('pictures/user/' . $user_preview->picture ) }}" class="rounded-circle">
     </section>
     <a id="username" href="/profile/{{$user_preview->id}}">{{ $user_preview->username }}</a>
-    <section id="reputation" class="text-capitalize">
-        {{ $user_preview->reputation() }} reputation
+    <section id="reputation" class="reputation text-capitalize">
+        <span class="reputation">{{ $user_preview->reputation() }}</span> reputation
     </section>
 </article>

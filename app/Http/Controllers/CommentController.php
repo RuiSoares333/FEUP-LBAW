@@ -18,7 +18,7 @@ class CommentController extends Controller
 
         $comment->content = $request->input('content');
 
-        $news_id = $request->input('news_id');
+        $news_id = $request->input('id_news');
 
         $comment->id_news = $news_id;
         $comment->user_id = Auth()->user()->id;

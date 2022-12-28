@@ -30,6 +30,7 @@ class NewsController extends Controller
       foreach($comments as $comment){
         $replies = Comment::where('id_comment', $comment->id)->get();
         $comment->replyCount = count($replies);
+        $comment->hasReplies = $comment->replyCount !== 0;
       }
       $comments->sortBy('reputation');
       $this->authorize('show', $news);
