@@ -9,7 +9,7 @@
     </nav>
 
     <div id="news_body" class="ps-4 w-100">
-        <header >
+        <header>
             <div class="d-flex flex-row justify-content-between">
                 <h4 class="col-xl-11"><a class="text-decoration-none text-dark" href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h4>
                     @if(Auth::check() && (($newspost->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))

@@ -50,7 +50,7 @@
     <div class="bubble"></div>
     <div class="bubble"></div>
 
-    <form class="form-auth static-form d-flex flex-column position-absolute text-center text-light" method="POST" action="{{ route('login') }}">
+    <form class="form-auth static-form d-flex flex-column position-absolute text-center text-light col-11 col-sm-8 col-md-6 col-lg-4 col-xl-3" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <h1 class="h1 mb-5 fw-bold text-uppercase">login</h1>
 

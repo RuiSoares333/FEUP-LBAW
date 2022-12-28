@@ -5,9 +5,9 @@
     @include('partials.header')
     @include('partials.banner')
 
-    <main>
+    <main class="col-12 col-md-9 p-5">
 
-        <section id="news">
+        <section id="news_feed">
             @each('partials.news_post', $news, 'newspost')
         </section>
         

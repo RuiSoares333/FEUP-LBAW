@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top text-uppercase">
-    <div class="container">
-        <div class="d-flex flex-row">
+    <div class="container d-flex flex-row mx-auto col-xl-10 col-md-11 col-12">
+        <div class="d-flex flex-row col-8 justify-content-between">
             <a class="navbar-brand" href="{{ url('/') }}">slcn</a>
 
-            <form role="search" class="input-group" action="{{ route('search') }}">
+            <form role="search" class="input-group col-xl-8 col-7" action="{{ route('search') }}">
                 <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
                 <input id="search-input" class="form-control" type="search" placeholder="what are you looking for?" name="search" value="{{ request('search') }}">
             </form>
@@ -13,7 +13,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div id="navbarResponsive" class="collapse navbar-collapse" >
+        <div id="navbarResponsive" class="collapse navbar-collapse col-100" >
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 @if (Auth::check())
                 <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/logout') }}">logout</a></li>

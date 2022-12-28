@@ -10,7 +10,7 @@
         
     </div>
     
-    <div class="masthead justify-content-end">
+    <div class="justify-content-end">
         @include('partials.news_post', $newspost)
         <div id="comment_section" class="news-comment d-flex flex-column">
             @each('partials.comment', $comments, 'comment')
