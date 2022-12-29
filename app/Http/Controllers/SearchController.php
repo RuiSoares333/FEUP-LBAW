@@ -26,21 +26,34 @@ class SearchController extends Controller
           else {
             $query = join("", $array);
           }
-          $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
+          if ($request->input('filter') == "top") {
+            $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
+            ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
+            ->orderBy('reputation', 'desc')
+            ->get();
+          }
+          else if ($request->input('filter') == "recent") {
+            $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
+            ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
+            ->orderBy('date', 'desc')
+            ->get();
+          }
+          /*$users = User::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
           ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
           ->orderBy('reputation', 'desc')
-          ->get();
-          $users = User::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
-          ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
-          ->orderBy('reputation', 'desc')
-          ->get();
+          ->get();*/
         }
         else {
-          $news = News::orderBy('reputation')->get();
-          $users = User::orderBy('reputation')->get();
+          if ($request->input('filter') == "top") {
+            $news = News::orderBy('reputation', 'desc')->get();
+          //$users = User::orderBy('reputation')->get();
+          }
+          else if ($request->input('filter') == "recent") {
+            $news = News::orderBy('date', 'desc')->get();
+          }
         }
   
-        return view('pages.home', ['news' => $news, 'user' => $users]);
+        return view('pages.home', ['news' => $news, 'user' => array()]);
     }
 
 }
