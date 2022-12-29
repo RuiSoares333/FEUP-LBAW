@@ -62,6 +62,18 @@
         </section>
     </section>
 
+    @if(Auth::check() and (Auth::id() != $user->id))
+    <form id="follow_form" method="POST">
+        {{ csrf_field() }}
+        <input type="hidden" id="id1" name="id1" value={{ Auth::id() }}>
+        <input type="hidden" id="id2" name="id2" value={{ $user->id }}>
+        @if(!Auth::user()->check_follow(Auth::id(), $user->id))
+        <button id="follow_button" class="btn btn-primary fw-bold" type="button">Follow</button>
+        @else
+        <button id="follow_button" class="btn btn-primary fw-bold" type="button">Unfollow</button>
+        @endif
+    </form>
+    @endif
     <section id="news">
         @each('partials.news_post', $user->news()->get(), 'newspost')
     </section>
@@ -69,6 +81,51 @@
 </div>
 
 <script>
+
+    followButton = document.getElementById("follow_button");
+    followButton.addEventListener("click", function() {
+        if (followButton.innerHTML == "Follow") follow();
+        else if (followButton.innerHTML == "Unfollow") unfollow();
+    });
+    async function follow(){
+        let id1 = document.getElementById("id1").value;
+        let id2 = document.getElementById("id2").value;
+        const response = await fetch("/api/follow", {
+            method: 'post',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                'csrf-token': document.querySelector('meta[name="csrf-token"]').content,
+                'id1': id1,
+                'id2': id2
+            })
+        });
+        const replies = await response.json(); 
+        followButton.innerHTML = "Unfollow";
+    }
+
+    async function unfollow(){
+        let id1 = document.getElementById("id1").value;
+        let id2 = document.getElementById("id2").value;
+        const response = await fetch("/api/unfollow", {
+            method: 'delete',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                'csrf-token': document.querySelector('meta[name="csrf-token"]').content,
+                'id1': id1,
+                'id2': id2
+            })
+        });
+        const replies = await response.json(); 
+        followButton.innerHTML = "Follow";
+    }
 
     triggerDeleteButton = document.getElementById("trigger_delete");
     triggerDeleteButton.addEventListener("click", triggerDelete);
