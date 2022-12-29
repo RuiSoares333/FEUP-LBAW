@@ -1,4 +1,3 @@
-
 <nav id="side-nav">
 
     <div class="masthead">
@@ -13,7 +12,6 @@
     </div>
 
     <ol>
-        <li> <span> @foreach($tags as $tag) {{$tag-> tag_name}} </span> @endforeach </li>
         <li>Tag 1 <span>x follows</span></li>
         <li>Tag 2 <span>x follows</span></li>
         <li>Tag 3 <span>x follows</span></li>

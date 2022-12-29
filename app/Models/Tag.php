@@ -33,7 +33,7 @@ class Tag extends Model
             function ($join) {
                 $join->on('tag.id', '=', 'followers_count.id_tag');
             }
-        )->orderBy('count', 'desc')->limit(5)->get();        
+        )->orderBy('count', 'desc')->limit(5)->get();
 
         return $top_tags;
     }
