@@ -26,6 +26,10 @@
 @section('scripts')
 
     <script>
+        document.body.style.background = "linear-gradient(0deg, #bf6324 0%, #b92a4c 100%)";
+    </script>
+
+    <script>
         async function deleteNews(id){
             const response = await fetch("/api/news/"+id, {
                 method: 'delete',

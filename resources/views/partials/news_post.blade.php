@@ -17,24 +17,13 @@
                             <button id="delete_button" class="btn edit-button" data-bs-toggle="modal" data-bs-target="#newsModal-{{ $newspost->id }}" onclick="deleteButtonEvent( {{$newspost->id}} )"><i class="bi bi-trash"></i></button>
                         @endif
                         <button id="toggle_edit" class="btn edit-button" onclick="displayEditForm()"><i class="bi bi-pencil"></i></button>
-                        {{-- isto é para tirar daqui --}}
-                        {{-- <form id="edit_form" method="POST" class="disapear" action="{{ route('update_news', ['news_id'=>$newspost->id]) }}" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            Title
-                            <input class="new_news_input" type="text" name="title" value= "{{ $newspost->title }}">
-                            tags
-                            <textarea rows="10" cols="60" class="new_news_input"  type="text" name="content"> {!! $newspost->content !!} </textarea>
-                            <input type="file" name="picture" accept="image/png, image/jpeg"/>
-                            <input type="hidden" name="news_id" value = {{$newspost->id}}>
-                            <button id="edit_button" class="btn-submit mx-3 rounded-2" type="submit">Confirm</button>
-                        </form> --}}
                     @endif
             </div>
             <h4 class="col-xl-11"> Tags: @foreach($newspost->tags as $tag)[ {{ $tag->tag_name }} ] @endforeach</h4>
             <span class="my-auto"><a class="text-decoration-none text-dark" href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>
         </header>
     
-        <div id="news_content">{!! $newspost->content !!} </div>
+        <div id="news_content" class="news_content">{!! $newspost->content !!} </div>
     
 
         @if(request()->is('news/*'))

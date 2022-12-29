@@ -1,4 +1,4 @@
-<nav id="side-nav" class="d-none d-md-inline col-md-2 row-md-3">
+<nav id="side-nav" class="d-none d-lg-inline col-lg-2">
     <div class="masthead">
         <div class="masthead-content text-center text-capitalize text-light">
             <h4 class="mt-4">super legit collaborative news</h4>

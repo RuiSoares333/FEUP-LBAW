@@ -1,7 +1,7 @@
 <div>
     <section id="intro" class="mx-auto text-center border-bottom py-5">
         <section id="profile-picture" class="mb-3">
-            <img src="{{asset('pictures/user/' . $user->picture ) }}" class="rounded-circle">
+            <img src="{{asset('pictures/user/' . $user->picture ) }}" class="rounded-circle col-6 col-lg-3">
         </section>
         <section id="username" class="mb-3">
             {{ $user->username }}
@@ -10,15 +10,15 @@
             <span class="reputation">{{ $user->reputation() }}</span> reputation
         </section>
 
-        <div id="administer" class="d-flex flex-row mx-auto">
+        <div id="administer" class="d-flex flex-column mx-auto">
         @if(Auth::check() and (Auth::id() == $user->id || Auth::user()->isAdmin()))
-            <form id="edit" method="POST" action="{{route('edit_profile', ['id' => $user->id])}}">
+            <form id="edit" method="POST" class="mb-2" action="{{route('edit_profile', ['id' => $user->id])}}">
                 {{ csrf_field() }}
                 <button class="btn btn-primary rounded-2 fw-bold" type="submit">Edit</button>
             </form>
             @if($user->id != 5)
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" id = "trigger_delete">
+                <button type="button" class="btn btn-primary fw-bold col-4 col-lg-2 mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal" id = "trigger_delete">
                     Delete Account
                 </button>
                 
@@ -51,12 +51,12 @@
 
     </section>
 
-    <section id="follows" class="d-flex flex-row border-bottom mx-auto mb-5 py-5">
-        <section id="following" class="text-center d-flex flex-column border bg-light rounded-2">
+    <section id="follows" class="d-flex flex-row border-bottom mb-5 py-5">
+        <section id="following" class="text-center d-flex flex-column py-2 px-4 border bg-light rounded-2 me-5 ms-auto">
             <p class="h6">Following</p>
             <a class="h3" ref="/following">{{count($user->following()->get())}}</a>
         </section>
-        <section id="followers" class="text-center d-flex flex-column border bg-light rounded-2 ml-5 mr-auto">
+        <section id="followers" class="text-center d-flex flex-column py-2 px-4 border bg-light rounded-2 ms-5 me-auto">
             <p class="h6">Followers</p>
             <a class="h3" href="/followers">{{count($user->followers()->get())}}</a>
         </section>

@@ -4,7 +4,7 @@
 
     @include('partials.header')
 
-    <section class="p-3 p-lg-5 my-5 col-lg-7 container-xl">
+    <section class="p-3 p-lg-5 my-5 col-12 col-lg-7 container-xl">
         <h2 class="h2 fw-bold">Create a Post</h2>
         <hr class="rounded">
 
@@ -30,7 +30,7 @@
                 <section id="tags" class="mb-5">
                     <label for="select-tags" class="h5 form-label">Tags - </label> <span>Select 5 tags at most</span>
                         <div id="tag-list" style="overflow-y: hidden; max-height: 15vh;" required>   
-                            <input id="radio-for-checkboxes" type="radio" name="radio-for-required-checkboxes" required/> <!-- needs to be hidden in css -->
+                            <input id="radio-for-checkboxes" class="d-none" type="radio" name="radio-for-required-checkboxes" required/> <!-- needs to be hidden in css -->
                             @foreach($tags as $tag)
                                 <label for="{{ $tag->tag_name }}">
                                     <input type="checkbox" id="{{ $tag->tag_name }}" class="check" value="{{ $tag->tag_name }}" name="tags[]"/> 
