@@ -30,10 +30,11 @@
                         </form> --}}
                     @endif
             </div>
+            <h4 class="col-xl-11"> Tags: @foreach($newspost->tags as $tag)[ {{ $tag->tag_name }} ] @endforeach</h4>
             <span class="my-auto"><a class="text-decoration-none text-dark" href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>
         </header>
     
-        <div id="news_content">{!! $newspost->content !!}</div>
+        <div id="news_content">{!! $newspost->content !!} </div>
     
 
         @if(request()->is('news/*'))

@@ -15,14 +15,22 @@ class News extends Model
      */
 
     protected $fillable = [
-        'reputation','title', 'content', 'picture'
+        'reputation',
+        'title',
+        'content',
+        'picture'
     ];
 
     /**
      * The user this news belongs to
      */
-    public function author() {
-        return $this->belongsTo('App\Models\User','user_id');
+    public function author()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    public function tags() {
+        return $this->belongsToMany('App\Models\Tag', 'news_tag', 'id_news', 'id_tag');
     }
 
 }
