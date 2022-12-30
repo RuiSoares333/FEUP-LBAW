@@ -18,6 +18,8 @@ Route::get('/search', 'SearchController@search')->name('search');
 //Route::get('news', 'NewsController@list');
 Route::get('news/{id}', 'NewsController@show');
 Route::get('rte', 'NewsController@rte');
+Route::get('/rte/{id}', 'NewsController@edit');
+
 
 // User
 Route::get('profile/{id}', 'UserController@show')->name('profile');

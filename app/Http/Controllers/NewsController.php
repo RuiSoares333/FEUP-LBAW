@@ -167,4 +167,26 @@ class NewsController extends Controller
 
     return redirect('news/'. $news->id);
   }
+
+
+  public function edit($id){
+    if (!Auth::check()) return redirect('/login');
+
+    $news = News::find($id);
+    $tags = DB::table('tag')->get();
+    $tags = $tags->sortBy('tag_name');
+
+    $this->authorize('show', $news);
+
+    foreach($tags as $tag){
+      $tag->checked = false;
+      foreach($news->tags as $newstag){
+        if($tag->id === $newstag->id){
+          $tag->checked = true;
+        }
+      }
+    }
+
+    return view('pages.edit_news', ['newspost' => $news, 'tags' => $tags]); 
+  }
 }

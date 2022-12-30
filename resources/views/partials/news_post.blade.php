@@ -16,7 +16,7 @@
                         @if(request()->is('news/*'))
                             <button id="delete_button" class="btn edit-button" data-bs-toggle="modal" data-bs-target="#newsModal-{{ $newspost->id }}" onclick="deleteButtonEvent( {{$newspost->id}} )"><i class="bi bi-trash"></i></button>
                         @endif
-                        <button id="toggle_edit" class="btn edit-button" onclick="displayEditForm()"><i class="bi bi-pencil"></i></button>
+                        <a id="toggle_edit" href="/rte/{{ $newspost->id }}" class="btn edit-button"><i class="bi bi-pencil"></i></a>
                     @endif
             </div>
             <span class="my-auto"><a class="text-decoration-none text-dark" href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>

@@ -303,6 +303,10 @@ body{
     color: var(--bs-gray-800);
 }
 
+.btn:focus{
+    box-shadow: none;
+}
+
 /* RTE */
 #tag-list{
     display: grid;
