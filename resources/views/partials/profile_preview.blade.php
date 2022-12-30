@@ -5,6 +5,18 @@
         <a class="mini-username mb-2 h4" href="/profile/{{$user_preview->id}}">{{ $user_preview->username }}</a>
         <span class="mt-2">{{ $user_preview->reputation() }} reputation</span> 
     </div>
-    <button class="ms-auto my-auto h-25 btn btn-outline-dark">Follow</button>
+    @if(Auth::check() and (Auth::id() != $user_preview->id))
+        <form id="follow_form" class="ms-auto my-auto" method="POST">
+            {{ csrf_field() }}
+            <input type="hidden" id="id1" name="id1" value={{ Auth::id() }}>
+            <input type="hidden" id="id2" name="id2" value={{ $user_preview->id }}>
+            
+            @if(!Auth::user()->check_follow(Auth::id(), $user_preview->id))
+                <button id="follow_button" class="h-25 btn btn-outline-dark" type="button">Follow</button>
+            @else
+                <button id="follow_button" class="h-25 btn btn-outline-dark" type="button">Unfollow</button>
+            @endif
+        </form>
+    @endif
 </article>
 @endif

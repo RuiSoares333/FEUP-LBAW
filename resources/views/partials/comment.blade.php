@@ -1,7 +1,7 @@
 <article id="comment_{{$comment->id}}" class="news col-xl-8 my-4 p-3 border bg-light" data-id="{{ $comment->id }}">
     <section id="comment" class="comment" >
         <section id="author_tools" class="d-flex flex-row justify-content-between">
-            <h4 class="col-xl-11">{{$comment->author()->get()->first()->username}}</h4>
+            <p class="col-xl-11 mb-1">{{$comment->author()->get()->first()->username}}</p>
 
             @if(Auth::check() && (($comment->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))
                 <button id="delete_button" class="btn edit-button" data-bs-toggle="modal" data-bs-target="#commentModal-{{ $comment->id }}"><i class="bi bi-trash"></i></button>
@@ -9,7 +9,7 @@
             @endif
         </section>
 
-        <h4 class="my-auto">{{$comment -> content}}</h4>
+        <h4 class="my-auto ms-3">{{$comment -> content}}</h4>
     </section>
 
     @if(Auth::check() && (($comment->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))

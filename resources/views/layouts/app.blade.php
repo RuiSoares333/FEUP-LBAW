@@ -14,7 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
@@ -32,17 +31,17 @@
   </body>
 
   <script>
-    const follow = document.getElementsByClassName('reputation');
-    for (i = 0; i < follow.length; i++) {
-        const item = parseInt(follow[i].innerHTML);
+    const reputations = document.getElementsByClassName('reputation');
+    for (i = 0; i < reputations.length; i++) {
+        const item = parseInt(reputations[i].innerHTML);
         if(item>=1000000000){
-            follow[i].innerHTML = (item/1000000000).toFixed(item % 1000000000 != 0)+'B';
+          reputations[i].innerHTML = (item/1000000000).toFixed(item % 1000000000 != 0)+'B';
         }
         else if(item>=1000000){
-            follow[i].innerHTML = (item/1000000).toFixed(item % 1000000 != 0)+'M';
+          reputations[i].innerHTML = (item/1000000).toFixed(item % 1000000 != 0)+'M';
         }
         else if(item>=1000){
-            follow[i].innerHTML = (item/1000).toFixed(item % 1000 != 0)+'k';
+          reputations[i].innerHTML = (item/1000).toFixed(item % 1000 != 0)+'k';
         }
     }
   </script>

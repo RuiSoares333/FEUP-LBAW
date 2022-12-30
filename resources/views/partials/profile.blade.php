@@ -18,9 +18,21 @@
             </form>
             @if($user->id != 5)
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary fw-bold col-4 col-lg-2 mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal" id = "trigger_delete">
+                <button type="button" class="btn btn-primary fw-bold col-4 col-lg-2 mx-auto mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id = "trigger_delete">
                     Delete Account
                 </button>
+
+                @if(Auth::check() and (Auth::id() != $user->id))
+                <form id="follow_form" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" id="id1" name="id1" value={{ Auth::id() }}>
+                    <input type="hidden" id="id2" name="id2" value={{ $user->id }}>
+                    @if(!Auth::user()->check_follow(Auth::id(), $user->id))
+                    <button id="follow_button" class="btn btn-outline-dark" type="button">Follow</button>
+                    @else
+                    <button id="follow_button" class="btn btn-dark" type="button">Unfollow</button>
+                    @endif
+                </form>
                 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,17 +74,6 @@
         </section>
     </section>
 
-    @if(Auth::check() and (Auth::id() != $user->id))
-    <form id="follow_form" method="POST">
-        {{ csrf_field() }}
-        <input type="hidden" id="id1" name="id1" value={{ Auth::id() }}>
-        <input type="hidden" id="id2" name="id2" value={{ $user->id }}>
-        @if(!Auth::user()->check_follow(Auth::id(), $user->id))
-        <button id="follow_button" class="btn btn-primary fw-bold" type="button">Follow</button>
-        @else
-        <button id="follow_button" class="btn btn-primary fw-bold" type="button">Unfollow</button>
-        @endif
-    </form>
     @endif
     <section id="news">
         @each('partials.news_post', $user->news()->get(), 'newspost')
@@ -84,8 +85,15 @@
 
     followButton = document.getElementById("follow_button");
     followButton.addEventListener("click", function() {
-        if (followButton.innerHTML == "Follow") follow();
-        else if (followButton.innerHTML == "Unfollow") unfollow();
+        if (followButton.innerHTML == "Follow"){
+            follow();
+            followButton.classList.toggle('btn-dark')
+            followButton.classList.toggle('btn-outline-dark')
+        }
+        else if (followButton.innerHTML == "Unfollow"){
+            unfollow();
+            followButton.classList.toggle('btn-dark')
+            followButton.classList.toggle('btn-outline-dark')        } 
     });
     async function follow(){
         let id1 = document.getElementById("id1").value;

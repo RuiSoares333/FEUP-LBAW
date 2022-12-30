@@ -4,7 +4,7 @@
 
     @include('partials.header')
 
-    <section class="p-3 p-lg-5 my-5 col-12 col-lg-7 container-xl">
+    <section class="p-3 p-lg-5 my-5 col-12 col-lg-10 container-xl">
         <h2 class="h2 fw-bold">Create a Post</h2>
         <hr class="rounded">
 
@@ -65,13 +65,22 @@
         var editor_config = {
             path_absolute : "{{ URL::to('/') }}/",
             selector: "textarea#editor-body",
-            plugins: [
-                "a11ychecker advcode casechange formatpainter",
-                "linkchecker autolink lists checklist",
-                "media mediaembed pageembed permanentpen",
-                "powerpaste table advtable tinymcespellchecker"
-            ],
-            toolbar: "formatselect | fontselect | bold italic strikethrough forecolor backcolor formatpainter | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | link insertfile image | removeformat | code | addcomment | checklist | casechange",
+            plugins: 'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable export',
+            tinydrive_token_provider: 'URL_TO_YOUR_TOKEN_PROVIDER',
+            tinydrive_dropbox_app_key: 'YOUR_DROPBOX_APP_KEY',
+            tinydrive_google_drive_key: 'YOUR_GOOGLE_DRIVE_KEY',
+            tinydrive_google_drive_client_id: 'YOUR_GOOGLE_DRIVE_CLIENT_ID',
+            mobile: {
+                plugins: 'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker textpattern noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable'
+            },
+            menu: {
+                tc: {
+                title: 'Comments',
+                items: 'addcomment showcomments deleteallconversations'
+                }
+            },
+            menubar: 'file edit view insert format tools table tc help',
+            toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
             relative_urls: false,
             file_browser_callback : function(field_name, url, type, win) {
                 var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
@@ -86,12 +95,11 @@
                     file : cmsURL,
                     title : 'Filemanager',
                     width : x * 0.8,
-                    height : y * 0.8,
+                    height : y * 1,
                     resizable : "yes",
                     close_previous : "no"
                 })
             },
-            newline_behavior: 'invert'
         };
         tinymce.init(editor_config);
     </script>

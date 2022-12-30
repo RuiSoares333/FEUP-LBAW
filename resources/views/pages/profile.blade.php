@@ -14,17 +14,17 @@
 </script>
 
 <script>
-    const follow = document.getElementsByClassName('h3');
-    for (i = 0; i < follow.length; i++) {
-        const item = parseInt(follow[i].innerHTML);
+    const followProfile = document.getElementsByClassName('h3');
+    for (i = 0; i < followProfile.length; i++) {
+        const item = parseInt(followProfile[i].innerHTML);
         if(item>=1000000000){
-            follow[i].innerHTML = (item/1000000000).toFixed(item % 1000000000 != 0)+'B';
+            followProfile[i].innerHTML = (item/1000000000).toFixed(item % 1000000000 != 0)+'B';
         }
         else if(item>=1000000){
-            follow[i].innerHTML = (item/1000000).toFixed(item % 1000000 != 0)+'M';
+            followProfile[i].innerHTML = (item/1000000).toFixed(item % 1000000 != 0)+'M';
         }
         else if(item>=1000){
-            follow[i].innerHTML = (item/1000).toFixed(item % 1000 != 0)+'k';
+            followProfile[i].innerHTML = (item/1000).toFixed(item % 1000 != 0)+'k';
         }
     } 
 

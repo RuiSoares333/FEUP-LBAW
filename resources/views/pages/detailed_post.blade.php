@@ -10,7 +10,7 @@
         
     </div>
     
-    <div class="justify-content-end">
+    <div class="detailed-post justify-content-end">
         @include('partials.news_post', $newspost)
         <div id="comment_section" class="news-comment d-flex flex-column">
             @each('partials.comment', $comments, 'comment')
@@ -27,6 +27,16 @@
 
     <script>
         document.body.style.background = "linear-gradient(0deg, #bf6324 0%, #b92a4c 100%)";
+    </script>
+
+    <script>
+        const news = document.getElementsByClassName("news_content")
+        for(var post of news){
+            var images = post.querySelectorAll("img")
+            for(var i=0; i < images.length; i++){
+                images[i].classList.toggle('img-fluid')
+            }
+        }
     </script>
 
     <script>
@@ -168,11 +178,11 @@
 
                 for(const reply of replies){
                     var replyContent = `
-                    <article id="reply_`+reply.id+`" class="news col-xl-10 my-4 p-3 border bg-light" data-id="`+reply.id+`">
+                    <article id="reply_`+reply.id+`" class="news reply col-xl-10 my-4 p-3 border bg-light" data-id="`+reply.id+`">
 
                         <section id="reply" class="comment" >
                             <section id="author_tools" class="d-flex flex-row justify-content-between">
-                                <h4 class="col-xl-11">`+reply.author+`</h4>
+                                <p class="col-xl-11 mb-1">`+reply.author+`</p>
 
                                 @if(Auth::check() && (`+reply.user_id+` == Auth::user()->id) || Auth::user()->isAdmin())
                                     <button id="delete_button" class="btn edit-button" data-bs-toggle="modal" data-bs-target="#replyModal-`+reply.id+`"><i class="bi bi-trash"></i></button>

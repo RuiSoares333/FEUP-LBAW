@@ -8,10 +8,10 @@
         <i class="mx-auto bi bi-caret-down"></i>
     </nav>
 
-    <div id="news_body" class="ps-4 w-100">
+    <div id="news_body" class="ps-4 pe-5 w-100">
         <header>
-            <div class="d-flex flex-row justify-content-between">
-                <h4 class="col-xl-11"><a class="text-decoration-none text-dark" href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h4>
+            <div class="d-flex flex-row  justify-content-between">
+                <h4 class="col-xl-11 my-0"><a class="text-decoration-none text-dark" href="/news/{{ $newspost->id }}">{{ $newspost->title }}</a></h4>
                     @if(Auth::check() && (($newspost->author()->get()->first()->id == Auth::user()->id) || Auth::user()->isAdmin()))
                         @if(request()->is('news/*'))
                             <button id="delete_button" class="btn edit-button" data-bs-toggle="modal" data-bs-target="#newsModal-{{ $newspost->id }}" onclick="deleteButtonEvent( {{$newspost->id}} )"><i class="bi bi-trash"></i></button>
@@ -19,8 +19,12 @@
                         <button id="toggle_edit" class="btn edit-button" onclick="displayEditForm()"><i class="bi bi-pencil"></i></button>
                     @endif
             </div>
-            <h4 class="col-xl-11"> Tags: @foreach($newspost->tags as $tag)[ {{ $tag->tag_name }} ] @endforeach</h4>
             <span class="my-auto"><a class="text-decoration-none text-dark" href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>
+            <div class="row-cols-2 row-cols-lg-3 my-3"> 
+                @foreach($newspost->tags as $tag)
+                    <button class="btn tag-button-empty col-5 col-sm-4 col-md-3 col-lg-3 p-1 m-1">{{ $tag->tag_name }}</button>
+                @endforeach
+            </div>
         </header>
     
         <div id="news_content" class="news_content">{!! $newspost->content !!} </div>
