@@ -9,8 +9,9 @@
         <hr class="rounded">
 
         <section class="container w-100 mt-4 form-group">
-            <form method="POST" enctype="multipart/form-data" id="create_news_form" action="{{ route('create_news') }}" autocomplete="off">
+            <form method="POST" enctype="multipart/form-data" id="create_news_form" name="edit_form" action="{{ route('update_news') }}" autocomplete="off">
                 {{ csrf_field() }}
+                <input type="hidden" name="news_post_id" value="{{$newspost->id}}">
                 <section id="title" class="mb-5">
                     <label for="new-post-title" class="h5 form-label">Title</label>
                     <input type="text" class="form-control" id="new-post-title" name="title" value="{{ $newspost -> title }}" required>
@@ -53,7 +54,7 @@
                         <button type="button" class="col-5 col-md-4 col-lg-3 btn fw-bold"
                                 onclick="window.location.href=document.referrer">Cancel
                         </button>
-                        <button type="submit" id="create_news_button" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
+                        <button type="button" onclick="submitEdit()" id="create_news_button" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Edit</button>
                     </div>
                 </section>
             </form>
@@ -133,22 +134,10 @@
         });
     </script>
 
-
-
-
-
     <script>
-        /*var newsCreateButton = document.getElementById("create_news_button");
-        let createNewsForm = document.getElementById("create_news_form");
-        function createNews() {
-            let content = tinymce.activeEditor.getContent();
-            content.replace(/\s/g, '');
-            if (content == "") {
-                createNewsForm.preventDefault();
-            }
-            else createNewsForm.submit();
+        function submitEdit(){
+            document.forms["edit_form"].submit(); 
         }
-        newsCreateButton.addEventListener("click", createNews);*/
     </script>
 
     <script>

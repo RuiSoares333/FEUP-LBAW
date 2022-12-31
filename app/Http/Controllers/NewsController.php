@@ -114,8 +114,9 @@ class NewsController extends Controller
       return response()->json(["success" => true], 200);
     }
 
-  public function update(Request $request, $id)
+  public function update(Request $request)
   {
+    $id = $request->input('news_post_id');
     $news = News::find($id);
     $this->authorize('update', $news);
 
@@ -130,37 +131,38 @@ class NewsController extends Controller
     }
     $news->save();
 
+    
+    //Remove old tags
+    foreach ($news->tags as $tag) {
+      if (!in_array($tag->name, $request->input('tags'))) {
+          try {
+              DB::table('news_tag')->where(['id_news' => $news->id, 'id_tag' => $tag->id])->delete();
+          } catch (ValidationException $e) {
+              DB::rollBack();
+              return back()->withErrors(['dberror' => $e->getMessage()])->withInput();
+          } catch (\Exception $e) {
+              DB::rollBack();
+              throw $e;
+          }
+      }
+    }
+
 
     $id_news = $news->id;
 
-      foreach ($request->input('tags',[]) as $tag_name) { 
-        try {
-            DB::table('tag')->insertOrIgnore([['tag_name' => $tag_name]]);
+    foreach ($request->input('tags',[]) as $tag_name) { 
+      try {
+          DB::table('tag')->insertOrIgnore([['tag_name' => $tag_name]]);
 
-            $id_tag = Tag::firstWhere('tag_name', $tag_name)->id;
-            DB::table('news_tag')->insert(['id_news' => $id_news, 'id_tag' => $id_tag]);
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return back()->withErrors(['dberror' => $e->getMessage()])->withInput();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
-    }
-
-      //Remove old tags
-      foreach ($news->tags as $tag) {
-        if (!in_array($tag->name, $request->input('tags'))) {
-            try {
-                DB::table('news_tag')->where(['id_news' => $news->id, 'id_tag' => $tag->id])->delete();
-            } catch (ValidationException $e) {
-                DB::rollBack();
-                return back()->withErrors(['dberror' => $e->getMessage()])->withInput();
-            } catch (\Exception $e) {
-                DB::rollBack();
-                throw $e;
-            }
-        }
+          $id_tag = Tag::firstWhere('tag_name', $tag_name)->id;
+          DB::table('news_tag')->insert(['id_news' => $id_news, 'id_tag' => $id_tag]);
+      } catch (ValidationException $e) {
+          DB::rollBack();
+          return back()->withErrors(['dberror' => $e->getMessage()])->withInput();
+      } catch (\Exception $e) {
+          DB::rollBack();
+          throw $e;
+      }
     }
 
     DB::commit();

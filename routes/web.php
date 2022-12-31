@@ -33,7 +33,7 @@ Route::delete('/api/unfollow', 'UserController@unfollow');
 // API
 Route::post('/api/news', 'NewsController@create')->name('create_news');
 Route::delete('api/news/{news_id}', 'NewsController@delete')->name('delete_news');
-Route::post('api/news/update/{news_id}', 'NewsController@update')->name('update_news');
+Route::post('api/news/update', 'NewsController@update')->name('update_news');
 Route::post('api/new_comment', 'CommentController@create')->name('new_comment');
 Route::post('api/del_comment', 'CommentController@delete')->name('del_comment');
 Route::post('api/edit_comment', 'CommentController@edit')->name('edit_comment');
