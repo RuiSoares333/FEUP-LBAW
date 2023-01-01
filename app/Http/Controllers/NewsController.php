@@ -50,9 +50,23 @@ class NewsController extends Controller
      */
     public function list()
     {
-        $news = News::orderBy('reputation', 'desc')->get();
+        $news = News::orderBy('date', 'desc')->get();
         $user = array();
         return view('pages.home', ['news' => $news, 'user' => $user]);
+    }
+
+    public function listBy(Request $request) 
+    {
+      if ($request->input('filter') == "top") {
+        $news = News::orderBy('reputation', 'desc')->get();
+        $users = array();
+        return view('pages.home', ['news' => $news, 'user' => $users]);
+      }
+      else if ($request->input('filter') == "recent") {
+        $news = News::orderBy('date', 'desc')->get();
+        $users = array();
+        return view('pages.home', ['news' => $news, 'user' => $users]);
+      }
     }
 
     /**

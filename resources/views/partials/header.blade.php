@@ -3,9 +3,34 @@
         <div class="d-flex flex-row col-10 justify-content-around">
             <a class="navbar-brand-name fw-bold h2" href="{{ url('/') }}">slcn</a>
 
-            <form role="search" class="input-group w-75" action="{{ route('search') }}">
-                <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
-                <input id="search-input" class="form-control" type="search" placeholder="what are you looking for?" name="search" value="{{ request('search') }}">
+            <form role="search" class="input-group" action="{{ route('search') }}">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort By:
+                    </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                @if(request('filter') == "top")
+                                <input type="radio" name="filter" id="top" value="top" checked/>
+                                @else
+                                <input type="radio" name="filter" id="top" value="top"/>
+                                @endif
+                                <label for="top">Highest Reputation</label>
+                            </li>
+                            <li>
+                                @if(request('filter') == "recent")
+                                <input type="radio" name="filter" id="recent" value="recent" checked/>
+                                @elseif(!request('filter'))
+                                <input type="radio" name="filter" id="recent" value="recent" checked/>
+                                @else
+                                <input type="radio" name="filter" id="recent" value="recent"/>
+                                @endif
+                                <label for="recent">Most Recent</label>
+                            </li>
+                        </ul>
+                        <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
+                        <input id="search-input" class="form-control" type="search" placeholder="what are you looking for?" name="search" value="{{ request('search') }}">
+                </div>
             </form>
         </div>
 
