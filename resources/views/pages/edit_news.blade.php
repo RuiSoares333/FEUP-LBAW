@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page-title', 'Create News Post')
+@section('page-title', 'Edit News Post')
 @section('content')
 
     @include('partials.header')
@@ -100,7 +100,7 @@
                     file : cmsURL,
                     title : 'Filemanager',
                     width : x * 0.8,
-                    height : y * 1,
+                    height : y * 0.8,
                     resizable : "yes",
                     close_previous : "no"
                 })

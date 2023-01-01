@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Profile')
+@section('page-title', 'Profile')
 @section('content')
 
     @include('partials.header')
