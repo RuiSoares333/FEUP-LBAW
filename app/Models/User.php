@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Auth;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -40,7 +41,7 @@ class User extends Authenticatable
 
     public function reputation() {
         if(Auth::check()) {
-            $news = Auth::user()->news()->get();
+            $news = $this->news()->get();
             $reputation = 0;
             foreach($news as $post) {
                 $reputation += $post->reputation;
@@ -59,5 +60,11 @@ class User extends Authenticatable
     }
     public function isAdmin(){
         return $this->is_admin;
+    }
+
+    public function check_follow($id1, $id2) {
+        $follows = DB::select('select * from follows where id1 = ? and id2 = ?', [$id1, $id2]);
+        if ($follows == null) return false;
+        else return true;
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Edit Profile')
+@section('page-title', 'Edit Profile')
 
 @section('content')
 
@@ -7,7 +7,7 @@
 
     @if(auth::check())
     <div id="form-newspost" class="bubbles">
-        <form class="edit_profile_username static-form d-flex flex-column position-absolute text-center text-light" method="POST" action="{{ route('edit_profile_api', ['id' => $user->id]) }}" enctype="multipart/form-data">
+        <form class="edit_profile_username static-form d-flex flex-column position-absolute text-center text-light col-11 col-sm-8 col-md-6 col-lg-4 col-xl-3" method="POST" action="{{ route('edit_profile_api', ['id' => $user->id]) }}" enctype="multipart/form-data">
             <h1 class="my-3">Edit Profile</h1>
             {{ csrf_field() }}
             <input type="hidden" name="id" id="edit_id" value="{{$user->id}}">

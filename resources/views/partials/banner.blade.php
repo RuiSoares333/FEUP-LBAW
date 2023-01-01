@@ -1,5 +1,4 @@
-<nav id="side-nav">
-
+<nav id="side-nav" class="d-none d-lg-inline col-lg-3 col-xl-2">
     <div class="masthead">
         <div class="masthead-content text-center text-capitalize text-light">
             <h4 class="mt-4">super legit collaborative news</h4>
@@ -19,5 +18,6 @@
         <li>Tag 5 <span>x follows</span></li>
     </ol>
 
-    <a href="{{ url('rte') }}"><button class="rounded-pill border-0 py-2 px-4 text-light">Share Your Story</button></a>
+    <a href="{{ url('rte') }}" class="col-10 btn btn-primary rounded-pill border-0 py-2 px-4 text-light ">Share Your Story</button></a>
+    <a href="{{ url('about_us') }}">About Us</a>
 </nav>

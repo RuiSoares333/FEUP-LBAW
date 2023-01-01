@@ -8,7 +8,7 @@ use App\Models\Comment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
-class COmmentPolicy
+class CommentPolicy
 {
     use HandlesAuthorization;
 

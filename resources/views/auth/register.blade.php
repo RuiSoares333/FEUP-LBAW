@@ -50,7 +50,7 @@
     <div class="bubble"></div>
     <div class="bubble"></div>
 
-    <form class="form-auth static-form d-flex flex-column position-absolute text-center text-light" method="POST" action="{{ route('register') }}">
+    <form class="form-auth static-form d-flex flex-column position-absolute text-center text-light col-11 col-sm-8 col-md-6 col-lg-5 col-xl-3" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
             <h1 class="h1 mb-5 fw-bold text-uppercase">register</h1>
 
@@ -79,7 +79,7 @@
 
             <button class="w-100 btn btn-lg btn-primary fw-bolder text-uppercase" type="submit">Register</button>
             <a class="w-100 btn button-outline-primary fw-bolder text-light text-uppercase" href="{{ route('login') }}">already have an account?</a>
-            <p class="mt-5 mb-3 text-light">© SLCN2022</p>
+            <p class="mt-5 mb-3 text-light">© SLCN2023</p>
         </form>
 
 </div>

@@ -8,14 +8,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('page-title') | SLCN</title>
 
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/text.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
@@ -31,4 +29,21 @@
     @yield('content')
     @yield('scripts')
   </body>
+
+  <script>
+    const reputations = document.getElementsByClassName('reputation');
+    for (i = 0; i < reputations.length; i++) {
+        const item = parseInt(reputations[i].innerHTML);
+        if(item>=1000000000){
+          reputations[i].innerHTML = (item/1000000000).toFixed(item % 1000000000 != 0)+'B';
+        }
+        else if(item>=1000000){
+          reputations[i].innerHTML = (item/1000000).toFixed(item % 1000000 != 0)+'M';
+        }
+        else if(item>=1000){
+          reputations[i].innerHTML = (item/1000).toFixed(item % 1000 != 0)+'k';
+        }
+    }
+  </script>
+
 </html>

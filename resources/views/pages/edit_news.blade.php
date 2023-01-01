@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page-title', 'Create News Post')
+@section('page-title', 'Edit News Post')
 @section('content')
 
     @include('partials.header')
@@ -9,11 +9,12 @@
         <hr class="rounded">
 
         <section class="container w-100 mt-4 form-group">
-            <form method="POST" enctype="multipart/form-data" id="create_news_form" action="{{ route('create_news') }}" autocomplete="off">
+            <form method="POST" enctype="multipart/form-data" id="create_news_form" name="edit_form" action="{{ route('update_news') }}" autocomplete="off">
                 {{ csrf_field() }}
+                <input type="hidden" name="news_post_id" value="{{$newspost->id}}">
                 <section id="title" class="mb-5">
                     <label for="new-post-title" class="h5 form-label">Title</label>
-                    <input type="text" class="form-control" id="new-post-title" name="title" value="{{ old('title') }}" required>
+                    <input type="text" class="form-control" id="new-post-title" name="title" value="{{ $newspost -> title }}" required>
                     @foreach($errors->get('title') as $error)
                         <li class="error">{{$error}}</li>
                     @endforeach
@@ -21,7 +22,7 @@
 
                 <section id="body" class="mb-5">
                     <label for="editor-body" class="h5 form-label">Content</label>
-                    <textarea id="editor-body" name="content"></textarea>
+                    <textarea id="editor-body" name="content">{!! $newspost->content !!}</textarea>
                     @foreach($errors->get('body') as $error)
                         <li class="error">{{$error}}</li>
                     @endforeach
@@ -33,7 +34,11 @@
                             <input id="radio-for-checkboxes" class="d-none" type="radio" name="radio-for-required-checkboxes" required/> <!-- needs to be hidden in css -->
                             @foreach($tags as $tag)
                                 <label for="{{ $tag->tag_name }}">
-                                    <input type="checkbox" id="{{ $tag->tag_name }}" class="check" value="{{ $tag->tag_name }}" name="tags[]"/> 
+                                    @if($tag->checked)
+                                        <input type="checkbox" id="{{ $tag->tag_name }}" class="check" value="{{ $tag->tag_name }}" name="tags[]" checked/> 
+                                    @else
+                                        <input type="checkbox" id="{{ $tag->tag_name }}" class="check" value="{{ $tag->tag_name }}" name="tags[]"/> 
+                                    @endif
                                     {{ $tag->tag_name }}
                                 </label>
                             @endforeach
@@ -49,7 +54,7 @@
                         <button type="button" class="col-5 col-md-4 col-lg-3 btn fw-bold"
                                 onclick="window.location.href=document.referrer">Cancel
                         </button>
-                        <button type="submit" id="create_news_button" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Post</button>
+                        <button type="button" onclick="submitEdit()" id="create_news_button" class="col-5 col-md-4 col-lg-3 btn text-light fw-bold">Edit</button>
                     </div>
                 </section>
             </form>
@@ -95,7 +100,7 @@
                     file : cmsURL,
                     title : 'Filemanager',
                     width : x * 0.8,
-                    height : y * 1,
+                    height : y * 0.8,
                     resizable : "yes",
                     close_previous : "no"
                 })
@@ -129,22 +134,10 @@
         });
     </script>
 
-
-
-
-
     <script>
-        /*var newsCreateButton = document.getElementById("create_news_button");
-        let createNewsForm = document.getElementById("create_news_form");
-        function createNews() {
-            let content = tinymce.activeEditor.getContent();
-            content.replace(/\s/g, '');
-            if (content == "") {
-                createNewsForm.preventDefault();
-            }
-            else createNewsForm.submit();
+        function submitEdit(){
+            document.forms["edit_form"].submit(); 
         }
-        newsCreateButton.addEventListener("click", createNews);*/
     </script>
 
     <script>

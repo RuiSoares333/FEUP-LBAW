@@ -80,4 +80,20 @@ class UserController extends Controller
       $user->save();
       return redirect('profile/' . $user->id);
     }
+
+    public function follow(Request $request) {
+      DB::table('follows')->insert(['id1' => $request->id1, 'id2' => $request->id2]);
+      return response()->json(["success" => true], 200);
+    }
+
+    public function unfollow(Request $request) {
+      DB::delete('DELETE FROM follows WHERE id1 = ? AND id2 = ?', [$request->id1, $request->id2]);
+      return response()->json(["success" => true], 200);
+    }
+
+    public function follow_list(Request $request, $id){
+      if (!Auth::check()) return redirect('/login');
+      $user = User::find($id);
+      return view('pages.follow_list', ['user' => $user]);
+    }
 }
