@@ -1,5 +1,12 @@
 body{
     background-color: var(--bs-gray-200);
+    padding: 5vh 2.5vw 35vh 2.5vw; 
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
 }
 
 :root {
@@ -127,8 +134,8 @@ body{
 .masthead {
     position: relative;
     overflow: hidden;
-    padding-top: calc(7rem + 72px);
-    padding-bottom: 7rem;
+    padding-top: 7vh;
+    padding-bottom: 7vh;
     background: linear-gradient(0deg, #bf6324 0%, #b92a4c 100%);
     background-repeat: no-repeat;
     background-position: center center;
@@ -382,4 +389,25 @@ body{
 
 .reply{
     background-color: var(--bs-gray-200) !important;
+}
+
+
+/* PROFILE - FOLLOW */
+
+.follows{
+    padding: 12vh 0 38vh 0;
+}
+
+#user-prev div a{
+    font-size:medium;
+}
+
+
+@media(min-width: 768px){
+    .follow-grid{
+        display:grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    
 }

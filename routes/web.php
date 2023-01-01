@@ -29,6 +29,7 @@ Route::post('/api/edit_profile_api/{id}','UserController@update')->name('edit_pr
 Route::post('change_admin/{id}','UserController@change_admin')->name('change_admin');
 Route::post('/api/follow', 'UserController@follow');
 Route::delete('/api/unfollow', 'UserController@unfollow');
+Route::get('/follow_list/{id}', 'UserController@follow_list');
 
 // API
 Route::post('/api/news', 'NewsController@create')->name('create_news');

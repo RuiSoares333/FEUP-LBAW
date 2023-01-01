@@ -25,7 +25,7 @@
     <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
 
   </head>
-  <body id="page-top" class="p-3 p-lg-5">
+  <body id="page-top">
     @yield('content')
     @yield('scripts')
   </body>

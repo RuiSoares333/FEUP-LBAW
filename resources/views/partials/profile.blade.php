@@ -66,11 +66,11 @@
     <section id="follows" class="d-flex flex-row border-bottom mb-5 py-5">
         <section id="following" class="text-center d-flex flex-column py-2 px-4 border bg-light rounded-2 me-5 ms-auto">
             <p class="h6">Following</p>
-            <a class="h3" ref="/following">{{count($user->following()->get())}}</a>
+            <a class="h3" href="/follow_list/{{$user->id}}">{{count($user->following()->get())}}</a>
         </section>
         <section id="followers" class="text-center d-flex flex-column py-2 px-4 border bg-light rounded-2 ms-5 me-auto">
             <p class="h6">Followers</p>
-            <a class="h3" href="/followers">{{count($user->followers()->get())}}</a>
+            <a class="h3" href="/follow_list/{{$user->id}}">{{count($user->followers()->get())}}</a>
         </section>
     </section>
 
