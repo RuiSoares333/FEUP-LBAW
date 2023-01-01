@@ -18,9 +18,12 @@
                 @if (Auth::check())
                 <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/logout') }}">logout</a></li>
                 <li class="nav-item my-auto"><a href="/profile/{{Auth::user()->id}}">{{Auth::user()->username }}</a></li>
+                <li class="d-inline d-lg-none nav-item my-auto"><a href="{{url('about_us')}}">About Us</a></li>
+
                 @else
                 <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/register') }}">register</a></li>
                 <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/login') }}">login</a></li>
+                <li class="d-inline d-lg-none nav-item my-auto"><a href="{{url('about_us')}}">About Us</a></li>
                 @endif
             </ul>
         </div>

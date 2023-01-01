@@ -75,7 +75,7 @@
         </div>
         <button class="w-100 btn btn-lg btn-primary fw-bolder text-uppercase" type="submit">login</button>
         <a class="w-100 btn button-outline-primary fw-bolder  text-uppercase text-light" href="{{ route('register') }}">don't have an account?</a>
-        <p class="mt-5 mb-3 ">© SLCN2022</p>
+        <p class="mt-5 mb-3 ">© SLCN2023</p>
     </form>
 
 </div>
