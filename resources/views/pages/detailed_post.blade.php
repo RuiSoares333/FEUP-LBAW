@@ -299,6 +299,9 @@
                 })
                 const reply = await response.JSON
 
+                const replySectionDis = document.querySelector('#comment_'+id+' #replies')
+                if(replySectionDis.style.display == 'none') replySectionDis.style.display = ""
+
                 const flag = document.querySelector("#reply_flag_" + id)
                 if(flag.value==="0"){
                     toggleReplies(id, user_id, isAdmin)

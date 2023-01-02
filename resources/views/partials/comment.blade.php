@@ -43,13 +43,12 @@
 
         <button id="reply_toggle_{{$comment->id}}" class="btn edit-button mx-3" onclick="toggleReply({{$comment->id}})"><i class='bi bi-arrow-90deg-right'></i></button>
 
-        @if($comment->hasReplies)
-            <section id="replies" class="replies">
-                <input type="hidden" id="reply_flag_{{$comment->id}}" value="0" autocomplete=off>
-                <button id="showReplies" class="btn edit-button mx-3" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})">Show Replies</button>
-                <button id="hideReplies" class="btn edit-button mx-3" style="display:none" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->is_admin}})">Hide Replies</button>
-            </section>
-        @endif
+
+        <section id="replies" class="replies" @if(!($comment->hasReplies)) style="display:none"  @endif>
+            <input type="hidden" id="reply_flag_{{$comment->id}}" value="0" autocomplete=off>
+            <button id="showReplies" class="btn edit-button mx-3" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})">Show Replies</button>
+            <button id="hideReplies" class="btn edit-button mx-3" style="display:none" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->is_admin}})">Hide Replies</button>
+        </section>
     </div>
 
     <div id="reply_form_{{ $comment->id }}" style="display: none">
