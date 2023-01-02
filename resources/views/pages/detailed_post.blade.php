@@ -312,6 +312,9 @@
         }
 
         async function newsVoteUp(id){
+            let url
+            let is_liked
+            let method
             const button = document.querySelector('#news_vote_'+id+' button:nth-of-type(1)')
             const isLiked = document.querySelector("#news_is_liked_" + id)
             const rep = document.querySelector('#news_vote_'+id+' #reputation')
@@ -322,6 +325,8 @@
                 button.classList.remove("bi-caret-up-fill")
                 button.classList.add("bi-caret-up")
                 button.style.color=""
+                url = 'api/vote/newsDelete'
+                method = 'delete'
             }
             else if(isLiked.value == 0){
                 //add Like
@@ -330,6 +335,9 @@
                 button.classList.remove("bi-caret-up")
                 button.classList.add("bi-caret-up-fill")
                 button.style.color="orange"
+                url = 'api/vote/newsCreate'
+                method = 'post'
+                is_liked = true
             }
             else if(isLiked.value == -1){
                 //change to like
@@ -343,14 +351,21 @@
                 down.classList.remove("bi-caret-down-fill")
                 down.classList.add("bi-caret-down")
                 down.style.color=""
+
+                url = 'api/vote/newsUpdate'
+                method = 'post'
+                is_liked = true
             }
         }
         async function newsVoteDown(id){
+            let url
+            let is_liked
+            let method
             const button = document.querySelector('#news_vote_'+id+' button:nth-of-type(2)')
             const isLiked = document.querySelector("#news_is_liked_" + id)
             const rep = document.querySelector('#news_vote_'+id+' #reputation')
             if(isLiked.value == 1){
-                //change like
+                //change from like
                 const up = document.querySelector('#news_vote_'+id+' button:nth-of-type(1)')
                 isLiked.value = -1
                 rep.innerText = parseInt(rep.innerText)-2
@@ -361,6 +376,9 @@
                 up.classList.remove("bi-caret-up-fill")
                 up.classList.add("bi-caret-up")
                 up.style.color=""
+                url = 'api/vote/newsUpdate'
+                method = 'post'
+                is_liked = false
             }
             else if(isLiked.value == 0){
                 //add dislike
@@ -369,6 +387,10 @@
                 button.classList.remove("bi-caret-down")
                 button.classList.add("bi-caret-down-fill")
                 button.style.color="orange"
+
+                url = 'api/vote/newsCreate'
+                method = 'post'
+                is_liked = false
             }
             else if(isLiked.value == -1){
                 //remove dislike
@@ -377,9 +399,14 @@
                 button.classList.remove("bi-caret-down-fill")
                 button.classList.add("bi-caret-down")
                 button.style.color=""
+                url = 'api/vote/newsDelete'
+                method = 'delete'
             }
         }
         async function commentVoteUp(id){
+            let url
+            let is_liked
+            let method
             const isLiked = document.querySelector("#comment_is_liked_" + id)
             const button = document.querySelector('#comment_vote_'+id+' button:nth-of-type(1)')
             const rep = document.querySelector('#comment_vote_'+id+' #reputation')
@@ -390,6 +417,9 @@
                 button.classList.remove("bi-caret-up-fill")
                 button.classList.add("bi-caret-up")
                 button.style.color=""
+
+                url = 'api/vote/commentDelete'
+                method = 'delete'
             }
             else if(isLiked.value == 0){
                 //add Like
@@ -398,6 +428,10 @@
                 button.classList.remove("bi-caret-up")
                 button.classList.add("bi-caret-up-fill")
                 button.style.color="orange"
+
+                url = 'api/vote/commentCreate'
+                method = 'post'
+                is_liked = true
             }
             else if(isLiked.value == -1){
                 //change to like
@@ -410,14 +444,21 @@
                 down.classList.remove("bi-caret-down-fill")
                 down.classList.add("bi-caret-down")
                 down.style.color=""
+
+                url = 'api/vote/commentUpdate'
+                method = 'post'
+                is_liked = true
             }
         }
         async function commentVoteDown(id){
+            let url
+            let is_liked
+            let method
             const isLiked = document.querySelector("#comment_is_liked_" + id)
             const button = document.querySelector('#comment_vote_'+id+' button:nth-of-type(2)')
             const rep = document.querySelector('#comment_vote_'+id+' #reputation')
             if(isLiked.value == 1){
-                //change like
+                //change from like
                 const up = document.querySelector('#comment_vote_'+id+' button:nth-of-type(1)')
                 isLiked.value = -1
                 rep.innerText = parseInt(rep.innerText)-2
@@ -428,6 +469,10 @@
                 up.classList.remove("bi-caret-up-fill")
                 up.classList.add("bi-caret-up")
                 up.style.color=""
+
+                url = 'api/vote/commentUpdate'
+                method = 'post'
+                is_liked = false
             }
             else if(isLiked.value == 0){
                 //add dislike
@@ -436,6 +481,10 @@
                 button.classList.remove("bi-caret-down")
                 button.classList.add("bi-caret-down-fill")
                 button.style.color="orange"
+
+                url = 'api/vote/commentCreate'
+                method = 'post'
+                is_liked = false
             }
             else if(isLiked.value == -1){
                 //remove dislike
@@ -444,6 +493,9 @@
                 button.classList.remove("bi-caret-down-fill")
                 button.classList.add("bi-caret-down")
                 button.style.color=""
+
+                url = 'api/vote/commentDelete'
+                method = 'delete'
             }
         }
     </script>
