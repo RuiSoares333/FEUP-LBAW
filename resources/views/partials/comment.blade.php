@@ -53,13 +53,12 @@
     </div>
 
     <div id="reply_form_{{ $comment->id }}" style="display: none">
-        <form id="new_comment" method="POST" class="input-group">
-            {{ csrf_field() }}
+        <div id="new_comment" class="input-group">
             <div class="input-group mb-3">
                 <input id="reply_field" class="form-control" name="content" placeholder="Type your reply" autocomplete=off required=true>
                 <button id="reply submit" class="btn btn-outline-dark btn-submit" type="button" onclick="sendReply({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Reply </button>
             </div>
-        </form>
+        </div>
     </div>
 
     <div id="repliesDiv-{{$comment->id}}">
