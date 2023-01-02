@@ -312,9 +312,9 @@
         }
 
         async function newsVoteUp(id){
-            const button = document.querySelector('#vote button:nth-of-type(1)')
+            const button = document.querySelector('#news_vote_'+id+' button:nth-of-type(1)')
             const isLiked = document.querySelector("#news_is_liked_" + id)
-            const rep = document.querySelector('#vote #reputation')
+            const rep = document.querySelector('#news_vote_'+id+' #reputation')
             if(isLiked.value == 1){
                 //remove like
                 isLiked.value = 0
@@ -333,7 +333,7 @@
             }
             else if(isLiked.value == -1){
                 //change to like
-                const down = document.querySelector('#vote button:nth-of-type(2)')
+                const down = document.querySelector('#news_vote_'+id+' button:nth-of-type(2)')
                 isLiked.value = 1
                 rep.innerText = parseInt(rep.innerText)+2
                 button.classList.remove("bi-caret-up")
@@ -346,12 +346,12 @@
             }
         }
         async function newsVoteDown(id){
-            const button = document.querySelector('#vote button:nth-of-type(2)')
+            const button = document.querySelector('#news_vote_'+id+' button:nth-of-type(2)')
             const isLiked = document.querySelector("#news_is_liked_" + id)
-            const rep = document.querySelector('#vote #reputation')
+            const rep = document.querySelector('#news_vote_'+id+' #reputation')
             if(isLiked.value == 1){
                 //change like
-                const up = document.querySelector('#vote button:nth-of-type(1)')
+                const up = document.querySelector('#news_vote_'+id+' button:nth-of-type(1)')
                 isLiked.value = -1
                 rep.innerText = parseInt(rep.innerText)-2
                 button.classList.remove("bi-caret-down")

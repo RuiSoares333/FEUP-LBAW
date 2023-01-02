@@ -22,7 +22,7 @@
     @endif
 
     <div id="comment_footer" class = "d-flex flex-row">
-        <div id="vote" class="d-flex flex-row me-3">
+        <div id="comment_vote_{{$comment->id}}" class="d-flex flex-row me-3">
             <input id="comment_is_liked_{{$comment->id}}" type="hidden" value={{$comment->isLiked}} autocomplete=off>
             @if($comment->isLiked == 1)
                 <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="commentVoteUp({{$comment->id}})"></button>
