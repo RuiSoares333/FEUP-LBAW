@@ -149,8 +149,8 @@
             const repliesDiv = document.querySelector("#repliesDiv-"+id)
             const flag = document.getElementById("reply_flag_" + id)
 
-            const show = document.getElementById("showReplies")
-            const hide = document.getElementById("hideReplies")
+            const show = document.querySelector("#comment_"+id+" #showReplies")
+            const hide = document.querySelector("#comment_"+id+" #hideReplies")
 
             if(flag.value === "0"){
                 flag.value = "1"
