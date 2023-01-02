@@ -416,7 +416,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER remove_comment_reputation
-    BEFORE DELETE ON comment_vote FOR EACH ROW
+    AFTER DELETE ON comment_vote FOR EACH ROW
     EXECUTE PROCEDURE remove_comment_reputation();
 
 CREATE FUNCTION remove_news_reputation() RETURNS TRIGGER AS
@@ -449,7 +449,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER remove_news_reputation
-    BEFORE DELETE ON news_vote FOR EACH ROW
+    AFTER DELETE ON news_vote FOR EACH ROW
     EXECUTE PROCEDURE remove_news_reputation();
 
 CREATE FUNCTION update_comment_reputation() RETURNS TRIGGER AS

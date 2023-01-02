@@ -325,7 +325,7 @@
                 button.classList.remove("bi-caret-up-fill")
                 button.classList.add("bi-caret-up")
                 button.style.color=""
-                url = 'api/vote/newsDelete'
+                url = '/api/vote/newsDelete'
                 method = 'delete'
             }
             else if(isLiked.value == 0){
@@ -335,7 +335,7 @@
                 button.classList.remove("bi-caret-up")
                 button.classList.add("bi-caret-up-fill")
                 button.style.color="orange"
-                url = 'api/vote/newsCreate'
+                url = '/api/vote/newsCreate'
                 method = 'post'
                 is_liked = true
             }
@@ -352,7 +352,7 @@
                 down.classList.add("bi-caret-down")
                 down.style.color=""
 
-                url = 'api/vote/newsUpdate'
+                url = '/api/vote/newsUpdate'
                 method = 'post'
                 is_liked = true
             }
@@ -377,7 +377,7 @@
                 up.classList.remove("bi-caret-up-fill")
                 up.classList.add("bi-caret-up")
                 up.style.color=""
-                url = 'api/vote/newsUpdate'
+                url = '/api/vote/newsUpdate'
                 method = 'post'
                 is_liked = false
             }
@@ -389,7 +389,7 @@
                 button.classList.add("bi-caret-down-fill")
                 button.style.color="orange"
 
-                url = 'api/vote/newsCreate'
+                url = '/api/vote/newsCreate'
                 method = 'post'
                 is_liked = false
             }
@@ -400,7 +400,7 @@
                 button.classList.remove("bi-caret-down-fill")
                 button.classList.add("bi-caret-down")
                 button.style.color=""
-                url = 'api/vote/newsDelete'
+                url = '/api/vote/newsDelete'
                 method = 'delete'
             }
             sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
@@ -420,7 +420,7 @@
                 button.classList.add("bi-caret-up")
                 button.style.color=""
 
-                url = 'api/vote/commentDelete'
+                url = '/api/vote/commentDelete'
                 method = 'delete'
             }
             else if(isLiked.value == 0){
@@ -431,7 +431,7 @@
                 button.classList.add("bi-caret-up-fill")
                 button.style.color="orange"
 
-                url = 'api/vote/commentCreate'
+                url = '/api/vote/commentCreate'
                 method = 'post'
                 is_liked = true
             }
@@ -447,7 +447,7 @@
                 down.classList.add("bi-caret-down")
                 down.style.color=""
 
-                url = 'api/vote/commentUpdate'
+                url = '/api/vote/commentUpdate'
                 method = 'post'
                 is_liked = true
             }
@@ -473,7 +473,7 @@
                 up.classList.add("bi-caret-up")
                 up.style.color=""
 
-                url = 'api/vote/commentUpdate'
+                url = '/api/vote/commentUpdate'
                 method = 'post'
                 is_liked = false
             }
@@ -485,7 +485,7 @@
                 button.classList.add("bi-caret-down-fill")
                 button.style.color="orange"
 
-                url = 'api/vote/commentCreate'
+                url = '/api/vote/commentCreate'
                 method = 'post'
                 is_liked = false
             }
@@ -497,7 +497,7 @@
                 button.classList.add("bi-caret-down")
                 button.style.color=""
 
-                url = 'api/vote/commentDelete'
+                url = '/api/vote/commentDelete'
                 method = 'delete'
             }
             sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
