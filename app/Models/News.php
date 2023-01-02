@@ -32,5 +32,4 @@ class News extends Model
     public function tags() {
         return $this->belongsToMany('App\Models\Tag', 'news_tag', 'id_news', 'id_tag');
     }
-
 }

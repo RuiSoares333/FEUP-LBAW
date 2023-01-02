@@ -3,7 +3,7 @@
 @section('content')
 
     @include('partials.header')
-    @include('partials.profile', $user)
+    @include('partials.profile', [$user, $news])
 
 @endsection
 
@@ -26,7 +26,7 @@
         else if(item>=1000){
             followProfile[i].innerHTML = (item/1000).toFixed(item % 1000 != 0)+'k';
         }
-    } 
+    }
 
 </script>
 @endsection

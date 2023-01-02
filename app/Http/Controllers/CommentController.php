@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Comment;
+use App\Models\CommentVote;
 
 class CommentController extends Controller
 {
@@ -51,6 +52,16 @@ class CommentController extends Controller
         if(Auth::check()){
             foreach ($replies as $reply){
                 $reply->author = $reply->author()->get()->first()->username;
+                $vote = CommentVote::where('id_user', Auth()->user()->id)->where('id_comment', $reply->id)->first();
+                if(!$vote){
+                    $reply -> isLiked = 0;
+                }
+                else if($vote->is_liked == TRUE){
+                    $reply-> isLiked = 1;
+                }
+                else if($vote->is_liked == FALSE){
+                    $reply -> isLiked = -1;
+                }
             }
 
             $replies->sortBy('reputation');

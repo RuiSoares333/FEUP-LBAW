@@ -177,6 +177,17 @@
                 replySection.id="reply-section-"+id
 
                 for(const reply of replies){
+                    if(reply.isLiked==1){
+                        var up = `<button class="mx-auto bi bi-caret-up-fill cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden; color:orange;" onclick="commentVoteUp(`+reply.id+`)"></button>`
+                    }else{
+                        var up = `<button class="mx-auto bi bi-caret-up cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden;" onclick="commentVoteUp(`+reply.id+`)"></button>`
+                    }
+                    if(reply.isLiked == -1){
+                        var down = `<button class="mx-auto bi bi-caret-down-fill cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden; color:orange;" onclick="commentVoteDown(`+reply.id+`)"></button>`
+                    }else{
+                        var down = `<button class="mx-auto bi bi-caret-down cursor-pointer btn btn-edit"style="font-size: 2rem; border: medium hidden;" onclick="commentVoteDown(`+ reply.id +`)"></button>`
+                    }
+
                     var replyContent = `
                     <article id="reply_`+reply.id+`" class="news reply col-xl-10 my-4 p-3 border bg-light" data-id="`+reply.id+`">
 
@@ -203,12 +214,13 @@
                         @endif
 
                         <div id="comment_footer" class = "d-flex flex-row">
-                            <div id="vote" class="d-flex flex-row me-3">
-                                <i class="bi bi-caret-up me-2 my-auto"></i>
+                            <div id="comment_vote_`+reply.id+`" class="d-flex flex-row me-3">
+                                <input id="comment_is_liked_`+reply.id+`" type="hidden" value=`+ reply.isLiked+` autocomplete=off>
+                                `+ up +`
                                 <span id="reputation" class="w-auto m-auto">
                                     `+reply.reputation+`
                                 </span>
-                                <i class="bi bi-caret-down ms-2 my-auto"></i>
+                                `+ down +`
                             </div>
                         </div>
                     </article>`
@@ -314,6 +326,5 @@
             }
         }
 
-        
     </script>
 @endsection
