@@ -1,7 +1,7 @@
 <article class="news col-xl-10 mx-auto my-4 p-3 d-flex flex-row border bg-light" data-id="{{ $newspost->id }}">
 
     <nav id="vote" class="d-flex flex-column">
-        <input id="news_is_liked" type="hidden" value={{$newspost->isLiked}}>
+        <input id="news_is_liked_{{$newspost->id}}" type="hidden" value={{$newspost->isLiked}}>
         @if($newspost->isLiked == 1)
             <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
         @else

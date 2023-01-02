@@ -23,12 +23,22 @@
 
     <div id="comment_footer" class = "d-flex flex-row">
         <div id="vote" class="d-flex flex-row me-3">
-            {{$comment->isLiked}}
-            <i class="bi bi-caret-up me-2 my-auto"></i>
+            <input id="comment_is_liked_{{$comment->id}}" type="hidden" value={{$comment->isLiked}}>
+            @if($comment->isLiked == 1)
+                <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
+            @else
+                <button class="mx-auto bi bi-caret-up cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden;"></button>
+            @endif
+
             <span id="reputation" class="w-auto m-auto">
                 {{ $comment->reputation }} reputation
             </span>
-            <i class="bi bi-caret-down ms-2 my-auto"></i>
+
+            @if($comment->isLiked == -1)
+                <button class="mx-auto bi bi-caret-down-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
+            @else
+                <button class="mx-auto bi bi-caret-down cursor-pointer"style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden;"></button>
+            @endif
         </div>
 
         <button id="reply_toggle_{{$comment->id}}" class="btn edit-button mx-3" onclick="toggleReply({{$comment->id}})"><i class='bi bi-arrow-90deg-right'></i></button>
