@@ -356,6 +356,7 @@
                 method = 'post'
                 is_liked = true
             }
+            sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
         }
         async function newsVoteDown(id){
             let url
@@ -402,6 +403,7 @@
                 url = 'api/vote/newsDelete'
                 method = 'delete'
             }
+            sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
         }
         async function commentVoteUp(id){
             let url
@@ -449,6 +451,7 @@
                 method = 'post'
                 is_liked = true
             }
+            sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
         }
         async function commentVoteDown(id){
             let url
@@ -497,6 +500,7 @@
                 url = 'api/vote/commentDelete'
                 method = 'delete'
             }
+            sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
         }
     </script>
 @endsection
