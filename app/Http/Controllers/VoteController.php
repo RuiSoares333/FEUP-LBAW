@@ -26,14 +26,18 @@ class VoteController extends Controller
     public function newsDelete(Request $request){
         if (!Auth::check()) return response("Access Denied", 403);
         //request->id_news
-        $vote = NewsVote::where('id_news', $request->input('id_news'))->where('id_user', Auth()->user()->id)->first();
+        $vote = NewsVote::where('id_news', $request->input('id'))->where('id_user', Auth()->user()->id)->first();
         $vote->delete();
         return response('Vote deleted', 200);
     }
 
     public function newsUpdate(Request $request){
-        if (!Auth::check()) return redirect('/login');
-        //request-> id, direction->true false
+        if (!Auth::check()) return response("Access Denied", 403);
+        //request-> id, is_liked->true false
+        $vote = NewsVote::where('id_news', $request->input('id'))->where('id_user', Auth()->user()->id)->first();
+        $vote->is_liked = $request->input('is_liked');
+        $vote->save();
+        return response('Vote updated', 200);
     }
 
     public function commentCreate(Request $request){
@@ -56,7 +60,11 @@ class VoteController extends Controller
     }
 
     public function commentUpdate(Request $request){
-        if (!Auth::check()) return redirect('/login');
-        //request-> id, direction->true false
+        if (!Auth::check()) return response("Access Denied", 403);
+        //request-> id, is_liked->true false
+        $vote = CommentVote::where('id_comment', $request->input('id'))->where('id_user', Auth()->user()->id)->first();
+        $vote->is_liked = $request->input('is_liked');
+        $vote->save();
+        return response('Vote updated', 200);
     }
 }
