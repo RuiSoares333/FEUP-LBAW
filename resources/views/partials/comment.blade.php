@@ -31,7 +31,7 @@
             @endif
 
             <span id="reputation" class="w-auto m-auto">
-                {{ $comment->reputation }} reputation
+                {{ $comment->reputation }}
             </span>
 
             @if($comment->isLiked == -1)
