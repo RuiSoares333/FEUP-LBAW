@@ -346,8 +346,38 @@
             }
         }
         async function newsVoteDown(id){
-            console.log('down')
+            const button = document.querySelector('#vote button:nth-of-type(2)')
             const isLiked = document.querySelector("#news_is_liked_" + id)
+            const rep = document.querySelector('#vote #reputation')
+            if(isLiked.value == 1){
+                //change like
+                const up = document.querySelector('#vote button:nth-of-type(1)')
+                isLiked.value = -1
+                rep.innerText = parseInt(rep.innerText)-2
+                button.classList.remove("bi-caret-down")
+                button.classList.add("bi-caret-down-fill")
+                button.style.color="orange"
+
+                up.classList.remove("bi-caret-up-fill")
+                up.classList.add("bi-caret-up")
+                up.style.color=""
+            }
+            else if(isLiked.value == 0){
+                //add dislike
+                isLiked.value = -1
+                rep.innerText = parseInt(rep.innerText)-1
+                button.classList.remove("bi-caret-down")
+                button.classList.add("bi-caret-down-fill")
+                button.style.color="orange"
+            }
+            else if(isLiked.value == -1){
+                //remove dislike
+                isLiked.value = 0
+                rep.innerText = parseInt(rep.innerText)+1
+                button.classList.remove("bi-caret-down-fill")
+                button.classList.add("bi-caret-down")
+                button.style.color=""
+            }
         }
         async function commentVoteUp(id){
             const isLiked = document.querySelector("#comment_is_liked_" + id)
