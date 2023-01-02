@@ -1,11 +1,23 @@
 <article class="news col-xl-10 mx-auto my-4 p-3 d-flex flex-row border bg-light" data-id="{{ $newspost->id }}">
 
     <nav id="vote" class="d-flex flex-column">
-        <i class="mx-auto bi bi-caret-up"></i>
+        <input id="news_is_liked" type="hidden" value={{$newspost->isLiked}}>
+        @if($newspost->isLiked == 1)
+            <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
+        @else
+            <button class="mx-auto bi bi-caret-up cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden;"></button>
+        @endif
+
         <span id="reputation" class="reputation my-1 mx-auto">
             {{ $newspost->reputation }}
         </span>
-        <i class="mx-auto bi bi-caret-down"></i>
+
+        @if($newspost->isLiked == -1)
+            <button class="mx-auto bi bi-caret-down-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
+        @else
+            <button class="mx-auto bi bi-caret-down cursor-pointer"style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden;"></button>
+        @endif
+
     </nav>
 
     <div id="news_body" class="ps-4 pe-5 w-100">
@@ -20,15 +32,15 @@
                     @endif
             </div>
             <span class="my-auto"><a class="text-decoration-none text-dark" href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>
-            <div class="row-cols-2 row-cols-lg-3 my-3"> 
+            <div class="row-cols-2 row-cols-lg-3 my-3">
                 @foreach($newspost->tags as $tag)
                     <button class="btn tag-button-empty col-5 col-sm-4 col-md-3 col-lg-3 p-1 m-1">{{ $tag->tag_name }}</button>
                 @endforeach
             </div>
         </header>
-    
+
         <div id="news_content" class="news_content">{!! $newspost->content !!} </div>
-    
+
 
         @if(request()->is('news/*'))
             <form id="new_comment" method="POST" class="input-group" action="{{route('new_comment')}}" >
@@ -55,7 +67,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-                <p>Are you sure you want to <b>permanently</b> delete your post?</p> 
+                <p>Are you sure you want to <b>permanently</b> delete your post?</p>
                 <p>This action is <b>irreversible</b>.</p>
             </div>
             <div class="modal-footer">
