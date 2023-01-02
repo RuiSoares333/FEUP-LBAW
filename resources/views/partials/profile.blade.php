@@ -33,7 +33,7 @@
                     <button id="follow_button" class="btn btn-dark" type="button">Unfollow</button>
                     @endif
                 </form>
-                
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -43,7 +43,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body text-center">
-                                <p>Are you sure you want to <b>permanently</b> delete your account?</p> 
+                                <p>Are you sure you want to <b>permanently</b> delete your account?</p>
                                 <p>This action is <b>irreversible</b>.</p>
                             </div>
                             <div class="modal-footer">
@@ -76,7 +76,7 @@
 
     @endif
     <section id="news">
-        @each('partials.news_post', $user->news()->get(), 'newspost')
+        @each('partials.news_post', $news, 'newspost')
     </section>
 
 </div>
@@ -93,7 +93,7 @@
         else if (followButton.innerHTML == "Unfollow"){
             unfollow();
             followButton.classList.toggle('btn-dark')
-            followButton.classList.toggle('btn-outline-dark')        } 
+            followButton.classList.toggle('btn-outline-dark')        }
     });
     async function follow(){
         let id1 = document.getElementById("id1").value;
@@ -111,7 +111,7 @@
                 'id2': id2
             })
         });
-        const replies = await response.json(); 
+        const replies = await response.json();
         followButton.innerHTML = "Unfollow";
     }
 
@@ -131,7 +131,7 @@
                 'id2': id2
             })
         });
-        const replies = await response.json(); 
+        const replies = await response.json();
         followButton.innerHTML = "Follow";
     }
 

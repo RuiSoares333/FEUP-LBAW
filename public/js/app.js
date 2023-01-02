@@ -149,3 +149,195 @@ function createItem(item) {
 
   return new_item;
 }
+
+async function newsVoteUp(id){
+    let url
+    let is_liked
+    let method
+    const button = document.querySelector('#news_vote_'+id+' button:nth-of-type(1)')
+    const isLiked = document.querySelector("#news_is_liked_" + id)
+    const rep = document.querySelector('#news_vote_'+id+' #reputation')
+    if(isLiked.value == 1){
+        //remove like
+        isLiked.value = 0
+        rep.innerText = parseInt(rep.innerText)-1
+        button.classList.remove("bi-caret-up-fill")
+        button.classList.add("bi-caret-up")
+        button.style.color=""
+        url = '/api/vote/newsDelete'
+        method = 'delete'
+    }
+    else if(isLiked.value == 0){
+        //add Like
+        isLiked.value = 1
+        rep.innerText = parseInt(rep.innerText)+1
+        button.classList.remove("bi-caret-up")
+        button.classList.add("bi-caret-up-fill")
+        button.style.color="orange"
+        url = '/api/vote/newsCreate'
+        method = 'post'
+        is_liked = true
+    }
+    else if(isLiked.value == -1){
+        //change to like
+        const down = document.querySelector('#news_vote_'+id+' button:nth-of-type(2)')
+        isLiked.value = 1
+        rep.innerText = parseInt(rep.innerText)+2
+        button.classList.remove("bi-caret-up")
+        button.classList.add("bi-caret-up-fill")
+        button.style.color="orange"
+
+        down.classList.remove("bi-caret-down-fill")
+        down.classList.add("bi-caret-down")
+        down.style.color=""
+
+        url = '/api/vote/newsUpdate'
+        method = 'post'
+        is_liked = true
+    }
+    sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
+}
+async function newsVoteDown(id){
+    let url
+    let is_liked
+    let method
+    const button = document.querySelector('#news_vote_'+id+' button:nth-of-type(2)')
+    const isLiked = document.querySelector("#news_is_liked_" + id)
+    const rep = document.querySelector('#news_vote_'+id+' #reputation')
+    if(isLiked.value == 1){
+        //change from like
+        const up = document.querySelector('#news_vote_'+id+' button:nth-of-type(1)')
+        isLiked.value = -1
+        rep.innerText = parseInt(rep.innerText)-2
+        button.classList.remove("bi-caret-down")
+        button.classList.add("bi-caret-down-fill")
+        button.style.color="orange"
+
+        up.classList.remove("bi-caret-up-fill")
+        up.classList.add("bi-caret-up")
+        up.style.color=""
+        url = '/api/vote/newsUpdate'
+        method = 'post'
+        is_liked = false
+    }
+    else if(isLiked.value == 0){
+        //add dislike
+        isLiked.value = -1
+        rep.innerText = parseInt(rep.innerText)-1
+        button.classList.remove("bi-caret-down")
+        button.classList.add("bi-caret-down-fill")
+        button.style.color="orange"
+
+        url = '/api/vote/newsCreate'
+        method = 'post'
+        is_liked = false
+    }
+    else if(isLiked.value == -1){
+        //remove dislike
+        isLiked.value = 0
+        rep.innerText = parseInt(rep.innerText)+1
+        button.classList.remove("bi-caret-down-fill")
+        button.classList.add("bi-caret-down")
+        button.style.color=""
+        url = '/api/vote/newsDelete'
+        method = 'delete'
+    }
+    sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
+}
+async function commentVoteUp(id){
+    let url
+    let is_liked
+    let method
+    const isLiked = document.querySelector("#comment_is_liked_" + id)
+    const button = document.querySelector('#comment_vote_'+id+' button:nth-of-type(1)')
+    const rep = document.querySelector('#comment_vote_'+id+' #reputation')
+    if(isLiked.value == 1){
+        //remove like
+        isLiked.value = 0
+        rep.innerText = parseInt(rep.innerText)-1
+        button.classList.remove("bi-caret-up-fill")
+        button.classList.add("bi-caret-up")
+        button.style.color=""
+
+        url = '/api/vote/commentDelete'
+        method = 'delete'
+    }
+    else if(isLiked.value == 0){
+        //add Like
+        isLiked.value = 1
+        rep.innerText = parseInt(rep.innerText)+1
+        button.classList.remove("bi-caret-up")
+        button.classList.add("bi-caret-up-fill")
+        button.style.color="orange"
+
+        url = '/api/vote/commentCreate'
+        method = 'post'
+        is_liked = true
+    }
+    else if(isLiked.value == -1){
+        //change to like
+        const down = document.querySelector('#comment_vote_'+id+' button:nth-of-type(2)')
+        isLiked.value = 1
+        rep.innerText = parseInt(rep.innerText)+2
+        button.classList.remove("bi-caret-up")
+        button.classList.add("bi-caret-up-fill")
+        button.style.color="orange"
+        down.classList.remove("bi-caret-down-fill")
+        down.classList.add("bi-caret-down")
+        down.style.color=""
+
+        url = '/api/vote/commentUpdate'
+        method = 'post'
+        is_liked = true
+    }
+    sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
+}
+async function commentVoteDown(id){
+    let url
+    let is_liked
+    let method
+    const isLiked = document.querySelector("#comment_is_liked_" + id)
+    const button = document.querySelector('#comment_vote_'+id+' button:nth-of-type(2)')
+    const rep = document.querySelector('#comment_vote_'+id+' #reputation')
+    if(isLiked.value == 1){
+        //change from like
+        const up = document.querySelector('#comment_vote_'+id+' button:nth-of-type(1)')
+        isLiked.value = -1
+        rep.innerText = parseInt(rep.innerText)-2
+        button.classList.remove("bi-caret-down")
+        button.classList.add("bi-caret-down-fill")
+        button.style.color="orange"
+
+        up.classList.remove("bi-caret-up-fill")
+        up.classList.add("bi-caret-up")
+        up.style.color=""
+
+        url = '/api/vote/commentUpdate'
+        method = 'post'
+        is_liked = false
+    }
+    else if(isLiked.value == 0){
+        //add dislike
+        isLiked.value = -1
+        rep.innerText = parseInt(rep.innerText)-1
+        button.classList.remove("bi-caret-down")
+        button.classList.add("bi-caret-down-fill")
+        button.style.color="orange"
+
+        url = '/api/vote/commentCreate'
+        method = 'post'
+        is_liked = false
+    }
+    else if(isLiked.value == -1){
+        //remove dislike
+        isLiked.value = 0
+        rep.innerText = parseInt(rep.innerText)+1
+        button.classList.remove("bi-caret-down-fill")
+        button.classList.add("bi-caret-down")
+        button.style.color=""
+
+        url = '/api/vote/commentDelete'
+        method = 'delete'
+    }
+    sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
+}

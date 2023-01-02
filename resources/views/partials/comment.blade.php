@@ -22,33 +22,42 @@
     @endif
 
     <div id="comment_footer" class = "d-flex flex-row">
-        <div id="vote" class="d-flex flex-row me-3">
-            <i class="bi bi-caret-up me-2 my-auto"></i>
+        <div id="comment_vote_{{$comment->id}}" class="d-flex flex-row me-3">
+            <input id="comment_is_liked_{{$comment->id}}" type="hidden" value={{$comment->isLiked}} autocomplete=off>
+            @if($comment->isLiked == 1)
+                <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="commentVoteUp({{$comment->id}})"></button>
+            @else
+                <button class="mx-auto bi bi-caret-up cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden;" onclick="commentVoteUp({{$comment->id}})"></button>
+            @endif
+
             <span id="reputation" class="w-auto m-auto">
-                {{ $comment->reputation }} reputation
+                {{ $comment->reputation }}
             </span>
-            <i class="bi bi-caret-down ms-2 my-auto"></i>
+
+            @if($comment->isLiked == -1)
+                <button class="mx-auto bi bi-caret-down-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="commentVoteDown({{$comment->id}})"></button>
+            @else
+                <button class="mx-auto bi bi-caret-down cursor-pointer"style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden;" onclick="commentVoteDown({{$comment->id}})"></button>
+            @endif
         </div>
 
         <button id="reply_toggle_{{$comment->id}}" class="btn edit-button mx-3" onclick="toggleReply({{$comment->id}})"><i class='bi bi-arrow-90deg-right'></i></button>
 
-        @if($comment->hasReplies)
-            <section id="replies" class="replies">
-                <input type="hidden" id="reply_flag_{{$comment->id}}" value="0" autocomplete=off>
-                <button id="showReplies" class="btn edit-button mx-3" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})">Show Replies</button>
-                <button id="hideReplies" class="btn edit-button mx-3" style="display:none" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->is_admin}})">Hide Replies</button>
-            </section>
-        @endif
+
+        <section id="replies" class="replies" @if(!($comment->hasReplies)) style="display:none"  @endif>
+            <input type="hidden" id="reply_flag_{{$comment->id}}" value="0" autocomplete=off>
+            <button id="showReplies" class="btn edit-button mx-3" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})">Show Replies</button>
+            <button id="hideReplies" class="btn edit-button mx-3" style="display:none" onclick="toggleReplies({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->is_admin}})">Hide Replies</button>
+        </section>
     </div>
 
     <div id="reply_form_{{ $comment->id }}" style="display: none">
-        <form id="new_comment" method="POST" class="input-group">
-            {{ csrf_field() }}
+        <div id="new_comment" class="input-group">
             <div class="input-group mb-3">
                 <input id="reply_field" class="form-control" name="content" placeholder="Type your reply" autocomplete=off required=true>
                 <button id="reply submit" class="btn btn-outline-dark btn-submit" type="button" onclick="sendReply({{$comment->id}}, {{Auth::user()->id}}, {{Auth::user()->isAdmin()}})"> Reply </button>
             </div>
-        </form>
+        </div>
     </div>
 
     <div id="repliesDiv-{{$comment->id}}">
@@ -66,7 +75,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <p>Are you sure you want to <b>permanently</b> delete this comment?</p> 
+                        <p>Are you sure you want to <b>permanently</b> delete this comment?</p>
                         <p>This action is <b>irreversible</b>.</p>
                     </div>
                     <div class="modal-footer">

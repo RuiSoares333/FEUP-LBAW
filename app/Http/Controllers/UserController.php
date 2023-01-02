@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\User;
+use App\Models\News;
+use App\Models\NewsVote;
 
 class UserController extends Controller
 {
@@ -15,7 +17,21 @@ class UserController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
         $user = User::find($id);
-        return view('pages.profile', ['user' => $user]);
+        $news = $user->news()->get();
+        foreach($news as $item){
+            $vote = NewsVote::where('id_user', Auth()->user()->id)->where('id_news', $item->id)->first();
+
+            if(!$vote){
+                $item -> isLiked = 0;
+            }
+            else if($vote->is_liked == TRUE){
+                $item-> isLiked = 1;
+            }
+            else if($vote->is_liked == FALSE){
+                $item -> isLiked = -1;
+            }
+        }
+        return view('pages.profile', ['user' => $user, 'news' => $news]);
     }
 
     public function edit($id)

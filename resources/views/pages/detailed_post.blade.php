@@ -7,9 +7,9 @@
     @include('partials.header')
 
     <div id="commentModals">
-        
+
     </div>
-    
+
     <div class="detailed-post justify-content-end">
         @include('partials.news_post', $newspost)
         <div id="comment_section" class="news-comment d-flex flex-column">
@@ -101,7 +101,7 @@
 
         async function delReplyEvent(news_id, reply_id, user_id, isAdmin){
             delAjax(reply_id)
-            
+
             var myModalEl = document.getElementById('replyModal-'+reply_id);
             var modal = bootstrap.Modal.getInstance(myModalEl)
             modal.hide();
@@ -149,8 +149,8 @@
             const repliesDiv = document.querySelector("#repliesDiv-"+id)
             const flag = document.getElementById("reply_flag_" + id)
 
-            const show = document.getElementById("showReplies")
-            const hide = document.getElementById("hideReplies")
+            const show = document.querySelector("#comment_"+id+" #showReplies")
+            const hide = document.querySelector("#comment_"+id+" #hideReplies")
 
             if(flag.value === "0"){
                 flag.value = "1"
@@ -177,6 +177,17 @@
                 replySection.id="reply-section-"+id
 
                 for(const reply of replies){
+                    if(reply.isLiked==1){
+                        var up = `<button class="mx-auto bi bi-caret-up-fill cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden; color:orange;" onclick="commentVoteUp(`+reply.id+`)"></button>`
+                    }else{
+                        var up = `<button class="mx-auto bi bi-caret-up cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden;" onclick="commentVoteUp(`+reply.id+`)"></button>`
+                    }
+                    if(reply.isLiked == -1){
+                        var down = `<button class="mx-auto bi bi-caret-down-fill cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden; color:orange;" onclick="commentVoteDown(`+reply.id+`)"></button>`
+                    }else{
+                        var down = `<button class="mx-auto bi bi-caret-down cursor-pointer btn btn-edit"style="font-size: 2rem; border: medium hidden;" onclick="commentVoteDown(`+ reply.id +`)"></button>`
+                    }
+
                     var replyContent = `
                     <article id="reply_`+reply.id+`" class="news reply col-xl-10 my-4 p-3 border bg-light" data-id="`+reply.id+`">
 
@@ -203,12 +214,13 @@
                         @endif
 
                         <div id="comment_footer" class = "d-flex flex-row">
-                            <div id="vote" class="d-flex flex-row me-3">
-                                <i class="bi bi-caret-up me-2 my-auto"></i>
+                            <div id="comment_vote_`+reply.id+`" class="d-flex flex-row me-3">
+                                <input id="comment_is_liked_`+reply.id+`" type="hidden" value=`+ reply.isLiked+` autocomplete=off>
+                                `+ up +`
                                 <span id="reputation" class="w-auto m-auto">
-                                    `+reply.reputation+` reputation
+                                    `+reply.reputation+`
                                 </span>
-                                <i class="bi bi-caret-down ms-2 my-auto"></i>
+                                `+ down +`
                             </div>
                         </div>
                     </article>`
@@ -223,7 +235,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body text-center">
-                                    <p>Are you sure you want to <b>permanently</b> delete this comment?</p> 
+                                    <p>Are you sure you want to <b>permanently</b> delete this comment?</p>
                                     <p>This action is <b>irreversible</b>.</p>
                                 </div>
                                 <div class="modal-footer">
@@ -299,6 +311,9 @@
                 })
                 const reply = await response.JSON
 
+                const replySectionDis = document.querySelector('#comment_'+id+' #replies')
+                if(replySectionDis.style.display == 'none') replySectionDis.style.display = ""
+
                 const flag = document.querySelector("#reply_flag_" + id)
                 if(flag.value==="0"){
                     toggleReplies(id, user_id, isAdmin)
@@ -309,7 +324,7 @@
                 }
                 document.querySelector('#comment_'+id +' #reply_field').value = ""
             }
-
         }
+
     </script>
 @endsection

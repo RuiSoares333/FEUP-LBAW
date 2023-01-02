@@ -10,7 +10,7 @@
         <section id="news_feed">
             @each('partials.news_post', $news, 'newspost')
         </section>
-        
+
         <section id="users" class="follow-grid">
             @each('partials.profile_preview', $user, 'user_preview')
         </section>
@@ -49,8 +49,8 @@
             else if (followButton[i].innerHTML == "Unfollow"){
                 followButton[i].innerHTML = "Follow";
                 followButton[i].classList.toggle('btn-dark')
-                followButton[i].classList.toggle('btn-outline-dark')        
-            } 
+                followButton[i].classList.toggle('btn-outline-dark')
+            }
         }
 
     }
@@ -69,7 +69,7 @@
                 'id2': id2
             })
         });
-        const replies = await response.json(); 
+        const replies = await response.json();
     }
 
     async function unfollow(id1, id2){
@@ -86,7 +86,7 @@
                 'id2': id2
             })
         });
-        const replies = await response.json(); 
+        const replies = await response.json();
     }
 
 </script>

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\News;
 use App\Models\Comment;
 use App\Models\Tag;
+use App\Models\NewsVote;
+use App\Models\CommentVote;
 
 class NewsController extends Controller
 {
@@ -24,6 +26,18 @@ class NewsController extends Controller
     {
       if (!Auth::check()) return redirect('/login');
       $news = News::find($id);
+      $vote = NewsVote::where('id_user', Auth()->user()->id)->where('id_news', $id)->first();
+
+      if(!$vote){
+        $news -> isLiked = 0;
+      }
+      else if($vote->is_liked == TRUE){
+        $news-> isLiked = 1;
+      }
+      else if($vote->is_liked == FALSE){
+        $news -> isLiked = -1;
+      }
+
       $comments = Comment::where('id_news', $id)->where('id_comment', NULL)->get();
 
       //get reply count
@@ -31,6 +45,17 @@ class NewsController extends Controller
         $replies = Comment::where('id_comment', $comment->id)->get();
         $comment->replyCount = count($replies);
         $comment->hasReplies = $comment->replyCount !== 0;
+
+        $vote = CommentVote::where('id_user', Auth()->user()->id)->where('id_comment', $comment->id)->first();
+            if(!$vote){
+                $comment -> isLiked = 0;
+            }
+            else if($vote->is_liked == TRUE){
+                $comment-> isLiked = 1;
+            }
+            else if($vote->is_liked == FALSE){
+                $comment -> isLiked = -1;
+            }
       }
       $comments->sortBy('reputation');
       $this->authorize('show', $news);
@@ -51,11 +76,26 @@ class NewsController extends Controller
     public function list()
     {
         $news = News::orderBy('date', 'desc')->get();
+
+        foreach($news as $item){
+            $vote = NewsVote::where('id_user', Auth()->user()->id)->where('id_news', $item->id)->first();
+
+            if(!$vote){
+                $item -> isLiked = 0;
+            }
+            else if($vote->is_liked == TRUE){
+                $item-> isLiked = 1;
+            }
+            else if($vote->is_liked == FALSE){
+                $item -> isLiked = -1;
+            }
+        }
+
         $user = array();
         return view('pages.home', ['news' => $news, 'user' => $user]);
     }
 
-    public function listBy(Request $request) 
+    public function listBy(Request $request)
     {
       if ($request->input('filter') == "top") {
         $news = News::orderBy('reputation', 'desc')->get();
@@ -95,7 +135,7 @@ class NewsController extends Controller
 
       $id_news = $news->id;
 
-      foreach ($request->input('tags',[]) as $tag_name) { 
+      foreach ($request->input('tags',[]) as $tag_name) {
         try {
             DB::table('tag')->insertOrIgnore([['tag_name' => $tag_name]]);
 
@@ -145,7 +185,7 @@ class NewsController extends Controller
     }
     $news->save();
 
-    
+
     //Remove old tags
     foreach ($news->tags as $tag) {
       if (!in_array($tag->name, $request->input('tags'))) {
@@ -164,7 +204,7 @@ class NewsController extends Controller
 
     $id_news = $news->id;
 
-    foreach ($request->input('tags',[]) as $tag_name) { 
+    foreach ($request->input('tags',[]) as $tag_name) {
       try {
           DB::table('tag')->insertOrIgnore([['tag_name' => $tag_name]]);
 
@@ -203,6 +243,6 @@ class NewsController extends Controller
       }
     }
 
-    return view('pages.edit_news', ['newspost' => $news, 'tags' => $tags]); 
+    return view('pages.edit_news', ['newspost' => $news, 'tags' => $tags]);
   }
 }
