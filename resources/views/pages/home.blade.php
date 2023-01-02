@@ -10,7 +10,7 @@
         <section id="news_feed">
             @each('partials.news_post', $news, 'newspost')
         </section>
-        
+
         <section id="users">
             @each('partials.profile_preview', $user, 'user_preview')
         </section>
@@ -28,6 +28,7 @@
             images[i].classList.toggle('img-fluid')
         }
     }
+    
 </script>
 
 
@@ -42,8 +43,8 @@
         else if (followButton.innerHTML == "Unfollow"){
             unfollow();
             followButton.classList.toggle('btn-dark')
-            followButton.classList.toggle('btn-outline-dark')        
-        } 
+            followButton.classList.toggle('btn-outline-dark')
+        }
     });
     async function follow(){
         let id1 = document.getElementById("id1").value;
@@ -61,7 +62,7 @@
                 'id2': id2
             })
         });
-        const replies = await response.json(); 
+        const replies = await response.json();
         followButton.innerHTML = "Unfollow";
     }
 
@@ -81,7 +82,7 @@
                 'id2': id2
             })
         });
-        const replies = await response.json(); 
+        const replies = await response.json();
         followButton.innerHTML = "Follow";
     }
 

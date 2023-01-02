@@ -312,16 +312,48 @@
         }
 
         async function newsVoteUp(id){
-            console.log('up')
+            const button = document.querySelector('#vote button:nth-of-type(1)')
+            const isLiked = document.querySelector("#news_is_liked_" + id)
+            const rep = document.querySelector('#vote #reputation')
+            if(isLiked.value == 1){
+                //remove like
+                isLiked.value = 0
+                rep.innerText = parseInt(rep.innerText)-1
+                button.classList.remove("bi-caret-up-fill")
+                button.classList.add("bi-caret-up")
+                button.style.color=""
+            }
+            else if(isLiked.value == 0){
+                //add Like
+                isLiked.value = 1
+                rep.innerText = parseInt(rep.innerText)+1
+                button.classList.remove("bi-caret-up")
+                button.classList.add("bi-caret-up-fill")
+                button.style.color="orange"
+            }
+            else if(isLiked.value == -1){
+                //change to like
+                const down = document.querySelector('#vote button:nth-of-type(2)')
+                isLiked.value = 1
+                rep.innerText = parseInt(rep.innerText)+2
+                button.classList.remove("bi-caret-up")
+                button.classList.add("bi-caret-up-fill")
+                button.style.color="orange"
+
+                down.classList.remove("bi-caret-down-fill")
+                down.classList.add("bi-caret-down")
+                down.style.color=""
+            }
         }
         async function newsVoteDown(id){
             console.log('down')
+            const isLiked = document.querySelector("#news_is_liked_" + id)
         }
         async function commentVoteUp(id){
-            console.log('up comment')
+            const isLiked = document.querySelector("#comment_is_liked_" + id)
         }
         async function commentVoteDown(id){
-            console.log('down comment')
+            const isLiked = document.querySelector("#comment_is_liked_" + id)
         }
     </script>
 @endsection
