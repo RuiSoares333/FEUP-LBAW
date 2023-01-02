@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\NewsVote;
+use App\Models\CommentVote;
 
 class CommentController extends Controller
 {

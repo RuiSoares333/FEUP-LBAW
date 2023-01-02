@@ -11,6 +11,7 @@ use App\Models\News;
 use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\NewsVote;
+use App\Models\CommentVote;
 
 class NewsController extends Controller
 {
@@ -44,6 +45,17 @@ class NewsController extends Controller
         $replies = Comment::where('id_comment', $comment->id)->get();
         $comment->replyCount = count($replies);
         $comment->hasReplies = $comment->replyCount !== 0;
+
+        $vote = CommentVote::where('id_user', Auth()->user()->id)->where('id_comment', $comment->id)->first();
+            if(!$vote){
+                $comment -> isLiked = 0;
+            }
+            else if($vote->is_liked == TRUE){
+                $comment-> isLiked = 1;
+            }
+            else if($vote->is_liked == FALSE){
+                $comment -> isLiked = -1;
+            }
       }
       $comments->sortBy('reputation');
       $this->authorize('show', $news);

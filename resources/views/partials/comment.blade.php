@@ -23,6 +23,7 @@
 
     <div id="comment_footer" class = "d-flex flex-row">
         <div id="vote" class="d-flex flex-row me-3">
+            {{$comment->isLiked}}
             <i class="bi bi-caret-up me-2 my-auto"></i>
             <span id="reputation" class="w-auto m-auto">
                 {{ $comment->reputation }} reputation
@@ -66,7 +67,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <p>Are you sure you want to <b>permanently</b> delete this comment?</p> 
+                        <p>Are you sure you want to <b>permanently</b> delete this comment?</p>
                         <p>This action is <b>irreversible</b>.</p>
                     </div>
                     <div class="modal-footer">
