@@ -13,7 +13,7 @@ use App\Models\CommentVote;
 class VoteController extends Controller
 {
     public function newsCreate(Request $request){
-        if (!Auth::check()) return response("Access Denied", 403);;
+        if (!Auth::check()) return response("Access Denied", 403);
         //request-> is_liked->true false, id->news
         $vote = new NewsVote;
         $vote->id_user = Auth()->user()->id;
@@ -24,8 +24,11 @@ class VoteController extends Controller
     }
 
     public function newsDelete(Request $request){
-        if (!Auth::check()) return redirect('/login');
-
+        if (!Auth::check()) return response("Access Denied", 403);
+        //request->id_news
+        $vote = NewsVote::where('id_news', $request->input('id_news'))->where('id_user', Auth()->user()->id)->first();
+        $vote->delete();
+        return response('Vote deleted', 200);
     }
 
     public function newsUpdate(Request $request){
@@ -45,8 +48,11 @@ class VoteController extends Controller
     }
 
     public function commentDelete(Request $request){
-        if (!Auth::check()) return redirect('/login');
-
+        if (!Auth::check()) return response("Access Denied", 403);
+        //request->id_news
+        $vote = CommentVote::where('id_comment', $request->input('id'))->where('id_user', Auth()->user()->id)->first();
+        $vote->delete();
+        return response('Vote deleted', 200);
     }
 
     public function commentUpdate(Request $request){
