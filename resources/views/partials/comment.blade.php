@@ -25,9 +25,9 @@
         <div id="vote" class="d-flex flex-row me-3">
             <input id="comment_is_liked_{{$comment->id}}" type="hidden" value={{$comment->isLiked}}>
             @if($comment->isLiked == 1)
-                <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
+                <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="commentVoteUp({{$comment->id}})"></button>
             @else
-                <button class="mx-auto bi bi-caret-up cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden;"></button>
+                <button class="mx-auto bi bi-caret-up cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden;" onclick="commentVoteUp({{$comment->id}})"></button>
             @endif
 
             <span id="reputation" class="w-auto m-auto">
@@ -35,9 +35,9 @@
             </span>
 
             @if($comment->isLiked == -1)
-                <button class="mx-auto bi bi-caret-down-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
+                <button class="mx-auto bi bi-caret-down-fill cursor-pointer" style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="commentVoteDown({{$comment->id}})"></button>
             @else
-                <button class="mx-auto bi bi-caret-down cursor-pointer"style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden;"></button>
+                <button class="mx-auto bi bi-caret-down cursor-pointer"style="font-size: 2rem; background-color: rgb(255, 255, 255); border: medium hidden;" onclick="commentVoteDown({{$comment->id}})"></button>
             @endif
         </div>
 

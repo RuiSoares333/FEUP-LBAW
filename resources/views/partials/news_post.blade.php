@@ -3,9 +3,9 @@
     <nav id="vote" class="d-flex flex-column">
         <input id="news_is_liked_{{$newspost->id}}" type="hidden" value={{$newspost->isLiked}}>
         @if($newspost->isLiked == 1)
-            <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
+            <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="newsVoteUp({{$newspost->id}})"></button>
         @else
-            <button class="mx-auto bi bi-caret-up cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden;"></button>
+            <button class="mx-auto bi bi-caret-up cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden;" onclick="newsVoteUp({{$newspost->id}})"></button>
         @endif
 
         <span id="reputation" class="reputation my-1 mx-auto">
@@ -13,9 +13,9 @@
         </span>
 
         @if($newspost->isLiked == -1)
-            <button class="mx-auto bi bi-caret-down-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;"></button>
+            <button class="mx-auto bi bi-caret-down-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="newsVoteDown({{$newspost->id}})"></button>
         @else
-            <button class="mx-auto bi bi-caret-down cursor-pointer"style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden;"></button>
+            <button class="mx-auto bi bi-caret-down cursor-pointer"style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden;" onclick="newsVoteDown({{$newspost->id}})"></button>
         @endif
 
     </nav>

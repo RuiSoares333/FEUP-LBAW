@@ -7,9 +7,9 @@
     @include('partials.header')
 
     <div id="commentModals">
-        
+
     </div>
-    
+
     <div class="detailed-post justify-content-end">
         @include('partials.news_post', $newspost)
         <div id="comment_section" class="news-comment d-flex flex-column">
@@ -101,7 +101,7 @@
 
         async function delReplyEvent(news_id, reply_id, user_id, isAdmin){
             delAjax(reply_id)
-            
+
             var myModalEl = document.getElementById('replyModal-'+reply_id);
             var modal = bootstrap.Modal.getInstance(myModalEl)
             modal.hide();
@@ -223,7 +223,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body text-center">
-                                    <p>Are you sure you want to <b>permanently</b> delete this comment?</p> 
+                                    <p>Are you sure you want to <b>permanently</b> delete this comment?</p>
                                     <p>This action is <b>irreversible</b>.</p>
                                 </div>
                                 <div class="modal-footer">
@@ -309,7 +309,19 @@
                 }
                 document.querySelector('#comment_'+id +' #reply_field').value = ""
             }
+        }
 
+        async function newsVoteUp(id){
+            console.log('up')
+        }
+        async function newsVoteDown(id){
+            console.log('down')
+        }
+        async function commentVoteUp(id){
+            console.log('up comment')
+        }
+        async function commentVoteDown(id){
+            console.log('down comment')
         }
     </script>
 @endsection
