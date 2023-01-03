@@ -13,7 +13,7 @@ use App\Models\CommentVote;
 class VoteController extends Controller
 {
     public function newsCreate(Request $request){
-        if (!Auth::check()) return response("Access Denied", 403);
+        if (!Auth::check()) return response("Access Denied", 401);
         //request-> is_liked->true false, id->news
         DB::table('news_vote')->insert([
             'id_user' => Auth()->user()->id,
@@ -24,7 +24,7 @@ class VoteController extends Controller
     }
 
     public function newsDelete(Request $request){
-        if (!Auth::check()) return response("Access Denied", 403);
+        if (!Auth::check()) return response("Access Denied", 401);
         //request->id_news
         DB::table('news_vote')
             ->where('id_news', $request->input('id'))
@@ -34,7 +34,7 @@ class VoteController extends Controller
     }
 
     public function newsUpdate(Request $request){
-        if (!Auth::check()) return response("Access Denied", 403);
+        if (!Auth::check()) return response("Access Denied", 401);
         //request-> id, is_liked->true false
         DB::table('news_vote')
             ->where('id_news', $request->input('id'))
@@ -44,7 +44,7 @@ class VoteController extends Controller
     }
 
     public function commentCreate(Request $request){
-        if (!Auth::check()) return response("Access Denied", 403);;
+        if (!Auth::check()) return response("Access Denied", 401);;
         //request-> is_liked->true false, id->comment
         DB::table('comment_vote')->insert([
             'id_user' => Auth()->user()->id,
@@ -55,7 +55,7 @@ class VoteController extends Controller
     }
 
     public function commentDelete(Request $request){
-        if (!Auth::check()) return response("Access Denied", 403);
+        if (!Auth::check()) return response("Access Denied", 401);
         //request->id_news
         DB::table('comment_vote')
             ->where('id_comment', $request->input('id'))
@@ -65,7 +65,7 @@ class VoteController extends Controller
     }
 
     public function commentUpdate(Request $request){
-        if (!Auth::check()) return response("Access Denied", 403);
+        if (!Auth::check()) return response("Access Denied", 401);
         //request-> id, is_liked->true false
         DB::table('comment_vote')
             ->where('id_comment', $request->input('id'))

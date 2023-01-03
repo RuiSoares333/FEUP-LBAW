@@ -51,6 +51,7 @@ Route::delete('/api/vote/newsDelete', 'VoteController@newsDelete');
 Route::post('/api/vote/commentCreate', 'VoteController@commentCreate');
 Route::post('/api/vote/commentUpdate', 'VoteController@commentUpdate');
 Route::delete('/api/vote/commentDelete', 'VoteController@commentDelete');
+Route::post('/api/tag/propose', 'TagController@createProposal');
 /*Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');*/
