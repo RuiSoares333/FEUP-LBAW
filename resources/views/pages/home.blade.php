@@ -16,7 +16,7 @@
         </section>
 
         <section id="tags" class="follow-grid">
-            @each('partials.list_tag', $tags, 'tag')
+            @each('partials.tag_preview', $tags, 'tag')
         </section>
 
     </main>
