@@ -1,0 +1,1 @@
+<li>{{$tags->tag_name}}</li>

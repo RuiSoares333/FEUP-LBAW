@@ -11,11 +11,7 @@
     </div>
 
     <ol>
-        <li>Tag 1 <span>x follows</span></li>
-        <li>Tag 2 <span>x follows</span></li>
-        <li>Tag 3 <span>x follows</span></li>
-        <li>Tag 4 <span>x follows</span></li>
-        <li>Tag 5 <span>x follows</span></li>
+        @each('partials.list_tag', Auth::user()->followed_tags(), 'tags')
     </ol>
 
     <a href="{{ url('rte') }}" class="col-10 btn btn-primary rounded-pill border-0 py-2 px-4 text-light ">Share Your Story</button></a>

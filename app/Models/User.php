@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\News');
     }
 
+    public function followed_tags() {
+        $tags_followed = DB::select('select tag_name from (tag_follow inner join tag ON tag_follow.id_tag = tag.id) where id_user = ?',[$this->id]);
+        return $tags_followed;
+    }
+
     public function reputation() {
         if(Auth::check()) {
             $news = $this->news()->get();
@@ -68,10 +73,4 @@ class User extends Authenticatable
         if ($follows == null) return false;
         else return true;
     }
-
-    public function followed_tags($id_user) {
-        $tags_followed = DB::select('select id_tag from tag_follow where id_user = ?', [$id_user]);
-        return $tags_followed;
-    }
-
 }

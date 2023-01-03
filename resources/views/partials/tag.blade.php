@@ -14,12 +14,10 @@
                     @endif
                 </form>
     </section>
-
-        <section id="followers" class="text-center mx-auto bg-light rounded-2 w-25 py-3">
-            <p class="h6">Followers</p>
-            {{count($tag->followers()->get())}}
-        </section>
-
+    <section id="followers" class="text-center mx-auto bg-light rounded-2 w-25 py-3">
+        <p class="h6">Followers</p>
+        {{count($tag->followers()->get())}}
+    </section>
     @endif
     <section id="news">
         @each('partials.news_post', $news, 'newspost')
