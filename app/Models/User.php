@@ -40,7 +40,7 @@ class User extends Authenticatable
     }
 
     public function followed_tags() {
-        $tags_followed = DB::select('select tag_name from (tag_follow inner join tag ON tag_follow.id_tag = tag.id) where id_user = ?',[$this->id]);
+        $tags_followed = DB::select('select id, tag_name from (tag_follow inner join tag ON tag_follow.id_tag = tag.id) where id_user = ?',[$this->id]);
         return $tags_followed;
     }
 
