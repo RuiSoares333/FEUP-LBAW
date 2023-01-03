@@ -6,17 +6,17 @@
     <div id="admin_div" class="mt-5">
         @include('partials.header')
 
-        <h2> New Tags Proposals </h2>
+        <h2 class="text-center"> New Tags Proposals </h2>
 
-        <h4>Pending Tags</h4>
+        <h4 class="text-center">Pending Tags</h4>
 
         @each('partials.tag_proposal', $tag_proposals, 'tag_proposal')
 
-        <h4>Accepted Tags</h4>
+        <h4 class="text-center">Accepted Tags</h4>
 
         @each('partials.tag_proposal', $accepted_tag_proposals, 'tag_proposal')
 
-
+        <h4>Revoke Admin Privileges</h4>
         <button id="delete_button" class="width-25 btn btn-primary rounded-pill text-light" data-bs-toggle="modal" data-bs-target="#revokeModal-{{ Auth::user()->id }}">Revoke Admin</button>
     </div>
 @endsection

@@ -28,7 +28,7 @@
     <nav id="tag_proposal-{{$tag_proposal->id}}" class="d-flex flex-column">   
         <p> {{$tag_proposal->tag_name}} </p>
         @if(!$tag_proposal->is_handled)
-        <div id="accept{{$tag_proposal->id}}" onclick="createTag({{$tag_proposal->id}})">✔️</div>
+        <div id="accept{{$tag_proposal->id}}" class="btn" onclick="createTag({{$tag_proposal->id}})">✔️</div>
         @endif
     </nav>
 
