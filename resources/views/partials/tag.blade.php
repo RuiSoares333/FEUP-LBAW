@@ -1,8 +1,6 @@
 <div>
-    <section id="intro" class="mx-auto text-center border-bottom py-5">
-        <section id="tag_name" class="mb-3">
-            {{ $tag->tag_name }}
-        </section>
+    <section id="intro" class="mx-auto text-center py-5">
+        <h1 id="tag_name" class="mb-3">{{ $tag->tag_name }} </h1>
 
                     @if(Auth::check())
                 <form id="follow_tag_form" method="POST">
@@ -17,11 +15,10 @@
                 </form>
     </section>
 
-        <section id="followers" class="text-center d-flex flex-column py-2 px-4 border bg-light rounded-2 ms-5 me-auto">
+        <section id="followers" class="text-center mx-auto bg-light rounded-2 w-25 py-3">
             <p class="h6">Followers</p>
             {{count($tag->followers()->get())}}
         </section>
-    </section>
 
     @endif
     <section id="news">
