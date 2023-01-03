@@ -4,7 +4,7 @@
 We hope you have a wonderful time with us!
 
 
-@component('mail::button', ['url' => '/'])
+@component('mail::button', ['url' => 'https://lbaw2286.lbaw.fe.up.pt/'])
 Go To SLCN
 @endcomponent
 

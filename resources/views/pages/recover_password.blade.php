@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('page-title', 'Register')
+@section('page-title', 'Recover Password')
 
 @section('content')
 
     @include('partials.header')
-    @include('auth.register')
-
+    @include('auth.recover_password')
+    
 @endsection
 
 @section('scripts')

@@ -12,6 +12,8 @@
 
 <script>
     document.body.style.background = "linear-gradient(0deg, #bf6324 0%, #b92a4c 100%)";
+    document.body.style.overflowY ="hidden";
+    document.body.style.padding = "0";
 </script>
 
 @endsection

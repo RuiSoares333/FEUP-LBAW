@@ -58,9 +58,12 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('/recover', 'UserController@recoverPassword');
 
 // Mailing
 Route::get('/welcome_email', 'EmailController@welcome');
+Route::get('/recover_password', 'EmailController@recover');
+
 //Tag
 Route::get('tag/{id}', 'TagController@show')->name('tag');
 Route::post('/api/follow_tag', 'TagController@follow_tag');
