@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,9 +69,15 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('/welcome_email', 'EmailController@welcome');
 
 //notifications
-Route::get('/api/sendnotifications', function(){
-    $arr = array('id' => 1, 'name' => 'john');
+Route::post('/api/sendnotifications', function(Request $request){
+    if (!Auth::check()) return response('Unauthorized', 401);
+    $arr = array(
+        'id' => $request->input('id'),
+        'type' => $request->input('type'),
+        'user_id' => $request->input('user_id')
+    );
 
     event(new App\Events\myEvent(json_encode($arr)));
-    return 'notification sent';
+    return response('Notification Sent', 200);
+
 });

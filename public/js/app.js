@@ -150,7 +150,7 @@ function createItem(item) {
   return new_item;
 }
 
-async function newsVoteUp(id){
+async function newsVoteUp(id, user_id){
     let url
     let is_liked
     let method
@@ -177,6 +177,7 @@ async function newsVoteUp(id){
         url = '/api/vote/newsCreate'
         method = 'post'
         is_liked = true
+        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'news'})
     }
     else if(isLiked.value == -1){
         //change to like
@@ -194,10 +195,11 @@ async function newsVoteUp(id){
         url = '/api/vote/newsUpdate'
         method = 'post'
         is_liked = true
+        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'news'})
     }
     sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
 }
-async function newsVoteDown(id){
+async function newsVoteDown(id, user_id){
     let url
     let is_liked
     let method
@@ -244,7 +246,7 @@ async function newsVoteDown(id){
     }
     sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
 }
-async function commentVoteUp(id){
+async function commentVoteUp(id, user_id){
     let url
     let is_liked
     let method
@@ -273,6 +275,7 @@ async function commentVoteUp(id){
         url = '/api/vote/commentCreate'
         method = 'post'
         is_liked = true
+        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'comment'})
     }
     else if(isLiked.value == -1){
         //change to like
@@ -289,10 +292,11 @@ async function commentVoteUp(id){
         url = '/api/vote/commentUpdate'
         method = 'post'
         is_liked = true
+        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'news'})
     }
     sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
 }
-async function commentVoteDown(id){
+async function commentVoteDown(id, user_id){
     let url
     let is_liked
     let method

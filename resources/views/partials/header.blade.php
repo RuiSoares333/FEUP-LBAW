@@ -10,13 +10,17 @@ var pusher = new Pusher('730b9185b760246c7a3a', {
 
 var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
+    const id = document.querySelector('#user_id').value
     myJson = JSON.parse(data.message)
-    console.log(myJson)
-    alert(myJson.id)
+    alert(myJson)
+    if(myJson.user_id == id){
+        
+    }
 });
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top text-uppercase">
+    <input id="user_id" type="hidden" value="{{Auth::user()->id}}">
     <div class="container d-flex flex-row mx-auto col-xl-10 col-md-11 col-12">
         <div class="d-flex flex-row col-10 justify-content-around">
             <a class="navbar-brand-name fw-bold h2" href="{{ url('/') }}">slcn</a>
