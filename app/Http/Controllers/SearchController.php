@@ -34,6 +34,7 @@ class SearchController extends Controller
             ->take(10)
             ->get();
             $users = array();
+            $tags = array();
           }
           else if ($request->input('filter') == "recent_news") {
             $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
@@ -42,6 +43,7 @@ class SearchController extends Controller
             ->take(10)
             ->get();
             $users = array();
+            $tags = array();
           }
           else if ($request->input('filter') == "top_users") {
             $users = User::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
@@ -50,20 +52,38 @@ class SearchController extends Controller
             ->take(10)
             ->get();
             $news = array();
+            $tags = array();
+          }
+          else if ($request->input('filter') == "tags") {
+            $tags = Tag::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
+            ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
+            ->orderBy('reputation', 'desc')
+            ->take(10)
+            ->get();
+            $news = array();
+            $users = array();
           }
         }
         else {
           if ($request->input('filter') == "top_news") {
             $news = News::orderBy('reputation', 'desc')->take(10)->get();
             $users = array();
+            $tags = array();
           }
           else if ($request->input('filter') == "recent_news") {
             $news = News::orderBy('date', 'desc')->take(10)->get();
             $users = array();
+            $tags = array();
           }
           else if ($request->input('filter') == "top_users") {
             $users = User::orderBy('reputation', 'desc')->take(10)->get();
             $news = array();
+            $tags = array();
+          }
+          else if ($request->input('filter') == "tags") {
+            $tags = Tag::orderBy('tag_name', 'desc')->take(10)->get();
+            $news = array();
+            $users = array();
           }
         }
 
@@ -83,7 +103,7 @@ class SearchController extends Controller
           }
         }
   
-        return view('pages.home', ['news' => $news, 'user' => $users]);
+        return view('pages.home', ['news' => $news, 'user' => $users, 'tags' => $tags]);
     }
 
 }

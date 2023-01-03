@@ -15,6 +15,10 @@
             @each('partials.profile_preview', $user, 'user_preview')
         </section>
 
+        <section id="tags" class="follow-grid">
+            @each('partials.list_tag', $tags, 'tag')
+        </section>
+
     </main>
 @endsection
 

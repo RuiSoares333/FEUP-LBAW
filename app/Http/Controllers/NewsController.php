@@ -94,7 +94,8 @@ class NewsController extends Controller
     }
 
       $user = array();
-      return view('pages.home', ['news' => $news, 'user' => $user]);
+      $tags = array();
+      return view('pages.home', ['news' => $news, 'user' => $user, 'tags' => $tags]);
     }
 
     public function listBy(Request $request)
