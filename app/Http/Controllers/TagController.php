@@ -36,14 +36,13 @@ class TagController extends Controller
         return view('pages.tag', ['tag' => $tag, 'news' => $news, 'user' => $user]);
     }
 
-
 /*
     public function show($id)
     {
         $tag = Tag::find($id);
         return view('partials.banner', ['tag' => $tag]);
     }
-*/
+
     public function show_top()
     {
 
@@ -52,14 +51,14 @@ class TagController extends Controller
 
         return view('partials.banner',compact(top));
     }
-
+*/
     public function follow_tag(Request $request) {
         DB::table('tag_follow')->insert(['id_user' => $request->id_user, 'id_tag' => $request->id_tag]);
         return response()->json(["success" => true], 200);
-      }
+    }
   
       public function unfollow_tag(Request $request) {
         DB::delete('DELETE FROM tag_follow WHERE id_user = ? AND id_tag = ?', [$request->id_user, $request->id_tag]);
         return response()->json(["success" => true], 200);
-      }
+    }
 }

@@ -69,9 +69,4 @@ class User extends Authenticatable
         else return true;
     }
 
-    public function check_follow_tag($id_user, $id_tag) {
-        $follows = DB::select('select * from tag_follow where id_user = ? and id_tag = ?', [$id_user, $id_tag]);
-        if ($follows == null) return false;
-        else return true;
-    }
 }

@@ -2,7 +2,7 @@
     <div class="masthead">
         <div class="masthead-content text-center text-capitalize text-light">
             <h4 class="mt-4">super legit collaborative news</h4>
-            <h5 class="">trending topics</h5>
+            <h5 class="">Your Tags</h5>
         </div>
         <div class="bg-circle-1 bg-circle"></div>
         <div class="bg-circle-2 bg-circle"></div>

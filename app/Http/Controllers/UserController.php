@@ -112,4 +112,5 @@ class UserController extends Controller
       $user = User::find($id);
       return view('pages.follow_list', ['user' => $user]);
     }
+
 }
