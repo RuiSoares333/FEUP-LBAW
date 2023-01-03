@@ -1,7 +1,10 @@
 @if($user_preview -> id !== 5)
 <article id="user-prev" class="news mx-auto my-3 mx-auto col-11 py-2 py-md-6 px-3 px-md-2 px-lg-4 d-flex flex-row border bg-light rounded-2" data-id="{{ $user_preview->id }}">
-    <img src="{{asset('pictures/user/' . $user_preview->picture ) }}" class="my-auto h-100 rounded-circle col-2 col-md-3 img-fluid">
-    <div class="d-flex flex-column mx-3 my-auto col-4">
+    @if($user_preview->picture !== 'default.png')
+        <img src="{{asset('pictures/user/' . $user_preview->id . '/' . $user_preview->picture ) }}" class="rounded-circle col-6 col-lg-3 img-fluid ">
+    @else
+        <img src="{{asset('pictures/user/default.png') }}" class="rounded-circle col-6 col-lg-3 img-fluid ">
+    @endif    <div class="d-flex flex-column mx-3 my-auto col-4">
         <a class="mini-username mb-2 h4 fw-bold text-truncate text-nowrap col-12 " href="/profile/{{$user_preview->id}}">{{ $user_preview->username }}</a>
         <span class="mt-2 text-nowrap">{{ $user_preview->reputation() }} reputation</span> 
     </div>
