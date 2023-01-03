@@ -11,13 +11,36 @@
     </div>
 
     <ol>
+        <button id="proposal" class="col-10 btn btn-primary rounded-pill py-2 text-light " onclick="toggleProposals()">Propose a New Tag</button>
+        <button id="proposal_cancel" class="col-10 btn btn-primary rounded-pill py-2 text-light d-none" onclick="toggleProposals()">Cancel</button>
+        <div id="tag_toggle">
+        <section id="prop_toggle" class="flex d-flex justify-content-evenly d-none">
+            <input id="prop_name" type="text" placeholder="New Tag" autocomplete=off class="form-control w-50" >
+            <button id="proposal_submit" class="btn btn-primary rounded-pill py-2 text-light">submit</button>
+        </section>
+        </div>
         <li>Tag 1 <span>x follows</span></li>
         <li>Tag 2 <span>x follows</span></li>
         <li>Tag 3 <span>x follows</span></li>
         <li>Tag 4 <span>x follows</span></li>
-        <li>Tag 5 <span>x follows</span></li>
+
+
     </ol>
 
     <a href="{{ url('rte') }}" class="col-10 btn btn-primary rounded-pill border-0 py-2 px-4 text-light ">Share Your Story</button></a>
     <a href="{{ url('about_us') }}">About Us</a>
 </nav>
+
+<script>
+    function toggleProposals(){
+        const toggle = document.querySelector('#proposal')
+        const cancel = document.querySelector('#proposal_cancel')
+        const section = document.querySelector('#prop_toggle')
+        const input = document.querySelector('#prop_name')
+
+        toggle.classList.toggle('d-none')
+        cancel.classList.toggle('d-none')
+        section.classList.toggle('d-none')
+        input.value = ""
+    }
+</script>
