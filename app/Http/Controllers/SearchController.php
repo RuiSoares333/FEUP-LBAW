@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\News;
 use App\Models\User;
+use App\Models\NewsVote;
+use App\Models\Tag;
 
 class SearchController extends Controller 
 {
@@ -26,34 +28,80 @@ class SearchController extends Controller
           else {
             $query = join("", $array);
           }
-          if ($request->input('filter') == "top") {
+          if ($request->input('filter') == "top_news") {
             $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
             ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
             ->orderBy('reputation', 'desc')
+            ->take(10)
             ->get();
+            $users = array();
+            $tags = array();
           }
-          else if ($request->input('filter') == "recent") {
+          else if ($request->input('filter') == "recent_news") {
             $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
             ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
             ->orderBy('date', 'desc')
+            ->take(10)
             ->get();
+            $users = array();
+            $tags = array();
           }
-          /*$users = User::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
-          ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
-          ->orderBy('reputation', 'desc')
-          ->get();*/
+          else if ($request->input('filter') == "top_users") {
+            $users = User::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
+            ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
+            ->orderBy('reputation', 'desc')
+            ->take(10)
+            ->get();
+            $news = array();
+            $tags = array();
+          }
+          else if ($request->input('filter') == "tags") {
+            $search = ucfirst($request->input('search'));
+            $tags = Tag::query()->where('tag_name', 'LIKE', "%{$search}%")->get();
+            $news = array();
+            $users = array();
+          }
         }
         else {
-          if ($request->input('filter') == "top") {
-            $news = News::orderBy('reputation', 'desc')->get();
-          //$users = User::orderBy('reputation')->get();
+          if ($request->input('filter') == "top_news") {
+            $news = News::orderBy('reputation', 'desc')->take(10)->get();
+            $users = array();
+            $tags = array();
           }
-          else if ($request->input('filter') == "recent") {
-            $news = News::orderBy('date', 'desc')->get();
+          else if ($request->input('filter') == "recent_news") {
+            $news = News::orderBy('date', 'desc')->take(10)->get();
+            $users = array();
+            $tags = array();
+          }
+          else if ($request->input('filter') == "top_users") {
+            $users = User::orderBy('reputation', 'desc')->take(10)->get();
+            $news = array();
+            $tags = array();
+          }
+          else if ($request->input('filter') == "tags") {
+            $tags = Tag::orderBy('tag_name', 'desc')->get();
+            $news = array();
+            $users = array();
+          }
+        }
+
+        if(Auth::check()){
+          foreach($news as $item){
+              $vote = NewsVote::where('id_user', Auth()->user()->id)->where('id_news', $item->id)->first();
+  
+            if(!$vote){
+                $item -> isLiked = 0;
+            }
+            else if($vote->is_liked == TRUE){
+                $item-> isLiked = 1;
+            }
+            else if($vote->is_liked == FALSE){
+                $item -> isLiked = -1;
+            }
           }
         }
   
-        return view('pages.home', ['news' => $news, 'user' => array()]);
+        return view('pages.home', ['news' => $news, 'user' => $users, 'tags' => $tags]);
     }
 
 }

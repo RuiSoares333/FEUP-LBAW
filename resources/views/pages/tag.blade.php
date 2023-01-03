@@ -1,10 +1,9 @@
 @extends('layouts.app')
-@section('page-title', 'Register')
-
+@section('page-title', 'Tag')
 @section('content')
 
     @include('partials.header')
-    @include('auth.register')
+    @include('partials.tag', [$tag, $news, $user])
 
 @endsection
 
@@ -12,8 +11,6 @@
 
 <script>
     document.body.style.background = "linear-gradient(0deg, #bf6324 0%, #b92a4c 100%)";
-    document.body.style.overflowY ="hidden";
-    document.body.style.padding = "0";
 </script>
 
 @endsection

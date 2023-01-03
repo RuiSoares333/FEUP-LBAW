@@ -42,7 +42,7 @@
             <span class="my-auto"><a class="text-decoration-none text-dark" href="/profile/{{$newspost->author()->get()->first()->id}}">{{ $newspost->author()->get()->first()->username}}</a></span>
             <div class="row-cols-2 row-cols-lg-3 my-3">
                 @foreach($newspost->tags as $tag)
-                    <button class="btn tag-button-empty col-5 col-sm-4 col-md-3 col-lg-3 p-1 m-1">{{ $tag->tag_name }}</button>
+                    <a class="btn tag-button-empty col-5 col-sm-4 col-md-3 col-lg-3 p-1 m-1" href="/tag/{{$tag->id}}">{{ $tag->tag_name }}</a>
                 @endforeach
             </div>
         </header>
