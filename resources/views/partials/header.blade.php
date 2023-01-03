@@ -44,12 +44,12 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
                 @if (Auth::check())
                     <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/logout') }}">logout</a></li>
-                    <li class="nav-item my-auto">
+                    <li class="nav-item my-auto" id="profile-picture-item">
                         <a href="/profile/{{Auth::user()->id}}" id="profile-picture">
                             @if(Auth()->user()->picture !== 'default.png')
-                                <img src="{{asset('pictures/user/' . Auth()->user()->id . '/' . Auth::user()->picture ) }}" class="rounded-circle col-6 col-lg-3 img-fluid ">
+                                <img src="{{asset('pictures/user/' . Auth()->user()->id . '/' . Auth::user()->picture ) }}" class="rounded-circle col-2 col-lg-4 img-fluid ">
                             @else
-                                <img src="{{asset('pictures/user/default.png')}}" class="rounded-circle col-6 col-lg-3 img-fluid ">
+                                <img src="{{asset('pictures/user/default.png')}}" class="rounded-circle col-2 col-lg-4 img-fluid ">
                             @endif
                         </a>
                     </li>

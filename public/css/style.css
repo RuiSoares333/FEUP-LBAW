@@ -94,6 +94,13 @@ a{
     white-space: nowrap;
 }
 
+@media (min-width: 992px) {
+    #navbarResponsive #profile-picture-item{
+        transform: translateX(50%);
+    }
+}
+
+
 /* SIDE NAV */
 
 #side-nav{
