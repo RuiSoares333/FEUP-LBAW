@@ -66,7 +66,10 @@
 
         <div id="navbarResponsive" class="collapse navbar-collapse col-2" >
             <ul class="navbar-nav mb-2 mb-lg-0">
-                @if (Auth::check())
+               @if(Auth::check())
+                    @if (Auth::user()->isAdmin()) 
+                    <li class="nav-item my-auto"> <a class="nav-link" href="{{ url('/admin') }}">Admin</a></li> 
+                    @endif
                     <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/logout') }}">logout</a></li>
                     <li class="nav-item my-auto" id="profile-picture-item">
                         <a href="/profile/{{Auth::user()->id}}" id="profile-picture">

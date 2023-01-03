@@ -10,7 +10,9 @@
         <div class="bg-circle-4 bg-circle"></div>
     </div>
     <ul>
+        @if(Auth::check())
         @each('partials.list_tag', Auth::user()->followed_tags(), 'tag')
+        @endif
     </ul>
         <button id="proposal" class="col-10 btn btn-primary rounded-pill py-2 text-light " onclick="toggleProposals()">Propose a New Tag</button>
         <button id="proposal_cancel" class="col-10 btn btn-primary rounded-pill py-2 text-light d-none" onclick="toggleProposals()">Cancel</button>

@@ -61,8 +61,11 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // Mailing
 Route::get('/welcome_email', 'EmailController@welcome');
+
 //Tag
 Route::get('tag/{id}', 'TagController@show')->name('tag');
 Route::post('/api/follow_tag', 'TagController@follow_tag');
 Route::delete('/api/unfollow_tag', 'TagController@unfollow_tag');
 //Route::delete('/api/delete_tag/{id}','TagController@delete')->name('delete_tag');
+
+Route::get('/admin', 'AdminController@show')->name('admin');
