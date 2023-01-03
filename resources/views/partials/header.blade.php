@@ -1,4 +1,66 @@
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script>
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('730b9185b760246c7a3a', {
+    cluster: 'eu'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+    const id = document.querySelector('#user_id').value
+    myJson = JSON.parse(data.message)
+    // if(myJson.user_id == id) return
+    if(myJson.receiver_id == id){
+
+        const notCont = document.getElementById("toast-container");
+
+        if(myJson.type == 'news'){
+            var replyContent = `
+            <div id="tosta_`+myJson.user_id+`" class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity: 1;">                
+                <div class="toast-header">
+                    <strong class="me-auto">Notification</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick="closeToast(`+myJson.user_id+`)"></button>
+                </div>
+                <div class="toast-body">
+                    Your <a href="/news/`+ myJson.id + `">post</a> has just been voted by <a href="/profile/`+ myJson.user_id + `">`+myJson.user_name+`</a>
+                </div>
+            </div>`
+        }
+        else{
+            var replyContent = `
+            <div id="tosta_`+myJson.user_id+`" class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity: 1;">                
+                <div class="toast-header">
+                    <strong class="me-auto">Notification</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick="closeToast(`+myJson.user_id+`)"></button>
+                </div>
+                <div class="toast-body">
+                    Your <a href="`+ myJson.id + `">comment</a> has just been voted by <a href="/user/`+ myJson.user_id + `">`+myJson.user_name+`</a>
+                </div>
+            </div>`
+        }
+
+
+        notCont.innerHTML = notCont.innerHTML + replyContent;
+
+        console.log(myJson)
+    }
+});
+</script>
+
+<script>
+    function closeToast(id){
+        const elem = document.getElementById("tosta_"+id);
+        elem.parentNode.removeChild(elem);
+    }
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top text-uppercase">
+    @if(Auth::check())
+        <input id="user_id" type="hidden" value="{{Auth::user()->id}}">
+    @endif
     <div class="container d-flex flex-row mx-auto col-xl-10 col-md-11 col-12">
         <div class="d-flex flex-row col-10 justify-content-around">
             <a class="navbar-brand-name fw-bold h2" href="{{ url('/') }}">slcn</a>
@@ -89,6 +151,12 @@
         </div>
     </div>
 </nav>
+
+<div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0" style="z-index: 9999;">
+    <div id="toast-container" class="toast-container p-3">
+
+    </div>
+</div>
 
 <script>
     const search_form = document.getElementById("search_form");

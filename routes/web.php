@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Models\Comment;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,6 +68,33 @@ Route::get('/recover', 'UserController@recoverPassword');
 // Mailing
 Route::get('/welcome_email', 'EmailController@welcome');
 Route::get('/recover_password', 'EmailController@recover');
+
+//notifications
+Route::post('/api/sendnotifications', function(Request $request){
+    if (!Auth::check()) return response('Unauthorized', 401);
+    $user = User::find($request->input('user_id'));
+    $username = $user->username;
+
+    if($request->input('type')=='comment'){
+        $comment = Comment::find($request->input('id'));
+        $id_news = $comment->id_news;
+    }
+    else{
+        $id_news = $request->input('id');
+    }
+    $arr = array(
+        'id_comment' => $request->input('id'),
+        'id_news' => $id_news,
+        'type' => $request->input('type'),
+        'user_id' => $request->input('user_id'),
+        'user_name' => $username,
+        'receiver_id' =>$request->input('receiver_id')
+    );
+
+    event(new App\Events\myEvent(json_encode($arr)));
+    return response('Notification Sent', 200);
+
+});
 
 //Tag
 Route::get('tag/{id}', 'TagController@show')->name('tag');
