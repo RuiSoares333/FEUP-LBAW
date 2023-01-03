@@ -48,9 +48,12 @@ class CommentController extends Controller
 
     public function getReplies(Request $request){
         $id = $request->input('id');
+        $parent = Comment::find($id);
         $replies = Comment::where('id_comment', $id)->get();
         if(Auth::check()){
             foreach ($replies as $reply){
+
+                $reply->parent_owner_id = $parent->user_id;
                 $reply->author = $reply->author()->get()->first()->username;
                 $vote = CommentVote::where('id_user', Auth()->user()->id)->where('id_comment', $reply->id)->first();
                 if(!$vote){

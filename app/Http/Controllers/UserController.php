@@ -113,4 +113,7 @@ class UserController extends Controller
       return view('pages.follow_list', ['user' => $user]);
     }
 
+    public function recoverPassword(){
+      return view('pages.recover_password');
+    }
 }

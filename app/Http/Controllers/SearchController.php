@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\News;
 use App\Models\User;
 use App\Models\NewsVote;
+use App\Models\Tag;
 
 class SearchController extends Controller 
 {
@@ -55,11 +56,8 @@ class SearchController extends Controller
             $tags = array();
           }
           else if ($request->input('filter') == "tags") {
-            $tags = Tag::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
-            ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
-            ->orderBy('reputation', 'desc')
-            ->take(10)
-            ->get();
+            $search = ucfirst($request->input('search'));
+            $tags = Tag::query()->where('tag_name', 'LIKE', "%{$search}%")->get();
             $news = array();
             $users = array();
           }
@@ -81,7 +79,7 @@ class SearchController extends Controller
             $tags = array();
           }
           else if ($request->input('filter') == "tags") {
-            $tags = Tag::orderBy('tag_name', 'desc')->take(10)->get();
+            $tags = Tag::orderBy('tag_name', 'desc')->get();
             $news = array();
             $users = array();
           }
