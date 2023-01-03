@@ -66,3 +66,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // Mailing
 Route::get('/welcome_email', 'EmailController@welcome');
+
+//notifications
+

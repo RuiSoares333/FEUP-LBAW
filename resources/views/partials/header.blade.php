@@ -1,3 +1,19 @@
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script>
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('730b9185b760246c7a3a', {
+    cluster: 'eu'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+    alert(JSON.stringify(data));
+});
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top text-uppercase">
     <div class="container d-flex flex-row mx-auto col-xl-10 col-md-11 col-12">
         <div class="d-flex flex-row col-10 justify-content-around">
@@ -7,7 +23,7 @@
                 <form role="search" class="input-group" action="{{ route('search') }}">
                     <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
                     <input id="search-input" class="form-control" type="search" placeholder="what are you looking for?" name="search" value="{{ request('search') }}">
-                
+
                     <button class="input-group-text" style="border-top-right-radius: .25rem; border-bottom-right-radius: .25rem;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                         <i class="bi bi-filter"></i>
                     </button>
