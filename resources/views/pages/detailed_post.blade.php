@@ -142,7 +142,6 @@
                 })
             })
             const replies = await response.JSON
-            console.log(replies)
         }
 
         async function toggleReplies(id, user_id, isAdmin){

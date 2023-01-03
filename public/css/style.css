@@ -488,3 +488,9 @@ a{
 #team .card > :nth-child(1){
     background-color: var(--bs-gray-500);
 }
+
+#admin_div{
+    margin-left: auto;
+    margin-right: auto;
+    width:50vw;
+}

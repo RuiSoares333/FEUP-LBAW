@@ -526,7 +526,7 @@ SET search_path TO lbaw2286;
 
 ALTER SEQUENCE users_id_seq RESTART WITH 7;
 
-INSERT INTO users (id, username, email, password, country, is_admin) VALUES(1, 'André Morais', 'andre@legitmail.com', '$2a$12$upL6DFkOAvStTFj66C/HjOUcdqbsbJYybp1I5QNEal2uCQk7r0Owq', 'Portugal', true);
+INSERT INTO users (id, username, email, password, country, is_admin) VALUES(1, 'André Morais', 'andre@legitmail.com', '$2a$12$upL6DFkOAvStTFj66C/HjOUcdqbsbJYybp1I5QNEal2uCQk7r0Owq', 'Portugal', false);
 INSERT INTO users (id, username, email, password, country, is_admin) VALUES(2, 'João Teixeira', 'joao@legitmail.com', '$2a$12$z6QqR5X7k.JFeAK2UZAD6OdTgSj8Rkmf7sECS96dEGRzRjU/bhC.e', 'Portugal', true);
 INSERT INTO users (id, username, email, password, country, is_admin) VALUES(3, 'Lucas Sousa', 'lucas@legitmail.com', '$2a$12$lupa/IivieTHqeT8ZFuoc.b6Z4KpzOZ/LT6ts5Pxt9xq4c0y4vbti', 'Portugal', true);
 INSERT INTO users (id, username, email, password, country, is_admin) VALUES(4, 'Rui Soares', 'rui@legitmail.com', '$2a$12$hzvwGZBw2qWA6pE.v/JIPObYrX3odCi3bYwnm0XocZnpK.3Cv3wPC', 'Portugal', true);

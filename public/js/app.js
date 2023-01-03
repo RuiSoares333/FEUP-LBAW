@@ -342,8 +342,4 @@ async function commentVoteDown(id){
     sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
 }
 
-async function createTag(id){
-    //Id is the id of the tag proposal
-    console.log('createTag')
-    sendAjaxRequest('post', '/api/tag/create', {'id':id})
-}
+
