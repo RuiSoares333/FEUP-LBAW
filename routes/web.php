@@ -18,11 +18,9 @@ Route::get('/about_us', function(){
 });
 
 // News
-//Route::get('news', 'NewsController@list');
 Route::get('news/{id}', 'NewsController@show');
 Route::get('rte', 'NewsController@rte');
 Route::get('/rte/{id}', 'NewsController@edit');
-
 
 // User
 Route::get('profile/{id}', 'UserController@show')->name('profile');
@@ -53,9 +51,6 @@ Route::post('/api/vote/commentUpdate', 'VoteController@commentUpdate');
 Route::delete('/api/vote/commentDelete', 'VoteController@commentDelete');
 Route::post('/api/tag/propose', 'TagController@createProposal');
 Route::post('/api/tag/create', 'TagController@createTag');
-/*Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');*/
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -66,3 +61,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // Mailing
 Route::get('/welcome_email', 'EmailController@welcome');
+//Tag
+Route::get('tag/{id}', 'TagController@show')->name('tag');
+Route::post('/api/follow_tag', 'TagController@follow_tag');
+Route::delete('/api/unfollow_tag', 'TagController@unfollow_tag');
+//Route::delete('/api/delete_tag/{id}','TagController@delete')->name('delete_tag');
