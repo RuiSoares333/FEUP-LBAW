@@ -11,7 +11,8 @@
 |
 */
 // Home
-Route::get('/', 'NewsController@list');
+Route::get('/', 'NewsController@userFeedList');
+Route::get('/top', 'NewsController@List');
 Route::get('/search', 'SearchController@search')->name('search');
 Route::get('/about_us', function(){
     return view('pages.about_us');

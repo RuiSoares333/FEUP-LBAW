@@ -2,12 +2,13 @@
     <div class="container d-flex flex-row mx-auto col-xl-10 col-md-11 col-12">
         <div class="d-flex flex-row col-10 justify-content-around">
             <a class="navbar-brand-name fw-bold h2" href="{{ url('/') }}">slcn</a>
+            <a class="nav-link" href="{{url('/top')}}" style="color:lightGray; font-weight:bold;">top</a>
 
             <div class="col-7">
                 <form role="search" id = "search_form" class="input-group" action="{{ route('search') }}">
                     <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
                     <input id="search-input" class="form-control" type="search" placeholder="what are you looking for?" name="search" value="{{ request('search') }}">
-                
+
                     <button class="input-group-text" style="border-top-right-radius: .25rem; border-bottom-right-radius: .25rem;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                         <i class="bi bi-filter"></i>
                     </button>
@@ -115,7 +116,7 @@
     tn_button.addEventListener("click", submitTopNews);
     rn_button.addEventListener("click", submitRecentNews);
     t_button.addEventListener("click", submitTags);
-    function submitTopUsers() { 
+    function submitTopUsers() {
         top_users.checked = true;
         search_form.submit();
     }

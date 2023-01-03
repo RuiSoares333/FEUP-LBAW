@@ -98,6 +98,41 @@ class NewsController extends Controller
       return view('pages.home', ['news' => $news, 'user' => $user, 'tags' => $tags]);
     }
 
+    public function userFeedList()
+    {
+        if(!Auth::check()) return redirect('/top');
+
+        //get tag_follows
+        $newsIds = DB::select('select id from (news inner join (select id_news from (tag_follow inner join news_tag on tag_follow.id_tag = news_tag.id_tag) where id_user = ?) as sub on news.id = sub.id_news)', [Auth::user()->id]);
+
+        $news = array();
+
+        foreach($newsIds as $newsId){
+            $item = News::find($newsId->id);
+            array_push($news, $item);
+        }
+
+        if(Auth::check()){
+            foreach($news as $item){
+                $vote = NewsVote::where('id_user', Auth()->user()->id)->where('id_news', $item->id)->first();
+
+            if(!$vote){
+                $item -> isLiked = 0;
+            }
+            else if($vote->is_liked == TRUE){
+                $item-> isLiked = 1;
+            }
+            else if($vote->is_liked == FALSE){
+                $item -> isLiked = -1;
+            }
+        }
+    }
+
+      $user = array();
+      $tags = array();
+      return view('pages.home', ['news' => $news, 'user' => $user, 'tags' => $tags]);
+    }
+
     public function listBy(Request $request)
     {
       if ($request->input('filter') == "top") {
