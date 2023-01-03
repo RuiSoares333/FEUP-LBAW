@@ -100,7 +100,7 @@ class NewsController extends Controller
 
     public function userFeedList()
     {
-        if(!Auth::check()) return redirect('/top');
+        if(!Auth::check()) return redirect('/');
 
         //get tag_follows
         $newsIds = DB::select('select id from (news inner join (select id_news from (tag_follow inner join news_tag on tag_follow.id_tag = news_tag.id_tag) where id_user = ?) as sub on news.id = sub.id_news)', [Auth::user()->id]);

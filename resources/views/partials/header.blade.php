@@ -2,7 +2,7 @@
     <div class="container d-flex flex-row mx-auto col-xl-10 col-md-11 col-12">
         <div class="d-flex flex-row col-10 justify-content-around">
             <a class="navbar-brand-name fw-bold h2" href="{{ url('/') }}">slcn</a>
-            <a class="nav-link" href="{{url('/top')}}" style="color:lightGray; font-weight:bold;">top</a>
+            <a class="nav-link" href="{{url('/following')}}" style="color:lightGray; font-weight:bold;">following</a>
 
             <div class="col-7">
                 <form role="search" id = "search_form" class="input-group" action="{{ route('search') }}">
