@@ -1,7 +1,11 @@
 <div>
     <section id="intro" class="mx-auto text-center border-bottom py-5">
         <section id="profile-picture" class="mb-3">
-            <img src="{{asset('pictures/user/' . $user->picture ) }}" class="rounded-circle col-6 col-lg-3">
+            @if($user->picture !== 'default.png')
+                <img src="{{asset('pictures/user/' . $user->id . '/' . $user->picture ) }}" class="rounded-circle col-6 col-lg-3 img-fluid ">
+            @else
+                <img src="{{asset('pictures/user/default.png') }}" class="rounded-circle col-6 col-lg-3 img-fluid ">
+            @endif
         </section>
         <section id="username" class="mb-3">
             {{ $user->username }}
@@ -33,31 +37,30 @@
                     <button id="follow_button" class="btn btn-dark" type="button">Unfollow</button>
                     @endif
                 </form>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <p>Are you sure you want to <b>permanently</b> delete your account?</p>
-                                <p>This action is <b>irreversible</b>.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary fw-bold text-light" data-bs-dismiss="modal">Close</button>
-                                <form id="delete_form" method="POST">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" id="delete_id" name="user_id" value = {{$user->id}}>
-                                    <button id="delete_confirm" class="btn btn-primary fw-bold" type="button"> Confirm Delete </button>
-                                </form>
-                            </div>
+            @endif
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p>Are you sure you want to <b>permanently</b> delete your account?</p>
+                            <p>This action is <b>irreversible</b>.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary fw-bold text-light" data-bs-dismiss="modal">Close</button>
+                            <form id="delete_form" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" id="delete_id" name="user_id" value = {{$user->id}}>
+                                <button id="delete_confirm" class="btn btn-primary fw-bold" type="button"> Confirm Delete </button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            @endif
+            </div>
         @endif
         </div>
 
@@ -75,12 +78,13 @@
     </section>
 
     @endif
-    <section id="news">
+    <section id="news_feed">
         @each('partials.news_post', $news, 'newspost')
     </section>
 
 </div>
 
+@if(Auth::check() and (Auth::id() != $user->id))
 <script>
 
     followButton = document.getElementById("follow_button");
@@ -134,7 +138,10 @@
         const replies = await response.json();
         followButton.innerHTML = "Follow";
     }
+</script>
+@endif
 
+<script>
     triggerDeleteButton = document.getElementById("trigger_delete");
     triggerDeleteButton.addEventListener("click", triggerDelete);
     function triggerDelete() {
