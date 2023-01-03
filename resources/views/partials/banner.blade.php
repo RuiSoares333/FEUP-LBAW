@@ -16,7 +16,7 @@
         <div id="tag_toggle">
         <section id="prop_toggle" class="flex d-flex justify-content-evenly d-none">
             <input id="prop_name" type="text" placeholder="New Tag" autocomplete=off class="form-control w-50" >
-            <button id="proposal_submit" class="btn btn-primary rounded-pill py-2 text-light">submit</button>
+            <button id="proposal_submit" class="btn btn-primary rounded-pill py-2 text-light" onclick="sendProposal()">submit</button>
         </section>
         </div>
         <li>Tag 1 <span>x follows</span></li>
@@ -42,5 +42,11 @@
         cancel.classList.toggle('d-none')
         section.classList.toggle('d-none')
         input.value = ""
+    }
+
+    async function sendProposal(){
+        const input = document.querySelector('#prop_name')
+        console.log('submited')
+        toggleProposals()
     }
 </script>
