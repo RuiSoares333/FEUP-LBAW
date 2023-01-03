@@ -58,12 +58,19 @@ class User extends Authenticatable
     public function following() {
         return $this->belongsToMany('App\Models\User', 'follows','id1','id2')->orderBy('username');
     }
+
     public function isAdmin(){
         return $this->is_admin;
     }
 
     public function check_follow($id1, $id2) {
         $follows = DB::select('select * from follows where id1 = ? and id2 = ?', [$id1, $id2]);
+        if ($follows == null) return false;
+        else return true;
+    }
+
+    public function check_follow_tag($id_user, $id_tag) {
+        $follows = DB::select('select * from tag_follow where id_user = ? and id_tag = ?', [$id_user, $id_tag]);
         if ($follows == null) return false;
         else return true;
     }

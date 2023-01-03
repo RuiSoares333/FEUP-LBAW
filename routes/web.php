@@ -51,9 +51,6 @@ Route::delete('/api/vote/newsDelete', 'VoteController@newsDelete');
 Route::post('/api/vote/commentCreate', 'VoteController@commentCreate');
 Route::post('/api/vote/commentUpdate', 'VoteController@commentUpdate');
 Route::delete('/api/vote/commentDelete', 'VoteController@commentDelete');
-/*Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');*/
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -61,3 +58,9 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+//Tag
+Route::get('tag/{id}', 'TagController@show')->name('tag');
+Route::post('/api/follow_tag', 'TagController@follow_tag');
+Route::delete('/api/unfollow_tag', 'TagController@unfollow_tag');
+//Route::delete('/api/delete_tag/{id}','TagController@delete')->name('delete_tag');

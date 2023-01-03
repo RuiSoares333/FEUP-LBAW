@@ -17,12 +17,12 @@ class Tag extends Model
         'tag_name'
     ];
 
-    public function followers() {
-        return $this->belongsToMany('App\Models\User', 'tag_follow','id_user','id_tag')->orderBy('tag_name');
+    public function news() {
+        return $this->belongsToMany('App\Models\News', 'news_tag', 'id_tag', 'id_news');
     }
 
-    public function news() {
-        return $this->belongsToMany('App\Models\News', 'news_tag', 'id_news', 'id_tag');
+    public function followers() {
+        return $this->belongsToMany('App\Models\User', 'tag_follow', 'id_user', 'id_tag');
     }
 
     public function top_tags() {
@@ -33,7 +33,7 @@ class Tag extends Model
             function ($join) {
                 $join->on('tag.id', '=', 'followers_count.id_tag');
             }
-        )->orderBy('count', 'desc')->limit(5)->get();
+        )->orderBy('count', 'desc')->limit(4)->get();
 
         return $top_tags;
     }
