@@ -75,24 +75,26 @@ class NewsController extends Controller
      */
     public function list()
     {
-        $news = News::orderBy('date', 'desc')->get();
+      $news = News::orderBy('date', 'desc')->get();
 
+      if(Auth::check()){
         foreach($news as $item){
             $vote = NewsVote::where('id_user', Auth()->user()->id)->where('id_news', $item->id)->first();
 
-            if(!$vote){
-                $item -> isLiked = 0;
-            }
-            else if($vote->is_liked == TRUE){
-                $item-> isLiked = 1;
-            }
-            else if($vote->is_liked == FALSE){
-                $item -> isLiked = -1;
-            }
+          if(!$vote){
+              $item -> isLiked = 0;
+          }
+          else if($vote->is_liked == TRUE){
+              $item-> isLiked = 1;
+          }
+          else if($vote->is_liked == FALSE){
+              $item -> isLiked = -1;
+          }
         }
+    }
 
-        $user = array();
-        return view('pages.home', ['news' => $news, 'user' => $user]);
+      $user = array();
+      return view('pages.home', ['news' => $news, 'user' => $user]);
     }
 
     public function listBy(Request $request)

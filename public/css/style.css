@@ -464,7 +464,6 @@ a{
 #team .card img{
     margin: 0 25% 0 25%;
     width: 50%;
-    aspect-ratio: 90%;
 }
 
 #team .card > :nth-child(1){
