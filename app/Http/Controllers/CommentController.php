@@ -67,13 +67,13 @@ class CommentController extends Controller
             $replies->sortBy('reputation');
             return response()->json($replies, 200);
         }else{
-            return response("Unauthorized", 403);
+            return response("Unauthorized", 401);
         }
     }
 
     public function createReply(Request $request){
         if(!Auth::check()){
-            return response("Access Denied", 403);
+            return response("Access Denied", 401);
         }
 
         $comment = new Comment;
@@ -93,7 +93,7 @@ class CommentController extends Controller
         $comment = Comment::find($request->input('id'));
 
         if(!Auth::check() || (!(Auth::user()->id == $comment->author()->get()->first()->id) && !(Auth::user()->isAdmin()))){
-            return response("Access Denied", 403);
+            return response("Access Denied", 401);
         }
 
         $comment->content = $request->input('content');
@@ -105,7 +105,7 @@ class CommentController extends Controller
     public function delReply(Request $request){
         $comment = Comment::find($request->input('id'));
         if(!Auth::check() || (!(Auth::user()->id == $comment->author()->get()->first()->id) && !(Auth::user()->isAdmin()))){
-            return response("Access Denied", 403);
+            return response("Access Denied", 401);
         }
         $comment->delete();
         return response('Reply Deleted Successfuly', 200);

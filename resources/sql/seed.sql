@@ -141,7 +141,7 @@ CREATE TABLE tag_follow (
 CREATE TABLE tag_proposal (
     id SERIAL PRIMARY KEY,
     tag_name TEXT UNIQUE NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT,
     is_handled BOOLEAN DEFAULT False
 );
 
