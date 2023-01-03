@@ -64,7 +64,7 @@ class UserController extends Controller
       if($request->file('picture')) {
         $file= $request->file('picture');
         $filename = $file->getClientOriginalName();
-        $file-> move(public_path('pictures/user'), $filename);
+        $file-> move(public_path('pictures/user/'.$user->id), $filename);
         $user->picture = $filename;
       }
 

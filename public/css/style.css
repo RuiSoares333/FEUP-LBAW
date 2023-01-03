@@ -217,6 +217,11 @@ a{
 
 /* NEWS FEED */
 
+#news_feed #news_body{
+    max-height: 75vh;
+    overflow: hidden;
+}
+
 #news_feed #news_body h4{
     overflow: hidden;
     text-overflow: ellipsis;
@@ -275,7 +280,7 @@ a{
 }
 
 .edit-button:hover{
-    color: var(--bs-gray-200);
+    color: var(--bs-gray-400);
 }
 
 .tag-button-empty{
@@ -415,6 +420,11 @@ a{
     background-color: var(--bs-gray-200) !important;
 }
 
+/* PROFILE */
+
+#profile-picture img{
+    aspect-ratio: 1/1;
+}
 
 /* PROFILE - FOLLOW */
 

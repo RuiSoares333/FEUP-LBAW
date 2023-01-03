@@ -3,9 +3,9 @@
     <nav id="news_vote_{{$newspost->id}}" class="d-flex flex-column">
         <input id="news_is_liked_{{$newspost->id}}" type="hidden" value={{$newspost->isLiked}} autocomplete=off>
         @if($newspost->isLiked == 1)
-            <button class="mx-auto bi bi-caret-up-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="newsVoteUp({{$newspost->id}})"></button>
+            <button class="mx-auto bi bi-caret-up-fill cursor-pointer btn p-1" style="font-size: 2rem; color: var(--bs-secondary);" onclick="newsVoteUp({{$newspost->id}})"></button>
         @else
-            <button class="mx-auto bi bi-caret-up cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden;" onclick="newsVoteUp({{$newspost->id}})"></button>
+            <button class="mx-auto bi bi-caret-up cursor-pointer btn edit-button p-1" style="font-size: 2rem; height:auto !important;" onclick="newsVoteUp({{$newspost->id}})"></button>
         @endif
 
         <span id="reputation" class="reputation my-1 mx-auto">
@@ -13,9 +13,9 @@
         </span>
 
         @if($newspost->isLiked == -1)
-            <button class="mx-auto bi bi-caret-down-fill cursor-pointer" style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden; color:orange;" onclick="newsVoteDown({{$newspost->id}})"></button>
+            <button class="mx-auto bi bi-caret-down-fill cursor-pointer p-1" style="font-size: 2rem; color: var(--bs-secondary);" onclick="newsVoteDown({{$newspost->id}})"></button>
         @else
-            <button class="mx-auto bi bi-caret-down cursor-pointer"style="font-size: 2.5rem; background-color: rgb(255, 255, 255); border: medium hidden;" onclick="newsVoteDown({{$newspost->id}})"></button>
+            <button class="mx-auto bi bi-caret-down cursor-pointer btn edit-button p-1"style="font-size: 2rem; height:auto !important;" onclick="newsVoteDown({{$newspost->id}})"></button>
         @endif
 
     </nav>
