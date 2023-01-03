@@ -5,7 +5,7 @@
     @include('partials.header')
     @include('partials.banner')
 
-    <main class="col-12 col-md-12 col-lg-9 p-0 p-md-5">
+    <main class="col-12 col-md-12 col-lg-9 px-0 px-md-5" style="padding-top: 20vh; padding-bottom: 35vh;">
 
         <section id="news_feed">
             @each('partials.news_post', $news, 'newspost')
@@ -15,7 +15,7 @@
             @each('partials.profile_preview', $user, 'user_preview')
         </section>
 
-        <section id="tags" class="follow-grid">
+        <section id="tags" class="row justify-content-center">
             @each('partials.tag_preview', $tags, 'tag')
         </section>
 

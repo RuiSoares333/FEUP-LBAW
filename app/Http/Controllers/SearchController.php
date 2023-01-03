@@ -32,7 +32,6 @@ class SearchController extends Controller
             $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
             ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
             ->orderBy('reputation', 'desc')
-            ->take(10)
             ->get();
             $users = array();
             $tags = array();
@@ -41,7 +40,6 @@ class SearchController extends Controller
             $news = News::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
             ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
             ->orderBy('date', 'desc')
-            ->take(10)
             ->get();
             $users = array();
             $tags = array();
@@ -50,7 +48,6 @@ class SearchController extends Controller
             $users = User::whereRaw('tsvectors @@ to_tsquery(\'english\', ?)',  [$query])
             ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$query])
             ->orderBy('reputation', 'desc')
-            ->take(10)
             ->get();
             $news = array();
             $tags = array();
@@ -64,22 +61,22 @@ class SearchController extends Controller
         }
         else {
           if ($request->input('filter') == "top_news") {
-            $news = News::orderBy('reputation', 'desc')->take(10)->get();
+            $news = News::orderBy('reputation', 'desc')->get();
             $users = array();
             $tags = array();
           }
           else if ($request->input('filter') == "recent_news") {
-            $news = News::orderBy('date', 'desc')->take(10)->get();
+            $news = News::orderBy('date', 'desc')->get();
             $users = array();
             $tags = array();
           }
           else if ($request->input('filter') == "top_users") {
-            $users = User::orderBy('reputation', 'desc')->take(10)->get();
+            $users = User::orderBy('reputation', 'desc')->get();
             $news = array();
             $tags = array();
           }
           else if ($request->input('filter') == "tags") {
-            $tags = Tag::orderBy('tag_name', 'desc')->get();
+            $tags = Tag::orderBy('tag_name', 'asc')->get();
             $news = array();
             $users = array();
           }

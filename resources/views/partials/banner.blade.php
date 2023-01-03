@@ -10,35 +10,40 @@
         <div class="bg-circle-4 bg-circle"></div>
     </div>
     @if(Auth::check())
-        <ul>
+        <div id="tag-list-banner" class="row mx-auto p-3 justify-content-center">
             @each('partials.list_tag', Auth::user()->followed_tags(), 'tag')
-        </ul>
+        </div>
+        
     @endif
-        <button id="proposal" class="col-10 btn btn-primary rounded-pill py-2 text-light " onclick="toggleProposals()">Propose a New Tag</button>
-        <button id="proposal_cancel" class="col-10 btn btn-primary rounded-pill py-2 text-light d-none" onclick="toggleProposals()">Cancel</button>
+        <div id="proposalcss1" class="col-10 mx-auto">
+            <button id="proposal" class="col-12 btn fw-bold btn-primary rounded-pill py-2 text-light " onclick="toggleProposals()">Propose a New Tag</button>
+        </div>
 
-        <div id="tag_toggle">
-        <section id="prop_toggle" class="flex d-flex justify-content-evenly d-none">
-            <input id="prop_name" type="text" placeholder="New Tag" autocomplete=off class="form-control w-50" >
-            <button id="proposal_submit" class="btn btn-primary rounded-pill py-2 text-light" onclick="sendProposal()">submit</button>
-        </section>
+        <div id="tag_toggle" class="w-75 h-0 mx-auto d-none">
+            <section id="prop_toggle" class="row justify-content-evenly">
+                <input id="prop_name" type="text" placeholder="New Tag" autocomplete=off class="form-control col-12 mb-2" >
+                <button id="proposal_cancel" class="col-5 btn btn-primary rounded-pill py-2 text-light d-none" onclick="toggleProposals()">Cancel</button>
+                <button id="proposal_submit" class="col-5 btn btn-primary rounded-pill py-2 text-light" onclick="sendProposal()">Submit</button>
+            </section>
         </div>
 
 
-    <a href="{{ url('rte') }}" class="col-10 btn btn-primary rounded-pill border-0 py-2 px-4 text-light ">Share Your Story</button></a>
-    <a href="{{ url('about_us') }}">About Us</a>
+    <a href="{{ url('rte') }}" id="banner-rte" class="col-10 btn btn-primary rounded-pill border-0 py-2 px-4 text-light ">Share Your Story</button></a>
+    <a href="{{ url('about_us') }}" id="banner-aboutus">About Us</a>
 </nav>
 
 <script>
     function toggleProposals(){
         const toggle = document.querySelector('#proposal')
         const cancel = document.querySelector('#proposal_cancel')
-        const section = document.querySelector('#prop_toggle')
+        const section = document.querySelector('#tag_toggle')
         const input = document.querySelector('#prop_name')
 
         toggle.classList.toggle('d-none')
+        toggle.classList.toggle('h-0')
         cancel.classList.toggle('d-none')
         section.classList.toggle('d-none')
+        section.classList.toggle('h-0')
         input.value = ""
     }
 

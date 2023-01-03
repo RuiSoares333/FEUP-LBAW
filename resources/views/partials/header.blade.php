@@ -64,9 +64,9 @@ channel.bind('my-event', function(data) {
     <div class="container d-flex flex-row mx-auto col-xl-10 col-md-11 col-12">
         <div class="d-flex flex-row col-10 justify-content-around">
             <a class="navbar-brand-name fw-bold h2" href="{{ url('/') }}">slcn</a>
-            <a class="nav-link" href="{{url('/following')}}" style="color:lightGray; font-weight:bold;">following</a>
+            <a class="nav-link" href="{{url('/following')}}" style="color:lightGray; font-weight:bold; font-size:small;">MY NEWS FEED</a>
 
-            <div class="col-7">
+            <div class="col-5 col-md-6">
                 <form role="search" id = "search_form" class="input-group" action="{{ route('search') }}">
                     <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
                     <input id="search-input" class="form-control" type="search" placeholder="what are you looking for?" name="search" value="{{ request('search') }}">
@@ -74,14 +74,14 @@ channel.bind('my-event', function(data) {
                     <button class="input-group-text" style="border-top-right-radius: .25rem; border-bottom-right-radius: .25rem;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                         <i class="bi bi-filter"></i>
                     </button>
-                    <ul class="dropdown-menu w-100 px-5 py-3" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu w-100 p-3" aria-labelledby="dropdownMenuButton1">
                         <li>
                             @if(request('filter') == "top_users")
                             <input class="form-check-input d-none" type="radio" name="filter" id="top_users" value="top_users" checked/>
                             @else
                             <input class="form-check-input d-none" type="radio" name="filter" id="top_users" value="top_users"/>
                             @endif
-                            <label for="top_users" class="btn btn-outline-danger" id="tu_button">
+                            <label for="top_users" class="w-100 btn btn-outline-danger border-end-0 border-start-0 border-radius-0" id="tu_button">
                                 Top Users
                             </label>
                         </li>
@@ -91,7 +91,7 @@ channel.bind('my-event', function(data) {
                             @else
                             <input class="form-check-input d-none" type="radio" name="filter" id="top_news" value="top_news"/>
                             @endif
-                            <label for="top_news" class="btn btn-outline-danger" id="tn_button">
+                            <label for="top_news" class="w-100 btn btn-outline-danger border-end-0 border-start-0 border-radius-0" id="tn_button">
                                 Top News
                             </label>
                         </li>
@@ -103,7 +103,7 @@ channel.bind('my-event', function(data) {
                             @else
                             <input class="form-check-input d-none" type="radio" name="filter" id="recent_news" value="recent_news"/>
                             @endif
-                            <label for="recent_news" class="btn btn-outline-danger" id="rn_button">
+                            <label for="recent_news" class="w-100 btn btn-outline-danger border-end-0 border-start-0 border-radius-0" id="rn_button">
                                 Most Recent News
                             </label>
                         </li>
@@ -113,7 +113,7 @@ channel.bind('my-event', function(data) {
                             @else
                             <input class="form-check-input d-none" type="radio" name="filter" id="tags" value="tags"/>
                             @endif
-                            <label for="tags" class="btn btn-outline-danger" id="t_button">
+                            <label for="tags" class="w-100 btn btn-outline-danger border-end-0 border-start-0 border-radius-0" id="t_button">
                                 Tags
                             </label>
                         </li>
