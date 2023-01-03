@@ -68,4 +68,9 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('/welcome_email', 'EmailController@welcome');
 
 //notifications
+Route::get('/api/sendnotifications', function(){
+    $arr = array('id' => 1, 'name' => 'john');
 
+    event(new App\Events\myEvent(json_encode($arr)));
+    return 'notification sent';
+});

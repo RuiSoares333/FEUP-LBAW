@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\NewsVote;
 use App\Models\CommentVote;
 
+
 class VoteController extends Controller
 {
     public function newsCreate(Request $request){
@@ -20,6 +21,8 @@ class VoteController extends Controller
             'id_news' => $request->input('id'),
             'is_liked' => $request->input('is_liked')
         ]);
+
+
         return response('Vote created', 200);
     }
 

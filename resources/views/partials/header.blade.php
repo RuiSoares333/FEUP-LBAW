@@ -10,7 +10,9 @@ var pusher = new Pusher('730b9185b760246c7a3a', {
 
 var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
-    alert(JSON.stringify(data));
+    myJson = JSON.parse(data.message)
+    console.log(myJson)
+    alert(myJson.id)
 });
 </script>
 
