@@ -46,7 +46,6 @@
 
     async function sendProposal(){
         const input = document.querySelector('#prop_name')
-        console.log(input.value)
         sendAjaxRequest('post', '/api/tag/propose', {'name':input.value})
         toggleProposals()
     }

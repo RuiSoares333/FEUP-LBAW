@@ -35,7 +35,6 @@ class TagController extends Controller
 
         $tagP = TagProposal::where('tag_name', $name)->first();
         if($tagP){ //tag proposal exists add to proposal-user
-
             $propUser = DB::table('tag_proposal_user')->where('id_tag', $tagP->id)->where('id_user', Auth()->user()->id)->exists();
             if($propUser) return response('You Alreay made this Proposal', 403);
 
@@ -56,5 +55,22 @@ class TagController extends Controller
         }
 
         return response('Proposal created', 200);
+    }
+
+    public function createTag(Request $request){
+        if(!Auth::check()) return response("Access Denied", 401);
+        if(!(Auth()->user()->is_admin)) return response("Access Denied", 401);
+        $proposal_id = $request->input('id');
+
+        $proposal = TagProposal::find($proposal_id);
+        $tag_name = $proposal->tag_name;
+
+        $proposal->is_handled = TRUE;
+        $proposal->save();
+
+        $tag = new Tag;
+        $tag->tag_name = $tag_name;
+        $tag->save();
+        return response('Tag Created, Proposal Handled', 200);
     }
 }
