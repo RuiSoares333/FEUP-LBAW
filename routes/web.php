@@ -74,7 +74,8 @@ Route::post('/api/sendnotifications', function(Request $request){
     $arr = array(
         'id' => $request->input('id'),
         'type' => $request->input('type'),
-        'user_id' => $request->input('user_id')
+        'user_id' => $request->input('user_id'),
+        'receiver_id' =>$request->input('receiver_id')
     );
 
     event(new App\Events\myEvent(json_encode($arr)));

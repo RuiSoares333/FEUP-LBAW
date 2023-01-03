@@ -180,14 +180,14 @@
 
                 for(const reply of replies){
                     if(reply.isLiked==1){
-                        var up = `<button class="mx-auto bi bi-caret-up-fill cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden; color:orange;" onclick="commentVoteUp(`+reply.id+`, `+ own_user_id +`)"></button>`
+                        var up = `<button class="mx-auto bi bi-caret-up-fill cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden; color:orange;" onclick="commentVoteUp(`+reply.id+`, `+ own_user_id +`, `+ reply.parent_owner_id +`)"></button>`
                     }else{
-                        var up = `<button class="mx-auto bi bi-caret-up cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden;" onclick="commentVoteUp(`+reply.id+`, `+ own_user_id +`)"></button>`
+                        var up = `<button class="mx-auto bi bi-caret-up cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden;" onclick="commentVoteUp(`+reply.id+`, `+ own_user_id +`, `+ reply.parent_owner_id +`)"></button>`
                     }
                     if(reply.isLiked == -1){
-                        var down = `<button class="mx-auto bi bi-caret-down-fill cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden; color:orange;" onclick="commentVoteDown(`+reply.id+`, `+ own_user_id +`)"></button>`
+                        var down = `<button class="mx-auto bi bi-caret-down-fill cursor-pointer btn btn-edit" style="font-size: 2rem; border: medium hidden; color:orange;" onclick="commentVoteDown(`+reply.id+`, `+ own_user_id +`, `+ reply.parent_owner_id +`)"></button>`
                     }else{
-                        var down = `<button class="mx-auto bi bi-caret-down cursor-pointer btn btn-edit"style="font-size: 2rem; border: medium hidden;" onclick="commentVoteDown(`+ reply.id +`, `+ own_user_id +`)"></button>`
+                        var down = `<button class="mx-auto bi bi-caret-down cursor-pointer btn btn-edit"style="font-size: 2rem; border: medium hidden;" onclick="commentVoteDown(`+ reply.id +`, `+ own_user_id +`, `+ reply.parent_owner_id +`)"></button>`
                     }
 
                     var replyContent = `

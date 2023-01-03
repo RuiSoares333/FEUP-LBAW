@@ -12,9 +12,10 @@ var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
     const id = document.querySelector('#user_id').value
     myJson = JSON.parse(data.message)
-    alert(myJson)
-    if(myJson.user_id == id){
-        
+    if(myJson.user_id == id) return
+    if(myJson.receiver_id == id){
+        alert(myJson)
+        console.log(myJson)
     }
 });
 </script>

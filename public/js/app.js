@@ -150,7 +150,7 @@ function createItem(item) {
   return new_item;
 }
 
-async function newsVoteUp(id, user_id){
+async function newsVoteUp(id, user_id, receiver_id){
     let url
     let is_liked
     let method
@@ -177,7 +177,8 @@ async function newsVoteUp(id, user_id){
         url = '/api/vote/newsCreate'
         method = 'post'
         is_liked = true
-        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'news'})
+        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'news', 'receiver_id':receiver_id})
+
     }
     else if(isLiked.value == -1){
         //change to like
@@ -195,11 +196,11 @@ async function newsVoteUp(id, user_id){
         url = '/api/vote/newsUpdate'
         method = 'post'
         is_liked = true
-        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'news'})
+        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'news', 'receiver_id':receiver_id})
     }
     sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
 }
-async function newsVoteDown(id, user_id){
+async function newsVoteDown(id, user_id, receiver_id){
     let url
     let is_liked
     let method
@@ -246,7 +247,7 @@ async function newsVoteDown(id, user_id){
     }
     sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
 }
-async function commentVoteUp(id, user_id){
+async function commentVoteUp(id, user_id, receiver_id){
     let url
     let is_liked
     let method
@@ -275,7 +276,7 @@ async function commentVoteUp(id, user_id){
         url = '/api/vote/commentCreate'
         method = 'post'
         is_liked = true
-        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'comment'})
+        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'comment', 'receiver_id':receiver_id})
     }
     else if(isLiked.value == -1){
         //change to like
@@ -292,11 +293,11 @@ async function commentVoteUp(id, user_id){
         url = '/api/vote/commentUpdate'
         method = 'post'
         is_liked = true
-        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'news'})
+        sendAjaxRequest('post', '/api/sendnotifications', {'user_id':user_id, 'id':id, 'type':'comment', 'receiver_id':receiver_id})
     }
     sendAjaxRequest(method, url, {'is_liked':is_liked, 'id':id})
 }
-async function commentVoteDown(id, user_id){
+async function commentVoteDown(id, user_id, receiver_id){
     let url
     let is_liked
     let method
