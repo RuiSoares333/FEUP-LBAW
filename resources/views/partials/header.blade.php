@@ -12,7 +12,7 @@ var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
     const id = document.querySelector('#user_id').value
     myJson = JSON.parse(data.message)
-    // if(myJson.user_id == id) return
+    if(myJson.user_id == id) return
     if(myJson.receiver_id == id){
 
         const notCont = document.getElementById("toast-container");
@@ -44,8 +44,6 @@ channel.bind('my-event', function(data) {
 
 
         notCont.innerHTML = notCont.innerHTML + replyContent;
-
-        console.log(myJson)
     }
 });
 </script>
