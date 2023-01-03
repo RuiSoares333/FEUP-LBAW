@@ -62,6 +62,13 @@
                 </div>
             </div>
         @endif
+        @if( $user->id_admin && Auth::user()->is_admin && Auth::check())
+            
+            <form id="delete_form" method="POST" action="{{route('revoke', Auth::user()->id)}}">
+                {{ csrf_field() }}
+                <button type="submit" id="delete_confirm" class="btn btn-primary fw-bold" > Make Admin </button>
+            </form>        
+        @endif
         </div>
 
     </section>
