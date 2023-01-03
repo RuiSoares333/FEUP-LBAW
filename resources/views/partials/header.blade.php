@@ -4,7 +4,7 @@
             <a class="navbar-brand-name fw-bold h2" href="{{ url('/') }}">slcn</a>
 
             <div class="col-7">
-                <form role="search" class="input-group" action="{{ route('search') }}">
+                <form role="search" id = "search_form" class="input-group" action="{{ route('search') }}">
                     <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
                     <input id="search-input" class="form-control" type="search" placeholder="what are you looking for?" name="search" value="{{ request('search') }}">
                 
@@ -13,22 +13,36 @@
                     </button>
                     <ul class="dropdown-menu w-100 px-5 py-3" aria-labelledby="dropdownMenuButton1">
                         <li>
-                            @if(request('filter') == "top")
-                            <input class="form-check-input" type="radio" name="filter" id="top" value="top" checked/>
+                            @if(request('filter') == "top_users")
+                            <input class="form-check-input d-none" type="radio" name="filter" id="top_users" value="top_users" autocomplete="off" checked/>
                             @else
-                            <input class="form-check-input" type="radio" name="filter" id="top" value="top"/>
+                            <input class="form-check-input d-none" type="radio" name="filter" id="top_users" value="top_users" autocomplete="off"/>
                             @endif
-                            <label for="top">Highest Reputation</label>
+                            <label for="top_users" class="btn btn-outline-danger" id="tu_button">
+                                Top Users
+                            </label>
                         </li>
                         <li>
-                            @if(request('filter') == "recent")
-                            <input class="form-check-input" type="radio" name="filter" id="recent" value="recent" checked/>
-                            @elseif(!request('filter'))
-                            <input class="form-check-input" type="radio" name="filter" id="recent" value="recent" checked/>
+                            @if(request('filter') == "top_news")
+                            <input class="form-check-input d-none" type="radio" name="filter" id="top_news" value="top_news" autocomplete="off" checked/>
                             @else
-                            <input class="form-check-input" type="radio" name="filter" id="recent" value="recent"/>
+                            <input class="form-check-input d-none" type="radio" name="filter" id="top_news" value="top_news" autocomplete="off"/>
                             @endif
-                            <label for="recent">Most Recent</label>
+                            <label for="top_news" class="btn btn-outline-danger" id="tn_button">
+                                Top News
+                            </label>
+                        </li>
+                        <li>
+                            @if(request('filter') == "recent_news")
+                            <input class="form-check-input d-none" type="radio" name="filter" id="recent_news" value="recent_news" autocomplete="off" checked/>
+                            @elseif(!request('filter'))
+                            <input class="form-check-input d-none" type="radio" name="filter" id="recent_news" value="recent_news" autocomplete="off" checked/>
+                            @else
+                            <input class="form-check-input d-none" type="radio" name="filter" id="recent_news" value="recent_news" autocomplete="off"/>
+                            @endif
+                            <label for="recent_news" class="btn btn-outline-danger" id="rn_button">
+                                Most Recent News
+                            </label>
                         </li>
                     </ul>
                 </form>
@@ -46,7 +60,6 @@
                 <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/logout') }}">logout</a></li>
                 <li class="nav-item my-auto"><a href="/profile/{{Auth::user()->id}}">{{Auth::user()->username }}</a></li>
                 <li class="d-inline d-lg-none nav-item my-auto"><a href="{{url('about_us')}}">About Us</a></li>
-
                 @else
                 <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/register') }}">register</a></li>
                 <li class="nav-item my-auto"><a class="nav-link" href="{{ url('/login') }}">login</a></li>
@@ -56,3 +69,37 @@
         </div>
     </div>
 </nav>
+
+<script>
+    const search_form = document.getElementById("search_form");
+    const tu_button = document.getElementById("tu_button");
+    const tn_button = document.getElementById("tn_button");
+    const rn_button = document.getElementById("rn_button");
+    const top_users = document.getElementById("top_users");
+    const top_news = document.getElementById("top_news");
+    const recent_news = document.getElementById("recent_news");
+    if (top_users.checked) {
+        tu_button.classList.toggle('active');
+    }
+    if (top_news.checked) {
+        tn_button.classList.toggle('active');
+    }
+    if (recent_news.checked) {
+        rn_button.classList.toggle('active');
+    }
+    tu_button.addEventListener("click", submitTopUsers);
+    tn_button.addEventListener("click", submitTopNews);
+    rn_button.addEventListener("click", submitRecentNews);
+    function submitTopUsers() { 
+        top_users.checked = true;
+        search_form.submit();
+    }
+    function submitTopNews() {
+        top_news.checked = true;
+        search_form.submit();
+    }
+    function submitRecentNews() {
+        recent_news.checked = true;
+        search_form.submit();
+    }
+</script>
