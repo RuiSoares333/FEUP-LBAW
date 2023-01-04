@@ -30,6 +30,23 @@ And to run it locally:
 docker run -it -p 8000:80 --name=lbaw2286 -e DB_DATABASE="lbaw2286" -e DB_SCHEMA="lbaw2286" -e DB_USERNAME="lbaw2286" -e DB_PASSWORD="HfwKxxtO" git.fe.up.pt:5050/lbaw/lbaw2223/lbaw2286
 ```
 
+
+
+### Administration Credentials
+
+| Email | Password |
+| -------- | -------- |
+| admin@example.com  | 1234 |
+| lucas@legitmail.com | legitlucas | 
+
+
+### User Credentials
+
+| Type          | Email  | Password |
+| ------------- | --------- | -------- |
+| basic account | andre@legitmail.com | legitandre |
+
+
 # Team
 - André Morais, up202005303@edu.fe.up.pt
 - João Teixeira, up202005437@edu.fe.up.pt
